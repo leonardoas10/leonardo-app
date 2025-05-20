@@ -7,3 +7,6 @@ nextjs-pages:
 
 components:
     - 'components/**'
+
+documentation:
+    - 'README.md'

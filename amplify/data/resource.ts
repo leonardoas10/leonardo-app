@@ -1,16 +1,17 @@
 import { type ClientSchema, a, defineData } from '@aws-amplify/backend';
 
-const schema = a.schema({
-    Todo: a
-        .model({
-            content: a.string(),
-        })
-        .authorization((allow) => [allow.publicApiKey()]),
-});
+import { contentSchema } from './schemas';
+
+const schema = a
+    .schema({
+        ...contentSchema,
+    })
+    .authorization((allow) => [allow.publicApiKey()]);
 
 export type Schema = ClientSchema<typeof schema>;
 
 export const data = defineData({
+    name: 'LAS',
     schema,
     authorizationModes: {
         defaultAuthorizationMode: 'apiKey',
