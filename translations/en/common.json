@@ -1,0 +1,14 @@
+{
+    "deleteModal": {
+        "description": "Do you want to delete",
+        "delete": "Delete"
+    },
+    "errors": {
+        "cannotBeEmpty": "Cannot Be Empty",
+        "passwordDoesntMatch": "Passwords doens't match",
+        "notFoundPage": "Hey! thats look the path that you're looking for doens't exist."
+    },
+    "frontEnd": "Front End",
+    "backEnd": "Back End",
+    "architecture": "Architecture"
+}

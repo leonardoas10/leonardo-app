@@ -1,0 +1,15 @@
+{
+    "aboutResume": {
+        "resume": "Full Stack Developer, Cloud Engineer and Technical Lead"
+    },
+    "badgesResume": {
+        "title": "Badges",
+        "learnMore": "Learn More",
+        "cloudPractitioner": "Provides a fundamental understanding of AWS Cloud concepts, services, and terminology. This is a good starting point for those in non-technical roles with no previous cloud or IT-related experience, or for those with on-premises IT experience looking to master the basics of the AWS Cloud.",
+        "solutionsArchitect": "Exhibits knowledge and skills in AWS technology, across a wide range of AWS services. This certification focuses on designing cost- and performance-optimized solutions that demonstrate a strong understanding of the AWS Well-Architected Framework.",
+        "developerAssociate": "Demonstrates knowledge and understanding of AWS core services, their uses, and basic AWS architecture best practices, as well as competencies in developing, deploying, and debugging cloud-based applications using AWS.",
+        "serverless": "Earners of this badge have developed technical skills and knowledge of AWS serverless concepts and services with a focus on Lambda, API Gateway, SQS, SNS, Cognito, Kinesis and S3.",
+        "networkingCore": "Earners of this badge have developed technical knowledge of AWS networking concepts and services with a focus on Amazon VPC, AWS Cloud WAN and Amazon Route 53.",
+        "eks": "Earners of this badge have developed knowledge of running microservices and container workloads with Amazon Elastic Kubernetes Service (Amazon EKS)"
+    }
+}

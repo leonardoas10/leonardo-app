@@ -1,0 +1,14 @@
+{
+    "deleteModal": {
+        "description": "Seguro que desea eliminar",
+        "delete": "Eliminar"
+    },
+    "errors": {
+        "cannotBeEmpty": "No puede ser vacio",
+        "passwordDoesntMatch": "Las contraseñas no coinciden",
+        "notFoundPage": "Hey! La direccion buscada no existe."
+    },
+    "frontEnd": "Interfaz",
+    "backEnd": "Servidor",
+    "architecture": "Arquitectura"
+}

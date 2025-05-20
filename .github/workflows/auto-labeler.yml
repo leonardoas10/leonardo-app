@@ -1,0 +1,30 @@
+name: 'Pull Request Labeler'
+# Workflow that automatically applies labels to pull requests based on configuration
+on:
+    # Trigger on pull request events
+    pull_request:
+    # Allow this workflow to be called by other workflows
+    workflow_call:
+        inputs:
+            pr-number:
+                description: 'Optional PR number'
+                required: false
+                type: string
+
+# Required permissions for the labeler action to modify pull requests
+permissions:
+    pull-requests: write
+
+jobs:
+    auto-labeler:
+        runs-on: ubuntu-latest
+        steps:
+            # Check out the repository code
+            - uses: actions/checkout@v4
+            # Apply labels based on the .github/labeler.yml configuration
+            - uses: actions/labeler@v4
+              with:
+                  # Token used for authentication with GitHub API
+                  repo-token: '${{ secrets.GITHUB_TOKEN }}'
+                  # Optional PR number when called from another workflow
+                  pr-number: ${{ inputs.pr-number }}

@@ -1,0 +1,15 @@
+{
+    "aboutResume": {
+        "resume": "Desarrollador Full Stack, Ingeniero Cloud y Líder Técnico"
+    },
+    "badgesResume": {
+        "title": "Insignias",
+        "learnMore": "Aprender Más",
+        "cloudPractitioner": "Ofrece un conocimiento fundamental de los conceptos, servicios y terminología de la nube de AWS. Este es un buen punto de partida para quienes tienen roles no técnicos y no cuentan con experiencia previa relacionada con la nube o TI, o para quienes tienen experiencia en TI en las instalaciones y buscan dominar los elementos básicos de la nube de AWS.",
+        "solutionsArchitect": "Muestra conocimientos y habilidades en tecnología de AWS, en una amplia gama de servicios de AWS. Esta certificación se concentra en el diseño de soluciones optimizadas para el costo y el rendimiento, que demuestra un gran entendimiento del AWS Well-Architected Framework.",
+        "developerAssociate": "Muestra el conocimiento y la comprensión de los servicios fundamentales de AWS, sus usos y las prácticas recomendadas de arquitectura básica de AWS, además de competencias de desarrollo, implementación y depuración de aplicaciones basadas en la nube mediante el uso de AWS.",
+        "serverless": "Los ganadores de esta insignia han desarrollado habilidades técnicas y conocimientos de los conceptos y servicios serverless de AWS con un enfoque en Lambda, API Gateway, SQS, SNS, Cognito, Kinesis y S3.",
+        "networkingCore": "Los ganadores de esta insignia han desarrollado conocimientos técnicos de los conceptos y servicios de redes de AWS con un enfoque en Amazon VPC, AWS Cloud WAN y Amazon Route 53.",
+        "eks": "Los ganadores de esta insignia han desarrollado conocimientos sobre la ejecución de microservicios y cargas de trabajo de contenedores con Amazon Elastic Kubernetes Service (Amazon EKS)."
+    }
+}

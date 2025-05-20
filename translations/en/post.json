@@ -1,0 +1,26 @@
+{
+    "postCard": {
+        "learnMore": "Learn More",
+        "edit": "Edit",
+        "delete": "Delete"
+    },
+    "adminPosts": {
+        "createPost": "Create Post",
+        "listPosts": "List Posts",
+        "editPost": "Edit Post",
+        "imagesManager": "Images Manager"
+    },
+    "lexical": {
+        "titleENInput": "English Title",
+        "resumeENInput": "English Resume",
+        "titleESInput": "Spanish title",
+        "resumeESInput": "Spanish Resume",
+        "coverImagePreview": "Cover Image Preview",
+        "uploadCoverImage": "Upload Cover Image",
+        "oldCoverImagePreview": "Old Cover Image Preview",
+        "createPost": "Create Post",
+        "editPost": "Update Post"
+    },
+    "searchAPost": "Search A Post",
+    "searchAPostById": "Search Post By Id"
+}

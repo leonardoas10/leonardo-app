@@ -1,0 +1,9 @@
+amplify:
+    - 'amplify/**'
+    - 'amplify.yml'
+
+nextjs-pages:
+    - 'app/**'
+
+components:
+    - 'components/**'

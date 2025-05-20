@@ -1,0 +1,10 @@
+{
+    "theme": {
+        "dark": "Dark",
+        "light": "Light",
+        "language": "en"
+    },
+    "footer": {
+        "roles": "Full Stack Developer - Solutions Cloud Architect - Technical Lead"
+    }
+}

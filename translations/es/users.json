@@ -1,0 +1,22 @@
+{
+    "listUsers": {
+        "firstname": "Nombre",
+        "lastname": "Apellido",
+        "username": "Usuario",
+        "email": "Correo",
+        "edit": "Editar",
+        "delete": "Eliminar"
+    },
+    "formCreateEditUser": {
+        "firstname": "Nombre",
+        "lastname": "Apellido",
+        "username": "Usuario",
+        "password": "Contraseña",
+        "confirmPassword": "Confirmar Contraseña",
+        "email": "Correo",
+        "edit": "Editar",
+        "createUser": "Crear Usuario",
+        "editUser": "Editar Usuario"
+    },
+    "editUser": {}
+}

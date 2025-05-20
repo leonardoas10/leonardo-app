@@ -1,0 +1,12 @@
+{
+    "navigationList": {
+        "home": "Inicio",
+        "websiteArchitecture": "Arquitectura del Sitio Web",
+        "badges": "Insignias",
+        "posts": "Publicaciones",
+        "users": "Usuarios",
+        "categories": "Categorias",
+        "tags": "Tags",
+        "imageManager": "Manejador de Imagenes"
+    }
+}

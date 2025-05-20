@@ -1,0 +1,12 @@
+{
+    "navigationList": {
+        "home": "Home",
+        "websiteArchitecture": "Website Architecture",
+        "badges": "Badges",
+        "posts": "Post",
+        "users": "Users",
+        "categories": "Categories",
+        "tags": "Tags",
+        "imageManager": "Image Manager"
+    }
+}

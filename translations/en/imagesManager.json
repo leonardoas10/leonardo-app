@@ -1,0 +1,9 @@
+{
+    "preUploadImage": "Pre Upload Image",
+    "saveImage": "Save Image",
+    "imagePreview": "Image Preview",
+    "copyUrl": "Copy Url",
+    "nameInput": "Name",
+    "sizeInput": "Size *Readonly",
+    "typeInput": "Type *Readonly"
+}
