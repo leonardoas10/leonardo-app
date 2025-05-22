@@ -1,0 +1,32 @@
+.navbar {
+  width: 100%;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+}
+
+.menuButton {
+  display: none;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .menuButton {
+    display: block;
+  }
+  
+  .desktopMenu {
+    display: none;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+  .mobileMenu {
+    display: none;
+  }
+}
