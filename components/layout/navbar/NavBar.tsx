@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
     AppBar,
     Box,
@@ -23,13 +24,13 @@ import ThemeToggle from '@/components/layout/ThemeToggle';
 // Navigation items
 const pages = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Architecture', href: '/website-architecture' },
+    { name: 'CV', href: '/contact' },
 ];
 
 const NavBar = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
+    const pathname = usePathname();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -38,27 +39,37 @@ const NavBar = () => {
     // Mobile drawer content
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Typography variant="h6" sx={{ my: 2 }}>
-                LOGO
-            </Typography>
             <List className={styles.mobileMenu}>
-                {pages.map((page) => (
-                    <ListItem key={page.name} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
-                            <Link
-                                href={page.href}
-                                passHref
-                                style={{
-                                    textDecoration: 'none',
-                                    color: 'inherit',
-                                    width: '100%',
+                {pages.map((page) => {
+                    const isActive = pathname === page.href;
+                    return (
+                        <ListItem key={page.name} disablePadding>
+                            <ListItemButton
+                                sx={{
+                                    textAlign: 'center',
+                                    bgcolor: isActive
+                                        ? 'rgba(255, 255, 255, 0.1)'
+                                        : 'transparent',
                                 }}
                             >
-                                <ListItemText primary={page.name} />
-                            </Link>
-                        </ListItemButton>
-                    </ListItem>
-                ))}
+                                <Link
+                                    href={page.href}
+                                    passHref
+                                    style={{
+                                        textDecoration: 'none',
+                                        color: 'inherit',
+                                        width: '100%',
+                                        fontWeight: isActive
+                                            ? 'bold'
+                                            : 'normal',
+                                    }}
+                                >
+                                    <ListItemText primary={page.name} />
+                                </Link>
+                            </ListItemButton>
+                        </ListItem>
+                    );
+                })}
                 <ListItem disablePadding>
                     <ListItemButton sx={{ justifyContent: 'center' }}>
                         <ThemeToggle />
@@ -70,7 +81,11 @@ const NavBar = () => {
 
     return (
         <Box component="nav">
-            <AppBar position="static" className={styles.navbar}>
+            <AppBar
+                position="static"
+                className={styles.navbar}
+                sx={{ py: { xs: 2, md: 0 } }}
+            >
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         {/* Logo - visible on all screens */}
@@ -90,20 +105,29 @@ const NavBar = () => {
                             className={styles.desktopMenu}
                             sx={{ display: { xs: 'none', md: 'flex' } }}
                         >
-                            {pages.map((page) => (
-                                <Button
-                                    key={page.name}
-                                    component={Link}
-                                    href={page.href}
-                                    sx={{
-                                        my: 2,
-                                        color: 'white',
-                                        display: 'block',
-                                    }}
-                                >
-                                    {page.name}
-                                </Button>
-                            ))}
+                            {pages.map((page) => {
+                                const isActive = pathname === page.href;
+                                return (
+                                    <Button
+                                        key={page.name}
+                                        component={Link}
+                                        href={page.href}
+                                        sx={{
+                                            my: 2,
+                                            color: 'white',
+                                            display: 'block',
+                                            fontWeight: isActive
+                                                ? 'bold'
+                                                : 'normal',
+                                            borderBottom: isActive
+                                                ? '2px solid white'
+                                                : 'none',
+                                        }}
+                                    >
+                                        {page.name}
+                                    </Button>
+                                );
+                            })}
                         </Box>
 
                         {/* Theme toggle switch */}
