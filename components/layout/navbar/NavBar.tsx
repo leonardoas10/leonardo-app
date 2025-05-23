@@ -64,7 +64,10 @@ const NavBar = () => {
                                             : 'normal',
                                     }}
                                 >
-                                    <ListItemText primary={page.name} />
+                                    <ListItemText
+                                        color="textPrimary"
+                                        primary={page.name}
+                                    />
                                 </Link>
                             </ListItemButton>
                         </ListItem>
@@ -84,7 +87,10 @@ const NavBar = () => {
             <AppBar
                 position="static"
                 className={styles.navbar}
-                sx={{ py: { xs: 2, md: 0 } }}
+                sx={{
+                    py: { xs: 2, md: 0 },
+                    backgroundColor: 'background.default',
+                }}
             >
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
@@ -93,6 +99,7 @@ const NavBar = () => {
                             variant="h6"
                             noWrap
                             component="div"
+                            color="textPrimary"
                             sx={{ flexGrow: 1 }}
                         >
                             <Link href="/" className={styles.logo}>
@@ -105,27 +112,28 @@ const NavBar = () => {
                             className={styles.desktopMenu}
                             sx={{ display: { xs: 'none', md: 'flex' } }}
                         >
-                            {pages.map((page) => {
+                            {pages.map((page, index) => {
                                 const isActive = pathname === page.href;
                                 return (
-                                    <Button
-                                        key={page.name}
-                                        component={Link}
-                                        href={page.href}
-                                        sx={{
-                                            my: 2,
-                                            color: 'white',
-                                            display: 'block',
-                                            fontWeight: isActive
-                                                ? 'bold'
-                                                : 'normal',
-                                            borderBottom: isActive
-                                                ? '2px solid white'
-                                                : 'none',
-                                        }}
-                                    >
-                                        {page.name}
-                                    </Button>
+                                    <Link href={page.href} passHref key={index}>
+                                        <Box
+                                            component="a"
+                                            sx={{
+                                                color: 'text.primary',
+                                                fontWeight: isActive
+                                                    ? 'bold'
+                                                    : 'normal',
+                                                borderBottom: isActive
+                                                    ? (theme) =>
+                                                          `2px solid ${theme.palette.text.primary}`
+                                                    : 'none',
+                                                textDecoration: 'none',
+                                                mx: 1,
+                                            }}
+                                        >
+                                            {page.name}
+                                        </Box>
+                                    </Link>
                                 );
                             })}
                         </Box>
