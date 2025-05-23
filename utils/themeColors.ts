@@ -24,7 +24,7 @@ export const themeColors = (mode: PaletteMode): ThemeOptions => ({
                       aws: '#A845E8',
                   },
                   textPrimary: '#1976d2',
-                  textSecondary: '#9c27b0',
+                  textSecondary: '#A845E8',
               }
             : {
                   // Dark mode colors
@@ -40,7 +40,7 @@ export const themeColors = (mode: PaletteMode): ThemeOptions => ({
                       aws: '#FF9900',
                   },
                   textPrimary: '#90caf9',
-                  textSecondary: '#ce93d8',
+                  textSecondary: '#FF9900',
               }),
     },
 });
