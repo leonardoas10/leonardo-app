@@ -3,8 +3,8 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Inter } from 'next/font/google';
 import { useMemo } from 'react';
-import { themeColors } from '../utils/themeColors';
-import { useThemeContext } from '../contexts/ThemeContext';
+import { themeColors } from '@/utils/themeColors';
+import { useThemeContext } from '@/contexts/ThemeContext';
 
 const inter = Inter({ subsets: ['latin'] });
 

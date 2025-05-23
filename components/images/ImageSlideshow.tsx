@@ -145,8 +145,12 @@ export default function ImageSlideshow() {
                     color="primary"
                     clickable
                     sx={{
+                        backgroundColor: 'gray',
                         fontWeight: 'bold',
-                        '&:hover': { boxShadow: 1 },
+                        '&:hover': {
+                            boxShadow: 1,
+                            backgroundColor: 'background.aws',
+                        },
                         paddingBottom: 0.5,
                     }}
                 />

@@ -1,5 +1,11 @@
 import { PaletteMode, ThemeOptions } from '@mui/material';
 
+declare module '@mui/material/styles' {
+    interface TypeBackground {
+        aws?: string;
+    }
+}
+
 export const themeColors = (mode: PaletteMode): ThemeOptions => ({
     palette: {
         mode,
@@ -15,6 +21,7 @@ export const themeColors = (mode: PaletteMode): ThemeOptions => ({
                   background: {
                       default: '#f5f5f5',
                       paper: '#ffffff',
+                      aws: '#A845E8',
                   },
                   textPrimary: '#1976d2',
                   textSecondary: '#9c27b0',
@@ -30,6 +37,7 @@ export const themeColors = (mode: PaletteMode): ThemeOptions => ({
                   background: {
                       default: '#121212',
                       paper: '#1e1e1e',
+                      aws: '#FF9900',
                   },
                   textPrimary: '#90caf9',
                   textSecondary: '#ce93d8',

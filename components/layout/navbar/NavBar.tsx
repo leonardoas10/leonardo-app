@@ -5,12 +5,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
     AppBar,
+    Avatar,
     Box,
     Toolbar,
     IconButton,
     Typography,
     Container,
-    Button,
     Drawer,
     List,
     ListItem,
@@ -93,55 +93,91 @@ const NavBar = () => {
                 }}
             >
                 <Container maxWidth="xl">
-                    <Toolbar disableGutters>
+                    <Toolbar
+                        disableGutters
+                        sx={{
+                            justifyContent: 'space-between', // Esto separa los elementos
+                        }}
+                    >
+                        <Avatar
+                            alt="L"
+                            src={
+                                'https://content.leonardoaranguren.com/app-images/me.png'
+                            }
+                            sx={{
+                                width: 60,
+                                height: 60,
+                                margin: 'auto',
+                                display: {
+                                    xs: 'block',
+                                    md: 'none',
+                                },
+                            }}
+                        />
                         {/* Logo - visible on all screens */}
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="div"
-                            color="textPrimary"
-                            sx={{ flexGrow: 1 }}
-                        >
-                            <Link href="/" className={styles.logo}>
-                                LEONARDO ARANGUREN SUAREZ
-                            </Link>
-                        </Typography>
+                        <Link href="/" className={styles.logo}>
+                            <Typography
+                                variant="h6"
+                                noWrap
+                                component="div"
+                                color="textPrimary"
+                                sx={{
+                                    flexGrow: 1,
+                                    fontSize: { xs: '1.4rem', md: '1.25rem' },
+                                    textAlign: { xs: 'center', md: 'left' },
+                                }}
+                            >
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    LEONARDO ARANGUREN
+                                </Box>
+                            </Typography>
+                        </Link>
 
                         {/* Desktop menu */}
                         <Box
                             className={styles.desktopMenu}
-                            sx={{ display: { xs: 'none', md: 'flex' } }}
+                            sx={{
+                                display: { xs: 'none', md: 'flex' },
+                                alignItems: 'center',
+                                gap: 2,
+                            }}
                         >
                             {pages.map((page, index) => {
                                 const isActive = pathname === page.href;
                                 return (
-                                    <Link href={page.href} passHref key={index}>
+                                    <Box
+                                        key={index}
+                                        sx={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                        }}
+                                    >
                                         <Box
-                                            component="a"
+                                            component={Link}
+                                            href={page.href}
                                             sx={{
                                                 color: 'text.primary',
+                                                textDecoration: 'none',
                                                 fontWeight: isActive
                                                     ? 'bold'
                                                     : 'normal',
                                                 borderBottom: isActive
-                                                    ? (theme) =>
-                                                          `2px solid ${theme.palette.text.primary}`
+                                                    ? '2px solid'
                                                     : 'none',
-                                                textDecoration: 'none',
-                                                mx: 1,
+                                                borderColor: 'background.aws',
                                             }}
                                         >
                                             {page.name}
                                         </Box>
-                                    </Link>
+                                    </Box>
                                 );
                             })}
-                        </Box>
-
-                        {/* Theme toggle switch */}
-                        <Box
-                            sx={{ ml: 2, display: { xs: 'none', md: 'flex' } }}
-                        >
                             <ThemeToggle />
                         </Box>
 
