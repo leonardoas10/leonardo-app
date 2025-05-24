@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Typography } from '@mui/material';
 
 export default function Footer() {
@@ -13,28 +15,43 @@ export default function Footer() {
             }}
         >
             <Typography color="textPrimary">
-                GitHub:{' '}
-                <a
-                    href="https://github.com/yourusername"
+                <Box
+                    component="a"
+                    href="https://github.com/leonardoas10"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ color: 'inherit' }}
+                    sx={{
+                        color: 'white',
+                        textDecoration: 'none',
+                        '&:hover': {
+                            color: 'background.aws',
+                        },
+                    }}
                 >
-                    yourusername
-                </a>{' '}
-                | LinkedIn:{' '}
-                <a
-                    href="https://linkedin.com/in/yourhandle"
+                    GitHub
+                </Box>{' '}
+                <Typography
+                    component="span"
+                    sx={{ color: 'textSecondary' }}
+                    display="inline"
+                >
+                    |
+                </Typography>{' '}
+                <Box
+                    component="a"
+                    href="https://linkedin.com/in/leonardo-aranguren-s"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ color: 'inherit' }}
+                    sx={{
+                        color: 'white',
+                        textDecoration: 'none',
+                        '&:hover': {
+                            color: 'background.aws',
+                        },
+                    }}
                 >
-                    yourhandle
-                </a>{' '}
-                | Email:{' '}
-                <a href="mailto:you@example.com" style={{ color: 'inherit' }}>
-                    you@example.com
-                </a>
+                    LinkedIn
+                </Box>
             </Typography>
         </Box>
     );

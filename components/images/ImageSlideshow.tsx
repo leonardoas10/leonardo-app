@@ -13,6 +13,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import Image from 'next/image';
 
 const images = [
     {
@@ -118,7 +119,7 @@ export default function ImageSlideshow() {
             onTouchEnd={handleTouchEnd}
             sx={{
                 position: 'relative',
-                width: 300,
+                width: '100%',
                 height: 300,
                 overflow: 'hidden',
                 borderRadius: 2,
@@ -156,20 +157,18 @@ export default function ImageSlideshow() {
                 />
             </a>
             {images.map((image, index) => (
-                <Box
+                <Image
                     key={index}
-                    component="img"
                     src={image.imageUrl}
                     alt={image.alt}
-                    sx={{
+                    fill
+                    style={{
                         position: 'absolute',
-                        width: '100%',
-                        height: '100%',
                         objectFit: 'contain',
                         opacity: index === currentImageIndex ? 1 : 0,
                         transition: 'opacity 0.5s ease-in-out',
-                        zIndex: 0,
                     }}
+                    priority={index === 0}
                 />
             ))}
 
@@ -182,26 +181,24 @@ export default function ImageSlideshow() {
                     zIndex: 1,
                     display: 'flex',
                     justifyContent: 'center',
-                    padding: '8px 0',
-                    backgroundColor: 'rgba(0,0,0,0.3)',
+                    padding: '4px 0',
+                    backgroundColor: 'rgba(0,0,0,0.6)',
                     backdropFilter: 'blur(2px)',
                 }}
             >
-                <Stack direction="row" spacing={1}>
+                <Stack direction="row" spacing={0.5}>
                     {images.map((_, index) => (
                         <FiberManualRecordIcon
                             key={index}
-                            fontSize="small"
                             onClick={() => setCurrentImageIndex(index)}
                             sx={{
                                 cursor: 'pointer',
                                 color:
                                     index === currentImageIndex
-                                        ? theme.palette.primary.main
-                                        : theme.palette.mode === 'dark'
-                                          ? 'rgba(255,255,255,0.5)'
-                                          : 'rgba(0,0,0,0.3)',
-                                fontSize: index === currentImageIndex ? 14 : 10,
+                                        ? theme.palette.background.aws
+                                        : 'rgba(255,255,255,0.5)',
+                                fontSize: index === currentImageIndex ? 12 : 8,
+                                lineHeight: 1,
                             }}
                         />
                     ))}
@@ -226,10 +223,7 @@ export default function ImageSlideshow() {
                                     ? 'white'
                                     : 'black',
                             '&:hover': {
-                                bgcolor:
-                                    theme.palette.mode === 'dark'
-                                        ? 'rgba(255,255,255,0.3)'
-                                        : 'rgba(0,0,0,0.3)',
+                                bgcolor: theme.palette.background.aws,
                             },
                             zIndex: 2,
                             opacity: isHovering ? 1 : 0,
@@ -256,10 +250,7 @@ export default function ImageSlideshow() {
                                     ? 'white'
                                     : 'black',
                             '&:hover': {
-                                bgcolor:
-                                    theme.palette.mode === 'dark'
-                                        ? 'rgba(255,255,255,0.3)'
-                                        : 'rgba(0,0,0,0.3)',
+                                bgcolor: theme.palette.background.aws,
                             },
                             zIndex: 2,
                             opacity: isHovering ? 1 : 0,
