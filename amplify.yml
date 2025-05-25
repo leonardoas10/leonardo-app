@@ -3,6 +3,7 @@ backend:
     phases:
         build:
             commands:
+                - npm cache clean --force
                 - npm ci --cache .npm --prefer-offline
                 - |
                     CHANGES=$(git diff HEAD^ HEAD --name-only | grep -E '^(amplify/|amplify\.yml$)')

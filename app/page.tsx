@@ -5,7 +5,7 @@ import { ImageSlideshow } from '@/components/images/ImageSlideshow';
 import {
     ExperienceTabs,
     experienceData,
-} from '@/components/experience/ExperienceTabs';
+} from '@/components/tabs/ExperienceTabs';
 import { ContactSection } from '@/components/contact/ContactSection';
 
 export default function Home() {
