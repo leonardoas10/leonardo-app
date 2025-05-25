@@ -9,6 +9,8 @@ import {
     List,
     ListItem,
     ListItemText,
+    Paper,
+    useTheme,
 } from '@mui/material';
 
 interface TabPanelProps {
@@ -59,7 +61,8 @@ function a11yProps(index: number) {
     };
 }
 
-export default function ExperienceTabs({ tabs }: ExperienceTabsProps) {
+export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
+    const theme = useTheme();
     const [value, setValue] = useState(0);
 
     const handleChange = (event: SyntheticEvent, newValue: number) => {
@@ -67,7 +70,16 @@ export default function ExperienceTabs({ tabs }: ExperienceTabsProps) {
     };
 
     return (
-        <Box sx={{ width: '100%', mt: 2 }}>
+        <Paper
+            elevation={3}
+            sx={{
+                width: '100%',
+                mt: 2,
+                boxShadow: `0 4px 12px ${theme.palette.background.aws}`,
+                borderRadius: 2,
+                overflow: 'hidden',
+            }}
+        >
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs
                     value={value}
@@ -76,14 +88,16 @@ export default function ExperienceTabs({ tabs }: ExperienceTabsProps) {
                     centered
                     sx={{
                         '& .MuiTab-root': {
-                            color: 'white !important',
+                            color:
+                                theme.palette.mode === 'dark'
+                                    ? 'white !important'
+                                    : 'black !important',
                         },
-                        '& .Mui-selected': {
-                            color: 'white !important',
+                        '& .MuiButtonBase-root.Mui-selected': {
+                            color: `${theme.palette.textSecondary} !important`,
                         },
                         '& .MuiTabs-indicator': {
-                            backgroundColor: (theme) =>
-                                theme.palette.textSecondary,
+                            backgroundColor: theme.palette.textSecondary,
                         },
                     }}
                 >
@@ -126,11 +140,10 @@ export default function ExperienceTabs({ tabs }: ExperienceTabsProps) {
                     </Box>
                 </TabPanel>
             ))}
-        </Box>
+        </Paper>
     );
-}
+};
 
-// Example data structure for the component
 export const experienceData: ExperienceTab[] = [
     {
         label: 'Cloud Engineer',

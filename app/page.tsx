@@ -1,14 +1,18 @@
-import { Container, Grid, Typography, Button, Box } from '@mui/material';
+import { Container, Grid, Typography, Box } from '@mui/material';
 import Image from 'next/image';
 
-import ImageSlideshow from '@/components/images/ImageSlideshow';
-import ExperienceTabs, { experienceData } from '@/components/experience/ExperienceTabs';
+import { ImageSlideshow } from '@/components/images/ImageSlideshow';
+import {
+    ExperienceTabs,
+    experienceData,
+} from '@/components/experience/ExperienceTabs';
+import { ContactSection } from '@/components/contact/ContactSection';
 
 export default function Home() {
     return (
         <Container maxWidth="lg" sx={{ py: 4 }}>
             <Grid container spacing={4} alignItems="center">
-                <Grid size={{ xs: 12, md: 8 }}>
+                <Grid size={{ xs: 12, md: 6 }}>
                     <Typography variant="h4" gutterBottom>
                         About
                     </Typography>
@@ -33,22 +37,9 @@ export default function Home() {
                         infrastructure and software development.
                     </Typography>
                 </Grid>
-                <Grid
-                    size={{ xs: 12, md: 4 }}
-                    sx={{ display: 'flex', justifyContent: 'center' }}
-                >
-                    <ImageSlideshow />
-                </Grid>
-            </Grid>
 
-            <Grid
-                container
-                spacing={4}
-                alignItems="center"
-                style={{ marginTop: '48px' }}
-            >
                 <Grid
-                    size={{ xs: 12, md: 5 }}
+                    size={{ xs: 12, md: 6 }}
                     sx={{ display: 'flex', justifyContent: 'center' }}
                 >
                     <Box
@@ -63,7 +54,7 @@ export default function Home() {
                     >
                         <Image
                             key="1"
-                            src="/hiking.jpeg"
+                            src="/hiking_11.jpeg"
                             alt="Hiking"
                             fill
                             style={{
@@ -96,7 +87,21 @@ export default function Home() {
                         </Box>
                     </Box>
                 </Grid>
-                <Grid size={{ xs: 12, md: 7 }}>
+            </Grid>
+
+            <Grid
+                container
+                spacing={4}
+                alignItems="center"
+                style={{ marginTop: '48px' }}
+            >
+                <Grid
+                    size={{ xs: 12, md: 4 }}
+                    sx={{ display: 'flex', justifyContent: 'center' }}
+                >
+                    <ImageSlideshow />
+                </Grid>
+                <Grid size={{ xs: 12, md: 8 }}>
                     <Typography variant="h4" gutterBottom>
                         Driven by Discovery...
                     </Typography>
@@ -146,17 +151,8 @@ export default function Home() {
                 </Grid>
             </Grid>
 
-            {/* Download CV */}
-            <Box sx={{ mt: 6, textAlign: 'center' }}>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    href="/cv.pdf"
-                    download
-                >
-                    Download My CV
-                </Button>
-            </Box>
+            {/* Contact Section with Download CV Modal */}
+            <ContactSection />
         </Container>
     );
 }

@@ -1,20 +1,21 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Box,
+    Chip,
     IconButton,
     Stack,
-    Chip,
     useTheme,
     useMediaQuery,
 } from '@mui/material';
+import Image from 'next/image';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import Image from 'next/image';
 
+// Define the images array
 const images = [
     {
         alt: 'AWS Certified Developer Associate Badge',
@@ -60,7 +61,7 @@ const images = [
     },
 ];
 
-export default function ImageSlideshow() {
+export const ImageSlideshow: React.FC = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -123,7 +124,7 @@ export default function ImageSlideshow() {
                 height: 300,
                 overflow: 'hidden',
                 borderRadius: 2,
-                boxShadow: 3,
+                boxShadow: `0 4px 8px ${theme.palette.background.aws}`,
                 bgcolor: theme.palette.background.paper,
             }}
         >
@@ -264,4 +265,6 @@ export default function ImageSlideshow() {
             )}
         </Box>
     );
-}
+};
+
+export default ImageSlideshow;

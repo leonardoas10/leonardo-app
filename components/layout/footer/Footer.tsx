@@ -39,7 +39,7 @@ export default function Footer() {
                 </Typography>{' '}
                 <Box
                     component="a"
-                    href="https://linkedin.com/in/leonardo-aranguren-s"
+                    href="https://www.linkedin.com/in/leonardoas10/"
                     target="_blank"
                     rel="noopener noreferrer"
                     sx={{
