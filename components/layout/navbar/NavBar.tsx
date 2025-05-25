@@ -185,12 +185,14 @@ const NavBar = () => {
 
                             {/* Mobile menu button */}
                             <IconButton
-                                color="textPrimary"
                                 aria-label="open drawer"
                                 edge="end"
                                 onClick={handleDrawerToggle}
                                 className={styles.menuButton}
-                                sx={{ display: { md: 'none' } }}
+                                sx={{
+                                    display: { md: 'none' },
+                                    color: 'textPrimary',
+                                }}
                             >
                                 <MenuIcon />
                             </IconButton>

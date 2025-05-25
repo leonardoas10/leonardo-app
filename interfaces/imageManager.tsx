@@ -1,5 +1,5 @@
 import { ICategory } from './categories';
-import { ITag } from './tags';
+// import { ITag } from './tags';
 import { IUser } from './user';
 
 export interface IImageManager {
@@ -10,6 +10,6 @@ export interface IImageManager {
     imageUrlThumbnail?: string;
     imageUrlThumbnailKey?: string;
     categories?: Array<ICategory>;
-    tags?: Array<ITag>;
+    // tags?: Array<ITag>;
     name: string;
 }
