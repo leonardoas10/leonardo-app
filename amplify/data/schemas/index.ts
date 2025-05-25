@@ -1,2 +1,2 @@
 export { contentSchema } from './content';
-export {} from './post';
+export { postSchema } from './post';

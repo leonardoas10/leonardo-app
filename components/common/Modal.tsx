@@ -15,12 +15,18 @@ import {
 
 import { Button } from './Button';
 
+interface FormData {
+    name: string;
+    email: string;
+    company: string;
+}
+
 interface ModalProps {
     open: boolean;
     onClose: () => void;
     title: string;
     submitButtonText: string;
-    onSubmit: (formData: any) => Promise<void>;
+    onSubmit: (formData: FormData) => Promise<void>;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -30,7 +36,7 @@ const Modal: React.FC<ModalProps> = ({
     submitButtonText,
     onSubmit,
 }) => {
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<FormData>({
         name: '',
         email: '',
         company: '',
@@ -59,7 +65,7 @@ const Modal: React.FC<ModalProps> = ({
                 severity: 'success',
             });
             onClose();
-        } catch (error) {
+        } catch (_error) {
             setSnackbar({
                 open: true,
                 message: 'Failed to submit form. Please try again.',

@@ -15,7 +15,10 @@ export const Button: React.FC<CustomButtonProps> = ({
     ...props
 }) => {
     // Use anchor element when href is provided
-    const buttonProps: any = {
+    const buttonProps: Omit<ButtonProps, 'component'> & {
+        component?: React.ElementType;
+        download?: boolean;
+    } = {
         variant,
         sx: {
             bgcolor: 'background.aws',
