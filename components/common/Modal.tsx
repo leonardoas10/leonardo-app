@@ -65,7 +65,7 @@ const Modal: React.FC<ModalProps> = ({
                 severity: 'success',
             });
             onClose();
-        } catch (_error) {
+        } catch {
             setSnackbar({
                 open: true,
                 message: 'Failed to submit form. Please try again.',
