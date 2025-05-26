@@ -5,7 +5,7 @@ import { useThemeContext } from '@/contexts/ThemeContext';
 import { IOSSwitch } from '@/components/common/IOSSwitch';
 import { Box } from '@mui/material';
 
-export default function ThemeToggle() {
+export const ThemeToggle: React.FC = () => {
     const { mode, toggleColorMode } = useThemeContext();
 
     return (
@@ -17,4 +17,4 @@ export default function ThemeToggle() {
             />
         </Box>
     );
-}
+};

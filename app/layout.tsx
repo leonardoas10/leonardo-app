@@ -1,12 +1,8 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
-import NavBar from '@/components/layout/navbar/NavBar';
-import ThemeRegistry from './theme';
-import { ThemeContextProvider } from '@/contexts/ThemeContext';
-import Footer from '@/components/layout/footer/Footer';
-
-const inter = Inter({ subsets: ['latin'] });
+import { NavBar } from '@/components/layout/navbar/NavBar';
+import { ThemeRegistry } from '../contexts/ThemeContext';
+import { Footer } from '@/components/layout/footer/Footer';
 
 export const metadata: Metadata = {
     title: 'Leonardo Aranguren',
@@ -20,14 +16,12 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={inter.className}>
-                <ThemeContextProvider>
-                    <ThemeRegistry>
-                        <NavBar />
-                        <main>{children}</main>
-                        <Footer />
-                    </ThemeRegistry>
-                </ThemeContextProvider>
+            <body>
+                <ThemeRegistry>
+                    <NavBar />
+                    <main>{children}</main>
+                    <Footer />
+                </ThemeRegistry>
             </body>
         </html>
     );

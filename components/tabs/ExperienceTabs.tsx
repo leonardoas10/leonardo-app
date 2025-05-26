@@ -80,18 +80,27 @@ export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
                 overflow: 'hidden',
             }}
         >
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Box
+                sx={{
+                    borderBottom: 1,
+                    borderColor: 'divider',
+                    overflowX: 'auto',
+                }}
+            >
                 <Tabs
                     value={value}
                     onChange={handleChange}
                     aria-label="experience tabs"
-                    centered
+                    variant="scrollable"
+                    scrollButtons="auto"
+                    allowScrollButtonsMobile
                     sx={{
                         '& .MuiTab-root': {
                             color:
                                 theme.palette.mode === 'dark'
                                     ? 'white !important'
                                     : 'black !important',
+                            minWidth: 120,
                         },
                         '& .MuiButtonBase-root.Mui-selected': {
                             color: `${theme.palette.textSecondary} !important`,
@@ -163,7 +172,7 @@ export const experienceData: ExperienceTab[] = [
                 ],
             },
             {
-                title: 'Serverless Architecture with AWS',
+                title: 'Serverless Architecture',
                 icon: '☁️',
                 items: [
                     {

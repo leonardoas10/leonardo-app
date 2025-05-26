@@ -95,18 +95,13 @@ export default function Home() {
                 alignItems="center"
                 style={{ marginTop: '48px' }}
             >
-                <Grid
-                    size={{ xs: 12, md: 4 }}
-                    sx={{ display: 'flex', justifyContent: 'center' }}
-                >
-                    <ImageSlideshow />
-                </Grid>
-                <Grid size={{ xs: 12, md: 8 }}>
+                {/* Text content - will appear first on mobile */}
+                <Grid size={{ xs: 12, md: 8 }} sx={{ order: { xs: 1, md: 2 } }}>
                     <Typography variant="h4" gutterBottom>
                         Driven by Discovery...
                     </Typography>
                     <Typography variant="body1" textAlign="justify">
-                        Leonardo’s professional journey is fueled by a passion
+                        Leonardo's professional journey is fueled by a passion
                         for innovation and continuous learning. He actively
                         participates in{' '}
                         <Typography
@@ -133,6 +128,18 @@ export default function Home() {
                         certifications and applying cutting-edge technologies to
                         real-world solutions.
                     </Typography>
+                </Grid>
+
+                {/* Image slideshow - will appear second on mobile */}
+                <Grid
+                    size={{ xs: 12, md: 4 }}
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        order: { xs: 2, md: 1 },
+                    }}
+                >
+                    <ImageSlideshow />
                 </Grid>
             </Grid>
 

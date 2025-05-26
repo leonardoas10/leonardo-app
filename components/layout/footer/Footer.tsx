@@ -2,7 +2,7 @@
 
 import { Box, Typography } from '@mui/material';
 
-export default function Footer() {
+export const Footer: React.FC = () => {
     return (
         <Box
             component="footer"
@@ -55,4 +55,4 @@ export default function Footer() {
             </Typography>
         </Box>
     );
-}
+};

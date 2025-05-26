@@ -19,7 +19,7 @@ export const ContactSection: React.FC = () => {
                     gap: 2,
                 }}
             >
-                <Button onClick={() => setModalOpen(true)}>Download CV</Button>
+                <Button onClick={() => setModalOpen(true)}>Get CV</Button>
             </Box>
 
             <CVModal open={modalOpen} onClose={() => setModalOpen(false)} />

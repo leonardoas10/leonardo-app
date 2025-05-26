@@ -19,16 +19,16 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import styles from './NavBar.module.css';
-import ThemeToggle from '@/components/layout/ThemeToggle';
+import { ThemeToggle } from '@/components/layout/ThemeToggle';
 
 // Navigation items
 const pages = [
     { name: 'Home', href: '/' },
-    { name: 'Architecture', href: '/website-architecture' },
+    { name: 'Architecture', href: '/architecture' },
     { name: 'CV', href: '/contact' },
 ];
 
-const NavBar = () => {
+export const NavBar: React.FC = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const pathname = usePathname();
 
@@ -191,7 +191,7 @@ const NavBar = () => {
                                 className={styles.menuButton}
                                 sx={{
                                     display: { md: 'none' },
-                                    color: 'textPrimary',
+                                    color: 'background.aws',
                                 }}
                             >
                                 <MenuIcon />
@@ -223,5 +223,3 @@ const NavBar = () => {
         </Box>
     );
 };
-
-export default NavBar;

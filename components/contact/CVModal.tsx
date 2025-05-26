@@ -27,8 +27,8 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
         <Modal
             open={open}
             onClose={onClose}
-            title="Download CV"
-            submitButtonText="Download"
+            title="Get CV"
+            submitButtonText="Get"
             onSubmit={handleSubmit}
         />
     );
