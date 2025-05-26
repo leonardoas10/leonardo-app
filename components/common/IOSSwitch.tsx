@@ -11,6 +11,14 @@ const StyledSwitch = styled(Switch)(({ theme }) => ({
     width: 42,
     height: 26,
     padding: 0,
+    '&:hover': {
+        '& .MuiSwitch-track': {
+            filter: 'brightness(1.2)',
+        },
+        '& .MuiSwitch-thumb': {
+            boxShadow: '0 0 5px rgba(255, 255, 255, 0.5)',
+        },
+    },
     '& .MuiSwitch-switchBase': {
         padding: 0,
         margin: 2,
@@ -45,14 +53,20 @@ const StyledSwitch = styled(Switch)(({ theme }) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        transition: theme.transitions.create(['box-shadow'], {
+            duration: 200,
+        }),
     },
     '& .MuiSwitch-track': {
         borderRadius: 26 / 2,
         backgroundColor: theme.palette.background.aws,
         opacity: 1,
-        transition: theme.transitions.create(['background-color'], {
-            duration: 500,
-        }),
+        transition: theme.transitions.create(
+            ['background-color', 'box-shadow'],
+            {
+                duration: 300,
+            }
+        ),
     },
 }));
 
@@ -61,6 +75,14 @@ const BasicSwitch = styled(Switch)(({ theme }) => ({
     width: 42,
     height: 26,
     padding: 0,
+    '&:hover': {
+        '& .MuiSwitch-track': {
+            filter: 'brightness(1.2)',
+        },
+        '& .MuiSwitch-thumb': {
+            boxShadow: '0 0 5px rgba(255, 255, 255, 0.5)',
+        },
+    },
     '& .MuiSwitch-switchBase': {
         padding: 0,
         margin: 2,
@@ -92,14 +114,20 @@ const BasicSwitch = styled(Switch)(({ theme }) => ({
         boxSizing: 'border-box',
         width: 22,
         height: 22,
+        transition: theme.transitions.create(['box-shadow'], {
+            duration: 200,
+        }),
     },
     '& .MuiSwitch-track': {
         borderRadius: 26 / 2,
         backgroundColor: theme.palette.background.aws,
         opacity: 1,
-        transition: theme.transitions.create(['background-color'], {
-            duration: 500,
-        }),
+        transition: theme.transitions.create(
+            ['background-color', 'box-shadow'],
+            {
+                duration: 300,
+            }
+        ),
     },
 }));
 

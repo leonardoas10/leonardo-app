@@ -31,7 +31,8 @@ export const Button: React.FC<CustomButtonProps> = ({
                 bgcolor: 'background.aws',
                 opacity: 0.9,
             },
-            height: size === 'small' ? '26px' : size === 'large' ? '38px' : '32px',
+            height:
+                size === 'small' ? '26px' : size === 'large' ? '38px' : '32px',
             minWidth: size === 'small' ? '64px' : '80px',
             padding: size === 'small' ? '0px 8px' : '0px 16px',
             ...sx,

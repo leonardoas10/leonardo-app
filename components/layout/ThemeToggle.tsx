@@ -46,7 +46,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
             <IOSSwitch
                 checked={mode === 'dark'}
                 onChange={toggleColorMode}
-                checkedIcon={<DarkModeIcon />}
+                checkedIcon={<DarkModeIcon sx={{ mt: -0.2 }} />}
                 uncheckedIcon={<LightModeIcon />}
                 sx={getSwitchStyle()}
             />

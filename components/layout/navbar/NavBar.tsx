@@ -20,6 +20,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import styles from './NavBar.module.css';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
+import { LanguageToggle } from '@/components/layout/LanguageToggle';
 import { CloudFrontURLs } from '@/utils/constants';
 import { ContactSection } from '@/components/contact/ContactSection';
 
@@ -80,6 +81,14 @@ export const NavBar: React.FC = () => {
                         onClick={(e) => e.stopPropagation()}
                     >
                         <ContactSection size="large" />
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton
+                        sx={{ justifyContent: 'center' }}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <LanguageToggle size="large" />
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
@@ -188,6 +197,7 @@ export const NavBar: React.FC = () => {
                                     );
                                 })}
                                 <ContactSection size="small" />
+                                <LanguageToggle />
                                 <ThemeToggle />
                             </Box>
 
