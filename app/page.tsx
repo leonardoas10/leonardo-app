@@ -183,7 +183,19 @@ export default function Home() {
             </Grid>
 
             {/* Contact Section with Download CV Modal */}
-            <ContactSection />
+            <Grid
+                container
+                spacing={4}
+                alignItems="center"
+                style={{ marginTop: '48px' }}
+            >
+                <Grid
+                    size={{ xs: 12, md: 12 }}
+                    sx={{ display: 'flex', justifyContent: 'center' }}
+                >
+                    <ContactSection size="large" />
+                </Grid>
+            </Grid>
         </Container>
     );
 }

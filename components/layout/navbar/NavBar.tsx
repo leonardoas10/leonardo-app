@@ -21,12 +21,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import styles from './NavBar.module.css';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { CloudFrontURLs } from '@/utils/constants';
+import { ContactSection } from '@/components/contact/ContactSection';
 
 // Navigation items
 const pages = [
     { name: 'Home', href: '/' },
     { name: 'Architecture', href: '/architecture' },
-    { name: 'CV', href: '/contact' },
 ];
 
 export const NavBar: React.FC = () => {
@@ -74,6 +74,14 @@ export const NavBar: React.FC = () => {
                         </ListItem>
                     );
                 })}
+                <ListItem disablePadding>
+                    <ListItemButton
+                        sx={{ justifyContent: 'center' }}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <ContactSection size="small" />
+                    </ListItemButton>
+                </ListItem>
                 <ListItem disablePadding>
                     <ListItemButton
                         sx={{ justifyContent: 'center' }}
@@ -179,6 +187,7 @@ export const NavBar: React.FC = () => {
                                         </Box>
                                     );
                                 })}
+                                <ContactSection size="small" />
                                 <ThemeToggle />
                             </Box>
 

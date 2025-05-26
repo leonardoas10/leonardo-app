@@ -2,8 +2,11 @@
 
 import React from 'react';
 import { useThemeContext } from '@/contexts/ThemeContext';
-import { IOSSwitch } from '@/components/common/IOSSwitch';
+
 import { Box } from '@mui/material';
+import { IOSSwitch } from '@/components/common/IOSSwitch';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 
 export const ThemeToggle: React.FC = () => {
     const { mode, toggleColorMode } = useThemeContext();
@@ -11,9 +14,10 @@ export const ThemeToggle: React.FC = () => {
     return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <IOSSwitch
-                sx={{ m: 1 }}
                 checked={mode === 'dark'}
                 onChange={toggleColorMode}
+                checkedIcon={<DarkModeIcon />}
+                uncheckedIcon={<LightModeIcon />}
             />
         </Box>
     );

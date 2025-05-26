@@ -4,6 +4,7 @@ import { Button as MuiButton, ButtonProps } from '@mui/material';
 interface CustomButtonProps extends Omit<ButtonProps, 'component'> {
     download?: boolean;
     href?: string;
+    size?: 'small' | 'medium' | 'large';
 }
 
 export const Button: React.FC<CustomButtonProps> = ({
@@ -11,6 +12,7 @@ export const Button: React.FC<CustomButtonProps> = ({
     variant = 'contained',
     download,
     href,
+    size = 'medium',
     sx,
     ...props
 }) => {
@@ -20,6 +22,7 @@ export const Button: React.FC<CustomButtonProps> = ({
         download?: boolean;
     } = {
         variant,
+        size,
         sx: {
             bgcolor: 'background.aws',
             color: 'text.primary',
@@ -28,6 +31,9 @@ export const Button: React.FC<CustomButtonProps> = ({
                 bgcolor: 'background.aws',
                 opacity: 0.9,
             },
+            height: size === 'small' ? '26px' : size === 'large' ? '38px' : '32px',
+            minWidth: size === 'small' ? '64px' : '80px',
+            padding: size === 'small' ? '0px 8px' : '0px 16px',
             ...sx,
         },
         ...props,
