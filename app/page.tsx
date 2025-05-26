@@ -58,7 +58,7 @@ export default function Home() {
                     >
                         <Image
                             key="1"
-                            src="/hiking_11.jpeg"
+                            src="/hiking_11.webp"
                             alt="Hiking"
                             fill
                             priority

@@ -31,6 +31,48 @@ const images = [
         url: 'https://aws.amazon.com/es/certification/certified-solutions-architect-associate/',
     },
     {
+        alt: 'AWS Cloud Quest: Generative AI Badge',
+        imageUrl: `${CloudFrontURLs.IMAGES}/cq-generative-ai.webp`,
+        title: 'Cloud Quest: Generative AI',
+        url: 'https://www.credly.com/badges/3a6f064a-fd6d-4537-9826-2883261e8fa4',
+    },
+    {
+        alt: 'AWS Cloud Quest: Serverless Developer Badge',
+        imageUrl: `${CloudFrontURLs.IMAGES}/cq-serverless.webp`,
+        title: 'Cloud Quest: Serverless',
+        url: 'https://www.credly.com/badges/3a6f064a-fd6d-4537-9826-2883261e8fa4',
+    },
+    {
+        alt: 'AWS Cloud Quest: Data Analytics Badge',
+        imageUrl: `${CloudFrontURLs.IMAGES}/cq-data-analytics.webp`,
+        title: 'Cloud Quest: Data Analytics',
+        url: 'https://www.credly.com/badges/3a6f064a-fd6d-4537-9826-2883261e8fa4',
+    },
+    {
+        alt: 'AWS Cloud Quest: Networking Badge',
+        imageUrl: `${CloudFrontURLs.IMAGES}/cq-networking.webp`,
+        title: 'Cloud Quest: Networking',
+        url: 'https://www.credly.com/badges/3a6f064a-fd6d-4537-9826-2883261e8fa4',
+    },
+    {
+        alt: 'AWS Cloud Quest: Security Badge',
+        imageUrl: `${CloudFrontURLs.IMAGES}/cq-security.webp`,
+        title: 'Cloud Quest: Security',
+        url: 'https://www.credly.com/badges/3a6f064a-fd6d-4537-9826-2883261e8fa4',
+    },
+    {
+        alt: 'AWS Cloud Quest: Solutions Architect Badge',
+        imageUrl: `${CloudFrontURLs.IMAGES}/cq-solutions-architect.webp`,
+        title: 'Cloud Quest: Solutions Architect',
+        url: 'https://www.credly.com/badges/3a6f064a-fd6d-4537-9826-2883261e8fa4',
+    },
+    {
+        alt: 'AWS Cloud Quest: Cloud Practitioner Badge',
+        imageUrl: `${CloudFrontURLs.IMAGES}/cq-cloud-practitioner.webp`,
+        title: 'Cloud Quest: Cloud Practitioner',
+        url: 'https://www.credly.com/badges/3a6f064a-fd6d-4537-9826-2883261e8fa4',
+    },
+    {
         alt: 'AWS Serverless Certification Badge',
         imageUrl: `${CloudFrontURLs.IMAGES}/serverless-badge.webp`,
         title: 'Serverless',
