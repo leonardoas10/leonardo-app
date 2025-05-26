@@ -84,7 +84,8 @@ export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
                 sx={{
                     borderBottom: 1,
                     borderColor: 'divider',
-                    overflowX: 'auto',
+                    display: 'flex',
+                    justifyContent: 'center',
                 }}
             >
                 <Tabs
@@ -95,6 +96,7 @@ export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
                     scrollButtons="auto"
                     allowScrollButtonsMobile
                     sx={{
+                        maxWidth: { xs: '100%', md: '100%' },
                         '& .MuiTab-root': {
                             color:
                                 theme.palette.mode === 'dark'
