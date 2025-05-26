@@ -8,6 +8,8 @@ import {
 } from '@/components/tabs/ExperienceTabs';
 import { ContactSection } from '@/components/contact/ContactSection';
 
+import { CloudFrontURLs } from '@/utils/constants';
+
 export default function Home() {
     return (
         <Container maxWidth="lg" sx={{ py: 4 }}>
@@ -16,7 +18,10 @@ export default function Home() {
                     <Typography
                         variant="h4"
                         gutterBottom
-                        sx={{ textAlign: { xs: 'center', md: 'left' } }}
+                        sx={{
+                            fontWeight: 'bold',
+                            textAlign: { xs: 'center', md: 'left' },
+                        }}
                     >
                         About
                     </Typography>
@@ -58,7 +63,7 @@ export default function Home() {
                     >
                         <Image
                             key="1"
-                            src="/hiking_11.webp"
+                            src={`${CloudFrontURLs.IMAGES}/teide.webp`}
                             alt="Hiking"
                             fill
                             priority
