@@ -79,7 +79,7 @@ export const NavBar: React.FC = () => {
                         sx={{ justifyContent: 'center' }}
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <ContactSection size="small" />
+                        <ContactSection size="large" />
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
@@ -87,7 +87,7 @@ export const NavBar: React.FC = () => {
                         sx={{ justifyContent: 'center' }}
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <ThemeToggle />
+                        <ThemeToggle size="large" />
                     </ListItemButton>
                 </ListItem>
             </List>
