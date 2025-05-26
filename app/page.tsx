@@ -110,7 +110,10 @@ export default function Home() {
                     <Typography
                         variant="h4"
                         gutterBottom
-                        sx={{ textAlign: { xs: 'center', md: 'left' } }}
+                        sx={{
+                            fontWeight: 'bold',
+                            textAlign: { xs: 'center', md: 'left' },
+                        }}
                     >
                         Driven by Discovery...
                     </Typography>
@@ -164,7 +167,14 @@ export default function Home() {
                 style={{ marginTop: '48px' }}
             >
                 <Grid size={{ xs: 12, md: 12 }}>
-                    <Typography variant="h4" gutterBottom align="center">
+                    <Typography
+                        variant="h4"
+                        gutterBottom
+                        sx={{
+                            fontWeight: 'bold',
+                            textAlign: { xs: 'center', md: 'center' },
+                        }}
+                    >
                         Experience Highlights
                     </Typography>
 

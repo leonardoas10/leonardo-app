@@ -1,23 +1,15 @@
 'use client';
 
-import React, { useState, SyntheticEvent } from 'react';
+import React from 'react';
 import {
     Box,
-    Tabs,
-    Tab,
     Typography,
     List,
     ListItem,
     ListItemText,
-    Paper,
-    useTheme,
 } from '@mui/material';
 
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-}
+import { TabsComponent, TabItem } from './TabsComponent';
 
 interface ExperienceItem {
     primary: string;
@@ -29,7 +21,7 @@ interface ExperienceSection {
     items: ExperienceItem[];
 }
 
-interface ExperienceTab {
+export interface ExperienceTab {
     label: string;
     sections: ExperienceSection[];
 }
@@ -38,121 +30,39 @@ interface ExperienceTabsProps {
     tabs: ExperienceTab[];
 }
 
-function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`experience-tabpanel-${index}`}
-            aria-labelledby={`experience-tab-${index}`}
-            {...other}
-        >
-            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-        </div>
-    );
-}
-
-function a11yProps(index: number) {
-    return {
-        id: `experience-tab-${index}`,
-        'aria-controls': `experience-tabpanel-${index}`,
-    };
-}
-
 export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
-    const theme = useTheme();
-    const [value, setValue] = useState(0);
-
-    const handleChange = (event: SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
-
-    return (
-        <Paper
-            elevation={3}
-            sx={{
-                width: '100%',
-                mt: 2,
-                boxShadow: `0 4px 12px ${theme.palette.background.aws}`,
-                borderRadius: 2,
-                overflow: 'hidden',
-            }}
-        >
-            <Box
-                sx={{
-                    borderBottom: 1,
-                    borderColor: 'divider',
-                    display: 'flex',
-                    justifyContent: 'center',
-                }}
-            >
-                <Tabs
-                    value={value}
-                    onChange={handleChange}
-                    aria-label="experience tabs"
-                    variant="scrollable"
-                    scrollButtons="auto"
-                    allowScrollButtonsMobile
-                    sx={{
-                        maxWidth: { xs: '100%', md: '100%' },
-                        '& .MuiTab-root': {
-                            color:
-                                theme.palette.mode === 'dark'
-                                    ? 'white !important'
-                                    : 'black !important',
-                            minWidth: 120,
-                        },
-                        '& .MuiButtonBase-root.Mui-selected': {
-                            color: `${theme.palette.textSecondary} !important`,
-                        },
-                        '& .MuiTabs-indicator': {
-                            backgroundColor: theme.palette.textSecondary,
-                        },
-                    }}
-                >
-                    {tabs.map((tab, index) => (
-                        <Tab
-                            key={index}
-                            label={tab.label}
-                            {...a11yProps(index)}
-                        />
-                    ))}
-                </Tabs>
+    const tabItems: TabItem[] = tabs.map(tab => ({
+        label: tab.label,
+        content: (
+            <Box>
+                {tab.sections.map((section, sectionIndex) => (
+                    <React.Fragment key={sectionIndex}>
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                color: 'textSecondary',
+                                mb: 2,
+                                mt: sectionIndex > 0 ? 2 : 0,
+                            }}
+                        >
+                            {section.icon} {section.title}
+                        </Typography>
+                        <List dense>
+                            {section.items.map((item, itemIndex) => (
+                                <ListItem key={itemIndex}>
+                                    <ListItemText
+                                        primary={item.primary}
+                                    />
+                                </ListItem>
+                            ))}
+                        </List>
+                    </React.Fragment>
+                ))}
             </Box>
+        )
+    }));
 
-            {tabs.map((tab, index) => (
-                <TabPanel key={index} value={value} index={index}>
-                    <Box>
-                        {tab.sections.map((section, sectionIndex) => (
-                            <React.Fragment key={sectionIndex}>
-                                <Typography
-                                    variant="h6"
-                                    sx={{
-                                        color: 'textSecondary',
-                                        mb: 2,
-                                        mt: sectionIndex > 0 ? 2 : 0,
-                                    }}
-                                >
-                                    {section.icon} {section.title}
-                                </Typography>
-                                <List dense>
-                                    {section.items.map((item, itemIndex) => (
-                                        <ListItem key={itemIndex}>
-                                            <ListItemText
-                                                primary={item.primary}
-                                            />
-                                        </ListItem>
-                                    ))}
-                                </List>
-                            </React.Fragment>
-                        ))}
-                    </Box>
-                </TabPanel>
-            ))}
-        </Paper>
-    );
+    return <TabsComponent tabs={tabItems} tabsAriaLabel="experience tabs" tabPanelPrefix="experience-" />;
 };
 
 export const experienceData: ExperienceTab[] = [
