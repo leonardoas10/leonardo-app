@@ -13,7 +13,11 @@ export default function Home() {
         <Container maxWidth="lg" sx={{ py: 4 }}>
             <Grid container spacing={4} alignItems="center">
                 <Grid size={{ xs: 12, md: 6 }}>
-                    <Typography variant="h4" gutterBottom sx={{ textAlign: { xs: 'center', md: 'left' } }}>
+                    <Typography
+                        variant="h4"
+                        gutterBottom
+                        sx={{ textAlign: { xs: 'center', md: 'left' } }}
+                    >
                         About
                     </Typography>
                     <Typography variant="body1" textAlign="justify">
@@ -57,6 +61,7 @@ export default function Home() {
                             src="/hiking_11.jpeg"
                             alt="Hiking"
                             fill
+                            priority
                             style={{
                                 objectFit: 'cover',
                             }}
@@ -97,7 +102,11 @@ export default function Home() {
             >
                 {/* Text content - will appear first on mobile */}
                 <Grid size={{ xs: 12, md: 8 }} sx={{ order: { xs: 1, md: 2 } }}>
-                    <Typography variant="h4" gutterBottom sx={{ textAlign: { xs: 'center', md: 'left' } }}>
+                    <Typography
+                        variant="h4"
+                        gutterBottom
+                        sx={{ textAlign: { xs: 'center', md: 'left' } }}
+                    >
                         Driven by Discovery...
                     </Typography>
                     <Typography variant="body1" textAlign="justify">

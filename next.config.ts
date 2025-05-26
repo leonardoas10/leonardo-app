@@ -2,10 +2,15 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
     images: {
-        domains: [
-            'content.leonardoaranguren.com',
-            'images.credly.com',
-            'img-c.udemycdn.com',
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'content.leonardoaranguren.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'd37rk2a86awu3g.cloudfront.net',
+            },
         ],
     },
 };

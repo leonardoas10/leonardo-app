@@ -15,47 +15,42 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
+import { CloudFrontURLs } from '@/utils/constants';
 // Define the images array
 const images = [
     {
         alt: 'AWS Certified Developer Associate Badge',
-        imageUrl:
-            'https://images.credly.com/images/b9feab85-1a43-4f6c-99a5-631b88d5461b/image.png',
+        imageUrl: `${CloudFrontURLs.IMAGES}/developer-associate-badge.webp`,
         title: 'Developer Associate',
         url: 'https://aws.amazon.com/es/certification/certified-developer-associate/',
     },
     {
         alt: 'AWS Certified Solutions Architect Badge',
-        imageUrl:
-            'https://img-c.udemycdn.com/open-badges/v2/badge-class/1641170563/image8965422010918071331.png',
+        imageUrl: `${CloudFrontURLs.IMAGES}/solutions-architect-badge.webp`,
         title: 'Solutions Architect',
         url: 'https://aws.amazon.com/es/certification/certified-solutions-architect-associate/',
     },
     {
         alt: 'AWS Serverless Certification Badge',
-        imageUrl:
-            'https://content.leonardoaranguren.com/app-images/serverless-badge.png',
+        imageUrl: `${CloudFrontURLs.IMAGES}/serverless-badge.webp`,
         title: 'Serverless',
         url: 'https://www.credly.com/badges/7083c9f0-5eed-484d-abfc-34df82fce7ec',
     },
     {
         alt: 'AWS EKS Certification Badge',
-        imageUrl:
-            'https://content.leonardoaranguren.com/app-images/amazon-eks-badge.png',
+        imageUrl: `${CloudFrontURLs.IMAGES}/amazon-eks-badge.webp`,
         title: 'EKS',
         url: 'https://www.credly.com/badges/3a6f064a-fd6d-4537-9826-2883261e8fa4',
     },
     {
         alt: 'AWS Networking Core Certification Badge',
-        imageUrl:
-            'https://content.leonardoaranguren.com/app-images/networking-core-badge.png',
+        imageUrl: `${CloudFrontURLs.IMAGES}/networking-core-badge.webp`,
         title: 'Networking Core',
         url: 'https://credly.com/badges/153c3ce9-5443-4f1d-9fe7-a961c1920d16',
     },
     {
         alt: 'AWS Certified Cloud Practitioner Badge',
-        imageUrl:
-            'https://images.credly.com/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png',
+        imageUrl: `${CloudFrontURLs.IMAGES}/cloud-practitioner-badge.webp`,
         title: 'Cloud Practitioner',
         url: 'https://aws.amazon.com/es/certification/certified-cloud-practitioner/',
     },

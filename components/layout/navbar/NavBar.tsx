@@ -20,6 +20,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import styles from './NavBar.module.css';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
+import { CloudFrontURLs } from '@/utils/constants';
 
 // Navigation items
 const pages = [
@@ -112,9 +113,7 @@ export const NavBar: React.FC = () => {
                         >
                             <Avatar
                                 alt="L"
-                                src={
-                                    'https://content.leonardoaranguren.com/app-images/me.png'
-                                }
+                                src={`${CloudFrontURLs.IMAGES}/me.webp`}
                                 sx={{
                                     width: { xs: 60, md: 50 },
                                     height: { xs: 60, md: 50 },
