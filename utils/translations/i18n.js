@@ -1,5 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
 //ES
 import aboutES from './es/about.json';
@@ -24,7 +25,10 @@ import postEN from './en/post.json';
 import tagEN from './en/tags.json';
 import userEN from './en/users.json';
 
-i18n.use(initReactI18next).init({
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
     fallbackLng: 'es',
     lng: 'en',
     resources: {
@@ -52,6 +56,17 @@ i18n.use(initReactI18next).init({
             tag: tagEN,
             imagesManager: imagesManagerEN,
         },
+    },
+    detection: {
+      // Order of detection methods
+      order: ['localStorage', 'navigator'],
+      // Keys to lookup language in localStorage
+      lookupLocalStorage: 'userLanguage',
+      // Cache user language in localStorage
+      caches: ['localStorage'],
+    },
+    interpolation: {
+      escapeValue: false, // React already safes from XSS
     },
 });
 

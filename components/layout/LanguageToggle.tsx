@@ -3,6 +3,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { IOSSwitch } from '@/components/common/IOSSwitch';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface LanguageToggleProps {
     size?: 'small' | 'medium' | 'large';
@@ -11,11 +12,11 @@ interface LanguageToggleProps {
 export const LanguageToggle: React.FC<LanguageToggleProps> = ({
     size = 'medium',
 }) => {
-    // This would typically come from a language context
-    const [isSpanish, setIsSpanish] = React.useState(true);
+    const { language, setLanguage } = useLanguage();
+    const isSpanish = language === 'es';
 
     const toggleLanguage = () => {
-        setIsSpanish(!isSpanish);
+        setLanguage(isSpanish ? 'en' : 'es');
     };
 
     // Text size based on switch size

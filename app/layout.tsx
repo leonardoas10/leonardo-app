@@ -1,8 +1,8 @@
-import type { Metadata } from 'next';
 import './globals.css';
 import { NavBar } from '@/components/layout/navbar/NavBar';
-import { ThemeRegistry } from '../contexts/ThemeContext';
 import { Footer } from '@/components/layout/footer/Footer';
+import type { Metadata } from 'next';
+import { Providers } from './providers';
 
 export const metadata: Metadata = {
     title: 'Leonardo Aranguren',
@@ -15,13 +15,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html>
             <body>
-                <ThemeRegistry>
+                <Providers>
                     <NavBar />
                     <main>{children}</main>
                     <Footer />
-                </ThemeRegistry>
+                </Providers>
             </body>
         </html>
     );
