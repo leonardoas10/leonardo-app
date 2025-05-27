@@ -12,34 +12,10 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({
     size = 'medium',
 }) => {
     // This would typically come from a language context
-    const [isSpanish, setIsSpanish] = React.useState(false);
+    const [isSpanish, setIsSpanish] = React.useState(true);
 
     const toggleLanguage = () => {
         setIsSpanish(!isSpanish);
-    };
-
-    // Get switch size based on prop
-    const getSwitchStyle = () => {
-        if (size === 'small') {
-            return {
-                width: 36,
-                height: 20,
-                '& .MuiSwitch-thumb': { width: 16, height: 16 },
-                '& .MuiSwitch-switchBase.Mui-checked': {
-                    transform: 'translateX(16px)',
-                },
-            };
-        } else if (size === 'large') {
-            return {
-                width: 48,
-                height: 28,
-                '& .MuiSwitch-thumb': { width: 24, height: 24 },
-                '& .MuiSwitch-switchBase.Mui-checked': {
-                    transform: 'translateX(20px)',
-                },
-            };
-        }
-        return {};
     };
 
     // Text size based on switch size
@@ -54,29 +30,16 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({
         <div
             style={{
                 display: 'flex',
-                height: '100%',
-                width: '100%',
-                alignItems: 'center',
-                justifyContent: 'center',
+                backgroundColor: 'white',
+                color: 'black',
+                borderRadius: '50%',
+                fontWeight: 'bold',
+                fontSize: getFontSize(),
+                marginTop: '1px',
+                padding: '1.8px',
             }}
         >
-            <div
-                style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: 'white',
-                    color: 'black',
-                    borderRadius: '50%',
-                    fontWeight: 'bold',
-                    fontSize: getFontSize(),
-                    width: '100%',
-                    height: '100%',
-                    padding: '1px',
-                }}
-            >
-                {text}
-            </div>
+            {text}
         </div>
     );
 
@@ -89,9 +52,12 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({
             <IOSSwitch
                 checked={isSpanish}
                 onChange={toggleLanguage}
-                sx={getSwitchStyle()}
                 checkedIcon={EnText}
                 uncheckedIcon={EsText}
+                switchBaseMargin={
+                    isSpanish ? '2px 0px 2px 2px' : '2px 4px 2px 2px'
+                }
+                customSize={size}
             />
         </Box>
     );

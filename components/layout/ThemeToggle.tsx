@@ -17,30 +17,6 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
 }) => {
     const { mode, toggleColorMode } = useThemeContext();
 
-    // Get switch size based on prop
-    const getSwitchStyle = () => {
-        if (size === 'small') {
-            return {
-                width: 36,
-                height: 20,
-                '& .MuiSwitch-thumb': { width: 16, height: 16 },
-                '& .MuiSwitch-switchBase.Mui-checked': {
-                    transform: 'translateX(16px)',
-                },
-            };
-        } else if (size === 'large') {
-            return {
-                width: 48,
-                height: 28,
-                '& .MuiSwitch-thumb': { width: 24, height: 24 },
-                '& .MuiSwitch-switchBase.Mui-checked': {
-                    transform: 'translateX(20px)',
-                },
-            };
-        }
-        return {};
-    };
-
     return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <IOSSwitch
@@ -48,7 +24,8 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
                 onChange={toggleColorMode}
                 checkedIcon={<DarkModeIcon sx={{ mt: -0.2 }} />}
                 uncheckedIcon={<LightModeIcon />}
-                sx={getSwitchStyle()}
+                switchBaseMargin="4px 0px 2px 4px"
+                customSize={size}
             />
         </Box>
     );

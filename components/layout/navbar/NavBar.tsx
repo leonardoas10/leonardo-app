@@ -196,9 +196,9 @@ export const NavBar: React.FC = () => {
                                         </Box>
                                     );
                                 })}
-                                <ContactSection size="small" />
-                                <LanguageToggle />
-                                <ThemeToggle />
+                                <ContactSection size="medium" />
+                                <LanguageToggle size="large" />
+                                <ThemeToggle size="large" />
                             </Box>
 
                             {/* Mobile menu button */}
