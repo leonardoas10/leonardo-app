@@ -19,6 +19,9 @@ interface FormData {
     name: string;
     email: string;
     company: string;
+    language: string;
+    format: string;
+    [key: string]: string; // Allow additional string fields
 }
 
 interface ModalProps {
@@ -27,6 +30,14 @@ interface ModalProps {
     title: string;
     submitButtonText: string;
     onSubmit: (formData: FormData) => Promise<void>;
+    loading?: boolean;
+    fields?: Array<{
+        name: string;
+        label: string;
+        type?: string;
+        required?: boolean;
+        options?: Array<{ value: string; label: string }>;
+    }>;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -35,13 +46,18 @@ const Modal: React.FC<ModalProps> = ({
     title,
     submitButtonText,
     onSubmit,
+    loading: externalLoading,
+    fields,
 }) => {
     const [formData, setFormData] = useState<FormData>({
         name: '',
         email: '',
         company: '',
+        language: '',
+        format: '',
     });
-    const [loading, setLoading] = useState(false);
+    const [internalLoading, setInternalLoading] = useState(false);
+    const loading = externalLoading !== undefined ? externalLoading : internalLoading;
     const [snackbar, setSnackbar] = useState({
         open: false,
         message: '',
@@ -56,7 +72,9 @@ const Modal: React.FC<ModalProps> = ({
     };
 
     const handleSubmit = async () => {
-        setLoading(true);
+        if (externalLoading === undefined) {
+            setInternalLoading(true);
+        }
         try {
             await onSubmit(formData);
             setSnackbar({
@@ -72,7 +90,9 @@ const Modal: React.FC<ModalProps> = ({
                 severity: 'error',
             });
         } finally {
-            setLoading(false);
+            if (externalLoading === undefined) {
+                setInternalLoading(false);
+            }
         }
     };
 
@@ -86,33 +106,75 @@ const Modal: React.FC<ModalProps> = ({
                 <DialogTitle>{title}</DialogTitle>
                 <DialogContent>
                     <Box component="form" sx={{ mt: 2 }}>
-                        <TextField
-                            fullWidth
-                            margin="dense"
-                            label="Name"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                        />
-                        <TextField
-                            fullWidth
-                            margin="dense"
-                            label="Email"
-                            name="email"
-                            type="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                        />
-                        <TextField
-                            fullWidth
-                            margin="dense"
-                            label="Company"
-                            name="company"
-                            value={formData.company}
-                            onChange={handleChange}
-                        />
+                        {fields ? (
+                            fields.map((field) => (
+                                field.type === 'select' ? (
+                                    <TextField
+                                        key={field.name}
+                                        select
+                                        fullWidth
+                                        margin="dense"
+                                        label={field.label}
+                                        name={field.name}
+                                        value={formData[field.name] || ''}
+                                        onChange={handleChange}
+                                        required={field.required}
+                                        SelectProps={{
+                                            native: true,
+                                        }}
+                                    >
+                                        <option value="" />
+                                        {field.options?.map((option) => (
+                                            <option key={option.value} value={option.value}>
+                                                {option.label}
+                                            </option>
+                                        ))}
+                                    </TextField>
+                                ) : (
+                                    <TextField
+                                        key={field.name}
+                                        fullWidth
+                                        margin="dense"
+                                        label={field.label}
+                                        name={field.name}
+                                        type={field.type || 'text'}
+                                        value={formData[field.name] || ''}
+                                        onChange={handleChange}
+                                        required={field.required}
+                                    />
+                                )
+                            ))
+                        ) : (
+                            <>
+                                <TextField
+                                    fullWidth
+                                    margin="dense"
+                                    label="Name"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
+                                />
+                                <TextField
+                                    fullWidth
+                                    margin="dense"
+                                    label="Email"
+                                    name="email"
+                                    type="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                />
+                                <TextField
+                                    fullWidth
+                                    margin="dense"
+                                    label="Company"
+                                    name="company"
+                                    value={formData.company}
+                                    onChange={handleChange}
+                                />
+                            </>
+                        )}
                     </Box>
                 </DialogContent>
                 <DialogActions>
@@ -127,7 +189,7 @@ const Modal: React.FC<ModalProps> = ({
                         onClick={handleSubmit}
                         color="primary"
                         variant="contained"
-                        disabled={loading || !formData.name || !formData.email}
+                        disabled={loading || (fields ? fields.some(f => f.required && !formData[f.name]) : (!formData.name || !formData.email))}
                         sx={{
                             bgcolor: 'background.aws',
                             color: 'text.primary',

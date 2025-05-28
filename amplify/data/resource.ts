@@ -1,11 +1,10 @@
 import { type ClientSchema, a, defineData } from '@aws-amplify/backend';
 
-import { contentSchema, postSchema } from './schemas';
+import { cvRequestSchema } from './schemas';
 
 const schema = a
     .schema({
-        ...contentSchema,
-        ...postSchema,
+        ...cvRequestSchema,
     })
     .authorization((allow) => [allow.publicApiKey()]);
 

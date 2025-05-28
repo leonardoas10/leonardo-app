@@ -1,8 +1,13 @@
 import './globals.css';
 import { NavBar } from '@/components/layout/navbar/NavBar';
 import { Footer } from '@/components/layout/footer/Footer';
+import { Amplify } from 'aws-amplify';
+import outputs from '@/amplify_outputs.json';
 import type { Metadata } from 'next';
 import { Providers } from './providers';
+
+// Configure Amplify on the client side
+Amplify.configure(outputs, { ssr: true });
 
 export const metadata: Metadata = {
     title: 'Leonardo Aranguren',
