@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../common/Modal';
 import { useTranslation } from '@/utils/hooks/useTranslation';
-import { clientSideClient } from '@/utils/amplify-utils';
+import { clientSideClient } from '@/utils/amplify-client-utils';
 
 // Import FormData type from Modal
 type FormData = Parameters<Parameters<typeof Modal>[0]['onSubmit']>[0];

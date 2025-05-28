@@ -1,6 +1,14 @@
 'use client';
 
-import { Container, Typography, Box, Grid, Paper } from '@mui/material';
+import {
+    Container,
+    Typography,
+    Box,
+    Grid,
+    useTheme,
+    Paper,
+} from '@mui/material';
+import Image from 'next/image';
 
 import { Chip } from '@/components/common/Chip';
 import { ArchitectureTabs } from '@/components/tabs/ArchitectureTabs';
@@ -8,13 +16,15 @@ import { useTranslation } from '@/utils/hooks/useTranslation';
 
 export default function ArchitecturePage() {
     const { t } = useTranslation('architecture');
-    
+    const theme = useTheme();
+    const isDarkMode = theme.palette.mode === 'dark';
+
     return (
         <Container
             maxWidth="lg"
             sx={{ py: { xs: 4, md: 4 }, px: { xs: 2, sm: 3, md: 4 } }}
         >
-            <Grid container spacing={4} sx={{ mb: 4 }}>
+            <Grid container spacing={4}>
                 <Grid size={{ xs: 12 }}>
                     <Typography
                         variant="h3"
@@ -51,31 +61,53 @@ export default function ArchitecturePage() {
                         />
                     </Box>
                 </Grid>
-            </Grid>
 
-            <ArchitectureTabs />
-
-            <Box sx={{ mt: 6, mb: 4 }}>
-                <Typography variant="h5" gutterBottom>
-                    {t('page.architectureDiagram')}
-                </Typography>
-                <Paper
-                    elevation={2}
-                    sx={{
-                        p: 3,
-                        height: 300,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        bgcolor: 'background.paper',
-                        borderRadius: 2,
-                    }}
-                >
-                    <Typography variant="body2" color="text.secondary">
-                        {t('page.diagramPlaceholder')}
+                <Grid size={{ xs: 12 }} sx={{ textAlign: 'center' }}>
+                    <Typography
+                        variant="h4"
+                        gutterBottom
+                        sx={{
+                            fontWeight: 'bold',
+                            textAlign: { xs: 'center' },
+                        }}
+                    >
+                        {t('page.architectureDiagram')}
                     </Typography>
-                </Paper>
-            </Box>
+                    <Paper
+                        elevation={2}
+                        sx={{
+                            p: 0.8,
+                            bgcolor: 'background.paper',
+                            borderRadius: 2,
+                            overflow: 'hidden',
+                            boxShadow: `0 4px 12px ${theme.palette.background.aws}`,
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                position: 'relative',
+                                width: '100%',
+                                height: { xs: 230, sm: 400, md: 500 },
+                            }}
+                        >
+                            <Image
+                                src={
+                                    isDarkMode
+                                        ? '/architecture.png'
+                                        : '/white-architecture.png'
+                                }
+                                alt="Architecture Diagram"
+                                fill
+                                style={{ objectFit: 'contain' }}
+                                priority
+                            />
+                        </Box>
+                    </Paper>
+                </Grid>
+                <Grid size={{ xs: 12 }}>
+                    <ArchitectureTabs />
+                </Grid>
+            </Grid>
         </Container>
     );
 }

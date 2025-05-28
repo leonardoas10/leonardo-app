@@ -3,7 +3,7 @@
         "title": "Arquitectura",
         "description": "Este sitio web utiliza Next.js para renderizado del lado del servidor para optimizar el rendimiento SEO, AWS Amplify para operaciones backend sin servidor rentables, y DynamoDB para una recuperación de datos rápida y escalable con latencia mínima.",
         "githubRepository": "Repositorio GitHub",
-        "architectureDiagram": "Diagrama de Arquitectura",
+        "architectureDiagram": "Diagrama",
         "diagramPlaceholder": "[Marcador de Posición para Diagrama de Arquitectura]"
     },
     "tabs": {
