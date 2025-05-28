@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../common/Modal';
 import { useTranslation } from '@/utils/hooks/useTranslation';
-import { cookiesClient } from '@/utils/amplify-utils';
+import { clientSideClient } from '@/utils/amplify-utils';
 
 // Import FormData type from Modal
 type FormData = Parameters<Parameters<typeof Modal>[0]['onSubmit']>[0];
@@ -19,7 +19,7 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
         setLoading(true);
         try {
             // Create CV request using Amplify Gen 2 API
-            const result = await cookiesClient.models.CVRequest.create({
+            const result = await clientSideClient.models.CVRequest.create({
                 name: formData.name,
                 email: formData.email,
                 company: formData.company || '',
