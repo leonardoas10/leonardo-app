@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from '../common/Modal';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 
 interface FormData {
     name: string;
@@ -13,6 +14,8 @@ interface CVModalProps {
 }
 
 const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
+    const { t } = useTranslation('contact');
+    
     const handleSubmit = async (formData: FormData) => {
         // Simulate API call with a delay
         return new Promise<void>((resolve) => {
@@ -27,8 +30,8 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
         <Modal
             open={open}
             onClose={onClose}
-            title="Get CV"
-            submitButtonText="Get"
+            title={t('cvModal.title')}
+            submitButtonText={t('cvModal.download')}
             onSubmit={handleSubmit}
         />
     );

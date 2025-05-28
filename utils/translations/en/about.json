@@ -11,5 +11,78 @@
         "serverless": "Earners of this badge have developed technical skills and knowledge of AWS serverless concepts and services with a focus on Lambda, API Gateway, SQS, SNS, Cognito, Kinesis and S3.",
         "networkingCore": "Earners of this badge have developed technical knowledge of AWS networking concepts and services with a focus on Amazon VPC, AWS Cloud WAN and Amazon Route 53.",
         "eks": "Earners of this badge have developed knowledge of running microservices and container workloads with Amazon Elastic Kubernetes Service (Amazon EKS)"
+    },
+    "homePage": {
+        "aboutTitle": "About",
+        "firstParagraph": "Leonardo Aranguren is a Software Developer, Cloud Engineer, and Technical Lead with a strong foundation in AWS Cloud Technologies. He holds multiple AWS Certifications, including Developer Associate, Solutions Architect, and Serverless, and has completed advanced training in EKS, Networking Core, and Cloud Quests. Leonardo graduated as a Higher University Technician in Foreign Trade from Simón Bolívar University and is bilingual, having completed studies with Open English. He brings a bold and solution-driven approach to modern cloud infrastructure and software development.",
+        "discoveryTitle": "Driven by Discovery...",
+        "secondParagraph": "Leonardo's professional journey is fueled by a passion for innovation and continuous learning. He actively participates in AWS Community Days and tech meetups, where he both contributes and draws inspiration from the cloud-native community. Always exploring the latest advancements in cloud computing, serverless architectures, and AI integrations, Leonardo is on a constant quest to expand his skill set and stay ahead of the curve. His drive for excellence is reflected in his commitment to earning new certifications and applying cutting-edge technologies to real-world solutions.",
+        "experienceTitle": "Experience Highlights",
+        "teideCaption": "Teide, Tenerife - Spain"
+    },
+    "experienceTabs": {
+        "cloudEngineer": {
+            "label": "Cloud Engineer",
+            "sections": {
+                "cicd": {
+                    "title": "Automation of CI/CD Pipelines",
+                    "icon": "🔧",
+                    "items": [
+                        "Designed and implemented CI/CD workflows using GitHub Actions and AWS CodePipeline, reducing deployment time by 60%.",
+                        "Built reusable workflows for multi-environment deployments with rollback support."
+                    ]
+                },
+                "serverless": {
+                    "title": "Serverless Architecture",
+                    "icon": "☁️",
+                    "items": [
+                        "Developed scalable event-driven systems using AWS Lambda, Step Functions, and EventBridge.",
+                        "Created robust observability tooling with custom CloudWatch dashboards and centralized log subscriptions."
+                    ]
+                }
+            }
+        },
+        "softwareDeveloper": {
+            "label": "Software Developer",
+            "sections": {
+                "resilient": {
+                    "title": "Resilient and Secure Systems",
+                    "icon": "🛡",
+                    "items": [
+                        "Led the migration of legacy services to a serverless architecture, increasing uptime and reducing maintenance costs.",
+                        "Enforced security best practices through IAM least privilege, API Gateway WAF, and VPC configurations."
+                    ]
+                },
+                "fullstack": {
+                    "title": "Full-Stack Development",
+                    "icon": "💻",
+                    "items": [
+                        "Built responsive web applications using React, Next.js, and Material UI.",
+                        "Developed backend services with Node.js, Python, and TypeScript."
+                    ]
+                }
+            }
+        },
+        "technicalLead": {
+            "label": "Technical Lead",
+            "sections": {
+                "intelligent": {
+                    "title": "Intelligent Solutions",
+                    "icon": "🧠",
+                    "items": [
+                        "Integrated OpenAI and AWS Bedrock services to build internal AI copilots that boosted productivity in support and dev teams.",
+                        "Led architecture decisions for cloud-native applications, focusing on scalability and cost optimization."
+                    ]
+                },
+                "leadership": {
+                    "title": "Team Leadership",
+                    "icon": "👥",
+                    "items": [
+                        "Mentored junior developers and conducted technical interviews for new team members.",
+                        "Facilitated knowledge sharing sessions and promoted best practices across development teams."
+                    ]
+                }
+            }
+        }
     }
 }

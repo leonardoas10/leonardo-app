@@ -11,5 +11,78 @@
         "serverless": "Los ganadores de esta insignia han desarrollado habilidades técnicas y conocimientos de los conceptos y servicios serverless de AWS con un enfoque en Lambda, API Gateway, SQS, SNS, Cognito, Kinesis y S3.",
         "networkingCore": "Los ganadores de esta insignia han desarrollado conocimientos técnicos de los conceptos y servicios de redes de AWS con un enfoque en Amazon VPC, AWS Cloud WAN y Amazon Route 53.",
         "eks": "Los ganadores de esta insignia han desarrollado conocimientos sobre la ejecución de microservicios y cargas de trabajo de contenedores con Amazon Elastic Kubernetes Service (Amazon EKS)."
+    },
+    "homePage": {
+        "aboutTitle": "Sobre mí",
+        "firstParagraph": "Leonardo Aranguren es un Desarrollador de Software, Ingeniero Cloud y Líder Técnico con una sólida base en Tecnologías Cloud de AWS. Posee múltiples Certificaciones AWS, incluyendo Developer Associate, Solutions Architect y Serverless, y ha completado formación avanzada en EKS, Networking Core y Cloud Quests. Leonardo se graduó como Técnico Superior Universitario en Comercio Exterior de la Universidad Simón Bolívar y es bilingüe, habiendo completado estudios con Open English. Aporta un enfoque audaz y orientado a soluciones para la infraestructura cloud moderna y el desarrollo de software.",
+        "discoveryTitle": "Impulsado por el Descubrimiento...",
+        "secondParagraph": "El viaje profesional de Leonardo está impulsado por una pasión por la innovación y el aprendizaje continuo. Participa activamente en AWS Community Days y encuentros tecnológicos, donde tanto contribuye como se inspira en la comunidad cloud-native. Siempre explorando los últimos avances en computación en la nube, arquitecturas serverless e integraciones de IA, Leonardo está en una búsqueda constante para expandir sus habilidades y mantenerse a la vanguardia. Su impulso por la excelencia se refleja en su compromiso de obtener nuevas certificaciones y aplicar tecnologías de vanguardia a soluciones del mundo real.",
+        "experienceTitle": "Destacados de Experiencia",
+        "teideCaption": "Teide, Tenerife - España"
+    },
+    "experienceTabs": {
+        "cloudEngineer": {
+            "label": "Ingeniero Cloud",
+            "sections": {
+                "cicd": {
+                    "title": "Automatización de Pipelines CI/CD",
+                    "icon": "🔧",
+                    "items": [
+                        "Diseñé e implementé flujos de trabajo CI/CD utilizando GitHub Actions y AWS CodePipeline, reduciendo el tiempo de despliegue en un 60%.",
+                        "Construí flujos de trabajo reutilizables para despliegues multi-entorno con soporte de rollback."
+                    ]
+                },
+                "serverless": {
+                    "title": "Arquitectura Serverless",
+                    "icon": "☁️",
+                    "items": [
+                        "Desarrollé sistemas escalables basados en eventos utilizando AWS Lambda, Step Functions y EventBridge.",
+                        "Creé herramientas de observabilidad robustas con paneles personalizados de CloudWatch y suscripciones de logs centralizadas."
+                    ]
+                }
+            }
+        },
+        "softwareDeveloper": {
+            "label": "Desarrollador de Software",
+            "sections": {
+                "resilient": {
+                    "title": "Sistemas Resilientes y Seguros",
+                    "icon": "🛡",
+                    "items": [
+                        "Lideré la migración de servicios legacy a una arquitectura serverless, aumentando el tiempo de actividad y reduciendo los costos de mantenimiento.",
+                        "Implementé mejores prácticas de seguridad a través de IAM con privilegios mínimos, WAF de API Gateway y configuraciones de VPC."
+                    ]
+                },
+                "fullstack": {
+                    "title": "Desarrollo Full-Stack",
+                    "icon": "💻",
+                    "items": [
+                        "Construí aplicaciones web responsivas utilizando React, Next.js y Material UI.",
+                        "Desarrollé servicios backend con Node.js, Python y TypeScript."
+                    ]
+                }
+            }
+        },
+        "technicalLead": {
+            "label": "Líder Técnico",
+            "sections": {
+                "intelligent": {
+                    "title": "Soluciones Inteligentes",
+                    "icon": "🧠",
+                    "items": [
+                        "Integré servicios de OpenAI y AWS Bedrock para construir copilotos de IA internos que aumentaron la productividad en equipos de soporte y desarrollo.",
+                        "Lideré decisiones de arquitectura para aplicaciones cloud-native, enfocándome en escalabilidad y optimización de costos."
+                    ]
+                },
+                "leadership": {
+                    "title": "Liderazgo de Equipo",
+                    "icon": "👥",
+                    "items": [
+                        "Mentoré a desarrolladores junior y realicé entrevistas técnicas para nuevos miembros del equipo.",
+                        "Facilité sesiones de intercambio de conocimientos y promoví mejores prácticas en los equipos de desarrollo."
+                    ]
+                }
+            }
+        }
     }
 }

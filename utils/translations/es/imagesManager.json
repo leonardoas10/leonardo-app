@@ -1,9 +1,0 @@
-{
-    "preUploadImage": "Imagen previa a la carga",
-    "saveImage": "Guardar Imagen",
-    "imagePreview": "Vista previa",
-    "copyUrl": "Copiar Url",
-    "nameInput": "Nombre",
-    "sizeInput": "Tamaño *Readonly",
-    "typeInput": "Tipo *Readonly"
-}

@@ -1,0 +1,17 @@
+{
+  "contactSection": {
+    "getCV": "Get CV"
+  },
+  "cvModal": {
+    "title": "Download CV",
+    "description": "Please select your preferred language and format:",
+    "language": "Language",
+    "format": "Format",
+    "download": "Download",
+    "cancel": "Cancel",
+    "english": "English",
+    "spanish": "Spanish",
+    "pdf": "PDF",
+    "word": "Word"
+  }
+}

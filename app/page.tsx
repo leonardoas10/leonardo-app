@@ -1,16 +1,17 @@
+'use client';
 import { Container, Grid, Typography, Box } from '@mui/material';
 import Image from 'next/image';
 
 import { ImageSlideshow } from '@/components/images/ImageSlideshow';
-import {
-    ExperienceTabs,
-    experienceData,
-} from '@/components/tabs/ExperienceTabs';
+import { ExperienceTabs } from '@/components/tabs/ExperienceTabs';
 import { ContactSection } from '@/components/contact/ContactSection';
 
 import { CloudFrontURLs } from '@/utils/constants';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 
 export default function Home() {
+    const { t } = useTranslation('about');
+
     return (
         <Container maxWidth="lg" sx={{ py: 4 }}>
             <Grid container spacing={4} alignItems="center">
@@ -23,27 +24,10 @@ export default function Home() {
                             textAlign: { xs: 'center', md: 'left' },
                         }}
                     >
-                        About
+                        {t('homePage.aboutTitle')}
                     </Typography>
                     <Typography variant="body1" textAlign="justify">
-                        Leonardo Aranguren is a Software Developer, Cloud
-                        Engineer, and Technical Lead with a strong foundation in
-                        AWS Cloud Technologies. He holds multiple{' '}
-                        <Typography
-                            component="span"
-                            sx={{ color: 'textSecondary' }}
-                            display="inline"
-                        >
-                            AWS Certifications
-                        </Typography>
-                        , including Developer Associate, Solutions Architect,
-                        and Serverless, and has completed advanced training in
-                        EKS, Networking Core, and Cloud Quests. Leonardo
-                        graduated as a Higher University Technician in Foreign
-                        Trade from Simón Bolívar University and is bilingual,
-                        having completed studies with Open English. He brings a
-                        bold and solution-driven approach to modern cloud
-                        infrastructure and software development.
+                        {t('homePage.firstParagraph')}
                     </Typography>
                 </Grid>
 
@@ -92,7 +76,7 @@ export default function Home() {
                                     lineHeight: 1,
                                 }}
                             >
-                                Teide, Tenerife - Spain
+                                {t('homePage.teideCaption')}
                             </Typography>
                         </Box>
                     </Box>
@@ -115,35 +99,10 @@ export default function Home() {
                             textAlign: { xs: 'center', md: 'left' },
                         }}
                     >
-                        Driven by Discovery...
+                        {t('homePage.discoveryTitle')}
                     </Typography>
                     <Typography variant="body1" textAlign="justify">
-                        {"Leonardo's"} professional journey is fueled by a
-                        passion for innovation and continuous learning. He
-                        actively participates in{' '}
-                        <Typography
-                            component="span"
-                            sx={{ color: 'textSecondary' }}
-                            display="inline"
-                        >
-                            AWS Community Days
-                        </Typography>{' '}
-                        and tech meetups, where he both contributes and draws
-                        inspiration from the cloud-native community. Always
-                        exploring the latest advancements in cloud computing,
-                        serverless architectures, and AI integrations, Leonardo
-                        is on a constant quest to expand his skill set and stay
-                        ahead of the curve. His drive for{' '}
-                        <Typography
-                            component="span"
-                            sx={{ color: 'textSecondary' }}
-                            display="inline"
-                        >
-                            excellence
-                        </Typography>{' '}
-                        is reflected in his commitment to earning new
-                        certifications and applying cutting-edge technologies to
-                        real-world solutions.
+                        {t('homePage.secondParagraph')}
                     </Typography>
                 </Grid>
 
@@ -175,10 +134,10 @@ export default function Home() {
                             textAlign: { xs: 'center', md: 'center' },
                         }}
                     >
-                        Experience Highlights
+                        {t('homePage.experienceTitle')}
                     </Typography>
 
-                    <ExperienceTabs tabs={experienceData} />
+                    <ExperienceTabs />
                 </Grid>
             </Grid>
 

@@ -8,11 +8,14 @@ import DataObjectIcon from '@mui/icons-material/DataObject';
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
 
 import { TabsComponent, TabItem } from './TabsComponent';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 
 export const ArchitectureTabs: React.FC = () => {
+    const { t } = useTranslation('architecture');
+    
     const tabs: TabItem[] = [
         {
-            label: 'Frontend',
+            label: t('tabs.frontend.label'),
             icon: <CodeIcon />,
             content: (
                 <Box>
@@ -20,44 +23,36 @@ export const ArchitectureTabs: React.FC = () => {
                         variant="h6"
                         sx={{ color: 'textSecondary', mb: 2 }}
                     >
-                        🚀 Framework
+                        {t('tabs.frontend.sections.framework.title')}
                     </Typography>
                     <Typography variant="body1" paragraph>
-                        The frontend is built with Next.js 14 using the App
-                        Router architecture. Components are organized following
-                        atomic design principles, with reusable UI elements and
-                        page-specific components.
+                        {t('tabs.frontend.sections.framework.content')}
                     </Typography>
 
                     <Typography
                         variant="h6"
                         sx={{ color: 'textSecondary', mb: 2, mt: 3 }}
                     >
-                        🎨 UI Components
+                        {t('tabs.frontend.sections.ui.title')}
                     </Typography>
                     <Typography variant="body1" paragraph>
-                        Material UI provides a consistent design system with
-                        responsive components that adapt to any screen size. The
-                        theme system allows for seamless light/dark mode
-                        switching.
+                        {t('tabs.frontend.sections.ui.content')}
                     </Typography>
 
                     <Typography
                         variant="h6"
                         sx={{ color: 'textSecondary', mb: 2, mt: 3 }}
                     >
-                        📝 Type Safety
+                        {t('tabs.frontend.sections.typeSafety.title')}
                     </Typography>
                     <Typography variant="body1" paragraph>
-                        TypeScript ensures type safety throughout the codebase,
-                        reducing runtime errors and improving developer
-                        productivity.
+                        {t('tabs.frontend.sections.typeSafety.content')}
                     </Typography>
                 </Box>
             ),
         },
         {
-            label: 'Backend',
+            label: t('tabs.backend.label'),
             icon: <StorageIcon />,
             content: (
                 <Box>
@@ -65,41 +60,36 @@ export const ArchitectureTabs: React.FC = () => {
                         variant="h6"
                         sx={{ color: 'textSecondary', mb: 2 }}
                     >
-                        ☁️ Hosting
+                        {t('tabs.backend.sections.hosting.title')}
                     </Typography>
                     <Typography variant="body1" paragraph>
-                        The backend uses AWS Amplify for hosting and continuous
-                        deployment. API routes in Next.js provide serverless
-                        functions for handling data processing and third-party
-                        integrations.
+                        {t('tabs.backend.sections.hosting.content')}
                     </Typography>
 
                     <Typography
                         variant="h6"
                         sx={{ color: 'textSecondary', mb: 2, mt: 3 }}
                     >
-                        🔒 Authentication
+                        {t('tabs.backend.sections.authentication.title')}
                     </Typography>
                     <Typography variant="body1" paragraph>
-                        Authentication is handled through AWS Cognito, providing
-                        secure user management and access control.
+                        {t('tabs.backend.sections.authentication.content')}
                     </Typography>
 
                     <Typography
                         variant="h6"
                         sx={{ color: 'textSecondary', mb: 2, mt: 3 }}
                     >
-                        🌐 Content Delivery
+                        {t('tabs.backend.sections.contentDelivery.title')}
                     </Typography>
                     <Typography variant="body1" paragraph>
-                        CloudFront CDN is used for content delivery, ensuring
-                        fast loading times globally.
+                        {t('tabs.backend.sections.contentDelivery.content')}
                     </Typography>
                 </Box>
             ),
         },
         {
-            label: 'Database',
+            label: t('tabs.database.label'),
             icon: <DataObjectIcon />,
             content: (
                 <Box>
@@ -107,41 +97,36 @@ export const ArchitectureTabs: React.FC = () => {
                         variant="h6"
                         sx={{ color: 'textSecondary', mb: 2 }}
                     >
-                        📊 NoSQL Database
+                        {t('tabs.database.sections.nosql.title')}
                     </Typography>
                     <Typography variant="body1" paragraph>
-                        Data is stored in Amazon DynamoDB, a NoSQL database
-                        service that provides fast and predictable performance
-                        with seamless scalability.
+                        {t('tabs.database.sections.nosql.content')}
                     </Typography>
 
                     <Typography
                         variant="h6"
                         sx={{ color: 'textSecondary', mb: 2, mt: 3 }}
                     >
-                        🗄️ Storage
+                        {t('tabs.database.sections.storage.title')}
                     </Typography>
                     <Typography variant="body1" paragraph>
-                        S3 buckets are used for storing static assets like
-                        images and documents, with proper CORS configuration to
-                        ensure secure access.
+                        {t('tabs.database.sections.storage.content')}
                     </Typography>
 
                     <Typography
                         variant="h6"
                         sx={{ color: 'textSecondary', mb: 2, mt: 3 }}
                     >
-                        ⚡ Performance
+                        {t('tabs.database.sections.performance.title')}
                     </Typography>
                     <Typography variant="body1" paragraph>
-                        Data access patterns are optimized for common queries,
-                        with appropriate indexes to ensure efficient retrieval.
+                        {t('tabs.database.sections.performance.content')}
                     </Typography>
                 </Box>
             ),
         },
         {
-            label: 'CI/CD',
+            label: t('tabs.cicd.label'),
             icon: <IntegrationInstructionsIcon />,
             content: (
                 <Box>
@@ -149,44 +134,30 @@ export const ArchitectureTabs: React.FC = () => {
                         variant="h6"
                         sx={{ color: 'textSecondary', mb: 2 }}
                     >
-                        🔄 Amplify CI/CD
+                        {t('tabs.cicd.sections.amplify.title')}
                     </Typography>
                     <Typography variant="body1" paragraph>
-                        AWS Amplify provides a fully managed CI/CD workflow that
-                        automatically builds, tests, and deploys the application
-                        on every code push. This eliminates manual deployment
-                        steps, ensures consistent environments, and enables
-                        feature branch deployments for testing before merging to
-                        production.
+                        {t('tabs.cicd.sections.amplify.content')}
                     </Typography>
 
                     <Typography
                         variant="h6"
                         sx={{ color: 'textSecondary', mb: 2, mt: 3 }}
                     >
-                        🪝 Husky Git Hooks
+                        {t('tabs.cicd.sections.husky.title')}
                     </Typography>
                     <Typography variant="body1" paragraph>
-                        Husky is implemented to enforce code quality standards
-                        by running pre-commit and pre-push hooks. These hooks
-                        automatically run linters, type checking, and unit tests
-                        before allowing commits or pushes, preventing
-                        problematic code from entering the repository.
+                        {t('tabs.cicd.sections.husky.content')}
                     </Typography>
 
                     <Typography
                         variant="h6"
                         sx={{ color: 'textSecondary', mb: 2, mt: 3 }}
                     >
-                        🏷️ GitHub Actions for PRs
+                        {t('tabs.cicd.sections.github.title')}
                     </Typography>
                     <Typography variant="body1" paragraph>
-                        GitHub Actions automatically label pull requests based
-                        on their content (e.g.,{' '}
-                        {'"feature", "bugfix", "documentation"'}) and run
-                        validation workflows. This improves PR organization,
-                        facilitates code review prioritization, and ensures all
-                        changes meet quality standards before merging.
+                        {t('tabs.cicd.sections.github.content')}
                     </Typography>
                 </Box>
             ),

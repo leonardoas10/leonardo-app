@@ -4,26 +4,20 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 //ES
 import aboutES from './es/about.json';
-import authES from './es/auth.json';
-import categoriesES from './es/categories.json';
 import commonES from './es/common.json';
 import navigationES from './es/navigation.json';
 import layoutES from './es/layout.json';
-import imagesManagerES from './es/imagesManager.json';
 import postES from './es/post.json';
-import tagES from './es/tags.json';
-import userES from './es/users.json';
+import architectureES from './es/architecture.json';
+import contactES from './es/contact.json';
 //EN
 import aboutEN from './en/about.json';
-import authEN from './en/auth.json';
-import categoriesEN from './en/categories.json';
 import commonEN from './en/common.json';
 import navigationEN from './en/navigation.json';
 import layoutEN from './en/layout.json';
-import imagesManagerEN from './en/imagesManager.json';
 import postEN from './en/post.json';
-import tagEN from './en/tags.json';
-import userEN from './en/users.json';
+import architectureEN from './en/architecture.json';
+import contactEN from './en/contact.json';
 
 i18n
   .use(LanguageDetector)
@@ -34,27 +28,21 @@ i18n
     resources: {
         es: {
             about: aboutES,
-            auth: authES,
-            categories: categoriesES,
             common: commonES,
             layout: layoutES,
             navigation: navigationES,
             post: postES,
-            user: userES,
-            tag: tagES,
-            imagesManager: imagesManagerES,
+            architecture: architectureES,
+            contact: contactES,
         },
         en: {
             about: aboutEN,
-            auth: authEN,
-            categories: categoriesEN,
             common: commonEN,
             layout: layoutEN,
             navigation: navigationEN,
             post: postEN,
-            user: userEN,
-            tag: tagEN,
-            imagesManager: imagesManagerEN,
+            architecture: architectureEN,
+            contact: contactEN,
         },
     },
     detection: {

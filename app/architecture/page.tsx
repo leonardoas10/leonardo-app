@@ -1,9 +1,14 @@
+'use client';
+
 import { Container, Typography, Box, Grid, Paper } from '@mui/material';
 
 import { Chip } from '@/components/common/Chip';
 import { ArchitectureTabs } from '@/components/tabs/ArchitectureTabs';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 
 export default function ArchitecturePage() {
+    const { t } = useTranslation('architecture');
+    
     return (
         <Container
             maxWidth="lg"
@@ -20,7 +25,7 @@ export default function ArchitecturePage() {
                             textAlign: { xs: 'center', md: 'left' },
                         }}
                     >
-                        Architecture
+                        {t('page.title')}
                     </Typography>
 
                     <Typography
@@ -30,11 +35,7 @@ export default function ArchitecturePage() {
                             textAlign: { xs: 'center', md: 'left' },
                         }}
                     >
-                        This website leverages Next.js for server-side rendering
-                        to optimize SEO performance, AWS Amplify for
-                        cost-effective serverless backend operations, and
-                        DynamoDB for fast, scalable data retrieval with minimal
-                        latency.
+                        {t('page.description')}
                     </Typography>
 
                     <Box
@@ -45,7 +46,7 @@ export default function ArchitecturePage() {
                         }}
                     >
                         <Chip
-                            label="GitHub Repository"
+                            label={t('page.githubRepository')}
                             href="https://github.com/leonardoas10/leonardo-app"
                         />
                     </Box>
@@ -56,7 +57,7 @@ export default function ArchitecturePage() {
 
             <Box sx={{ mt: 6, mb: 4 }}>
                 <Typography variant="h5" gutterBottom>
-                    Architecture Diagram
+                    {t('page.architectureDiagram')}
                 </Typography>
                 <Paper
                     elevation={2}
@@ -71,7 +72,7 @@ export default function ArchitecturePage() {
                     }}
                 >
                     <Typography variant="body2" color="text.secondary">
-                        [Architecture Diagram Placeholder]
+                        {t('page.diagramPlaceholder')}
                     </Typography>
                 </Paper>
             </Box>

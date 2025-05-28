@@ -51,7 +51,7 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({
     return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <IOSSwitch
-                checked={isSpanish}
+                checked={!isSpanish}
                 onChange={toggleLanguage}
                 checkedIcon={EnText}
                 uncheckedIcon={EsText}

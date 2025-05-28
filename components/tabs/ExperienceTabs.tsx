@@ -1,15 +1,11 @@
 'use client';
 
 import React from 'react';
-import {
-    Box,
-    Typography,
-    List,
-    ListItem,
-    ListItemText,
-} from '@mui/material';
+import { Box, Typography, List, ListItem, ListItemText } from '@mui/material';
 
 import { TabsComponent, TabItem } from './TabsComponent';
+import { useTranslation } from '@/utils/hooks/useTranslation';
+import { TFunction } from 'i18next';
 
 interface ExperienceItem {
     primary: string;
@@ -27,11 +23,15 @@ export interface ExperienceTab {
 }
 
 interface ExperienceTabsProps {
-    tabs: ExperienceTab[];
+    tabs?: ExperienceTab[];
 }
 
 export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
-    const tabItems: TabItem[] = tabs.map(tab => ({
+    const { t } = useTranslation('about');
+    
+    const experienceTabs = tabs || getExperienceData(t);
+
+    const tabItems: TabItem[] = experienceTabs.map((tab) => ({
         label: tab.label,
         content: (
             <Box>
@@ -48,121 +48,115 @@ export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
                             {section.icon} {section.title}
                         </Typography>
                         <List dense>
-                            {section.items.map((item, itemIndex) => (
-                                <ListItem key={itemIndex}>
-                                    <ListItemText
-                                        primary={item.primary}
-                                    />
-                                </ListItem>
-                            ))}
+                            {section.items.map(
+                                (item: ExperienceItem, itemIndex: number) => (
+                                    <ListItem key={itemIndex}>
+                                        <ListItemText primary={item.primary} />
+                                    </ListItem>
+                                )
+                            )}
                         </List>
                     </React.Fragment>
                 ))}
             </Box>
-        )
+        ),
     }));
 
-    return <TabsComponent tabs={tabItems} tabsAriaLabel="experience tabs" tabPanelPrefix="experience-" />;
+    return (
+        <TabsComponent
+            tabs={tabItems}
+            tabsAriaLabel="experience tabs"
+            tabPanelPrefix="experience-"
+        />
+    );
 };
 
-export const experienceData: ExperienceTab[] = [
-    {
-        label: 'Cloud Engineer',
-        sections: [
-            {
-                title: 'Automation of CI/CD Pipelines',
-                icon: '🔧',
-                items: [
-                    {
-                        primary:
-                            'Designed and implemented CI/CD workflows using GitHub Actions and AWS CodePipeline, reducing deployment time by 60%.',
-                    },
-                    {
-                        primary:
-                            'Built reusable workflows for multi-environment deployments with rollback support.',
-                    },
-                ],
-            },
-            {
-                title: 'Serverless Architecture',
-                icon: '☁️',
-                items: [
-                    {
-                        primary:
-                            'Developed scalable event-driven systems using AWS Lambda, Step Functions, and EventBridge.',
-                    },
-                    {
-                        primary:
-                            'Created robust observability tooling with custom CloudWatch dashboards and centralized log subscriptions.',
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        label: 'Software Developer',
-        sections: [
-            {
-                title: 'Resilient and Secure Systems',
-                icon: '🛡',
-                items: [
-                    {
-                        primary:
-                            'Led the migration of legacy services to a serverless architecture, increasing uptime and reducing maintenance costs.',
-                    },
-                    {
-                        primary:
-                            'Enforced security best practices through IAM least privilege, API Gateway WAF, and VPC configurations.',
-                    },
-                ],
-            },
-            {
-                title: 'Full-Stack Development',
-                icon: '💻',
-                items: [
-                    {
-                        primary:
-                            'Built responsive web applications using React, Next.js, and Material UI.',
-                    },
-                    {
-                        primary:
-                            'Developed backend services with Node.js, Python, and TypeScript.',
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        label: 'Technical Lead',
-        sections: [
-            {
-                title: 'Intelligent Solutions',
-                icon: '🧠',
-                items: [
-                    {
-                        primary:
-                            'Integrated OpenAI and AWS Bedrock services to build internal AI copilots that boosted productivity in support and dev teams.',
-                    },
-                    {
-                        primary:
-                            'Led architecture decisions for cloud-native applications, focusing on scalability and cost optimization.',
-                    },
-                ],
-            },
-            {
-                title: 'Team Leadership',
-                icon: '👥',
-                items: [
-                    {
-                        primary:
-                            'Mentored junior developers and conducted technical interviews for new team members.',
-                    },
-                    {
-                        primary:
-                            'Facilitated knowledge sharing sessions and promoted best practices across development teams.',
-                    },
-                ],
-            },
-        ],
-    },
-];
+const getExperienceData = (t: TFunction) => {
+    return [
+        {
+            label: t('experienceTabs.cloudEngineer.label'),
+            sections: [
+                {
+                    title: t(
+                        'experienceTabs.cloudEngineer.sections.cicd.title'
+                    ),
+                    icon: t('experienceTabs.cloudEngineer.sections.cicd.icon'),
+                    items: (t(
+                        'experienceTabs.cloudEngineer.sections.cicd.items',
+                        { returnObjects: true }
+                    ) as string[]).map((item: string) => ({ primary: item })),
+                },
+                {
+                    title: t(
+                        'experienceTabs.cloudEngineer.sections.serverless.title'
+                    ),
+                    icon: t(
+                        'experienceTabs.cloudEngineer.sections.serverless.icon'
+                    ),
+                    items: (t(
+                        'experienceTabs.cloudEngineer.sections.serverless.items',
+                        { returnObjects: true }
+                    ) as string[]).map((item: string) => ({ primary: item })),
+                },
+            ],
+        },
+        {
+            label: t('experienceTabs.softwareDeveloper.label'),
+            sections: [
+                {
+                    title: t(
+                        'experienceTabs.softwareDeveloper.sections.resilient.title'
+                    ),
+                    icon: t(
+                        'experienceTabs.softwareDeveloper.sections.resilient.icon'
+                    ),
+                    items: (t(
+                        'experienceTabs.softwareDeveloper.sections.resilient.items',
+                        { returnObjects: true }
+                    ) as string[]).map((item: string) => ({ primary: item })),
+                },
+                {
+                    title: t(
+                        'experienceTabs.softwareDeveloper.sections.fullstack.title'
+                    ),
+                    icon: t(
+                        'experienceTabs.softwareDeveloper.sections.fullstack.icon'
+                    ),
+                    items: (t(
+                        'experienceTabs.softwareDeveloper.sections.fullstack.items',
+                        { returnObjects: true }
+                    ) as string[]).map((item: string) => ({ primary: item })),
+                },
+            ],
+        },
+        {
+            label: t('experienceTabs.technicalLead.label'),
+            sections: [
+                {
+                    title: t(
+                        'experienceTabs.technicalLead.sections.intelligent.title'
+                    ),
+                    icon: t(
+                        'experienceTabs.technicalLead.sections.intelligent.icon'
+                    ),
+                    items: (t(
+                        'experienceTabs.technicalLead.sections.intelligent.items',
+                        { returnObjects: true }
+                    ) as string[]).map((item: string) => ({ primary: item })),
+                },
+                {
+                    title: t(
+                        'experienceTabs.technicalLead.sections.leadership.title'
+                    ),
+                    icon: t(
+                        'experienceTabs.technicalLead.sections.leadership.icon'
+                    ),
+                    items: (t(
+                        'experienceTabs.technicalLead.sections.leadership.items',
+                        { returnObjects: true }
+                    ) as string[]).map((item: string) => ({ primary: item })),
+                },
+            ],
+        },
+    ];
+};

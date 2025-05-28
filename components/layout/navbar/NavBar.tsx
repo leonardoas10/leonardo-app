@@ -23,16 +23,18 @@ import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { LanguageToggle } from '@/components/layout/LanguageToggle';
 import { CloudFrontURLs } from '@/utils/constants';
 import { ContactSection } from '@/components/contact/ContactSection';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 
-// Navigation items
+// Navigation items with translation keys
 const pages = [
-    { name: 'Home', href: '/' },
-    { name: 'Architecture', href: '/architecture' },
+    { key: 'home', href: '/' },
+    { key: 'architecture', href: '/architecture' },
 ];
 
 export const NavBar: React.FC = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const pathname = usePathname();
+    const { t } = useTranslation('navigation');
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -45,7 +47,7 @@ export const NavBar: React.FC = () => {
                 {pages.map((page) => {
                     const isActive = pathname === page.href;
                     return (
-                        <ListItem key={page.name} disablePadding>
+                        <ListItem key={page.key} disablePadding>
                             <ListItemButton
                                 sx={{
                                     textAlign: 'center',
@@ -68,7 +70,7 @@ export const NavBar: React.FC = () => {
                                 >
                                     <ListItemText
                                         color="textPrimary"
-                                        primary={page.name}
+                                        primary={t(`navigationList.${page.key}`)}
                                     />
                                 </Link>
                             </ListItemButton>
@@ -191,7 +193,7 @@ export const NavBar: React.FC = () => {
                                                         'background.aws',
                                                 }}
                                             >
-                                                {page.name}
+                                                {t(`navigationList.${page.key}`)}
                                             </Box>
                                         </Box>
                                     );

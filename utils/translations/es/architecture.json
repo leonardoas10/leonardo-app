@@ -1,0 +1,79 @@
+{
+    "page": {
+        "title": "Arquitectura",
+        "description": "Este sitio web utiliza Next.js para renderizado del lado del servidor para optimizar el rendimiento SEO, AWS Amplify para operaciones backend sin servidor rentables, y DynamoDB para una recuperación de datos rápida y escalable con latencia mínima.",
+        "githubRepository": "Repositorio GitHub",
+        "architectureDiagram": "Diagrama de Arquitectura",
+        "diagramPlaceholder": "[Marcador de Posición para Diagrama de Arquitectura]"
+    },
+    "tabs": {
+        "frontend": {
+            "label": "Frontend",
+            "sections": {
+                "framework": {
+                    "title": "🚀 Framework",
+                    "content": "El frontend está construido con Next.js 14 utilizando la arquitectura App Router. Los componentes están organizados siguiendo los principios de diseño atómico, con elementos UI reutilizables y componentes específicos para cada página."
+                },
+                "ui": {
+                    "title": "🎨 Componentes IU",
+                    "content": "Material UI proporciona un sistema de diseño consistente con componentes responsivos que se adaptan a cualquier tamaño de pantalla. El sistema de temas permite un cambio fluido entre modo claro y oscuro."
+                },
+                "typeSafety": {
+                    "title": "📝 Seguridad de Tipos",
+                    "content": "TypeScript garantiza la seguridad de tipos en todo el código, reduciendo errores en tiempo de ejecución y mejorando la productividad del desarrollador."
+                }
+            }
+        },
+        "backend": {
+            "label": "Backend",
+            "sections": {
+                "hosting": {
+                    "title": "☁️ Alojamiento",
+                    "content": "El backend utiliza AWS Amplify para alojamiento y despliegue continuo. Las rutas API en Next.js proporcionan funciones serverless para manejar el procesamiento de datos e integraciones con terceros."
+                },
+                "authentication": {
+                    "title": "🔒 Autenticación",
+                    "content": "La autenticación se maneja a través de AWS Cognito, proporcionando gestión segura de usuarios y control de acceso."
+                },
+                "contentDelivery": {
+                    "title": "🌐 Entrega de Contenido",
+                    "content": "Se utiliza CloudFront CDN para la entrega de contenido, asegurando tiempos de carga rápidos a nivel global."
+                }
+            }
+        },
+        "database": {
+            "label": "Base de Datos",
+            "sections": {
+                "nosql": {
+                    "title": "📊 Base de Datos NoSQL",
+                    "content": "Los datos se almacenan en Amazon DynamoDB, un servicio de base de datos NoSQL que proporciona un rendimiento rápido y predecible con escalabilidad perfecta."
+                },
+                "storage": {
+                    "title": "🗄️ Almacenamiento",
+                    "content": "Se utilizan buckets S3 para almacenar activos estáticos como imágenes y documentos, con una configuración CORS adecuada para garantizar un acceso seguro."
+                },
+                "performance": {
+                    "title": "⚡ Rendimiento",
+                    "content": "Los patrones de acceso a datos están optimizados para consultas comunes, con índices apropiados para garantizar una recuperación eficiente."
+                }
+            }
+        },
+        "cicd": {
+            "label": "CI/CD",
+            "sections": {
+                "amplify": {
+                    "title": "🔄 Amplify CI/CD",
+                    "content": "AWS Amplify proporciona un flujo de trabajo CI/CD completamente gestionado que construye, prueba y despliega automáticamente la aplicación en cada push de código. Esto elimina los pasos de despliegue manual, asegura entornos consistentes y permite despliegues de ramas de características para pruebas antes de fusionar a producción."
+                },
+                "husky": {
+                    "title": "🪝 Hooks Git de Husky",
+                    "content": "Husky se implementa para hacer cumplir los estándares de calidad del código mediante la ejecución de hooks pre-commit y pre-push. Estos hooks ejecutan automáticamente linters, verificación de tipos y pruebas unitarias antes de permitir commits o pushes, evitando que código problemático entre en el repositorio."
+                },
+                "github": {
+                    "title": "🏷️ GitHub Actions para PRs",
+                    "content": "GitHub Actions etiqueta automáticamente las pull requests según su contenido (por ejemplo, \"feature\", \"bugfix\", \"documentation\") y ejecuta flujos de trabajo de validación. Esto mejora la organización de PRs, facilita la priorización de revisiones de código y asegura que todos los cambios cumplan con los estándares de calidad antes de fusionarse."
+                }
+            }
+        }
+    }
+}
