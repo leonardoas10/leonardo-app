@@ -87,7 +87,7 @@ export default function Home() {
                 container
                 spacing={4}
                 alignItems="center"
-                style={{ marginTop: '48px' }}
+                sx={{ mt: { xs: 8, md: 12 } }}
             >
                 {/* Text content - will appear first on mobile */}
                 <Grid size={{ xs: 12, md: 8 }} sx={{ order: { xs: 1, md: 2 } }}>
@@ -123,7 +123,7 @@ export default function Home() {
                 container
                 spacing={4}
                 alignItems="center"
-                style={{ marginTop: '48px' }}
+                sx={{ mt: { xs: 8, md: 12 } }}
             >
                 <Grid size={{ xs: 12, md: 12 }}>
                     <Typography
@@ -146,7 +146,7 @@ export default function Home() {
                 container
                 spacing={4}
                 alignItems="center"
-                style={{ marginTop: '48px' }}
+                sx={{ mt: { xs: 8, md: 12 } }}
             >
                 <Grid
                     size={{ xs: 12, md: 12 }}

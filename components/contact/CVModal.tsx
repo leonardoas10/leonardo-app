@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from '../common/Modal';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { clientSideClient } from '@/utils/amplify-client-utils';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Import FormData type from Modal
 type FormData = Parameters<Parameters<typeof Modal>[0]['onSubmit']>[0];
@@ -13,6 +14,7 @@ interface CVModalProps {
 
 const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
     const { t } = useTranslation('contact');
+    const { language } = useLanguage();
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (formData: FormData) => {
@@ -23,7 +25,7 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 name: formData.name,
                 email: formData.email,
                 company: formData.company || '',
-                language: formData.language,
+                language: formData.language || language,
                 format: formData.format,
                 requestedAt: new Date().toISOString(),
                 createdAt: new Date().toISOString(),
@@ -45,6 +47,7 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
 
     return (
         <Modal
+            key={`modal-${language}`}
             open={open}
             onClose={onClose}
             title={t('cvModal.title')}
@@ -68,17 +71,8 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                         { value: 'en', label: t('cvModal.english') },
                         { value: 'es', label: t('cvModal.spanish') },
                     ],
-                    required: true,
-                },
-                {
-                    name: 'format',
-                    label: t('cvModal.format'),
-                    type: 'select',
-                    options: [
-                        { value: 'pdf', label: 'PDF' },
-                        { value: 'docx', label: t('cvModal.word') },
-                    ],
-                    required: true,
+                    defaultValue: language,
+                    required: false,
                 },
             ]}
         />

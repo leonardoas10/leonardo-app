@@ -1,6 +1,12 @@
 'use client';
 
-import React, { createContext, useState, useMemo, useContext } from 'react';
+import React, {
+    createContext,
+    useState,
+    useMemo,
+    useContext,
+    useEffect,
+} from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 import { Inter } from 'next/font/google';
@@ -23,15 +29,26 @@ const ThemeContext = createContext<ThemeContextType>({
 // Custom hook to use the theme context
 export const useThemeContext = () => useContext(ThemeContext);
 
-
 export const ThemeRegistry: React.FC<{
     children: React.ReactNode;
 }> = ({ children }) => {
-    // Theme state management
+    // Theme state management with localStorage persistence
     const [mode, setMode] = useState<PaletteMode>('dark');
 
+    // Effect to handle client-side initialization
+    useEffect(() => {
+        const savedMode = localStorage.getItem('themeMode') as PaletteMode;
+        if (savedMode === 'light' || savedMode === 'dark') {
+            setMode(savedMode);
+        }
+    }, []);
+
     const toggleColorMode = () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+        setMode((prevMode) => {
+            const newMode = prevMode === 'light' ? 'dark' : 'light';
+            localStorage.setItem('themeMode', newMode);
+            return newMode;
+        });
     };
 
     // Context value
@@ -60,4 +77,4 @@ export const ThemeRegistry: React.FC<{
             <ThemeProvider theme={theme}>{children}</ThemeProvider>
         </ThemeContext.Provider>
     );
-}
+};

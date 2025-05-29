@@ -13,6 +13,7 @@ import Image from 'next/image';
 import { Chip } from '@/components/common/Chip';
 import { ArchitectureTabs } from '@/components/tabs/ArchitectureTabs';
 import { useTranslation } from '@/utils/hooks/useTranslation';
+import { CloudFrontURLs } from '@/utils/constants';
 
 export default function ArchitecturePage() {
     const { t } = useTranslation('architecture');
@@ -47,7 +48,9 @@ export default function ArchitecturePage() {
                     >
                         {t('page.description')}
                     </Typography>
+                </Grid>
 
+                <Grid size={{ xs: 12 }} sx={{ textAlign: 'center' }}>
                     <Box
                         sx={{
                             display: 'flex',
@@ -56,6 +59,7 @@ export default function ArchitecturePage() {
                         }}
                     >
                         <Chip
+                            size="medium"
                             label={t('page.githubRepository')}
                             href="https://github.com/leonardoas10/leonardo-app"
                         />
@@ -93,8 +97,8 @@ export default function ArchitecturePage() {
                             <Image
                                 src={
                                     isDarkMode
-                                        ? '/architecture.png'
-                                        : '/white-architecture.png'
+                                        ? `${CloudFrontURLs.IMAGES}/architecture.webp`
+                                        : `${CloudFrontURLs.IMAGES}/white-architecture.webp`
                                 }
                                 alt="Architecture Diagram"
                                 fill
@@ -104,6 +108,7 @@ export default function ArchitecturePage() {
                         </Box>
                     </Paper>
                 </Grid>
+
                 <Grid size={{ xs: 12 }}>
                     <ArchitectureTabs />
                 </Grid>

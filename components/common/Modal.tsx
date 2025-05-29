@@ -37,6 +37,7 @@ interface ModalProps {
         type?: string;
         required?: boolean;
         options?: Array<{ value: string; label: string }>;
+        defaultValue?: string;
     }>;
 }
 
@@ -49,13 +50,28 @@ const Modal: React.FC<ModalProps> = ({
     loading: externalLoading,
     fields,
 }) => {
-    const [formData, setFormData] = useState<FormData>({
-        name: '',
-        email: '',
-        company: '',
-        language: '',
-        format: '',
-    });
+    const initialFormData = () => {
+        const data: FormData = {
+            name: '',
+            email: '',
+            company: '',
+            language: '',
+            format: '',
+        };
+        
+        // Set default values from fields if provided
+        if (fields) {
+            fields.forEach(field => {
+                if (field.defaultValue !== undefined) {
+                    data[field.name] = field.defaultValue;
+                }
+            });
+        }
+        
+        return data;
+    };
+    
+    const [formData, setFormData] = useState<FormData>(initialFormData());
     const [internalLoading, setInternalLoading] = useState(false);
     const loading = externalLoading !== undefined ? externalLoading : internalLoading;
     const [snackbar, setSnackbar] = useState({
@@ -102,7 +118,13 @@ const Modal: React.FC<ModalProps> = ({
 
     return (
         <>
-            <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+            <Dialog 
+                open={open} 
+                onClose={onClose} 
+                maxWidth="sm" 
+                fullWidth
+                disableScrollLock={true}
+            >
                 <DialogTitle>{title}</DialogTitle>
                 <DialogContent>
                     <Box component="form" sx={{ mt: 2 }}>

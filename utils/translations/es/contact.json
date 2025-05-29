@@ -1,17 +1,19 @@
 {
-  "contactSection": {
-    "getCV": "Obtener CV"
-  },
-  "cvModal": {
-    "title": "Descargar CV",
-    "description": "Por favor selecciona tu idioma y formato preferido:",
-    "language": "Idioma",
-    "format": "Formato",
-    "download": "Descargar",
-    "cancel": "Cancelar",
-    "english": "Inglés",
-    "spanish": "Español",
-    "pdf": "PDF",
-    "word": "Word"
-  }
+    "contactSection": {
+        "getCV": "Obtener CV"
+    },
+    "cvModal": {
+        "title": "Descargar CV",
+        "description": "Por favor selecciona tu idioma y formato preferido:",
+        "name": "Nombre",
+        "email": "Correo electrónico",
+        "company": "Empresa",
+        "language": "Idioma",
+        "format": "Formato",
+        "get": "Obtener CV",
+        "download": "Descargar",
+        "cancel": "Cancelar",
+        "english": "Inglés",
+        "spanish": "Español"
+    }
 }
