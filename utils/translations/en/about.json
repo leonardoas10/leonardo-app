@@ -13,10 +13,11 @@
         "eks": "Earners of this badge have developed knowledge of running microservices and container workloads with Amazon Elastic Kubernetes Service (Amazon EKS)"
     },
     "homePage": {
-        "aboutTitle": "About",
-        "firstParagraph": "Leonardo Aranguren is a Software Developer, Cloud Engineer, and Technical Lead with a strong foundation in AWS Cloud Technologies. He holds multiple AWS Certifications, including Developer Associate, Solutions Architect, and Serverless, and has completed advanced training in EKS, Networking Core, and Cloud Quests. Leonardo graduated as a Higher University Technician in Foreign Trade from Simón Bolívar University and is bilingual, having completed studies with Open English. He brings a bold and solution-driven approach to modern cloud infrastructure and software development.",
-        "discoveryTitle": "Driven by Discovery...",
-        "secondParagraph": "Leonardo's professional journey is fueled by a passion for innovation and continuous learning. He actively participates in AWS Community Days and tech meetups, where he both contributes and draws inspiration from the cloud-native community. Always exploring the latest advancements in cloud computing, serverless architectures, and AI integrations, Leonardo is on a constant quest to expand his skill set and stay ahead of the curve. His drive for excellence is reflected in his commitment to earning new certifications and applying cutting-edge technologies to real-world solutions.",
+        "aboutTitle": "Hey! Get to know me...",
+        "firstParagraphPart1": "Leonardo Aranguren, a Software Developer, Cloud Engineer, and Technical Lead with a solid foundation in cloud technologies, especially AWS.",
+        "firstParagraphPart2": "I hold multiple AWS certifications—Developer Associate, Solutions Architect, Serverless—and advanced training in EKS, Networking Core, and Cloud Quest challenges.",
+        "discoveryTitle": "Driven by innovation...",
+        "secondParagraph": "He designs, develops, and optimizes robust, scalable cloud solutions. With a strong technical focus, he leads by refining architectures and applying best practices to bring every project to its fullest potential. In every line of code, he seeks innovation, efficiency, and real impact.",
         "experienceTitle": "Experience Highlights",
         "teideCaption": "Teide, Tenerife - Spain"
     },

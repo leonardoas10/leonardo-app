@@ -13,10 +13,11 @@
         "eks": "Los ganadores de esta insignia han desarrollado conocimientos sobre la ejecución de microservicios y cargas de trabajo de contenedores con Amazon Elastic Kubernetes Service (Amazon EKS)."
     },
     "homePage": {
-        "aboutTitle": "Sobre mí",
-        "firstParagraph": "Leonardo Aranguren es un Desarrollador de Software, Ingeniero Cloud y Líder Técnico con una sólida base en Tecnologías Cloud de AWS. Posee múltiples Certificaciones AWS, incluyendo Developer Associate, Solutions Architect y Serverless, y ha completado formación avanzada en EKS, Networking Core y Cloud Quests. Leonardo se graduó como Técnico Superior Universitario en Comercio Exterior de la Universidad Simón Bolívar y es bilingüe, habiendo completado estudios con Open English. Aporta un enfoque audaz y orientado a soluciones para la infraestructura cloud moderna y el desarrollo de software.",
-        "discoveryTitle": "Impulsado por el Descubrimiento...",
-        "secondParagraph": "El viaje profesional de Leonardo está impulsado por una pasión por la innovación y el aprendizaje continuo. Participa activamente en AWS Community Days y encuentros tecnológicos, donde tanto contribuye como se inspira en la comunidad cloud-native. Siempre explorando los últimos avances en computación en la nube, arquitecturas serverless e integraciones de IA, Leonardo está en una búsqueda constante para expandir sus habilidades y mantenerse a la vanguardia. Su impulso por la excelencia se refleja en su compromiso de obtener nuevas certificaciones y aplicar tecnologías de vanguardia a soluciones del mundo real.",
+        "aboutTitle": "¡Hey! Conóceme…",
+        "firstParagraphPart1": "Leonardo Aranguren, Desarrollador de Software, Ingeniero Cloud y Líder Técnico con una sólida base en tecnologías de nube, especialmente en AWS.",
+        "firstParagraphPart2": "Cuento con múltiples certificaciones de AWS —Developer Associate, Solutions Architect, Serverless— y formación avanzada en EKS, Networking Core y los desafíos Cloud Quest.",
+        "discoveryTitle": "Impulsado por la innovación...",
+        "secondParagraph": "Diseña, desarrolla y optimiza soluciones cloud robustas y escalables. Lidera con un enfoque técnico, afinando arquitecturas y aplicando buenas prácticas para llevar cada proyecto a su máximo potencial. En cada línea de código busca innovación, eficiencia y un impacto real.",
         "experienceTitle": "Destacados de Experiencia",
         "teideCaption": "Teide, Tenerife - España"
     },
