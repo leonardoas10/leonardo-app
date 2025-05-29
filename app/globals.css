@@ -1,17 +1,16 @@
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --background: #0a0a0a;
+    --foreground: #ededed;
+
     --font-mono:
         ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
         'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
         'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
-    }
+html[data-theme='light'] {
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
 html,
@@ -34,8 +33,8 @@ body {
 }
 
 /* Add smooth transition for theme changes */
-body,
-body * {
+body.theme-transition-enabled,
+body.theme-transition-enabled * {
     transition:
         background-color 2s ease,
         color 2s ease,
@@ -46,10 +45,4 @@ body * {
 a {
     color: inherit;
     text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-    html {
-        color-scheme: dark;
-    }
 }

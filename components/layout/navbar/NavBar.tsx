@@ -12,8 +12,8 @@ import {
     Container,
 } from '@mui/material';
 import styles from './NavBar.module.css';
-import { ThemeToggle } from '@/components/layout/ThemeToggle';
-import { LanguageToggle } from '@/components/layout/LanguageToggle';
+import { ThemeToggle } from '@/components/toggles/ThemeToggle';
+import { LanguageToggle } from '@/components/toggles/LanguageToggle';
 import { CloudFrontURLs } from '@/utils/constants';
 import { ContactSection } from '@/components/contact/ContactSection';
 import { useTranslation } from '@/utils/hooks/useTranslation';

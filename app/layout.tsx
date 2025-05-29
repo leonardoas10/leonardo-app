@@ -1,10 +1,12 @@
 import './globals.css';
-import { NavBar } from '@/components/layout/navbar/NavBar';
-import { Footer } from '@/components/layout/footer/Footer';
 import { Amplify } from 'aws-amplify';
 import outputs from '@/amplify_outputs.json';
 import type { Metadata } from 'next';
+
+import { NavBar } from '@/components/layout/navbar/NavBar';
+import { Footer } from '@/components/layout/footer/Footer';
 import { Providers } from './providers';
+import { ThemeTransitionEnabler } from '@/components/ThemeTransitionEnabler';
 
 // Configure Amplify on the client side
 Amplify.configure(outputs, { ssr: true });
@@ -23,6 +25,7 @@ export default function RootLayout({
         <html lang="en">
             <body>
                 <Providers>
+                    <ThemeTransitionEnabler />
                     <NavBar />
                     <main>{children}</main>
                     <Footer />

@@ -14,45 +14,61 @@ export const Footer: React.FC = () => {
                 py: 2,
             }}
         >
-            <Typography color="textPrimary">
-                <Box
-                    component="a"
-                    href="https://github.com/leonardoas10"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{
-                        color: 'white',
-                        textDecoration: 'none',
-                        '&:hover': {
-                            color: 'background.aws',
-                        },
-                    }}
-                >
-                    GitHub
-                </Box>{' '}
+            <Box
+                component="a"
+                href="https://github.com/leonardoas10"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                    textDecoration: 'none',
+                    '&:hover': {
+                        color: 'background.aws',
+                    },
+                }}
+            >
                 <Typography
                     component="span"
-                    sx={{ color: 'textSecondary' }}
+                    color="textPrimary"
                     display="inline"
-                >
-                    |
-                </Typography>{' '}
-                <Box
-                    component="a"
-                    href="https://www.linkedin.com/in/leonardoas10/"
-                    target="_blank"
-                    rel="noopener noreferrer"
                     sx={{
-                        color: 'white',
-                        textDecoration: 'none',
                         '&:hover': {
                             color: 'background.aws',
                         },
                     }}
                 >
-                    LinkedIn
-                </Box>
-            </Typography>
+                    Github
+                </Typography>{' '}
+            </Box>{' '}
+            <Typography
+                component="span"
+                sx={{ color: 'textSecondary' }}
+                display="inline"
+            >
+                |
+            </Typography>{' '}
+            <Box
+                component="a"
+                href="https://www.linkedin.com/in/leonardoas10/"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                    color: 'white',
+                    textDecoration: 'none',
+                }}
+            >
+                <Typography
+                    component="span"
+                    color="textPrimary"
+                    display="inline"
+                    sx={{
+                        '&:hover': {
+                            color: 'background.aws',
+                        },
+                    }}
+                >
+                    LinkdIn
+                </Typography>{' '}
+            </Box>
         </Box>
     );
 };

@@ -43,6 +43,11 @@ export const ThemeRegistry: React.FC<{
         }
     }, []);
 
+    // Effect to update data-theme attribute on HTML element
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', mode);
+    }, [mode]);
+
     const toggleColorMode = () => {
         setMode((prevMode) => {
             const newMode = prevMode === 'light' ? 'dark' : 'light';

@@ -8,8 +8,8 @@ import {
     useTheme,
     Paper,
 } from '@mui/material';
-import Image from 'next/image';
 
+import { TransitionImage } from '@/components/common/TransitionImage';
 import { Chip } from '@/components/common/Chip';
 import { HighlightedText } from '@/components/common/HighlightedText';
 import { ArchitectureTabs } from '@/components/tabs/ArchitectureTabs';
@@ -92,12 +92,10 @@ export default function ArchitecturePage() {
                                 height: { xs: 230, sm: 400, md: 500 },
                             }}
                         >
-                            <Image
-                                src={
-                                    isDarkMode
-                                        ? `${CloudFrontURLs.IMAGES}/architecture.webp`
-                                        : `${CloudFrontURLs.IMAGES}/white-architecture.webp`
-                                }
+                            <TransitionImage
+                                darkSrc={`${CloudFrontURLs.IMAGES}/architecture.webp`}
+                                lightSrc={`${CloudFrontURLs.IMAGES}/white-architecture.webp`}
+                                isDarkMode={isDarkMode}
                                 alt="Architecture Diagram"
                                 fill
                                 style={{ objectFit: 'contain' }}
