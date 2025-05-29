@@ -9,7 +9,9 @@ interface ContactSectionProps {
     size?: 'small' | 'medium' | 'large';
 }
 
-export const ContactSection: React.FC<ContactSectionProps> = ({ size = 'medium' }) => {
+export const ContactSection: React.FC<ContactSectionProps> = ({
+    size = 'medium',
+}) => {
     const [modalOpen, setModalOpen] = useState(false);
     const { t } = useTranslation('contact');
 

@@ -33,6 +33,16 @@ body {
     margin: 0;
 }
 
+/* Add smooth transition for theme changes */
+body,
+body * {
+    transition:
+        background-color 2s ease,
+        color 2s ease,
+        border-color 2.5s ease,
+        box-shadow 3s ease;
+}
+
 a {
     color: inherit;
     text-decoration: none;

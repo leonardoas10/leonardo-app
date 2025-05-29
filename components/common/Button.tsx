@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button as MuiButton, ButtonProps } from '@mui/material';
+import { Button as MuiButton, ButtonProps, Typography } from '@mui/material';
 
 interface CustomButtonProps extends Omit<ButtonProps, 'component'> {
     download?: boolean;
@@ -25,7 +25,6 @@ export const Button: React.FC<CustomButtonProps> = ({
         size,
         sx: {
             bgcolor: 'background.aws',
-            color: 'text.primary',
             boxShadow: '0 6px 14px rgba(255, 255, 255, 0.3)',
             '&:hover': {
                 bgcolor: 'background.aws',
@@ -46,5 +45,15 @@ export const Button: React.FC<CustomButtonProps> = ({
         if (download) buttonProps.download = download;
     }
 
-    return <MuiButton {...buttonProps}>{children}</MuiButton>;
+    return (
+        <MuiButton {...buttonProps}>
+            <Typography
+                component="span"
+                color="textPrimary"
+                sx={{ transition: 'color 1s ease' }}
+            >
+                {children}
+            </Typography>
+        </MuiButton>
+    );
 };

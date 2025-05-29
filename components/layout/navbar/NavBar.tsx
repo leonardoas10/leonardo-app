@@ -70,7 +70,9 @@ export const NavBar: React.FC = () => {
                                 >
                                     <ListItemText
                                         color="textPrimary"
-                                        primary={t(`navigationList.${page.key}`)}
+                                        primary={t(
+                                            `navigationList.${page.key}`
+                                        )}
                                     />
                                 </Link>
                             </ListItemButton>
@@ -112,7 +114,8 @@ export const NavBar: React.FC = () => {
                 className={styles.navbar}
                 sx={{
                     py: { xs: 2, md: 0 },
-                    backgroundColor: 'background.default',
+                    backgroundColor: 'background.paper',
+                    transition: 'background-color 2s ease, color 2s ease',
                 }}
             >
                 <Container maxWidth="xl">
@@ -193,7 +196,9 @@ export const NavBar: React.FC = () => {
                                                         'background.aws',
                                                 }}
                                             >
-                                                {t(`navigationList.${page.key}`)}
+                                                {t(
+                                                    `navigationList.${page.key}`
+                                                )}
                                             </Box>
                                         </Box>
                                     );
