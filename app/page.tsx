@@ -17,34 +17,14 @@ export default function Home() {
     return (
         <Container maxWidth="lg" sx={{ py: 4 }}>
             <Grid container spacing={4} alignItems="center">
-                <Grid size={{ xs: 12, md: 5.5 }}>
-                    <Typography
-                        variant="h4"
-                        gutterBottom
-                        sx={{
-                            fontWeight: 'bold',
-                            textAlign: { xs: 'center', md: 'left' },
-                        }}
-                    >
-                        {t('homePage.aboutTitle')}
-                    </Typography>
-                    <HighlightedText
-                        text={t('homePage.firstParagraphPart1')}
-                        highlightTerms={['AWS']}
-                        variant="body1"
-                        paragraph
-                    />
-                    <HighlightedText
-                        text={t('homePage.firstParagraphPart2')}
-                        highlightTerms={['certifications', 'certificaciones']}
-                        variant="body1"
-                        paragraph
-                    />
-                </Grid>
-
+                {/* Image - first on mobile */}
                 <Grid
                     size={{ xs: 12, md: 6.5 }}
-                    sx={{ display: 'flex', justifyContent: 'center' }}
+                    sx={{ 
+                        display: 'flex', 
+                        justifyContent: 'center',
+                        order: { xs: 1, md: 2 }
+                    }}
                 >
                     <Box
                         sx={{
@@ -92,16 +72,73 @@ export default function Home() {
                         </Box>
                     </Box>
                 </Grid>
+
+                {/* First content - second on mobile */}
+                <Grid 
+                    size={{ xs: 12, md: 5.5 }}
+                    sx={{ order: { xs: 2, md: 1 } }}
+                >
+                    <Typography
+                        variant="h4"
+                        gutterBottom
+                        sx={{
+                            fontWeight: 'bold',
+                            textAlign: { xs: 'center', md: 'left' },
+                        }}
+                    >
+                        {t('homePage.aboutTitle')}
+                    </Typography>
+                    <HighlightedText
+                        text={t('homePage.firstParagraphPart1')}
+                        highlightTerms={['AWS']}
+                        variant="body1"
+                        paragraph
+                    />
+                    <HighlightedText
+                        text={t('homePage.firstParagraphPart2')}
+                        highlightTerms={['certifications', 'certificaciones']}
+                        variant="body1"
+                        paragraph
+                    />
+                </Grid>
             </Grid>
 
+            {/* Image slideshow - third on mobile */}
+            <Grid 
+                container
+                sx={{ 
+                    mt: { xs: 8, md: 12 },
+                    display: { xs: 'flex', md: 'none' } // Only show on mobile
+                }}
+            >
+                <Grid size={{ xs: 12 }}>
+                    <ImageSlideshow />
+                </Grid>
+            </Grid>
+
+            {/* Desktop layout for second section */}
             <Grid
                 container
                 spacing={4}
                 alignItems="center"
-                sx={{ mt: { xs: 8, md: 12 } }}
+                sx={{ 
+                    mt: { xs: 8, md: 12 },
+                    display: { xs: 'none', md: 'flex' } // Only show on desktop
+                }}
             >
-                {/* Text content - will appear first on mobile */}
-                <Grid size={{ xs: 12, md: 7 }} sx={{ order: { xs: 1, md: 2 } }}>
+                {/* Image slideshow - desktop only */}
+                <Grid
+                    size={{ md: 5 }}
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center'
+                    }}
+                >
+                    <ImageSlideshow />
+                </Grid>
+
+                {/* Second content */}
+                <Grid size={{ md: 7 }}>
                     <Typography
                         variant="h4"
                         gutterBottom
@@ -118,17 +155,32 @@ export default function Home() {
                         variant="body1"
                     />
                 </Grid>
-
-                {/* Image slideshow - will appear second on mobile */}
-                <Grid
-                    size={{ xs: 12, md: 5 }}
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        order: { xs: 2, md: 1 },
-                    }}
-                >
-                    <ImageSlideshow />
+            </Grid>
+            
+            {/* Mobile layout for second content - fourth on mobile */}
+            <Grid
+                container
+                sx={{ 
+                    mt: { xs: 8 },
+                    display: { xs: 'flex', md: 'none' } // Only show on mobile
+                }}
+            >
+                <Grid size={{ xs: 12 }}>
+                    <Typography
+                        variant="h4"
+                        gutterBottom
+                        sx={{
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                        }}
+                    >
+                        {t('homePage.discoveryTitle')}
+                    </Typography>
+                    <HighlightedText
+                        text={t('homePage.secondParagraph')}
+                        highlightTerms={['cloud', 'soluciones', 'solutions']}
+                        variant="body1"
+                    />
                 </Grid>
             </Grid>
 

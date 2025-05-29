@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Button as MuiButton, ButtonProps, Typography } from '@mui/material';
 
@@ -23,6 +25,7 @@ export const Button: React.FC<CustomButtonProps> = ({
     } = {
         variant,
         size,
+        disableRipple: true,
         sx: {
             bgcolor: 'background.aws',
             boxShadow: '0 6px 14px rgba(255, 255, 255, 0.3)',

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -8,16 +8,9 @@ import {
     Avatar,
     Box,
     Toolbar,
-    IconButton,
     Typography,
     Container,
-    Drawer,
-    List,
-    ListItem,
-    ListItemButton,
-    ListItemText,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import styles from './NavBar.module.css';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { LanguageToggle } from '@/components/layout/LanguageToggle';
@@ -32,80 +25,8 @@ const pages = [
 ];
 
 export const NavBar: React.FC = () => {
-    const [mobileOpen, setMobileOpen] = useState(false);
     const pathname = usePathname();
     const { t } = useTranslation('navigation');
-
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
-    };
-
-    // Mobile drawer content
-    const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <List className={styles.mobileMenu}>
-                {pages.map((page) => {
-                    const isActive = pathname === page.href;
-                    return (
-                        <ListItem key={page.key} disablePadding>
-                            <ListItemButton
-                                sx={{
-                                    textAlign: 'center',
-                                    bgcolor: isActive
-                                        ? 'rgba(255, 255, 255, 0.1)'
-                                        : 'transparent',
-                                }}
-                            >
-                                <Link
-                                    href={page.href}
-                                    passHref
-                                    style={{
-                                        textDecoration: 'none',
-                                        color: 'inherit',
-                                        width: '100%',
-                                        fontWeight: isActive
-                                            ? 'bold'
-                                            : 'normal',
-                                    }}
-                                >
-                                    <ListItemText
-                                        color="textPrimary"
-                                        primary={t(
-                                            `navigationList.${page.key}`
-                                        )}
-                                    />
-                                </Link>
-                            </ListItemButton>
-                        </ListItem>
-                    );
-                })}
-                <ListItem disablePadding>
-                    <ListItemButton
-                        sx={{ justifyContent: 'center' }}
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <ContactSection size="large" />
-                    </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                    <ListItemButton
-                        sx={{ justifyContent: 'center' }}
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <LanguageToggle size="large" />
-                    </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                    <ListItemButton
-                        sx={{ justifyContent: 'center' }}
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <ThemeToggle size="large" />
-                    </ListItemButton>
-                </ListItem>
-            </List>
-        </Box>
-    );
 
     return (
         <Box component="nav">
@@ -131,6 +52,11 @@ export const NavBar: React.FC = () => {
                                 display: 'flex',
                                 alignItems: 'center',
                                 gap: 2,
+                                width: { xs: '100%', md: 'auto' },
+                                justifyContent: {
+                                    xs: 'center',
+                                    md: 'flex-start',
+                                },
                             }}
                         >
                             <Avatar
@@ -139,9 +65,14 @@ export const NavBar: React.FC = () => {
                                 sx={{
                                     width: { xs: 60, md: 50 },
                                     height: { xs: 60, md: 50 },
+                                    display: { xs: 'none', md: 'flex' },
                                 }}
                             />
-                            <Link href="/" className={styles.logo}>
+                            <Link
+                                href="/"
+                                className={styles.logo}
+                                style={{ width: '100%' }}
+                            >
                                 <Typography
                                     variant="h6"
                                     noWrap
@@ -149,10 +80,11 @@ export const NavBar: React.FC = () => {
                                     color="textPrimary"
                                     sx={{
                                         fontSize: {
-                                            xs: '1.3rem',
+                                            xs: '1.8rem',
                                             md: '1.25rem',
                                         },
                                         textAlign: { xs: 'center', md: 'left' },
+                                        width: { xs: '100%', md: 'auto' },
                                     }}
                                 >
                                     LEONARDO ARANGUREN
@@ -160,7 +92,7 @@ export const NavBar: React.FC = () => {
                             </Link>
                         </Box>
 
-                        {/* Right side: Navigation and Toggle */}
+                        {/* Right side: Navigation and Toggle - Desktop only */}
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             <Box
                                 className={styles.desktopMenu}
@@ -207,43 +139,69 @@ export const NavBar: React.FC = () => {
                                 <LanguageToggle size="large" />
                                 <ThemeToggle size="large" />
                             </Box>
-
-                            {/* Mobile menu button */}
-                            <IconButton
-                                aria-label="open drawer"
-                                edge="end"
-                                onClick={handleDrawerToggle}
-                                className={styles.menuButton}
-                                sx={{
-                                    display: { md: 'none' },
-                                    color: 'background.aws',
-                                }}
-                            >
-                                <MenuIcon />
-                            </IconButton>
                         </Box>
                     </Toolbar>
                 </Container>
 
-                {/* Mobile drawer */}
-                <Drawer
-                    anchor="right"
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
-                    ModalProps={{
-                        keepMounted: true, // Better mobile performance
-                    }}
+                {/* Mobile navigation - three sections */}
+                <Box
                     sx={{
-                        color: 'textPrimary',
-                        display: { xs: 'block', md: 'none' },
-                        '& .MuiDrawer-paper': {
-                            boxSizing: 'border-box',
-                            width: 240,
-                        },
+                        display: { xs: 'flex', md: 'none' },
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        width: '100%',
+                        mt: 1,
+                        mb: 1,
                     }}
                 >
-                    {drawer}
-                </Drawer>
+                    {/* Links - left aligned */}
+                    <Box sx={{ display: 'flex', gap: 2, ml: 1 }}>
+                        {pages.map((page, index) => {
+                            const isActive = pathname === page.href;
+                            return (
+                                <Box
+                                    key={index}
+                                    component={Link}
+                                    href={page.href}
+                                    sx={{
+                                        color: 'text.primary',
+                                        textDecoration: 'none',
+                                        fontWeight: isActive
+                                            ? 'bold'
+                                            : 'normal',
+                                        borderBottom: isActive
+                                            ? '2px solid'
+                                            : 'none',
+                                        borderColor: 'background.aws',
+                                        fontSize: '0.9rem',
+                                    }}
+                                >
+                                    {t(`navigationList.${page.key}`)}
+                                </Box>
+                            );
+                        })}
+                    </Box>
+
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            mx: 1,
+                        }}
+                    >
+                        <ContactSection size="small" />
+                    </Box>
+
+                    {/* Switches - right aligned */}
+                    <Box sx={{ display: 'flex', alignItems: 'center', mr: 1 }}>
+                        <Box sx={{ mr: 1 }}>
+                            <LanguageToggle size="large" />
+                        </Box>
+                        <Box>
+                            <ThemeToggle size="large" />
+                        </Box>
+                    </Box>
+                </Box>
             </AppBar>
         </Box>
     );
