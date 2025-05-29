@@ -2,10 +2,27 @@
 import { Container, Grid, Typography, Box, useTheme } from '@mui/material';
 import Image from 'next/image';
 
-import { ImageSlideshow } from '@/components/images/ImageSlideshow';
-import { ExperienceTabs } from '@/components/tabs/ExperienceTabs';
-import { ContactSection } from '@/components/contact/ContactSection';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 import { HighlightedText } from '@/components/common/HighlightedText';
+import { ContactSection } from '@/components/contact/ContactSection';
+
+// Dynamically import components that aren't needed immediately
+const ImageSlideshow = dynamic(
+    () =>
+        import('@/components/images/ImageSlideshow').then(
+            (mod) => mod.ImageSlideshow
+        ),
+    { ssr: true }
+);
+
+const ExperienceTabs = dynamic(
+    () =>
+        import('@/components/tabs/ExperienceTabs').then(
+            (mod) => mod.ExperienceTabs
+        ),
+    { ssr: false }
+);
 
 import { CloudFrontURLs } from '@/utils/constants';
 import { useTranslation } from '@/utils/hooks/useTranslation';
@@ -31,6 +48,7 @@ export default function Home() {
                             position: 'relative',
                             width: '100%',
                             height: 350,
+                            aspectRatio: '16/9',
                             borderRadius: 2,
                             boxShadow: `0 4px 12px ${theme.palette.background.aws}`,
                             overflow: 'hidden',
@@ -42,9 +60,12 @@ export default function Home() {
                             alt="Hiking"
                             fill
                             priority
+                            sizes="(max-width: 768px) 100vw, 50vw"
                             style={{
                                 objectFit: 'cover',
                             }}
+                            loading="eager"
+                            fetchPriority="high"
                         />
                         <Box
                             sx={{
@@ -116,7 +137,13 @@ export default function Home() {
                 }}
             >
                 <Grid size={{ xs: 12 }}>
-                    <ImageSlideshow />
+                    <Suspense
+                        fallback={
+                            <div style={{ height: 300, width: '100%' }}></div>
+                        }
+                    >
+                        <ImageSlideshow />
+                    </Suspense>
                 </Grid>
             </Grid>
 
@@ -138,7 +165,13 @@ export default function Home() {
                         justifyContent: 'center',
                     }}
                 >
-                    <ImageSlideshow />
+                    <Suspense
+                        fallback={
+                            <div style={{ height: 300, width: '100%' }}></div>
+                        }
+                    >
+                        <ImageSlideshow />
+                    </Suspense>
                 </Grid>
 
                 {/* Second content */}
@@ -220,7 +253,13 @@ export default function Home() {
                         {t('homePage.experienceTitle')}
                     </Typography>
 
-                    <ExperienceTabs />
+                    <Suspense
+                        fallback={
+                            <div style={{ height: 300, width: '100%' }}></div>
+                        }
+                    >
+                        <ExperienceTabs />
+                    </Suspense>
                 </Grid>
             </Grid>
 

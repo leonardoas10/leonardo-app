@@ -22,10 +22,12 @@ export const Button: React.FC<CustomButtonProps> = ({
     const buttonProps: Omit<ButtonProps, 'component'> & {
         component?: React.ElementType;
         download?: boolean;
+        'aria-label'?: string;
     } = {
         variant,
         size,
         disableRipple: true,
+        'aria-label': typeof children === 'string' ? children : undefined,
         sx: {
             bgcolor: 'background.aws',
             boxShadow: '0 6px 14px rgba(255, 255, 255, 0.3)',

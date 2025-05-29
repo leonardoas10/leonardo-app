@@ -1,13 +1,7 @@
 'use client';
 
 import React, { useState, SyntheticEvent, ReactElement } from 'react';
-import {
-    Box,
-    Tabs,
-    Tab,
-    Paper,
-    useTheme,
-} from '@mui/material';
+import { Box, Tabs, Tab, Paper, useTheme } from '@mui/material';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -36,6 +30,7 @@ function TabPanel(props: TabPanelProps) {
             hidden={value !== index}
             id={`tabpanel-${index}`}
             aria-labelledby={`tab-${index}`}
+            tabIndex={0}
             {...other}
         >
             {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
@@ -43,17 +38,10 @@ function TabPanel(props: TabPanelProps) {
     );
 }
 
-function a11yProps(index: number, prefix: string = '') {
-    return {
-        id: `${prefix}tab-${index}`,
-        'aria-controls': `${prefix}tabpanel-${index}`,
-    };
-}
-
-export const TabsComponent: React.FC<TabsComponentProps> = ({ 
-    tabs, 
-    tabsAriaLabel = "tabs",
-    tabPanelPrefix = ""
+export const TabsComponent: React.FC<TabsComponentProps> = ({
+    tabs,
+    tabsAriaLabel = 'tabs',
+    tabPanelPrefix = '',
 }) => {
     const theme = useTheme();
     const [value, setValue] = useState(0);
@@ -109,7 +97,8 @@ export const TabsComponent: React.FC<TabsComponentProps> = ({
                             key={index}
                             label={tab.label}
                             icon={tab.icon}
-                            {...a11yProps(index, tabPanelPrefix)}
+                            id={`${tabPanelPrefix}tab-${index}`}
+                            aria-controls={`${tabPanelPrefix}tabpanel-${index}`}
                         />
                     ))}
                 </Tabs>

@@ -67,6 +67,10 @@ export const NavBar: React.FC = () => {
                                     height: { xs: 60, md: 50 },
                                     display: { xs: 'none', md: 'flex' },
                                 }}
+                                imgProps={{
+                                    loading: 'lazy',
+                                    fetchPriority: 'low'
+                                }}
                             />
                             <Link
                                 href="/"
