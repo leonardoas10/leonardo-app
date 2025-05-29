@@ -25,7 +25,7 @@ export const ArchitectureTabs: React.FC = () => {
                     >
                         {t('tabs.frontend.sections.framework.title')}
                     </Typography>
-                    <Typography variant="body1" paragraph>
+                    <Typography variant="body1" paragraph textAlign="justify">
                         {t('tabs.frontend.sections.framework.content')}
                     </Typography>
 
@@ -35,7 +35,7 @@ export const ArchitectureTabs: React.FC = () => {
                     >
                         {t('tabs.frontend.sections.ui.title')}
                     </Typography>
-                    <Typography variant="body1" paragraph>
+                    <Typography variant="body1" paragraph textAlign="justify">
                         {t('tabs.frontend.sections.ui.content')}
                     </Typography>
 
@@ -45,7 +45,7 @@ export const ArchitectureTabs: React.FC = () => {
                     >
                         {t('tabs.frontend.sections.typeSafety.title')}
                     </Typography>
-                    <Typography variant="body1" paragraph>
+                    <Typography variant="body1" paragraph textAlign="justify">
                         {t('tabs.frontend.sections.typeSafety.content')}
                     </Typography>
                 </Box>
@@ -62,7 +62,7 @@ export const ArchitectureTabs: React.FC = () => {
                     >
                         {t('tabs.backend.sections.hosting.title')}
                     </Typography>
-                    <Typography variant="body1" paragraph>
+                    <Typography variant="body1" paragraph textAlign="justify">
                         {t('tabs.backend.sections.hosting.content')}
                     </Typography>
 
@@ -72,7 +72,7 @@ export const ArchitectureTabs: React.FC = () => {
                     >
                         {t('tabs.backend.sections.authentication.title')}
                     </Typography>
-                    <Typography variant="body1" paragraph>
+                    <Typography variant="body1" paragraph textAlign="justify">
                         {t('tabs.backend.sections.authentication.content')}
                     </Typography>
 
@@ -82,7 +82,7 @@ export const ArchitectureTabs: React.FC = () => {
                     >
                         {t('tabs.backend.sections.contentDelivery.title')}
                     </Typography>
-                    <Typography variant="body1" paragraph>
+                    <Typography variant="body1" paragraph textAlign="justify">
                         {t('tabs.backend.sections.contentDelivery.content')}
                     </Typography>
                 </Box>
@@ -99,7 +99,7 @@ export const ArchitectureTabs: React.FC = () => {
                     >
                         {t('tabs.database.sections.nosql.title')}
                     </Typography>
-                    <Typography variant="body1" paragraph>
+                    <Typography variant="body1" paragraph textAlign="justify">
                         {t('tabs.database.sections.nosql.content')}
                     </Typography>
 
@@ -109,7 +109,7 @@ export const ArchitectureTabs: React.FC = () => {
                     >
                         {t('tabs.database.sections.storage.title')}
                     </Typography>
-                    <Typography variant="body1" paragraph>
+                    <Typography variant="body1" paragraph textAlign="justify">
                         {t('tabs.database.sections.storage.content')}
                     </Typography>
 
@@ -119,7 +119,7 @@ export const ArchitectureTabs: React.FC = () => {
                     >
                         {t('tabs.database.sections.performance.title')}
                     </Typography>
-                    <Typography variant="body1" paragraph>
+                    <Typography variant="body1" paragraph textAlign="justify">
                         {t('tabs.database.sections.performance.content')}
                     </Typography>
                 </Box>
@@ -136,7 +136,7 @@ export const ArchitectureTabs: React.FC = () => {
                     >
                         {t('tabs.cicd.sections.amplify.title')}
                     </Typography>
-                    <Typography variant="body1" paragraph>
+                    <Typography variant="body1" paragraph textAlign="justify">
                         {t('tabs.cicd.sections.amplify.content')}
                     </Typography>
 
@@ -146,7 +146,7 @@ export const ArchitectureTabs: React.FC = () => {
                     >
                         {t('tabs.cicd.sections.husky.title')}
                     </Typography>
-                    <Typography variant="body1" paragraph>
+                    <Typography variant="body1" paragraph textAlign="justify">
                         {t('tabs.cicd.sections.husky.content')}
                     </Typography>
 
@@ -156,7 +156,7 @@ export const ArchitectureTabs: React.FC = () => {
                     >
                         {t('tabs.cicd.sections.github.title')}
                     </Typography>
-                    <Typography variant="body1" paragraph>
+                    <Typography variant="body1" paragraph textAlign="justify">
                         {t('tabs.cicd.sections.github.content')}
                     </Typography>
                 </Box>

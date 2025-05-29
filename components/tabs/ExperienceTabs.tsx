@@ -51,7 +51,10 @@ export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
                             {section.items.map(
                                 (item: ExperienceItem, itemIndex: number) => (
                                     <ListItem key={itemIndex}>
-                                        <ListItemText primary={item.primary} />
+                                        <ListItemText 
+                                            primary={item.primary}
+                                            primaryTypographyProps={{ align: 'justify' }}
+                                        />
                                     </ListItem>
                                 )
                             )}

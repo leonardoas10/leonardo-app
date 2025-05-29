@@ -90,13 +90,17 @@ export default function Home() {
                     </Typography>
                     <HighlightedText
                         text={t('homePage.firstParagraphPart1')}
-                        highlightTerms={['AWS']}
+                        highlightTerms={[]}
                         variant="body1"
                         paragraph
                     />
                     <HighlightedText
                         text={t('homePage.firstParagraphPart2')}
-                        highlightTerms={['certifications', 'certificaciones']}
+                        highlightTerms={[
+                            'certifications',
+                            'certificaciones',
+                            'AWS',
+                        ]}
                         variant="body1"
                         paragraph
                     />
