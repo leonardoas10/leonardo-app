@@ -11,6 +11,7 @@ import {
 import Image from 'next/image';
 
 import { Chip } from '@/components/common/Chip';
+import { HighlightedText } from '@/components/common/HighlightedText';
 import { ArchitectureTabs } from '@/components/tabs/ArchitectureTabs';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { CloudFrontURLs } from '@/utils/constants';
@@ -39,15 +40,12 @@ export default function ArchitecturePage() {
                         {t('page.title')}
                     </Typography>
 
-                    <Typography
+                    <HighlightedText
+                        text={t('page.description')}
+                        highlightTerms={['optimizar', 'cost-effective']}
                         variant="body1"
-                        sx={{
-                            mb: 2,
-                            textAlign: { xs: 'center', md: 'left' },
-                        }}
-                    >
-                        {t('page.description')}
-                    </Typography>
+                        paragraph
+                    />
                 </Grid>
 
                 <Grid size={{ xs: 12 }} sx={{ textAlign: 'center' }}>

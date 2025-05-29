@@ -20,10 +20,10 @@ export default function Home() {
                 {/* Image - first on mobile */}
                 <Grid
                     size={{ xs: 12, md: 6.5 }}
-                    sx={{ 
-                        display: 'flex', 
+                    sx={{
+                        display: 'flex',
                         justifyContent: 'center',
-                        order: { xs: 1, md: 2 }
+                        order: { xs: 1, md: 2 },
                     }}
                 >
                     <Box
@@ -74,7 +74,7 @@ export default function Home() {
                 </Grid>
 
                 {/* First content - second on mobile */}
-                <Grid 
+                <Grid
                     size={{ xs: 12, md: 5.5 }}
                     sx={{ order: { xs: 2, md: 1 } }}
                 >
@@ -104,11 +104,11 @@ export default function Home() {
             </Grid>
 
             {/* Image slideshow - third on mobile */}
-            <Grid 
+            <Grid
                 container
-                sx={{ 
+                sx={{
                     mt: { xs: 8, md: 12 },
-                    display: { xs: 'flex', md: 'none' } // Only show on mobile
+                    display: { xs: 'flex', md: 'none' }, // Only show on mobile
                 }}
             >
                 <Grid size={{ xs: 12 }}>
@@ -121,9 +121,9 @@ export default function Home() {
                 container
                 spacing={4}
                 alignItems="center"
-                sx={{ 
+                sx={{
                     mt: { xs: 8, md: 12 },
-                    display: { xs: 'none', md: 'flex' } // Only show on desktop
+                    display: { xs: 'none', md: 'flex' }, // Only show on desktop
                 }}
             >
                 {/* Image slideshow - desktop only */}
@@ -131,7 +131,7 @@ export default function Home() {
                     size={{ md: 5 }}
                     sx={{
                         display: 'flex',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
                     }}
                 >
                     <ImageSlideshow />
@@ -150,19 +150,26 @@ export default function Home() {
                         {t('homePage.discoveryTitle')}
                     </Typography>
                     <HighlightedText
-                        text={t('homePage.secondParagraph')}
-                        highlightTerms={['cloud', 'soluciones', 'solutions']}
+                        text={t('homePage.secondParagraphPart1')}
+                        highlightTerms={['scalable', 'escalables']}
                         variant="body1"
+                        paragraph
+                    />
+                    <HighlightedText
+                        text={t('homePage.secondParagraphPart2')}
+                        highlightTerms={[]}
+                        variant="body1"
+                        paragraph
                     />
                 </Grid>
             </Grid>
-            
+
             {/* Mobile layout for second content - fourth on mobile */}
             <Grid
                 container
-                sx={{ 
+                sx={{
                     mt: { xs: 8 },
-                    display: { xs: 'flex', md: 'none' } // Only show on mobile
+                    display: { xs: 'flex', md: 'none' }, // Only show on mobile
                 }}
             >
                 <Grid size={{ xs: 12 }}>
@@ -177,9 +184,16 @@ export default function Home() {
                         {t('homePage.discoveryTitle')}
                     </Typography>
                     <HighlightedText
-                        text={t('homePage.secondParagraph')}
-                        highlightTerms={['cloud', 'soluciones', 'solutions']}
+                        text={t('homePage.secondParagraphPart1')}
+                        highlightTerms={['scalable']}
                         variant="body1"
+                        paragraph
+                    />
+                    <HighlightedText
+                        text={t('homePage.secondParagraphPart2')}
+                        highlightTerms={[]}
+                        variant="body1"
+                        paragraph
                     />
                 </Grid>
             </Grid>

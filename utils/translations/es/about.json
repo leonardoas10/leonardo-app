@@ -15,9 +15,10 @@
     "homePage": {
         "aboutTitle": "¡Hey! Conóceme…",
         "firstParagraphPart1": "Leonardo Aranguren, Desarrollador de Software, Ingeniero Cloud y Líder Técnico con una sólida base en tecnologías de nube, especialmente en AWS.",
-        "firstParagraphPart2": "Cuento con múltiples certificaciones de AWS —Developer Associate, Solutions Architect, Serverless, Cloud Quests— formación avanzada en EKS y Networking Core.",
+        "firstParagraphPart2": "Cuenta con múltiples certificaciones de AWS —Developer Associate, Solutions Architect, Serverless, Cloud Quests, EKS y Networking Core.",
         "discoveryTitle": "Impulsado por la innovación...",
-        "secondParagraph": "Diseña, desarrolla y optimiza soluciones cloud robustas y escalables. Lidera con un enfoque técnico, afinando arquitecturas y aplicando buenas prácticas para llevar cada proyecto a su máximo potencial. En cada línea de código busca innovación, eficiencia y un impacto real.",
+        "secondParagraphPart1": "Diseña, desarrolla y optimiza soluciones cloud robustas y escalables.",
+        "secondParagraphPart2": "Lidera con un enfoque técnico, afinando arquitecturas y aplicando buenas prácticas para llevar cada proyecto a su máximo potencial. En cada línea de código busca innovación, eficiencia y un impacto real.",
         "experienceTitle": "Destacados de Experiencia",
         "teideCaption": "Teide, Tenerife - España"
     },

@@ -19,27 +19,31 @@ export const HighlightedText: React.FC<HighlightedTextProps> = ({
     paragraph = false,
 }) => {
     // Create regex pattern for all terms to highlight
-    const pattern = new RegExp(`(${highlightTerms.join('|')})`, 'gi');
-    
+    const pattern = new RegExp(`\\b(${highlightTerms.join('|')})\\b`, 'gi');
+
     // Split text by highlight terms
     const parts = text.split(pattern);
 
     return (
-        <Typography variant={variant} textAlign={textAlign} paragraph={paragraph}>
+        <Typography
+            variant={variant}
+            textAlign={textAlign}
+            paragraph={paragraph}
+        >
             {parts.map((part, i) => {
                 // Check if this part matches any highlight term (case insensitive)
-                const isHighlighted = highlightTerms.some(term => 
-                    part.toLowerCase() === term.toLowerCase()
+                const isHighlighted = highlightTerms.some(
+                    (term) => part.toLowerCase() === term.toLowerCase()
                 );
-                
+
                 return isHighlighted ? (
-                    <Box 
-                        component="span" 
+                    <Box
+                        component="span"
                         key={i}
-                        sx={{ 
+                        sx={{
                             color: 'background.aws',
                             fontWeight: 'medium',
-                            transition: 'color 1s ease'
+                            transition: 'color 1s ease',
                         }}
                     >
                         {part}

@@ -15,9 +15,10 @@
     "homePage": {
         "aboutTitle": "Hey! Get to know me...",
         "firstParagraphPart1": "Leonardo Aranguren, a Software Developer, Cloud Engineer, and Technical Lead with a solid foundation in cloud technologies, especially AWS.",
-        "firstParagraphPart2": "I hold multiple AWS certifications—Developer Associate, Solutions Architect, Serverless—and advanced training in EKS, Networking Core, and Cloud Quest challenges.",
+        "firstParagraphPart2": "Hold multiple AWS certifications —Developer Associate, Solutions Architect, Serverless, EKS, Networking Core, and Cloud Quest challenges.",
         "discoveryTitle": "Driven by innovation...",
-        "secondParagraph": "He designs, develops, and optimizes robust, scalable cloud solutions. With a strong technical focus, he leads by refining architectures and applying best practices to bring every project to its fullest potential. In every line of code, he seeks innovation, efficiency, and real impact.",
+        "secondParagraphPart1": "He designs, develops, and optimizes robust, scalable cloud solutions.",
+        "secondParagraphPart2": "With a strong technical focus, he leads by refining architectures and applying best practices to bring every project to its fullest potential. In every line of code, he seeks innovation, efficiency, and real impact.",
         "experienceTitle": "Experience Highlights",
         "teideCaption": "Teide, Tenerife - Spain"
     },
