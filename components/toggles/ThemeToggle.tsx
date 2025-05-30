@@ -26,6 +26,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
                 uncheckedIcon={<LightModeIcon />}
                 switchBaseMargin="4px 0px 2px 4px"
                 customSize={size}
+                aria-label="Theme toggle"
             />
         </Box>
     );

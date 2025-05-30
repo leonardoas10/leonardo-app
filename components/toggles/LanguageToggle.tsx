@@ -59,6 +59,7 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({
                     isSpanish ? '2px 0px 2px 2px' : '2px 4px 2px 2px'
                 }
                 customSize={size}
+                aria-label="Language toggle"
             />
         </Box>
     );

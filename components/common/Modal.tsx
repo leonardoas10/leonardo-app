@@ -41,6 +41,8 @@ interface ModalProps {
         error?: string;
     }>;
     children?: React.ReactNode;
+    t?: (key: string) => string;
+    disableSubmitButton?: boolean;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -53,6 +55,8 @@ const Modal: React.FC<ModalProps> = ({
     fields,
     onFieldChange,
     children,
+    t,
+    disableSubmitButton,
 }) => {
     const initialFormData = () => {
         const data: FormData = {
@@ -105,14 +109,14 @@ const Modal: React.FC<ModalProps> = ({
             await onSubmit();
             setSnackbar({
                 open: true,
-                message: 'Form submitted successfully!',
+                message: t ? t('cvModal.success') : 'Form submitted successfully!',
                 severity: 'success',
             });
             onClose();
         } catch {
             setSnackbar({
                 open: true,
-                message: 'Failed to submit form. Please try again.',
+                message: t ? t('cvModal.error') : 'Failed to submit form. Please try again.',
                 severity: 'error',
             });
         } finally {
@@ -232,11 +236,13 @@ const Modal: React.FC<ModalProps> = ({
                         variant="contained"
                         disabled={
                             loading ||
-                            (fields
-                                ? fields.some(
-                                      (f) => f.required && !formData[f.name]
-                                  )
-                                : !formData.name || !formData.email)
+                            (disableSubmitButton !== undefined 
+                                ? disableSubmitButton
+                                : fields
+                                    ? fields.some(
+                                          (f) => f.required && !formData[f.name]
+                                      )
+                                    : !formData.name || !formData.email)
                         }
                         sx={{
                             bgcolor: 'background.aws',

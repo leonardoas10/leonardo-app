@@ -186,6 +186,7 @@ export const IOSSwitch = ({
                 disableRipple
                 switchBaseMargin={switchBaseMargin}
                 customSize={customSize}
+                inputProps={{ 'aria-label': props['aria-label'] || 'switch' }}
                 {...props}
             />
         );
@@ -207,6 +208,7 @@ export const IOSSwitch = ({
             icon={uncheckedIcon}
             switchBaseMargin={switchBaseMargin}
             customSize={customSize}
+            inputProps={{ 'aria-label': props['aria-label'] || 'switch' }}
             {...props}
         />
     );

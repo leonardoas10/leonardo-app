@@ -55,7 +55,8 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
     // Update error messages when language changes
     useEffect(() => {
         // Only update errors if there are any existing errors
-        if (Object.values(errors).some(error => error !== '')) {
+        const hasErrors = Object.values(errors).some(error => error !== '');
+        if (hasErrors) {
             const newErrors = {
                 name: formData.name ? validateName(formData.name) : '',
                 email: formData.email ? validateEmail(formData.email) : '',
@@ -66,7 +67,8 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
             };
             setErrors(newErrors);
         }
-    }, [language, t, formData, validateName, validateEmail, validateLanguage, errors]);
+    // Remove errors from dependencies to prevent infinite loop
+    }, [language, t, formData, validateName, validateEmail, validateLanguage]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -143,6 +145,17 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
         }
     };
 
+    // Check if form is valid for enabling the submit button
+    const isFormValid = () => {
+        return formData.name && 
+               formData.email && 
+               formData.language && 
+               !errors.name && 
+               !errors.email && 
+               !errors.language && 
+               !errors.company;
+    };
+
     return (
         <Modal
             key={`modal-${language}`}
@@ -152,6 +165,8 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
             submitButtonText={t('cvModal.get')}
             onSubmit={handleSubmit}
             loading={loading}
+            t={t}
+            disableSubmitButton={!isFormValid()}
         >
             <TextField
                 fullWidth

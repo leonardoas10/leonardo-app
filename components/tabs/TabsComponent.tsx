@@ -7,6 +7,8 @@ interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
     value: number;
+    id?: string;
+    'aria-labelledby'?: string;
 }
 
 export interface TabItem {
@@ -30,7 +32,6 @@ function TabPanel(props: TabPanelProps) {
             hidden={value !== index}
             id={`tabpanel-${index}`}
             aria-labelledby={`tab-${index}`}
-            tabIndex={0}
             {...other}
         >
             {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
@@ -105,7 +106,13 @@ export const TabsComponent: React.FC<TabsComponentProps> = ({
             </Box>
 
             {tabs.map((tab, index) => (
-                <TabPanel key={index} value={value} index={index}>
+                <TabPanel 
+                    key={index} 
+                    value={value} 
+                    index={index}
+                    id={`${tabPanelPrefix}tabpanel-${index}`}
+                    aria-labelledby={`${tabPanelPrefix}tab-${index}`}
+                >
                     {tab.content}
                 </TabPanel>
             ))}

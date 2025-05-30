@@ -15,6 +15,8 @@
         "cancel": "Cancelar",
         "english": "Inglés",
         "spanish": "Español",
+        "success": "¡Formulario enviado con éxito!",
+        "error": "Error al enviar el formulario. Por favor, inténtalo de nuevo.",
         "errors": {
             "required": "Este campo es obligatorio",
             "nameRequired": "El nombre es obligatorio",

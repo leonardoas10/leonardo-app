@@ -2,15 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import {
-    AppBar,
-    Avatar,
-    Box,
-    Toolbar,
-    Typography,
-    Container,
-} from '@mui/material';
+import { AppBar, Box, Toolbar, Typography, Container } from '@mui/material';
 import styles from './NavBar.module.css';
 import { ThemeToggle } from '@/components/toggles/ThemeToggle';
 import { LanguageToggle } from '@/components/toggles/LanguageToggle';
@@ -59,19 +53,26 @@ export const NavBar: React.FC = () => {
                                 },
                             }}
                         >
-                            <Avatar
-                                alt="L"
-                                src={`${CloudFrontURLs.IMAGES}/me.webp`}
+                            <Box
                                 sx={{
-                                    width: { xs: 60, md: 50 },
-                                    height: { xs: 60, md: 50 },
+                                    width: { md: 75 },
+                                    height: { md: 55 },
                                     display: { xs: 'none', md: 'flex' },
+                                    borderRadius: '50%',
+                                    overflow: 'hidden',
+                                    position: 'relative',
                                 }}
-                                imgProps={{
-                                    loading: 'lazy',
-                                    fetchPriority: 'low'
-                                }}
-                            />
+                            >
+                                <Image
+                                    alt="L"
+                                    src={`${CloudFrontURLs.IMAGES}/me.webp`}
+                                    fill
+                                    sizes="50px"
+                                    style={{ objectFit: 'cover' }}
+                                    loading="lazy"
+                                    priority={false}
+                                />
+                            </Box>
                             <Link
                                 href="/"
                                 className={styles.logo}
