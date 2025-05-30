@@ -77,7 +77,6 @@ export const ImageSlideshow: React.FC = () => {
             alt: 'AWS Certified Cloud Practitioner Badge',
             imageUrl: `${CloudFrontURLs.IMAGES}/cloud-practitioner-badge.webp`,
         },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     ], []);
 
     useEffect(() => {

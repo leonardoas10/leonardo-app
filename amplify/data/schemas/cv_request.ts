@@ -8,7 +8,6 @@ export const cvRequestSchema = {
             email: a.string().required(),
             company: a.string(),
             language: a.string().required(),
-            format: a.string().required(),
             requestedAt: a.datetime().required(),
             createdAt: a.datetime().required(),
         })

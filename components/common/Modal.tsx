@@ -20,7 +20,6 @@ interface FormData {
     email: string;
     company: string;
     language: string;
-    format: string;
     [key: string]: string; // Allow additional string fields
 }
 
@@ -29,8 +28,9 @@ interface ModalProps {
     onClose: () => void;
     title: string;
     submitButtonText: string;
-    onSubmit: (formData: FormData) => Promise<void>;
+    onSubmit: () => Promise<void> | void;
     loading?: boolean;
+    onFieldChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     fields?: Array<{
         name: string;
         label: string;
@@ -38,7 +38,9 @@ interface ModalProps {
         required?: boolean;
         options?: Array<{ value: string; label: string }>;
         defaultValue?: string;
+        error?: string;
     }>;
+    children?: React.ReactNode;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -49,6 +51,8 @@ const Modal: React.FC<ModalProps> = ({
     onSubmit,
     loading: externalLoading,
     fields,
+    onFieldChange,
+    children,
 }) => {
     const initialFormData = () => {
         const data: FormData = {
@@ -56,24 +60,24 @@ const Modal: React.FC<ModalProps> = ({
             email: '',
             company: '',
             language: '',
-            format: '',
         };
-        
+
         // Set default values from fields if provided
         if (fields) {
-            fields.forEach(field => {
+            fields.forEach((field) => {
                 if (field.defaultValue !== undefined) {
                     data[field.name] = field.defaultValue;
                 }
             });
         }
-        
+
         return data;
     };
-    
+
     const [formData, setFormData] = useState<FormData>(initialFormData());
     const [internalLoading, setInternalLoading] = useState(false);
-    const loading = externalLoading !== undefined ? externalLoading : internalLoading;
+    const loading =
+        externalLoading !== undefined ? externalLoading : internalLoading;
     const [snackbar, setSnackbar] = useState({
         open: false,
         message: '',
@@ -85,6 +89,11 @@ const Modal: React.FC<ModalProps> = ({
             ...formData,
             [e.target.name]: e.target.value,
         });
+        
+        // Call external change handler if provided
+        if (onFieldChange) {
+            onFieldChange(e);
+        }
     };
 
     const handleSubmit = async () => {
@@ -92,7 +101,8 @@ const Modal: React.FC<ModalProps> = ({
             setInternalLoading(true);
         }
         try {
-            await onSubmit(formData);
+            // Call onSubmit with or without formData based on the function signature
+            await onSubmit();
             setSnackbar({
                 open: true,
                 message: 'Form submitted successfully!',
@@ -118,18 +128,20 @@ const Modal: React.FC<ModalProps> = ({
 
     return (
         <>
-            <Dialog 
-                open={open} 
-                onClose={onClose} 
-                maxWidth="sm" 
+            <Dialog
+                open={open}
+                onClose={onClose}
+                maxWidth="sm"
                 fullWidth
                 disableScrollLock={true}
             >
                 <DialogTitle>{title}</DialogTitle>
                 <DialogContent>
                     <Box component="form" sx={{ mt: 2 }}>
-                        {fields ? (
-                            fields.map((field) => (
+                        {children ? (
+                            children
+                        ) : fields ? (
+                            fields.map((field) =>
                                 field.type === 'select' ? (
                                     <TextField
                                         key={field.name}
@@ -141,13 +153,18 @@ const Modal: React.FC<ModalProps> = ({
                                         value={formData[field.name] || ''}
                                         onChange={handleChange}
                                         required={field.required}
+                                        error={!!field.error}
+                                        helperText={field.error}
                                         SelectProps={{
                                             native: true,
                                         }}
                                     >
                                         <option value="" />
                                         {field.options?.map((option) => (
-                                            <option key={option.value} value={option.value}>
+                                            <option
+                                                key={option.value}
+                                                value={option.value}
+                                            >
                                                 {option.label}
                                             </option>
                                         ))}
@@ -163,9 +180,11 @@ const Modal: React.FC<ModalProps> = ({
                                         value={formData[field.name] || ''}
                                         onChange={handleChange}
                                         required={field.required}
+                                        error={!!field.error}
+                                        helperText={field.error}
                                     />
                                 )
-                            ))
+                            )
                         ) : (
                             <>
                                 <TextField
@@ -211,7 +230,14 @@ const Modal: React.FC<ModalProps> = ({
                         onClick={handleSubmit}
                         color="primary"
                         variant="contained"
-                        disabled={loading || (fields ? fields.some(f => f.required && !formData[f.name]) : (!formData.name || !formData.email))}
+                        disabled={
+                            loading ||
+                            (fields
+                                ? fields.some(
+                                      (f) => f.required && !formData[f.name]
+                                  )
+                                : !formData.name || !formData.email)
+                        }
                         sx={{
                             bgcolor: 'background.aws',
                             color: 'text.primary',

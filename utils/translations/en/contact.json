@@ -14,6 +14,20 @@
         "download": "Download",
         "cancel": "Cancel",
         "english": "English",
-        "spanish": "Spanish"
+        "spanish": "Spanish",
+        "errors": {
+            "required": "This field is required",
+            "nameRequired": "Name is required",
+            "nameLetters": "Name must contain only letters",
+            "nameLength": "Name must be at least 2 characters",
+            "emailRequired": "Email is required",
+            "emailValid": "Please enter a valid email address",
+            "emailLength": "Email must be at least 2 characters",
+            "companyLength": "Company must be at least 2 characters",
+            "languageRequired": "Language is required",
+            "languageLetters": "Language must contain only letters",
+            "languageLength": "Language must be at least 2 characters",
+            "minLength": "Must be at least 2 characters"
+        }
     }
 }
