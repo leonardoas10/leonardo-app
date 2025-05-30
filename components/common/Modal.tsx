@@ -93,7 +93,7 @@ const Modal: React.FC<ModalProps> = ({
             ...formData,
             [e.target.name]: e.target.value,
         });
-        
+
         // Call external change handler if provided
         if (onFieldChange) {
             onFieldChange(e);
@@ -109,14 +109,18 @@ const Modal: React.FC<ModalProps> = ({
             await onSubmit();
             setSnackbar({
                 open: true,
-                message: t ? t('cvModal.success') : 'Form submitted successfully!',
+                message: t
+                    ? t('cvModal.success')
+                    : 'Form submitted successfully!',
                 severity: 'success',
             });
             onClose();
         } catch {
             setSnackbar({
                 open: true,
-                message: t ? t('cvModal.error') : 'Failed to submit form. Please try again.',
+                message: t
+                    ? t('cvModal.error')
+                    : 'Failed to submit form. Please try again.',
                 severity: 'error',
             });
         } finally {
@@ -236,13 +240,13 @@ const Modal: React.FC<ModalProps> = ({
                         variant="contained"
                         disabled={
                             loading ||
-                            (disableSubmitButton !== undefined 
+                            (disableSubmitButton !== undefined
                                 ? disableSubmitButton
                                 : fields
-                                    ? fields.some(
-                                          (f) => f.required && !formData[f.name]
-                                      )
-                                    : !formData.name || !formData.email)
+                                  ? fields.some(
+                                        (f) => f.required && !formData[f.name]
+                                    )
+                                  : !formData.name || !formData.email)
                         }
                         sx={{
                             bgcolor: 'background.aws',
@@ -263,13 +267,27 @@ const Modal: React.FC<ModalProps> = ({
             </Dialog>
             <Snackbar
                 open={snackbar.open}
-                autoHideDuration={6000}
+                autoHideDuration={5000}
                 onClose={handleCloseSnackbar}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                sx={{
+                    top: '50% !important',
+                    transform: 'translateY(-50%)',
+                }}
             >
                 <Alert
                     onClose={handleCloseSnackbar}
                     severity={snackbar.severity}
-                    sx={{ width: '100%' }}
+                    sx={{
+                        width: '100%',
+                        bgcolor:
+                            snackbar.severity === 'success'
+                                ? 'background.aws'
+                                : 'error.main',
+                        color: 'white',
+                        fontWeight: 'bold',
+                    }}
+                    variant="filled"
                 >
                     {snackbar.message}
                 </Alert>
