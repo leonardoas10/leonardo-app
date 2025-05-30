@@ -13,63 +13,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { Chip } from '@/components/common/Chip';
-
 import { CloudFrontURLs } from '@/utils/constants';
-// Define the images array
-const images = useMemo(() => [
-    {
-        alt: 'AWS Certified Developer Associate Badge',
-        imageUrl: `${CloudFrontURLs.IMAGES}/developer-associate-badge.webp`,
-    },
-    {
-        alt: 'AWS Certified Solutions Architect Badge',
-        imageUrl: `${CloudFrontURLs.IMAGES}/solutions-architect-badge.webp`,
-    },
-    {
-        alt: 'AWS Cloud Quest: Generative AI Badge',
-        imageUrl: `${CloudFrontURLs.IMAGES}/cq-generative-ai.webp`,
-    },
-    {
-        alt: 'AWS Cloud Quest: Serverless Developer Badge',
-        imageUrl: `${CloudFrontURLs.IMAGES}/cq-serverless.webp`,
-    },
-    {
-        alt: 'AWS Cloud Quest: Data Analytics Badge',
-        imageUrl: `${CloudFrontURLs.IMAGES}/cq-data-analytics.webp`,
-    },
-    {
-        alt: 'AWS Cloud Quest: Networking Badge',
-        imageUrl: `${CloudFrontURLs.IMAGES}/cq-networking.webp`,
-    },
-    {
-        alt: 'AWS Cloud Quest: Security Badge',
-        imageUrl: `${CloudFrontURLs.IMAGES}/cq-security.webp`,
-    },
-    {
-        alt: 'AWS Cloud Quest: Solutions Architect Badge',
-        imageUrl: `${CloudFrontURLs.IMAGES}/cq-solutions-architect.webp`,
-    },
-    {
-        alt: 'AWS Cloud Quest: Cloud Practitioner Badge',
-        imageUrl: `${CloudFrontURLs.IMAGES}/cq-cloud-practitioner.webp`,
-    },
-    {
-        alt: 'AWS Serverless Certification Badge',
-        imageUrl: `${CloudFrontURLs.IMAGES}/serverless-badge.webp`,
-    },
-    {
-        alt: 'AWS EKS Certification Badge',
-        imageUrl: `${CloudFrontURLs.IMAGES}/amazon-eks-badge.webp`,
-    },
-    {
-        alt: 'AWS Networking Core Certification Badge',
-        imageUrl: `${CloudFrontURLs.IMAGES}/networking-core-badge.webp`,
-    },
-    {
-        alt: 'AWS Certified Cloud Practitioner Badge',
-        imageUrl: `${CloudFrontURLs.IMAGES}/cloud-practitioner-badge.webp`,
-    },
-], []);
 
 export const ImageSlideshow: React.FC = () => {
     const theme = useTheme();
@@ -78,6 +22,63 @@ export const ImageSlideshow: React.FC = () => {
     const [isHovering, setIsHovering] = useState(false);
     const [touchStart, setTouchStart] = useState(0);
     const [touchEnd, setTouchEnd] = useState(0);
+    
+    // Memoize the images array
+    const images = useMemo(() => [
+        {
+            alt: 'AWS Certified Developer Associate Badge',
+            imageUrl: `${CloudFrontURLs.IMAGES}/developer-associate-badge.webp`,
+        },
+        {
+            alt: 'AWS Certified Solutions Architect Badge',
+            imageUrl: `${CloudFrontURLs.IMAGES}/solutions-architect-badge.webp`,
+        },
+        {
+            alt: 'AWS Cloud Quest: Generative AI Badge',
+            imageUrl: `${CloudFrontURLs.IMAGES}/cq-generative-ai.webp`,
+        },
+        {
+            alt: 'AWS Cloud Quest: Serverless Developer Badge',
+            imageUrl: `${CloudFrontURLs.IMAGES}/cq-serverless.webp`,
+        },
+        {
+            alt: 'AWS Cloud Quest: Data Analytics Badge',
+            imageUrl: `${CloudFrontURLs.IMAGES}/cq-data-analytics.webp`,
+        },
+        {
+            alt: 'AWS Cloud Quest: Networking Badge',
+            imageUrl: `${CloudFrontURLs.IMAGES}/cq-networking.webp`,
+        },
+        {
+            alt: 'AWS Cloud Quest: Security Badge',
+            imageUrl: `${CloudFrontURLs.IMAGES}/cq-security.webp`,
+        },
+        {
+            alt: 'AWS Cloud Quest: Solutions Architect Badge',
+            imageUrl: `${CloudFrontURLs.IMAGES}/cq-solutions-architect.webp`,
+        },
+        {
+            alt: 'AWS Cloud Quest: Cloud Practitioner Badge',
+            imageUrl: `${CloudFrontURLs.IMAGES}/cq-cloud-practitioner.webp`,
+        },
+        {
+            alt: 'AWS Serverless Certification Badge',
+            imageUrl: `${CloudFrontURLs.IMAGES}/serverless-badge.webp`,
+        },
+        {
+            alt: 'AWS EKS Certification Badge',
+            imageUrl: `${CloudFrontURLs.IMAGES}/amazon-eks-badge.webp`,
+        },
+        {
+            alt: 'AWS Networking Core Certification Badge',
+            imageUrl: `${CloudFrontURLs.IMAGES}/networking-core-badge.webp`,
+        },
+        {
+            alt: 'AWS Certified Cloud Practitioner Badge',
+            imageUrl: `${CloudFrontURLs.IMAGES}/cloud-practitioner-badge.webp`,
+        },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    ], []);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -87,20 +88,20 @@ export const ImageSlideshow: React.FC = () => {
         }, 5000);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [images.length]);
 
     // Memoize event handlers
     const handleNext = useCallback(() => {
         setCurrentImageIndex((prevIndex) =>
             prevIndex < images.length - 1 ? prevIndex + 1 : 0
         );
-    }, []);
+    }, [images.length]);
 
     const handlePrev = useCallback(() => {
         setCurrentImageIndex((prevIndex) =>
             prevIndex > 0 ? prevIndex - 1 : images.length - 1
         );
-    }, []);
+    }, [images.length]);
 
     const handleTouchStart = useCallback((e: React.TouchEvent) => {
         setTouchStart(e.targetTouches[0].clientX);
@@ -198,7 +199,7 @@ export const ImageSlideshow: React.FC = () => {
                             />
                         ))}
                     </Stack>
-                ), [currentImageIndex, theme.palette.background.aws])}
+                ), [currentImageIndex, theme.palette.background.aws, images])}
             </Box>
 
             {!isMobile && (
