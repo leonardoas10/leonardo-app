@@ -17,6 +17,8 @@
         "spanish": "Español",
         "success": "¡Formulario enviado con éxito!",
         "error": "Error al enviar el formulario. Por favor, inténtalo de nuevo.",
+        "captchaInstructions": "Por favor, resuelve este problema matemático simple para verificar que eres humano:",
+        "protectedBy": "Protegido por reCAPTCHA",
         "errors": {
             "required": "Este campo es obligatorio",
             "nameRequired": "El nombre es obligatorio",
@@ -29,7 +31,9 @@
             "languageRequired": "El idioma es obligatorio",
             "languageLetters": "El idioma solo debe contener letras",
             "languageLength": "El idioma debe tener al menos 2 caracteres",
-            "minLength": "Debe tener al menos 2 caracteres"
+            "minLength": "Debe tener al menos 2 caracteres",
+            "captchaRequired": "Por favor completa el CAPTCHA",
+            "captchaInvalid": "Respuesta incorrecta, por favor intenta de nuevo"
         }
     }
 }

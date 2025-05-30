@@ -17,6 +17,8 @@
         "spanish": "Spanish",
         "success": "Form submitted successfully!",
         "error": "Failed to submit form. Please try again.",
+        "captchaInstructions": "Please solve this simple math problem to verify you're human:",
+        "protectedBy": "Protected by reCAPTCHA",
         "errors": {
             "required": "This field is required",
             "nameRequired": "Name is required",
@@ -29,7 +31,9 @@
             "languageRequired": "Language is required",
             "languageLetters": "Language must contain only letters",
             "languageLength": "Language must be at least 2 characters",
-            "minLength": "Must be at least 2 characters"
+            "minLength": "Must be at least 2 characters",
+            "captchaRequired": "Please complete the CAPTCHA",
+            "captchaInvalid": "Incorrect answer, please try again"
         }
     }
 }

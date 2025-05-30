@@ -2,11 +2,12 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Modal from '../common/Modal';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { TextField } from '@mui/material';
+import { TextField, Box, Typography } from '@mui/material';
 import { generateClient } from 'aws-amplify/data';
 import type { Schema } from '@/amplify/data/resource';
 import { Amplify } from 'aws-amplify';
 import outputs from '@/amplify_outputs.json';
+import { useRecaptcha } from '@/utils/hooks/useRecaptcha';
 
 // Configure Amplify
 Amplify.configure(outputs, { ssr: true });
@@ -30,44 +31,60 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
         language: language || 'en',
     });
     const [errors, setErrors] = useState<Record<string, string>>({});
+    const { executeRecaptcha, isLoaded } = useRecaptcha();
 
-    const validateName = useCallback((value: string): string => {
-        if (!value) return t('cvModal.errors.nameRequired');
-        if (value.length < 2) return t('cvModal.errors.nameLength');
-        if (!/^[A-Za-z\s]+$/.test(value)) return t('cvModal.errors.nameLetters');
-        return '';
-    }, [t]);
+    const validateName = useCallback(
+        (value: string): string => {
+            if (!value) return t('cvModal.errors.nameRequired');
+            if (value.length < 2) return t('cvModal.errors.nameLength');
+            if (!/^[A-Za-z\s]+$/.test(value))
+                return t('cvModal.errors.nameLetters');
+            return '';
+        },
+        [t]
+    );
 
-    const validateEmail = useCallback((value: string): string => {
-        if (!value) return t('cvModal.errors.emailRequired');
-        if (value.length < 2) return t('cvModal.errors.emailLength');
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return t('cvModal.errors.emailValid');
-        return '';
-    }, [t]);
+    const validateEmail = useCallback(
+        (value: string): string => {
+            if (!value) return t('cvModal.errors.emailRequired');
+            if (value.length < 2) return t('cvModal.errors.emailLength');
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
+                return t('cvModal.errors.emailValid');
+            return '';
+        },
+        [t]
+    );
 
-    const validateLanguage = useCallback((value: string): string => {
-        if (!value) return t('cvModal.errors.languageRequired');
-        if (value.length < 2) return t('cvModal.errors.languageLength');
-        if (!/^[A-Za-z\s]+$/.test(value)) return t('cvModal.errors.languageLetters');
-        return '';
-    }, [t]);
+    const validateLanguage = useCallback(
+        (value: string): string => {
+            if (!value) return t('cvModal.errors.languageRequired');
+            if (value.length < 2) return t('cvModal.errors.languageLength');
+            if (!/^[A-Za-z\s]+$/.test(value))
+                return t('cvModal.errors.languageLetters');
+            return '';
+        },
+        [t]
+    );
 
     // Update error messages when language changes
     useEffect(() => {
         // Only update errors if there are any existing errors
-        const hasErrors = Object.values(errors).some(error => error !== '');
+        const hasErrors = Object.values(errors).some((error) => error !== '');
         if (hasErrors) {
             const newErrors = {
                 name: formData.name ? validateName(formData.name) : '',
                 email: formData.email ? validateEmail(formData.email) : '',
-                language: formData.language ? validateLanguage(formData.language) : '',
-                company: formData.company && formData.company.length < 2 
-                    ? t('cvModal.errors.companyLength') 
+                language: formData.language
+                    ? validateLanguage(formData.language)
                     : '',
+                company:
+                    formData.company && formData.company.length < 2
+                        ? t('cvModal.errors.companyLength')
+                        : '',
             };
             setErrors(newErrors);
         }
-    // Remove errors from dependencies to prevent infinite loop
+        // Remove errors from dependencies to prevent infinite loop
     }, [language, t, formData, validateName, validateEmail, validateLanguage]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,7 +107,8 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 error = validateLanguage(value);
                 break;
             case 'company':
-                if (value && value.length < 2) error = t('cvModal.errors.companyLength');
+                if (value && value.length < 2)
+                    error = t('cvModal.errors.companyLength');
                 break;
         }
 
@@ -104,9 +122,10 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
         const nameError = validateName(formData.name);
         const emailError = validateEmail(formData.email);
         const languageError = validateLanguage(formData.language);
-        const companyError = formData.company && formData.company.length < 2 
-            ? t('cvModal.errors.companyLength')
-            : '';
+        const companyError =
+            formData.company && formData.company.length < 2
+                ? t('cvModal.errors.companyLength')
+                : '';
 
         const newErrors = {
             name: nameError,
@@ -126,6 +145,13 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
 
         setLoading(true);
         try {
+            // Execute reCAPTCHA
+            const token = await executeRecaptcha('cv_form_submit');
+
+            if (!token) {
+                throw new Error('reCAPTCHA verification failed');
+            }
+
             // Create CV request using Amplify Gen 2 API
             const result = await client.models.CVRequest.create({
                 name: formData.name,
@@ -133,7 +159,7 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 company: formData.company || '',
                 language: formData.language || language,
                 requestedAt: new Date().toISOString(),
-                createdAt: new Date().toISOString()
+                createdAt: new Date().toISOString(),
             });
 
             console.log('CV request created:', result);
@@ -147,13 +173,15 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
 
     // Check if form is valid for enabling the submit button
     const isFormValid = () => {
-        return formData.name && 
-               formData.email && 
-               formData.language && 
-               !errors.name && 
-               !errors.email && 
-               !errors.language && 
-               !errors.company;
+        return (
+            formData.name &&
+            formData.email &&
+            formData.language &&
+            !errors.name &&
+            !errors.email &&
+            !errors.language &&
+            !errors.company
+        );
     };
 
     return (
@@ -166,7 +194,7 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
             onSubmit={handleSubmit}
             loading={loading}
             t={t}
-            disableSubmitButton={!isFormValid()}
+            disableSubmitButton={!isFormValid() || !isLoaded}
         >
             <TextField
                 fullWidth
@@ -219,6 +247,28 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 <option value="en">{t('cvModal.english')}</option>
                 <option value="es">{t('cvModal.spanish')}</option>
             </TextField>
+
+            {/* reCAPTCHA notice */}
+            <Box
+                sx={{
+                    mt: 2,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 1,
+                    opacity: 0.7,
+                    fontSize: '0.75rem',
+                }}
+            >
+                <Typography variant="caption" color="textSecondary">
+                    {t('cvModal.protectedBy')}
+                </Typography>
+                <img
+                    src="https://www.gstatic.com/recaptcha/api2/logo_48.png"
+                    alt="reCAPTCHA"
+                    style={{ height: '18px', width: 'auto' }}
+                />
+            </Box>
         </Modal>
     );
 };

@@ -267,7 +267,7 @@ const Modal: React.FC<ModalProps> = ({
             </Dialog>
             <Snackbar
                 open={snackbar.open}
-                autoHideDuration={5000}
+                autoHideDuration={4000}
                 onClose={handleCloseSnackbar}
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 sx={{
