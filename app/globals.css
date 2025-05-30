@@ -32,14 +32,28 @@ body {
     margin: 0;
 }
 
-/* Add smooth transition for theme changes */
-body.theme-transition-enabled,
-body.theme-transition-enabled * {
-    transition:
-        background-color 2s ease,
-        color 2s ease,
-        border-color 2.5s ease,
-        box-shadow 3s ease;
+/* Add smooth transition for theme changes - desktop */
+@media (min-width: 768px) {
+    body.theme-transition-enabled,
+    body.theme-transition-enabled * {
+        transition:
+            background-color 2s ease,
+            color 2s ease,
+            border-color 2.5s ease,
+            box-shadow 3s ease;
+    }
+}
+
+/* Add faster transition for theme changes - mobile */
+@media (max-width: 767px) {
+    body.theme-transition-enabled,
+    body.theme-transition-enabled * {
+        transition:
+            background-color 0.5s ease,
+            color 0s ease,
+            border-color 0.7s ease,
+            box-shadow 1s ease;
+    }
 }
 
 a {

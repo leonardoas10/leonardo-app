@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Box, Typography } from '@mui/material';
 
 interface HighlightedTextProps {
@@ -18,11 +18,39 @@ export const HighlightedText: React.FC<HighlightedTextProps> = ({
     textAlign = 'justify',
     paragraph = false,
 }) => {
-    // Create regex pattern for all terms to highlight
-    const pattern = new RegExp(`\\b(${highlightTerms.join('|')})\\b`, 'gi');
+    // Memoize the text parts to prevent recalculation on theme changes
+    const renderedParts = useMemo(() => {
+        // Skip processing if no highlight terms
+        if (!highlightTerms.length) return text;
 
-    // Split text by highlight terms
-    const parts = text.split(pattern);
+        // Create regex pattern for all terms to highlight
+        const pattern = new RegExp(`\\b(${highlightTerms.join('|')})\\b`, 'gi');
+
+        // Split text by highlight terms
+        const parts = text.split(pattern);
+
+        return parts.map((part, i) => {
+            // Check if this part matches any highlight term (case insensitive)
+            const isHighlighted = highlightTerms.some(
+                (term) => part.toLowerCase() === term.toLowerCase()
+            );
+
+            return isHighlighted ? (
+                <Box
+                    component="span"
+                    key={i}
+                    sx={{
+                        color: 'background.aws',
+                        fontWeight: 'medium',
+                    }}
+                >
+                    {part}
+                </Box>
+            ) : (
+                <React.Fragment key={i}>{part}</React.Fragment>
+            );
+        });
+    }, [text, highlightTerms]);
 
     return (
         <Typography
@@ -30,28 +58,7 @@ export const HighlightedText: React.FC<HighlightedTextProps> = ({
             textAlign={textAlign}
             paragraph={paragraph}
         >
-            {parts.map((part, i) => {
-                // Check if this part matches any highlight term (case insensitive)
-                const isHighlighted = highlightTerms.some(
-                    (term) => part.toLowerCase() === term.toLowerCase()
-                );
-
-                return isHighlighted ? (
-                    <Box
-                        component="span"
-                        key={i}
-                        sx={{
-                            color: 'background.aws',
-                            fontWeight: 'medium',
-                            transition: 'color 1s ease',
-                        }}
-                    >
-                        {part}
-                    </Box>
-                ) : (
-                    <React.Fragment key={i}>{part}</React.Fragment>
-                );
-            })}
+            {renderedParts}
         </Typography>
     );
 };

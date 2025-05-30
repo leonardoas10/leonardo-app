@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import {
     Box,
     IconButton,
@@ -16,7 +16,7 @@ import { Chip } from '@/components/common/Chip';
 
 import { CloudFrontURLs } from '@/utils/constants';
 // Define the images array
-const images = [
+const images = useMemo(() => [
     {
         alt: 'AWS Certified Developer Associate Badge',
         imageUrl: `${CloudFrontURLs.IMAGES}/developer-associate-badge.webp`,
@@ -69,7 +69,7 @@ const images = [
         alt: 'AWS Certified Cloud Practitioner Badge',
         imageUrl: `${CloudFrontURLs.IMAGES}/cloud-practitioner-badge.webp`,
     },
-];
+], []);
 
 export const ImageSlideshow: React.FC = () => {
     const theme = useTheme();
@@ -89,27 +89,28 @@ export const ImageSlideshow: React.FC = () => {
         return () => clearInterval(interval);
     }, []);
 
-    const handleNext = () => {
+    // Memoize event handlers
+    const handleNext = useCallback(() => {
         setCurrentImageIndex((prevIndex) =>
             prevIndex < images.length - 1 ? prevIndex + 1 : 0
         );
-    };
+    }, []);
 
-    const handlePrev = () => {
+    const handlePrev = useCallback(() => {
         setCurrentImageIndex((prevIndex) =>
             prevIndex > 0 ? prevIndex - 1 : images.length - 1
         );
-    };
+    }, []);
 
-    const handleTouchStart = (e: React.TouchEvent) => {
+    const handleTouchStart = useCallback((e: React.TouchEvent) => {
         setTouchStart(e.targetTouches[0].clientX);
-    };
+    }, []);
 
-    const handleTouchMove = (e: React.TouchEvent) => {
+    const handleTouchMove = useCallback((e: React.TouchEvent) => {
         setTouchEnd(e.targetTouches[0].clientX);
-    };
+    }, []);
 
-    const handleTouchEnd = () => {
+    const handleTouchEnd = useCallback(() => {
         if (touchStart - touchEnd > 50) {
             // Swipe left, go to next
             handleNext();
@@ -119,7 +120,7 @@ export const ImageSlideshow: React.FC = () => {
             // Swipe right, go to previous
             handlePrev();
         }
-    };
+    }, [touchStart, touchEnd, handleNext, handlePrev]);
 
     return (
         <Box
@@ -179,23 +180,25 @@ export const ImageSlideshow: React.FC = () => {
                     backdropFilter: 'blur(2px)',
                 }}
             >
-                <Stack direction="row" spacing={0.5}>
-                    {images.map((_, index) => (
-                        <FiberManualRecordIcon
-                            key={index}
-                            onClick={() => setCurrentImageIndex(index)}
-                            sx={{
-                                cursor: 'pointer',
-                                color:
-                                    index === currentImageIndex
-                                        ? theme.palette.background.aws
-                                        : 'rgba(255,255,255,0.5)',
-                                fontSize: index === currentImageIndex ? 12 : 8,
-                                lineHeight: 1,
-                            }}
-                        />
-                    ))}
-                </Stack>
+                {useMemo(() => (
+                    <Stack direction="row" spacing={0.5}>
+                        {images.map((_, index) => (
+                            <FiberManualRecordIcon
+                                key={index}
+                                onClick={() => setCurrentImageIndex(index)}
+                                sx={{
+                                    cursor: 'pointer',
+                                    color:
+                                        index === currentImageIndex
+                                            ? theme.palette.background.aws
+                                            : 'rgba(255,255,255,0.5)',
+                                    fontSize: index === currentImageIndex ? 12 : 8,
+                                    lineHeight: 1,
+                                }}
+                            />
+                        ))}
+                    </Stack>
+                ), [currentImageIndex, theme.palette.background.aws])}
             </Box>
 
             {!isMobile && (
