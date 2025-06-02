@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import Modal from '../common/Modal';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import Modal from '@/components/common/Modal';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TextField, Box, Typography } from '@mui/material';
@@ -31,7 +31,8 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
         language: language || 'en',
     });
     const [errors, setErrors] = useState<Record<string, string>>({});
-    const { executeRecaptcha, isLoaded } = useRecaptcha();
+    const { executeRecaptcha, isLoaded, loadRecaptchaScript } = useRecaptcha();
+    const userInteracted = useRef(false);
 
     const validateName = useCallback(
         (value: string): string => {
@@ -94,6 +95,13 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
             [name]: value,
         });
 
+        // Track user interaction and load reCAPTCHA only after user starts filling the form
+        if (!userInteracted.current) {
+            userInteracted.current = true;
+            // Load reCAPTCHA script in the background after user interaction
+            loadRecaptchaScript();
+        }
+
         // Validate field on change
         let error = '';
         switch (name) {
@@ -145,7 +153,7 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
 
         setLoading(true);
         try {
-            // Execute reCAPTCHA
+            // Execute reCAPTCHA (this will load the script if not already loaded)
             const token = await executeRecaptcha('cv_form_submit');
 
             if (!token) {
@@ -153,13 +161,11 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
             }
 
             // Create CV request using Amplify Gen 2 API
-            const result = await client.models.CVRequest.create({
+            const result = await client.mutations.sendCV({
                 name: formData.name,
                 email: formData.email,
                 company: formData.company || '',
                 language: formData.language || language,
-                requestedAt: new Date().toISOString(),
-                createdAt: new Date().toISOString(),
             });
 
             console.log('CV request created:', result);
@@ -184,6 +190,14 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
         );
     };
 
+    // Preload reCAPTCHA when user focuses on the form
+    const handleFormFocus = useCallback(() => {
+        if (!userInteracted.current) {
+            userInteracted.current = true;
+            loadRecaptchaScript();
+        }
+    }, [loadRecaptchaScript]);
+
     return (
         <Modal
             key={`modal-${language}`}
@@ -203,6 +217,7 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
+                onFocus={handleFormFocus}
                 required
                 error={!!errors.name}
                 helperText={errors.name}
@@ -215,6 +230,7 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
+                onFocus={handleFormFocus}
                 required
                 error={!!errors.email}
                 helperText={errors.email}
@@ -226,6 +242,7 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 name="company"
                 value={formData.company}
                 onChange={handleChange}
+                onFocus={handleFormFocus}
                 error={!!errors.company}
                 helperText={errors.company}
             />
@@ -237,6 +254,7 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 name="language"
                 value={formData.language}
                 onChange={handleChange}
+                onFocus={handleFormFocus}
                 required
                 error={!!errors.language}
                 helperText={errors.language}
