@@ -6,14 +6,12 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import aboutES from './es/about.json';
 import commonES from './es/common.json';
 import navigationES from './es/navigation.json';
-import layoutES from './es/layout.json';
 import architectureES from './es/architecture.json';
 import contactES from './es/contact.json';
 //EN
 import aboutEN from './en/about.json';
 import commonEN from './en/common.json';
 import navigationEN from './en/navigation.json';
-import layoutEN from './en/layout.json';
 import architectureEN from './en/architecture.json';
 import contactEN from './en/contact.json';
 
@@ -26,7 +24,6 @@ i18n.use(LanguageDetector)
             es: {
                 about: aboutES,
                 common: commonES,
-                layout: layoutES,
                 navigation: navigationES,
                 architecture: architectureES,
                 contact: contactES,
@@ -34,7 +31,6 @@ i18n.use(LanguageDetector)
             en: {
                 about: aboutEN,
                 common: commonEN,
-                layout: layoutEN,
                 navigation: navigationEN,
                 architecture: architectureEN,
                 contact: contactEN,

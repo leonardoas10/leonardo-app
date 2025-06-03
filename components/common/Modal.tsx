@@ -9,8 +9,6 @@ import {
     TextField,
     Box,
     CircularProgress,
-    Snackbar,
-    Alert,
 } from '@mui/material';
 
 import { Button } from './Button';
@@ -43,6 +41,7 @@ interface ModalProps {
     children?: React.ReactNode;
     t?: (key: string) => string;
     disableSubmitButton?: boolean;
+    hideActions?: boolean;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -57,6 +56,7 @@ const Modal: React.FC<ModalProps> = ({
     children,
     t,
     disableSubmitButton,
+    hideActions,
 }) => {
     const initialFormData = () => {
         const data: FormData = {
@@ -143,7 +143,8 @@ const Modal: React.FC<ModalProps> = ({
                 fullWidth
                 disableScrollLock={true}
             >
-                <DialogTitle>{title}</DialogTitle>
+                <DialogTitle sx={{ textAlign: 'center' }}>{title}</DialogTitle>
+
                 <DialogContent>
                     <Box component="form" sx={{ mt: 2 }}>
                         {children ? (
@@ -226,72 +227,48 @@ const Modal: React.FC<ModalProps> = ({
                         )}
                     </Box>
                 </DialogContent>
-                <DialogActions>
-                    <Button
-                        onClick={onClose}
-                        color="primary"
-                        sx={{ bgcolor: 'gray', boxShadow: '0' }}
-                    >
-                        Cancel
-                    </Button>
-                    <Button
-                        onClick={handleSubmit}
-                        color="primary"
-                        variant="contained"
-                        disabled={
-                            loading ||
-                            (disableSubmitButton !== undefined
-                                ? disableSubmitButton
-                                : fields
-                                  ? fields.some(
-                                        (f) => f.required && !formData[f.name]
-                                    )
-                                  : !formData.name || !formData.email)
-                        }
-                        sx={{
-                            bgcolor: 'background.aws',
-                            color: 'text.primary',
-                            '&:hover': {
+                {!hideActions && (
+                    <DialogActions>
+                        <Button
+                            onClick={onClose}
+                            color="primary"
+                            sx={{ bgcolor: 'gray', boxShadow: '0' }}
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            onClick={handleSubmit}
+                            color="primary"
+                            variant="contained"
+                            disabled={
+                                loading ||
+                                (disableSubmitButton !== undefined
+                                    ? disableSubmitButton
+                                    : fields
+                                      ? fields.some(
+                                            (f) =>
+                                                f.required && !formData[f.name]
+                                        )
+                                      : !formData.name || !formData.email)
+                            }
+                            sx={{
                                 bgcolor: 'background.aws',
-                                opacity: 0.9,
-                            },
-                        }}
-                    >
-                        {loading ? (
-                            <CircularProgress size={24} color="inherit" />
-                        ) : (
-                            submitButtonText
-                        )}
-                    </Button>
-                </DialogActions>
+                                color: 'text.primary',
+                                '&:hover': {
+                                    bgcolor: 'background.aws',
+                                    opacity: 0.9,
+                                },
+                            }}
+                        >
+                            {loading ? (
+                                <CircularProgress size={24} color="inherit" />
+                            ) : (
+                                submitButtonText
+                            )}
+                        </Button>
+                    </DialogActions>
+                )}
             </Dialog>
-            <Snackbar
-                open={snackbar.open}
-                autoHideDuration={4000}
-                onClose={handleCloseSnackbar}
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                sx={{
-                    top: '50% !important',
-                    transform: 'translateY(-50%)',
-                }}
-            >
-                <Alert
-                    onClose={handleCloseSnackbar}
-                    severity={snackbar.severity}
-                    sx={{
-                        width: '100%',
-                        bgcolor:
-                            snackbar.severity === 'success'
-                                ? 'background.aws'
-                                : 'error.main',
-                        color: 'white',
-                        fontWeight: 'bold',
-                    }}
-                    variant="filled"
-                >
-                    {snackbar.message}
-                </Alert>
-            </Snackbar>
         </>
     );
 };

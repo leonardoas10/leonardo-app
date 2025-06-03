@@ -6,10 +6,11 @@ import { createHash } from 'crypto';
 
 import type { Schema } from '@/data/resource';
 import { getAmplifyClient } from '@/utils/graphql';
+import { EnviromentVariables } from '@/utils/constants';
 
 const client = await getAmplifyClient(env);
-const sesClient = new SESClient({ region: process.env.AWS_REGION });
-const s3Client = new S3Client({ region: process.env.AWS_REGION });
+const sesClient = new SESClient({ region: EnviromentVariables.AWS_REGION });
+const s3Client = new S3Client({ region: EnviromentVariables.AWS_REGION });
 
 const logger = new Logger({
     serviceName: 'send-cv-mutation',
@@ -87,7 +88,10 @@ export const handler: Schema['sendCV']['functionHandler'] = async (event) => {
 
         // Step 2: Send email with attachment
         // Ensure required environment variables are available
-        if (!process.env.FROM_EMAIL_ADDRESS || !process.env.CV_BUCKET_NAME) {
+        if (
+            !EnviromentVariables.FROM_EMAIL_ADDRESS ||
+            !EnviromentVariables.CV_BUCKET_NAME
+        ) {
             throw new Error(
                 'Required environment variables are not configured'
             );
@@ -99,7 +103,7 @@ export const handler: Schema['sendCV']['functionHandler'] = async (event) => {
         // Get the CV file from S3
         const cvFile = await s3Client.send(
             new GetObjectCommand({
-                Bucket: process.env.CV_BUCKET_NAME,
+                Bucket: EnviromentVariables.CV_BUCKET_NAME,
                 Key: cvKey,
             })
         );
@@ -129,7 +133,7 @@ export const handler: Schema['sendCV']['functionHandler'] = async (event) => {
 
         // Construct raw email with attachment using MIME
         const rawEmail = [
-            `From: ${process.env.FROM_EMAIL_ADDRESS}`,
+            `From: ${EnviromentVariables.FROM_EMAIL_ADDRESS}`,
             `To: ${email}`,
             `Subject: ${subject}`,
             'MIME-Version: 1.0',
@@ -172,14 +176,14 @@ export const handler: Schema['sendCV']['functionHandler'] = async (event) => {
         });
 
         // Also send notification to admin (optional)
-        if (process.env.ADMIN_EMAIL) {
+        if (EnviromentVariables.ADMIN_EMAIL) {
             const adminSubject = `New CV Request: ${name} (${email})`;
             const adminBody = `New CV request details:\nName: ${name}\nEmail: ${email}\nCompany: ${company || 'Not provided'}\nLanguage: ${language}\nRequest ID: ${data!.id}\nTime: ${new Date().toISOString()}`;
 
             // Simple email without attachment for admin notification
             const adminRawEmail = [
-                `From: ${process.env.FROM_EMAIL_ADDRESS}`,
-                `To: ${process.env.ADMIN_EMAIL}`,
+                `From: ${EnviromentVariables.FROM_EMAIL_ADDRESS}`,
+                `To: ${EnviromentVariables.ADMIN_EMAIL}`,
                 `Subject: ${adminSubject}`,
                 'MIME-Version: 1.0',
                 'Content-Type: text/plain; charset=utf-8',

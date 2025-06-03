@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
-
-const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!;
+import { useCallback, useState } from 'react';
+import { EnviromentVariables } from '@/utils/constants';
 
 export const useRecaptcha = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -9,25 +8,26 @@ export const useRecaptcha = () => {
     // Function to load the reCAPTCHA script on demand
     const loadRecaptchaScript = useCallback(() => {
         if (scriptLoaded) return Promise.resolve();
-        
+
         return new Promise<void>((resolve) => {
             const script = document.createElement('script');
-            script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+            script.src = `https://www.google.com/recaptcha/api.js?render=${EnviromentVariables.RECAPTCHA_SITE_KEY}`;
             script.async = true;
             script.defer = true;
-            
+
             script.onload = () => {
                 setScriptLoaded(true);
                 setIsLoaded(true);
-                
+
                 // Hide the reCAPTCHA badge
                 const style = document.createElement('style');
-                style.innerHTML = '.grecaptcha-badge { visibility: hidden !important; }';
+                style.innerHTML =
+                    '.grecaptcha-badge { visibility: hidden !important; }';
                 document.head.appendChild(style);
-                
+
                 resolve();
             };
-            
+
             document.head.appendChild(script);
         });
     }, [scriptLoaded]);
@@ -38,7 +38,7 @@ export const useRecaptcha = () => {
             if (!scriptLoaded) {
                 await loadRecaptchaScript();
             }
-            
+
             if (!window.grecaptcha) {
                 console.error('reCAPTCHA not loaded');
                 return null;
@@ -48,7 +48,9 @@ export const useRecaptcha = () => {
                 return await new Promise<string>((resolve) => {
                     window.grecaptcha.ready(() => {
                         window.grecaptcha
-                            .execute(RECAPTCHA_SITE_KEY, { action })
+                            .execute(EnviromentVariables.RECAPTCHA_SITE_KEY, {
+                                action,
+                            })
                             .then(resolve);
                     });
                 });

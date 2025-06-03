@@ -3,7 +3,7 @@
         "getCV": "Obtener CV"
     },
     "cvModal": {
-        "title": "Descargar CV",
+        "title": "Obtener el CV de Leonardo Aranguren",
         "description": "Por favor selecciona tu idioma y formato preferido:",
         "name": "Nombre",
         "email": "Correo electrónico",
@@ -15,10 +15,17 @@
         "cancel": "Cancelar",
         "english": "Inglés",
         "spanish": "Español",
-        "success": "¡Formulario enviado con éxito!",
-        "error": "Error al enviar el formulario. Por favor, inténtalo de nuevo.",
+
         "captchaInstructions": "Por favor, resuelve este problema matemático simple para verificar que eres humano:",
         "protectedBy": "Protegido por reCAPTCHA",
+        "sending": "Enviando tu solicitud...",
+        "successSnackbar": "El CV de Leonardo fue enviado a tu correo electrónico",
+        "errorSnackbar": "Error al procesar tu solicitud",
+        "successTitle": "¡Éxito!",
+        "successMessage": "Gracias por tu solicitud. El CV de Leonardo fue enviado a tu correo electrónico.",
+        "errorTitle": "Error",
+        "errorMessage": "Hubo un error al procesar tu solicitud. Por favor, inténtalo de nuevo más tarde.",
+        "submitAgain": "¿Quieres enviar otra solicitud?",
         "errors": {
             "required": "Este campo es obligatorio",
             "nameRequired": "El nombre es obligatorio",

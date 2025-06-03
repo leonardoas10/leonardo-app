@@ -3,7 +3,7 @@
         "getCV": "Get CV"
     },
     "cvModal": {
-        "title": "Download CV",
+        "title": "Obtain Leonardo's CV",
         "description": "Please select your preferred language and format:",
         "name": "Name",
         "email": "Email",
@@ -15,10 +15,16 @@
         "cancel": "Cancel",
         "english": "English",
         "spanish": "Spanish",
-        "success": "Form submitted successfully!",
-        "error": "Failed to submit form. Please try again.",
         "captchaInstructions": "Please solve this simple math problem to verify you're human:",
         "protectedBy": "Protected by reCAPTCHA",
+        "sending": "Sending your request...",
+        "successSnackbar": "Leonardo's CV has been sent to your email",
+        "errorSnackbar": "Failed to process your request",
+        "successTitle": "Success!",
+        "successMessage": "Thank you for your request. Leonardo's CV has been sent to your email. Please check your inbox.",
+        "errorTitle": "Error",
+        "errorMessage": "There was an error processing your request. Please try again later.",
+        "submitAgain": "Want to submit again?",
         "errors": {
             "required": "This field is required",
             "nameRequired": "Name is required",

@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
                 hostname: 'd37rk2a86awu3g.cloudfront.net',
                 pathname: '/images/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'www.gstatic.com',
+                pathname: '/recaptcha/**',
+            },
         ],
         minimumCacheTTL: 31536000, // 1 year in seconds
         formats: ['image/webp'],
