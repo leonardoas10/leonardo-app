@@ -54,7 +54,6 @@ const Modal: React.FC<ModalProps> = ({
     fields,
     onFieldChange,
     children,
-    t,
     disableSubmitButton,
     hideActions,
 }) => {
@@ -82,11 +81,6 @@ const Modal: React.FC<ModalProps> = ({
     const [internalLoading, setInternalLoading] = useState(false);
     const loading =
         externalLoading !== undefined ? externalLoading : internalLoading;
-    const [snackbar, setSnackbar] = useState({
-        open: false,
-        message: '',
-        severity: 'success' as 'success' | 'error',
-    });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
@@ -104,34 +98,12 @@ const Modal: React.FC<ModalProps> = ({
         if (externalLoading === undefined) {
             setInternalLoading(true);
         }
-        try {
-            // Call onSubmit with or without formData based on the function signature
-            await onSubmit();
-            setSnackbar({
-                open: true,
-                message: t
-                    ? t('cvModal.success')
-                    : 'Form submitted successfully!',
-                severity: 'success',
-            });
-            onClose();
-        } catch {
-            setSnackbar({
-                open: true,
-                message: t
-                    ? t('cvModal.error')
-                    : 'Failed to submit form. Please try again.',
-                severity: 'error',
-            });
-        } finally {
-            if (externalLoading === undefined) {
-                setInternalLoading(false);
-            }
-        }
-    };
+        await onSubmit();
+        onClose();
 
-    const handleCloseSnackbar = () => {
-        setSnackbar({ ...snackbar, open: false });
+        if (externalLoading === undefined) {
+            setInternalLoading(false);
+        }
     };
 
     return (
