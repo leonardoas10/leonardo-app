@@ -44,7 +44,7 @@ interface ModalProps {
     hideActions?: boolean;
 }
 
-const Modal: React.FC<ModalProps> = ({
+export function Modal({
     open,
     onClose,
     title,
@@ -56,7 +56,7 @@ const Modal: React.FC<ModalProps> = ({
     children,
     disableSubmitButton,
     hideActions,
-}) => {
+}: ModalProps) {
     const initialFormData = () => {
         const data: FormData = {
             name: '',
@@ -243,6 +243,4 @@ const Modal: React.FC<ModalProps> = ({
             </Dialog>
         </>
     );
-};
-
-export default Modal;
+}

@@ -105,6 +105,7 @@ export default function Home() {
                         sx={{
                             fontWeight: 'bold',
                             textAlign: { xs: 'center', md: 'left' },
+                            fontSize: { xs: '1.75rem', md: '2.125rem' },
                         }}
                     >
                         {t('homePage.aboutTitle')}
@@ -182,6 +183,7 @@ export default function Home() {
                         sx={{
                             fontWeight: 'bold',
                             textAlign: { xs: 'center', md: 'left' },
+                            fontSize: { xs: '1.75rem', md: '2.125rem' },
                         }}
                     >
                         {t('homePage.discoveryTitle')}
@@ -216,6 +218,7 @@ export default function Home() {
                         sx={{
                             fontWeight: 'bold',
                             textAlign: 'center',
+                            fontSize: { xs: '1.75rem', md: '2.125rem' },
                         }}
                     >
                         {t('homePage.discoveryTitle')}
@@ -248,6 +251,7 @@ export default function Home() {
                         sx={{
                             fontWeight: 'bold',
                             textAlign: { xs: 'center', md: 'center' },
+                            fontSize: { xs: '1.75rem', md: '2.125rem' },
                         }}
                     >
                         {t('homePage.experienceTitle')}

@@ -1,6 +1,6 @@
 {
     "homePage": {
-        "aboutTitle": "Hey! Know me...",
+        "aboutTitle": "Hey! Meet me...",
         "firstParagraphPart1": "Leonardo Aranguren, a Software Developer, Cloud Engineer, and Technical Lead with a solid foundation in cloud technologies, especially AWS.",
         "firstParagraphPart2": "Hold multiple AWS certifications —Developer Associate, Solutions Architect, Serverless, EKS, Networking Core, and Cloud Quest challenges.",
         "discoveryTitle": "Driven by innovation...",
@@ -11,64 +11,70 @@
     },
     "experienceTabs": {
         "cloudEngineer": {
-            "label": "Cloud Engineer",
+            "label": "☁️ Cloud Engineer",
             "sections": {
                 "cicd": {
-                    "title": "Automation of CI/CD Pipelines",
-                    "icon": "🔧",
+                    "title": "Cost Optimization and Automation",
+                    "icon": "💸",
                     "items": [
-                        "Designed and implemented CI/CD workflows using GitHub Actions and AWS CodePipeline, reducing deployment time by 60%.",
-                        "Built reusable workflows for multi-environment deployments with rollback support."
+                        "Reduced infrastructure costs by over $8,000 USD annually by migrating pipelines from CircleCI to GitHub Actions and optimizing resources in AWS ECS.",
+                        "Consolidated 20+ Lambdas into a single repository with Amplify Gen 2, optimizing resource management and reducing operational complexity.",
+                        "Built 50+ CI/CD pipelines for deployment, testing, and quality control workflows using GitHub Actions, Jenkins, and CircleCI."
                     ]
                 },
                 "serverless": {
                     "title": "Serverless Architecture",
-                    "icon": "☁️",
+                    "icon": "🔐",
                     "items": [
-                        "Developed scalable event-driven systems using AWS Lambda, Step Functions, and EventBridge.",
-                        "Created robust observability tooling with custom CloudWatch dashboards and centralized log subscriptions."
+                        "Designed and implemented event-driven serverless solutions with Lambda, Step Functions, SQS, SNS, DynamoDB, EventBridge, S3, and AppSync.",
+                        "Implemented infrastructure automation using Terraform, AWS CDK, and Amplify Gen 2 for multi-environment deployments and centralized control.",
+                        "Developed secure architecture with VPC, subnets, security groups, and identity management with Cognito to ensure isolation and access control."
                     ]
                 }
             }
         },
         "softwareDeveloper": {
-            "label": "Software Developer",
+            "label": "💻 Software Development",
             "sections": {
                 "resilient": {
-                    "title": "Resilient and Secure Systems",
-                    "icon": "🛡",
+                    "title": "Refactoring and Modularization",
+                    "icon": "🔄",
                     "items": [
-                        "Led the migration of legacy services to a serverless architecture, increasing uptime and reducing maintenance costs.",
-                        "Enforced security best practices through IAM least privilege, API Gateway WAF, and VPC configurations."
+                        "Refactored 50+ monolithic APIs into scalable microservices following the single responsibility principle, using Go, Node.js, NestJS, Python, and Laravel.",
+                        "Designed decoupled and resilient architectures aligned with the 5 pillars of the AWS Well-Architected Framework.",
+                        "Enabled interoperability between microservices and GCP systems through secure and efficient integrations."
                     ]
                 },
                 "fullstack": {
-                    "title": "Full-Stack Development",
-                    "icon": "💻",
+                    "title": "Cross-Platform Modules and Applications",
+                    "icon": "📱",
                     "items": [
-                        "Built responsive web applications using React, Next.js, and Material UI.",
-                        "Developed backend services with Node.js, Python, and TypeScript."
+                        "Developed ordering and loyalty modules in Next.js, React Native, and React, enhancing user experience in mobile and web apps.",
+                        "Designed scalable APIs using GraphQL (AppSync) and REST (API Gateway) for critical customer-facing services.",
+                        "Implemented multi-channel authentication with Cognito, event orchestration with SNS, and access control in distributed environments."
                     ]
                 }
             }
         },
         "technicalLead": {
-            "label": "Technical Lead",
+            "label": "👨‍💻 Technical Lead",
             "sections": {
                 "intelligent": {
-                    "title": "Intelligent Solutions",
-                    "icon": "🧠",
+                    "title": "Strategic Technical Direction",
+                    "icon": "🚀",
                     "items": [
-                        "Integrated OpenAI and AWS Bedrock services to build internal AI copilots that boosted productivity in support and dev teams.",
-                        "Led architecture decisions for cloud-native applications, focusing on scalability and cost optimization."
+                        "Led the development of the first multi-authenticator system for digital banking channels, integrating security layers in Cognito, SNS, and VPC.",
+                        "Designed and coordinated an integration ecosystem between legacy and modern services, enabling a smooth transition to a cloud-native architecture.",
+                        "Guided technical teams in designing, planning, and deploying scalable, robust solutions aligned with business objectives."
                     ]
                 },
                 "leadership": {
-                    "title": "Team Leadership",
-                    "icon": "👥",
+                    "title": "Observability and Continuous Improvement",
+                    "icon": "📊",
                     "items": [
-                        "Mentored junior developers and conducted technical interviews for new team members.",
-                        "Facilitated knowledge sharing sessions and promoted best practices across development teams."
+                        "Implemented custom CloudWatch dashboards, log centralization, and key metrics for health and performance monitoring.",
+                        "Achieved complete DevOps cycle automation: Jira integration, testing, deployment, and automatic rollback across multiple environments.",
+                        "Promoted continuous quality culture and technical ownership at all levels of development and infrastructure."
                     ]
                 }
             }

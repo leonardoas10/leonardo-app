@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import Modal from '@/components/common/Modal';
+import { Modal } from '@/components/common/Modal';
 import { Button } from '@/components/common/Button';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { useLanguage } from '@/contexts/LanguageContext';

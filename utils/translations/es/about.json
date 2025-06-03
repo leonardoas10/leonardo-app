@@ -24,64 +24,70 @@
     },
     "experienceTabs": {
         "cloudEngineer": {
-            "label": "Ingeniero Cloud",
+            "label": "☁️ Cloud Engineer",
             "sections": {
                 "cicd": {
-                    "title": "Automatización de Pipelines CI/CD",
-                    "icon": "🔧",
+                    "title": "Optimización de Costos y Automatización",
+                    "icon": "💸",
                     "items": [
-                        "Diseñé e implementé flujos de trabajo CI/CD utilizando GitHub Actions y AWS CodePipeline, reduciendo el tiempo de despliegue en un 60%.",
-                        "Construí flujos de trabajo reutilizables para despliegues multi-entorno con soporte de rollback."
+                        "Redujo costos de infraestructura en más de $8,000 USD anuales al migrar pipelines de CircleCI a GitHub Actions y optimizar recursos en AWS ECS.",
+                        "Consolidó 20+ Lambdas en un único repositorio con Amplify Gen 2, optimizando la gestión de recursos y reduciendo complejidad operativa.",
+                        "Construyó 50+ pipelines CI/CD para flujos de despliegue, testing y control de calidad usando GitHub Actions, Jenkins y CircleCI."
                     ]
                 },
                 "serverless": {
                     "title": "Arquitectura Serverless",
-                    "icon": "☁️",
+                    "icon": "🔐",
                     "items": [
-                        "Desarrollé sistemas escalables basados en eventos utilizando AWS Lambda, Step Functions y EventBridge.",
-                        "Creé herramientas de observabilidad robustas con paneles personalizados de CloudWatch y suscripciones de logs centralizadas."
+                        "Diseñó e implementó soluciones serverless basadas en eventos con Lambda, Step Functions, SQS, SNS, DynamoDB, EventBridge, S3 y AppSync.",
+                        "Implementó automatización de infraestructura usando Terraform, AWS CDK y Amplify Gen 2 para despliegues multi-entorno y control centralizado.",
+                        "Desarrolló arquitectura segura con VPC, subnets, security groups, y gestión de identidades con Cognito para garantizar aislamiento y control de acceso."
                     ]
                 }
             }
         },
         "softwareDeveloper": {
-            "label": "Desarrollador de Software",
+            "label": "💻 Software Development",
             "sections": {
                 "resilient": {
-                    "title": "Sistemas Resilientes y Seguros",
-                    "icon": "🛡",
+                    "title": "Refactorización y Modularización",
+                    "icon": "🔄",
                     "items": [
-                        "Lideré la migración de servicios legacy a una arquitectura serverless, aumentando el tiempo de actividad y reduciendo los costos de mantenimiento.",
-                        "Implementé mejores prácticas de seguridad a través de IAM con privilegios mínimos, WAF de API Gateway y configuraciones de VPC."
+                        "Refactorizó 50+ APIs monolíticas a microservicios escalables siguiendo el principio de responsabilidad única, usando Go, Node.js, NestJS, Python y Laravel.",
+                        "Diseñó arquitecturas desacopladas y resilientes, alineadas con los 5 pilares del AWS Well-Architected Framework.",
+                        "Habilitó la interoperabilidad entre microservicios y sistemas GCP mediante integraciones seguras y eficientes."
                     ]
                 },
                 "fullstack": {
-                    "title": "Desarrollo Full-Stack",
-                    "icon": "💻",
+                    "title": "Módulos y Aplicaciones Multiplataforma",
+                    "icon": "📱",
                     "items": [
-                        "Construí aplicaciones web responsivas utilizando React, Next.js y Material UI.",
-                        "Desarrollé servicios backend con Node.js, Python y TypeScript."
+                        "Desarrolló módulos de pedido y fidelización en Next.js, React Native y React, mejorando la experiencia del usuario en apps móviles y web.",
+                        "Diseñó APIs escalables usando GraphQL (AppSync) y REST (API Gateway) para servicios críticos orientados a cliente.",
+                        "Implementó autenticación multi-canal con Cognito, orquestación de eventos con SNS, y control de acceso en entornos distribuidos."
                     ]
                 }
             }
         },
         "technicalLead": {
-            "label": "Líder Técnico",
+            "label": "👨‍💻 Lider Técnico",
             "sections": {
                 "intelligent": {
-                    "title": "Soluciones Inteligentes",
-                    "icon": "🧠",
+                    "title": "Dirección Técnica Estratégica",
+                    "icon": "🚀",
                     "items": [
-                        "Integré servicios de OpenAI y AWS Bedrock para construir copilotos de IA internos que aumentaron la productividad en equipos de soporte y desarrollo.",
-                        "Lideré decisiones de arquitectura para aplicaciones cloud-native, enfocándome en escalabilidad y optimización de costos."
+                        "Lideró el desarrollo del primer sistema multi-autenticador para canales bancarios digitales, integrando capas de seguridad en Cognito, SNS y VPC.",
+                        "Diseñó y coordinó un ecosistema de integración entre servicios legacy y modernos, habilitando la transición fluida hacia una arquitectura cloud-native.",
+                        "Guió equipos técnicos en diseño, planificación y despliegue de soluciones escalables, robustas y alineadas con objetivos de negocio."
                     ]
                 },
                 "leadership": {
-                    "title": "Liderazgo de Equipo",
-                    "icon": "👥",
+                    "title": "Observabilidad y Mejora Continua",
+                    "icon": "📊",
                     "items": [
-                        "Mentoré a desarrolladores junior y realicé entrevistas técnicas para nuevos miembros del equipo.",
-                        "Facilité sesiones de intercambio de conocimientos y promoví mejores prácticas en los equipos de desarrollo."
+                        "Implementó dashboards personalizados en CloudWatch, centralización de logs y métricas clave para monitoreo de salud y rendimiento.",
+                        "Logró automatización completa del ciclo DevOps: integración con Jira, testing, despliegue y rollback automático en múltiples entornos.",
+                        "Promovió cultura de calidad continua y ownership técnico en todos los niveles de desarrollo e infraestructura."
                     ]
                 }
             }
