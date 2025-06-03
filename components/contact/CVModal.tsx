@@ -170,12 +170,6 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
         }
 
         setLoading(true);
-        // Show "sending" snackbar
-        setSnackbar({
-            open: true,
-            message: t('cvModal.sending') || 'Sending your request...',
-            severity: 'info',
-        });
 
         try {
             // Execute reCAPTCHA (this will load the script if not already loaded)
@@ -184,6 +178,16 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
             if (!token) {
                 throw new Error('reCAPTCHA verification failed');
             }
+
+            // Close the modal immediately
+            onClose();
+
+            // Show "sending" snackbar
+            setSnackbar({
+                open: true,
+                message: t('cvModal.sending') || 'Sending your request...',
+                severity: 'info',
+            });
 
             // Create CV request using Amplify Gen 2 API
             const result = await client.mutations.sendCV({
@@ -200,16 +204,6 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 throw new Error('Failed to create CV request');
             }
 
-            // Close the sending snackbar
-            setSnackbar({
-                open: false,
-                message: '',
-                severity: 'info',
-            });
-
-            // Show success message
-            setShowSuccessMessage(true);
-
             // Show success snackbar
             setSnackbar({
                 open: true,
@@ -218,15 +212,9 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                     'Your CV will be sent to your email shortly',
                 severity: 'success',
             });
-
-            // Close the modal after a delay to show the success message
-            setTimeout(() => {
-                onClose();
-            }, 8000);
         } catch (error) {
             console.error('Error submitting CV request:', error);
             setRequestError(true);
-
             // Show error snackbar
             setSnackbar({
                 open: true,
@@ -423,7 +411,19 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 <Alert
                     onClose={handleCloseSnackbar}
                     severity={snackbar.severity}
-                    sx={{ width: '100%' }}
+                    sx={{
+                        width: '100%',
+                        bgcolor:
+                            snackbar.severity === 'success'
+                                ? 'rgba(46, 125, 50, 0.9)' // Darker green
+                                : snackbar.severity === 'info'
+                                  ? 'rgba(2, 136, 209, 0.9)' // Darker blue
+                                  : 'rgba(211, 47, 47, 0.9)', // Darker red
+                        color: 'white',
+                        '& .MuiAlert-icon': {
+                            color: 'white',
+                        },
+                    }}
                 >
                     {snackbar.message}
                 </Alert>
