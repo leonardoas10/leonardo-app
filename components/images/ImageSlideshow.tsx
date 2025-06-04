@@ -156,6 +156,7 @@ export const ImageSlideshow: React.FC = () => {
                     src={image.imageUrl}
                     alt={image.alt}
                     fill
+                    sizes="(max-width: 600px) 100vw, 600px"
                     style={{
                         position: 'absolute',
                         objectFit: 'contain',

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Button } from '../common/Button';
 import CVModal from './CVModal';
 import { useTranslation } from '@/utils/hooks/useTranslation';
+import { trackEvent } from '@/utils/analytics/trackEvent';
 
 interface ContactSectionProps {
     size?: 'small' | 'medium' | 'large';
@@ -15,9 +16,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     const [modalOpen, setModalOpen] = useState(false);
     const { t } = useTranslation('contact');
 
+    const handleOpenModal = () => {
+        // Send event to Google Tag Manager
+        trackEvent('button_click', {
+            button_name: 'Get CV',
+            button_location: 'Contact Section',
+        });
+        setModalOpen(true);
+    };
+
     return (
         <>
-            <Button onClick={() => setModalOpen(true)} size={size}>
+            <Button onClick={handleOpenModal} size={size}>
                 {t('contactSection.getCV')}
             </Button>
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
+import { trackEvent } from '@/utils/analytics/trackEvent';
 import { Modal } from '@/components/common/Modal';
 import { Button } from '@/components/common/Button';
 import { useTranslation } from '@/utils/hooks/useTranslation';
@@ -168,6 +169,12 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
         if (!validateForm()) {
             return;
         }
+
+        // Track form submission event
+        trackEvent('form_submit', {
+            form_language: formData.language,
+            user_language: language,
+        });
 
         setLoading(true);
 
