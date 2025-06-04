@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useMemo } from 'react';
 import { Box, Typography } from '@mui/material';
+import React, { useMemo } from 'react';
 
 interface HighlightedTextProps {
     text: string;

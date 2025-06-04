@@ -1,10 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '../common/Button';
-import CVModal from './CVModal';
-import { useTranslation } from '@/utils/hooks/useTranslation';
+
 import { trackEvent } from '@/utils/analytics/trackEvent';
+import { useTranslation } from '@/utils/hooks/useTranslation';
+
+import { Button } from '../common/Button';
+
+import CVModal from './CVModal';
 
 interface ContactSectionProps {
     size?: 'small' | 'medium' | 'large';

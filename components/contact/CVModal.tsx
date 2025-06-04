@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import Image from 'next/image';
-import { trackEvent } from '@/utils/analytics/trackEvent';
-import { Modal } from '@/components/common/Modal';
-import { Button } from '@/components/common/Button';
-import { useTranslation } from '@/utils/hooks/useTranslation';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { TextField, Box, Typography, Snackbar, Alert } from '@mui/material';
-import { generateClient } from 'aws-amplify/data';
-import type { Schema } from '@/amplify/data/resource';
 import { Amplify } from 'aws-amplify';
+import { generateClient } from 'aws-amplify/data';
+import Image from 'next/image';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+
+import type { Schema } from '@/amplify/data/resource';
 import outputs from '@/amplify_outputs.json';
+import { Button } from '@/components/common/Button';
+import { Modal } from '@/components/common/Modal';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { trackEvent } from '@/utils/analytics/trackEvent';
 import { useRecaptcha } from '@/utils/hooks/useRecaptcha';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 
 // Configure Amplify
 Amplify.configure(outputs, { ssr: true });

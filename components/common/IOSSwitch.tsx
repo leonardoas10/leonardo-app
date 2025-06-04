@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react';
 import { Switch, SwitchProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import React, { ReactElement } from 'react';
 
 interface IOSSwitchProps extends SwitchProps {
     checkedIcon?: ReactElement;

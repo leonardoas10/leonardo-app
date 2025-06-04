@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
+
 import i18n from '@/utils/translations/i18n';
 
 type Language = 'en' | 'es';

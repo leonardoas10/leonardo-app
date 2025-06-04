@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+
 import { EnviromentVariables } from '@/utils/constants';
 
 export const useRecaptcha = () => {

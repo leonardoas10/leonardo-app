@@ -1,6 +1,5 @@
 'use client';
 
-import React, { useState } from 'react';
 import {
     Dialog,
     DialogTitle,
@@ -10,6 +9,7 @@ import {
     Box,
     CircularProgress,
 } from '@mui/material';
+import React, { useState } from 'react';
 
 import { Button } from './Button';
 

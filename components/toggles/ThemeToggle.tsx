@@ -1,12 +1,14 @@
 'use client';
 
-import React from 'react';
-import { useThemeContext } from '@/contexts/ThemeContext';
-
-import { Box } from '@mui/material';
-import { IOSSwitch } from '@/components/common/IOSSwitch';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import { Box } from '@mui/material';
+import React from 'react';
+
+import { IOSSwitch } from '@/components/common/IOSSwitch';
+import { useThemeContext } from '@/contexts/ThemeContext';
+
+
 
 interface ThemeToggleProps {
     size?: 'small' | 'medium' | 'large';

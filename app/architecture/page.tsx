@@ -9,12 +9,12 @@ import {
     Paper,
 } from '@mui/material';
 
-import { TransitionImage } from '@/components/common/TransitionImage';
 import { Chip } from '@/components/common/Chip';
 import { HighlightedText } from '@/components/common/HighlightedText';
+import { TransitionImage } from '@/components/common/TransitionImage';
 import { ArchitectureTabs } from '@/components/tabs/ArchitectureTabs';
-import { useTranslation } from '@/utils/hooks/useTranslation';
 import { CloudFrontURLs } from '@/utils/constants';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 
 export default function ArchitecturePage() {
     const { t } = useTranslation('architecture');

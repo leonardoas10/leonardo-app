@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslation as useI18nTranslation } from 'react-i18next';
+
 import { useLanguage } from '@/contexts/LanguageContext';
 
 // Custom hook that combines react-i18next with our language context

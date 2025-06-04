@@ -1,14 +1,15 @@
 'use client';
 
-import React from 'react';
-import { Box, Typography } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
-import StorageIcon from '@mui/icons-material/Storage';
 import DataObjectIcon from '@mui/icons-material/DataObject';
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
+import StorageIcon from '@mui/icons-material/Storage';
+import { Box, Typography } from '@mui/material';
+import React from 'react';
+
+import { useTranslation } from '@/utils/hooks/useTranslation';
 
 import { TabsComponent, TabItem } from './TabsComponent';
-import { useTranslation } from '@/utils/hooks/useTranslation';
 
 export const ArchitectureTabs: React.FC = () => {
     const { t } = useTranslation('architecture');

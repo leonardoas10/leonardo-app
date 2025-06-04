@@ -1,5 +1,8 @@
 'use client';
 
+import { PaletteMode } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Inter } from 'next/font/google';
 import React, {
     createContext,
     useState,
@@ -7,9 +10,7 @@ import React, {
     useContext,
     useEffect,
 } from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { PaletteMode } from '@mui/material';
-import { Inter } from 'next/font/google';
+
 import { themeColors } from '@/utils/themeColors';
 
 const inter = Inter({ subsets: ['latin'] });

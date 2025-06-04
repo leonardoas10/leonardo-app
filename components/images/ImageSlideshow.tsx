@@ -1,6 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import {
     Box,
     IconButton,
@@ -9,9 +11,8 @@ import {
     useMediaQuery,
 } from '@mui/material';
 import Image from 'next/image';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+
 import { Chip } from '@/components/common/Chip';
 import { CloudFrontURLs } from '@/utils/constants';
 

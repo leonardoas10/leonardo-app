@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
-import { Chip as MuiChip, ChipProps as MuiChipProps } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { Chip as MuiChip, ChipProps as MuiChipProps } from '@mui/material';
+import React from 'react';
 
 interface ChipProps {
   label: string;

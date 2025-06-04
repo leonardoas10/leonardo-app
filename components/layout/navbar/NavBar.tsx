@@ -1,16 +1,19 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import { AppBar, Box, Toolbar, Typography, Container } from '@mui/material';
-import styles from './NavBar.module.css';
-import { ThemeToggle } from '@/components/toggles/ThemeToggle';
-import { LanguageToggle } from '@/components/toggles/LanguageToggle';
-import { CloudFrontURLs } from '@/utils/constants';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React from 'react';
+
+
 import { ContactSection } from '@/components/contact/ContactSection';
+import { LanguageToggle } from '@/components/toggles/LanguageToggle';
+import { ThemeToggle } from '@/components/toggles/ThemeToggle';
+import { CloudFrontURLs } from '@/utils/constants';
 import { useTranslation } from '@/utils/hooks/useTranslation';
+
+import styles from './NavBar.module.css';
 
 // Navigation items with translation keys
 const pages = [

@@ -1,11 +1,12 @@
 'use client';
 
-import React from 'react';
 import { Box, Typography, List, ListItem, ListItemText } from '@mui/material';
+import { TFunction } from 'i18next';
+import React from 'react';
+
+import { useTranslation } from '@/utils/hooks/useTranslation';
 
 import { TabsComponent, TabItem } from './TabsComponent';
-import { useTranslation } from '@/utils/hooks/useTranslation';
-import { TFunction } from 'i18next';
 
 interface ExperienceItem {
     primary: string;

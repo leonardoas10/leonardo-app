@@ -1,15 +1,16 @@
 import './globals.css';
 import { Amplify } from 'aws-amplify';
-import outputs from '@/amplify_outputs.json';
-import type { Metadata } from 'next';
 import Script from 'next/script';
 
-import { NavBar } from '@/components/layout/navbar/NavBar';
+import outputs from '@/amplify_outputs.json';
 import { Footer } from '@/components/layout/footer/Footer';
-import { Providers } from '@/contexts/Providers';
+import { NavBar } from '@/components/layout/navbar/NavBar';
 import { ThemeTransitionEnabler } from '@/components/layout/ThemeTransitionEnabler';
+import { Providers } from '@/contexts/Providers';
 import { EnviromentVariables } from '@/utils/constants';
 import { CloudFrontURLs } from '@/utils/constants';
+
+import type { Metadata } from 'next';
 
 Amplify.configure(outputs, { ssr: true });
 

@@ -1,11 +1,13 @@
 'use client';
 import { Container, Grid, Typography, Box, useTheme } from '@mui/material';
-import Image from 'next/image';
-
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { Suspense } from 'react';
+
 import { HighlightedText } from '@/components/common/HighlightedText';
 import { ContactSection } from '@/components/contact/ContactSection';
+import { CloudFrontURLs } from '@/utils/constants';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 
 // Dynamically import components that aren't needed immediately
 const ImageSlideshow = dynamic(
@@ -23,9 +25,6 @@ const ExperienceTabs = dynamic(
         ),
     { ssr: false }
 );
-
-import { CloudFrontURLs } from '@/utils/constants';
-import { useTranslation } from '@/utils/hooks/useTranslation';
 
 export default function Home() {
     const theme = useTheme();

@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import { ThemeRegistry } from '@/contexts/ThemeContext';
+
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import { ThemeRegistry } from '@/contexts/ThemeContext';
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
