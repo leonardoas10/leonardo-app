@@ -53,28 +53,44 @@ export default function Home() {
                             overflow: 'hidden',
                         }}
                     >
-                        <Box sx={{ display: { xs: 'none', md: 'block' }, height: '100%', width: '100%', position: 'relative' }}>
+                        <Box
+                            sx={{
+                                display: { xs: 'none', md: 'block' },
+                                height: '100%',
+                                width: '100%',
+                                position: 'relative',
+                            }}
+                        >
                             <Image
                                 src={`${CloudFrontURLs.IMAGES}/teide.webp`}
-                                alt="Hiking"
+                                alt="Teide, Terife, Spain"
                                 fill
                                 priority
                                 sizes="50vw"
                                 style={{ objectFit: 'cover' }}
-                                loading="eager"
-                                fetchPriority="high"
+                                placeholder="blur"
+                                blurDataURL="data:image/webp;base64,UklGRlIAAABXRUJQVlA4WAoAAAAQAAAACQAAAgAAQUxQSBIAAAABF6CgbQM2VyD9P0rGYDAYDABWUDggFgAAADABAJ0BKgoAAwABQCYlpAADcAD0kQAA"
+                                quality={80}
                             />
                         </Box>
-                        <Box sx={{ display: { xs: 'block', md: 'none' }, height: '100%', width: '100%', position: 'relative' }}>
+                        <Box
+                            sx={{
+                                display: { xs: 'block', md: 'none' },
+                                height: '100%',
+                                width: '100%',
+                                position: 'relative',
+                            }}
+                        >
                             <Image
                                 src={`${CloudFrontURLs.IMAGES}/small-teide.webp`}
-                                alt="Hiking"
+                                alt="Teide, Terife, Spain"
                                 fill
                                 priority
                                 sizes="100vw"
                                 style={{ objectFit: 'cover' }}
-                                loading="eager"
-                                fetchPriority="high"
+                                placeholder="blur"
+                                blurDataURL="data:image/webp;base64,UklGRlIAAABXRUJQVlA4WAoAAAAQAAAACQAAAgAAQUxQSBIAAAABF6CgbQM2VyD9P0rGYDAYDABWUDggFgAAADABAJ0BKgoAAwABQCYlpAADcAD0kQAA"
+                                quality={75}
                             />
                         </Box>
                         <Box
