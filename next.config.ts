@@ -1,12 +1,14 @@
 import type { NextConfig } from 'next';
 
+import { CloudFrontURLs } from "@/utils/constants";
+
 const nextConfig: NextConfig = {
     reactStrictMode: true,
     images: {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'd37rk2a86awu3g.cloudfront.net',
+                hostname: `${CloudFrontURLs.HOSTNAME}`,
                 pathname: '/images/**',
             },
             {

@@ -1,5 +1,6 @@
 export const CloudFrontURLs = {
     IMAGES: process.env.NEXT_PUBLIC_CLOUDFRONT_URL_IMAGES || '',
+    HOSTNAME: process.env.NEXT_PUBLIC_CLOUDFRONT_URL_HOSTNAME || '',
 } as const;
 
 export const EnviromentVariables = {

@@ -2,8 +2,8 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-import i18n from '@/utils/translations/i18n';
 import { trackEvent } from '@/utils/analytics/trackEvent';
+import i18n from '@/utils/translations/i18n';
 
 type Language = 'en' | 'es';
 

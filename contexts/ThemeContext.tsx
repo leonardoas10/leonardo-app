@@ -11,8 +11,8 @@ import React, {
     useEffect,
 } from 'react';
 
-import { themeColors } from '@/utils/themeColors';
 import { trackEvent } from '@/utils/analytics/trackEvent';
+import { themeColors } from '@/utils/themeColors';
 
 const inter = Inter({ subsets: ['latin'] });
 
