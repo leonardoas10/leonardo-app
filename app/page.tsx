@@ -85,8 +85,7 @@ export default function Home() {
                                 src={`${CloudFrontURLs.IMAGES}/small-teide.webp`}
                                 alt="Teide, Terife, Spain"
                                 fill
-                                priority={false}
-                                loading="lazy"
+                                priority
                                 sizes="100vw"
                                 style={{ objectFit: 'cover' }}
                                 placeholder="blur"

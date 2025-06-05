@@ -188,6 +188,9 @@ export const ImageSlideshow: React.FC = () => {
                             <FiberManualRecordIcon
                                 key={index}
                                 onClick={() => setCurrentImageIndex(index)}
+                                role="button"
+                                aria-label={`Show image ${index + 1}`}
+                                tabIndex={0}
                                 sx={{
                                     cursor: 'pointer',
                                     color:
@@ -207,6 +210,7 @@ export const ImageSlideshow: React.FC = () => {
                 <>
                     <IconButton
                         onClick={handlePrev}
+                        aria-label="Previous image"
                         sx={{
                             position: 'absolute',
                             left: 8,
@@ -234,6 +238,7 @@ export const ImageSlideshow: React.FC = () => {
 
                     <IconButton
                         onClick={handleNext}
+                        aria-label="Next image"
                         sx={{
                             position: 'absolute',
                             right: 8,
