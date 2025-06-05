@@ -8,14 +8,14 @@ import React from 'react';
 import { IOSSwitch } from '@/components/common/IOSSwitch';
 import { useThemeContext } from '@/contexts/ThemeContext';
 
-
-
 interface ThemeToggleProps {
     size?: 'small' | 'medium' | 'large';
+    toggleLocation: string;
 }
 
 export const ThemeToggle: React.FC<ThemeToggleProps> = ({
     size = 'medium',
+    toggleLocation,
 }) => {
     const { mode, toggleColorMode } = useThemeContext();
 
@@ -23,7 +23,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <IOSSwitch
                 checked={mode === 'dark'}
-                onChange={toggleColorMode}
+                onChange={() => toggleColorMode(toggleLocation)}
                 checkedIcon={<DarkModeIcon sx={{ mt: -0.2 }} />}
                 uncheckedIcon={<LightModeIcon />}
                 switchBaseMargin="4px 0px 2px 4px"

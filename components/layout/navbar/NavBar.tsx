@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-
 import { ContactSection } from '@/components/contact/ContactSection';
 import { LanguageToggle } from '@/components/toggles/LanguageToggle';
 import { ThemeToggle } from '@/components/toggles/ThemeToggle';
@@ -143,9 +142,18 @@ export const NavBar: React.FC = () => {
                                         </Box>
                                     );
                                 })}
-                                <ContactSection size="medium" />
-                                <LanguageToggle size="large" />
-                                <ThemeToggle size="large" />
+                                <ContactSection
+                                    size="medium"
+                                    buttonLocation="Navbar"
+                                />
+                                <LanguageToggle
+                                    size="large"
+                                    toggleLocation="Navbar"
+                                />
+                                <ThemeToggle
+                                    size="large"
+                                    toggleLocation="Navbar"
+                                />
                             </Box>
                         </Box>
                     </Toolbar>
@@ -197,16 +205,19 @@ export const NavBar: React.FC = () => {
                             mx: 1,
                         }}
                     >
-                        <ContactSection size="small" />
+                        <ContactSection size="small" buttonLocation="Navbar" />
                     </Box>
 
                     {/* Switches - right aligned */}
                     <Box sx={{ display: 'flex', alignItems: 'center', mr: 1 }}>
                         <Box sx={{ mr: 1 }}>
-                            <LanguageToggle size="large" />
+                            <LanguageToggle
+                                size="large"
+                                toggleLocation="Navbar"
+                            />
                         </Box>
                         <Box>
-                            <ThemeToggle size="large" />
+                            <ThemeToggle size="large" toggleLocation="Navbar" />
                         </Box>
                     </Box>
                 </Box>

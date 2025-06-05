@@ -277,7 +277,7 @@ export default function Home() {
                     size={{ xs: 12, md: 12 }}
                     sx={{ display: 'flex', justifyContent: 'center' }}
                 >
-                    <ContactSection size="large" />
+                    <ContactSection size="large" buttonLocation="Home" />
                 </Grid>
             </Grid>
         </Container>

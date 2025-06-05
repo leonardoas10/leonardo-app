@@ -8,17 +8,14 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 interface LanguageToggleProps {
     size?: 'small' | 'medium' | 'large';
+    toggleLocation: string;
 }
 
 export const LanguageToggle: React.FC<LanguageToggleProps> = ({
     size = 'medium',
+    toggleLocation,
 }) => {
-    const { language, setLanguage } = useLanguage();
-    const isSpanish = language === 'es';
-
-    const toggleLanguage = () => {
-        setLanguage(isSpanish ? 'en' : 'es');
-    };
+    const { language, toggleLanguage } = useLanguage();
 
     // Text size based on switch size
     const getFontSize = () => {
@@ -52,12 +49,12 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({
     return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <IOSSwitch
-                checked={!isSpanish}
-                onChange={toggleLanguage}
+                checked={language === 'en'}
+                onChange={() => toggleLanguage(toggleLocation)}
                 checkedIcon={EnText}
                 uncheckedIcon={EsText}
                 switchBaseMargin={
-                    isSpanish ? '2px 0px 2px 2px' : '2px 4px 2px 2px'
+                    language === 'es' ? '2px 0px 2px 2px' : '2px 4px 2px 2px'
                 }
                 customSize={size}
                 aria-label="Language toggle"

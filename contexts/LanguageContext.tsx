@@ -3,18 +3,21 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import i18n from '@/utils/translations/i18n';
+import { trackEvent } from '@/utils/analytics/trackEvent';
 
 type Language = 'en' | 'es';
 
 interface LanguageContextType {
     language: Language;
     setLanguage: (lang: Language) => void;
+    toggleLanguage: (toggleLocation: string) => void;
     isLanguageLoaded: boolean;
 }
 
 const LanguageContext = createContext<LanguageContextType>({
     language: 'en',
     setLanguage: () => {},
+    toggleLanguage: (toggleLocation: string) => {},
     isLanguageLoaded: false,
 });
 
@@ -26,6 +29,15 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
     const [language, setLanguageState] = useState<Language>('en');
     const [isLanguageLoaded, setIsLanguageLoaded] = useState(false);
     const [firstRender, setFirstRender] = useState(false);
+
+    const toggleLanguage = (toggleLocation: string) => {
+        const newLanguage = language === 'es' ? 'en' : 'es';
+        setLanguageState(newLanguage);
+        trackEvent('toggle_click', {
+            toggle_name: 'Language Toggle',
+            toggle_location: toggleLocation,
+        });
+    };
 
     // Function to detect user's language based on browser settings and country
     const detectUserLanguage = (): Language => {
@@ -110,6 +122,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
     const value = {
         language,
         setLanguage,
+        toggleLanguage,
         isLanguageLoaded,
     };
 

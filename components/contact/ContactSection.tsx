@@ -11,10 +11,12 @@ import CVModal from './CVModal';
 
 interface ContactSectionProps {
     size?: 'small' | 'medium' | 'large';
+    buttonLocation: string;
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({
     size = 'medium',
+    buttonLocation,
 }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const { t } = useTranslation('contact');
@@ -23,7 +25,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
         // Send event to Google Tag Manager
         trackEvent('button_click', {
             button_name: 'Get CV',
-            button_location: 'Contact Section',
+            button_location: buttonLocation,
         });
         setModalOpen(true);
     };

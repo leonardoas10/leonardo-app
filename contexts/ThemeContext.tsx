@@ -12,19 +12,20 @@ import React, {
 } from 'react';
 
 import { themeColors } from '@/utils/themeColors';
+import { trackEvent } from '@/utils/analytics/trackEvent';
 
 const inter = Inter({ subsets: ['latin'] });
 
 // Theme context type
 type ThemeContextType = {
     mode: PaletteMode;
-    toggleColorMode: () => void;
+    toggleColorMode: (toggleLocation: string) => void;
 };
 
 // Create the context
 const ThemeContext = createContext<ThemeContextType>({
     mode: 'light',
-    toggleColorMode: () => {},
+    toggleColorMode: (toggleLocation: string) => {},
 });
 
 // Custom hook to use the theme context
@@ -49,7 +50,11 @@ export const ThemeRegistry: React.FC<{
         document.documentElement.setAttribute('data-theme', mode);
     }, [mode]);
 
-    const toggleColorMode = () => {
+    const toggleColorMode = (toggleLocation: string) => {
+        trackEvent('toggle_click', {
+            toggle_name: 'Theme Toggle',
+            toggle_location: toggleLocation,
+        });
         setMode((prevMode) => {
             const newMode = prevMode === 'light' ? 'dark' : 'light';
             localStorage.setItem('themeMode', newMode);
