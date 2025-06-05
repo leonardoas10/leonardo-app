@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     authors: [{ name: 'Leonardo Aranguren' }],
     creator: 'Leonardo Aranguren',
     openGraph: {
-        title: 'Leonardo Aranguren | Cloud Engineer - Software Enginner - Technical Led',
+        title: 'Leonardo Aranguren | Cloud Engineer - Software Enginner - Technical Lead',
         description:
             'AWS Certified Cloud Engineer and Software Enginner specializing in serverless architecture, React, TypeScript, Python, Go, NodeJS, NextJS and cloud-native solutions.',
         url: 'https://leonardoaranguren.com',
