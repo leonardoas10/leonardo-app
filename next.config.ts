@@ -4,6 +4,8 @@ import { CloudFrontURLs } from "@/utils/constants";
 
 const nextConfig: NextConfig = {
     reactStrictMode: true,
+    poweredByHeader: false,
+    compress: true,
     images: {
         remotePatterns: [
             {
@@ -23,6 +25,9 @@ const nextConfig: NextConfig = {
 
     experimental: {
         optimizePackageImports: ['@mui/material', 'aws-amplify'],
+        optimizeCss: true,
+        optimizeServerReact: true,
+        webpackBuildWorker: true,
     },
     async headers() {
         return [
