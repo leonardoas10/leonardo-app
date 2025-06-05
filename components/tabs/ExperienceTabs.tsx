@@ -39,11 +39,13 @@ export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
                 {tab.sections.map((section, sectionIndex) => (
                     <React.Fragment key={sectionIndex}>
                         <Typography
-                            variant="h6"
+                            variant="h3"
                             sx={{
                                 color: 'textSecondary',
                                 mb: 2,
                                 mt: sectionIndex > 0 ? 2 : 0,
+                                fontSize: '1.25rem', // Maintain h6 size while using h3 semantics
+                                fontWeight: 500,
                             }}
                         >
                             {section.icon} {section.title}

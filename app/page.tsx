@@ -53,19 +53,30 @@ export default function Home() {
                             overflow: 'hidden',
                         }}
                     >
-                        <Image
-                            key="1"
-                            src={`${CloudFrontURLs.IMAGES}/teide.webp`}
-                            alt="Hiking"
-                            fill
-                            priority
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            style={{
-                                objectFit: 'cover',
-                            }}
-                            loading="eager"
-                            fetchPriority="high"
-                        />
+                        <Box sx={{ display: { xs: 'none', md: 'block' }, height: '100%', width: '100%', position: 'relative' }}>
+                            <Image
+                                src={`${CloudFrontURLs.IMAGES}/teide.webp`}
+                                alt="Hiking"
+                                fill
+                                priority
+                                sizes="50vw"
+                                style={{ objectFit: 'cover' }}
+                                loading="eager"
+                                fetchPriority="high"
+                            />
+                        </Box>
+                        <Box sx={{ display: { xs: 'block', md: 'none' }, height: '100%', width: '100%', position: 'relative' }}>
+                            <Image
+                                src={`${CloudFrontURLs.IMAGES}/small-teide.webp`}
+                                alt="Hiking"
+                                fill
+                                priority
+                                sizes="100vw"
+                                style={{ objectFit: 'cover' }}
+                                loading="eager"
+                                fetchPriority="high"
+                            />
+                        </Box>
                         <Box
                             sx={{
                                 position: 'absolute',
