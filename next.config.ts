@@ -1,6 +1,7 @@
+import { CloudFrontURLs } from "@/utils/constants";
+
 import type { NextConfig } from 'next';
 
-import { CloudFrontURLs } from "@/utils/constants";
 
 const nextConfig: NextConfig = {
     reactStrictMode: true,

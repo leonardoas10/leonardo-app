@@ -1,10 +1,11 @@
 import { defineBackend } from '@aws-amplify/backend';
-import { Effect } from 'aws-cdk-lib/aws-iam';
 import { Stack } from 'aws-cdk-lib';
+import { Effect } from 'aws-cdk-lib/aws-iam';
+
 // import { auth } from './auth/resource.js';
+import { createPolicy, addPolicyToLambda } from './cdk/policy/';
 import { data } from './data/resource';
 import { sendCVMutation } from './functions/cv/mutations/send-cv/resource';
-import { createPolicy, addPolicyToLambda } from './cdk/policy/';
 
 const backend = defineBackend({
     data,

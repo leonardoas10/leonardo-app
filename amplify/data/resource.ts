@@ -1,7 +1,8 @@
 import { type ClientSchema, a, defineData } from '@aws-amplify/backend';
 
-import { cvRequestSchema } from './schemas';
 import { sendCVMutation } from '../functions/cv/mutations/send-cv/resource';
+
+import { cvRequestSchema } from './schemas';
 
 const schema = a
     .schema({

@@ -1,7 +1,6 @@
 import './globals.css';
-// import { GoogleTagManager } from '@next/third-parties/google';
+import { GoogleTagManager } from '@next/third-parties/google';
 import { Amplify } from 'aws-amplify';
-import Script from 'next/script';
 
 import outputs from '@/amplify_outputs.json';
 import { Footer } from '@/components/layout/footer/Footer';
@@ -49,30 +48,14 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            {/* Google Tag Manager - Optimized with @next/third-parties */}
-            <head>
-                <Script
-                    src={`https://www.googletagmanager.com/gtm.js?id=${EnviromentVariables.GTM_ID}`}
-                    strategy="lazyOnload"
-                />
-            </head>
             <body>
-                <noscript>
-                    <iframe
-                        src={`https://www.googletagmanager.com/ns.html?id=${EnviromentVariables.GTM_ID}`}
-                        height="0"
-                        width="0"
-                        style={{ display: 'none', visibility: 'hidden' }}
-                    />
-                </noscript>
-                {/* Google Tag Manager (noscript) */}
                 <Providers>
                     <ThemeTransitionEnabler />
                     <NavBar />
                     <main>{children}</main>
                     <Footer />
                 </Providers>
-                {/* <GoogleTagManager gtmId={EnviromentVariables.GTM_ID} /> */}
+                <GoogleTagManager gtmId={EnviromentVariables.GTM_ID} />
             </body>
         </html>
     );

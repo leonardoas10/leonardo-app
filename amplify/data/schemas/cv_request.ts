@@ -1,4 +1,5 @@
 import { a } from '@aws-amplify/backend';
+
 import { sendCVMutation } from '../../functions/cv/mutations/send-cv/resource';
 
 export const cvRequestSchema = {

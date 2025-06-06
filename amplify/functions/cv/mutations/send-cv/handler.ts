@@ -1,12 +1,15 @@
-import { env } from '$amplify/env/send-cv-mutation';
-import { Logger } from '@aws-lambda-powertools/logger';
-import { SESClient, SendRawEmailCommand } from '@aws-sdk/client-ses';
-import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3';
 import { createHash } from 'crypto';
+
+import { EnviromentVariables } from '@/utils/constants';
+import { Logger } from '@aws-lambda-powertools/logger';
+import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3';
+import { SESClient, SendRawEmailCommand } from '@aws-sdk/client-ses';
 
 import type { Schema } from '@/data/resource';
 import { getAmplifyClient } from '@/utils/graphql';
-import { EnviromentVariables } from '@/utils/constants';
+
+
+import { env } from '$amplify/env/send-cv-mutation';
 
 const client = await getAmplifyClient(env);
 const sesClient = new SESClient({ region: EnviromentVariables.AWS_REGION });
