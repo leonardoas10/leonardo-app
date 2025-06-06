@@ -1,7 +1,7 @@
 import './globals.css';
-import { GoogleTagManager } from '@next/third-parties/google';
+// import { GoogleTagManager } from '@next/third-parties/google';
 import { Amplify } from 'aws-amplify';
-// import Script from 'next/script';
+import Script from 'next/script';
 
 import outputs from '@/amplify_outputs.json';
 import { Footer } from '@/components/layout/footer/Footer';
@@ -49,7 +49,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            {/* <Script id="google-tag-manager" strategy="afterInteractive">
+            <Script id="google-tag-manager" strategy="afterInteractive">
                 {`
                     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -57,17 +57,16 @@ export default function RootLayout({
                     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                     })(window,document,'script','dataLayer','${EnviromentVariables.GTM_ID}');
                 `}
-            </Script> */}
-            <GoogleTagManager gtmId={EnviromentVariables.GTM_ID} />
+            </Script>
             <body>
-                {/* <noscript>
+                <noscript>
                     <iframe
                         src={`https://www.googletagmanager.com/ns.html?id=${EnviromentVariables.GTM_ID}`}
                         height="0"
                         width="0"
                         style={{ display: 'none', visibility: 'hidden' }}
                     />
-                </noscript> */}
+                </noscript>
                 <Providers>
                     <ThemeTransitionEnabler />
                     <NavBar />
