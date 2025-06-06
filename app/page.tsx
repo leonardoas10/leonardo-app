@@ -69,7 +69,7 @@ export default function Home() {
                                 sizes="50vw"
                                 style={{ objectFit: 'cover' }}
                                 placeholder="blur"
-                                blurDataURL="data:image/webp;base64,UklGRlIAAABXRUJQVlA4WAoAAAAQAAAACQAAAgAAQUxQSBIAAAABF6CgbQM2VyD9P0rGYDAYDABWUDggFgAAADABAJ0BKgoAAwABQCYlpAADcAD0kQAA"
+                                blurDataURL="9E F7 0D 35 8A 95 88 67 5F 76 87 95 89 47 77 77 78 60 95 06 56"
                                 quality={80}
                             />
                         </Box>
@@ -89,7 +89,7 @@ export default function Home() {
                                 sizes="(max-width: 600px) 95vw, 50vw"
                                 style={{ objectFit: 'cover' }}
                                 placeholder="blur"
-                                blurDataURL="data:image/webp;base64,UklGRlIAAABXRUJQVlA4WAoAAAAQAAAACQAAAgAAQUxQSBIAAAABF6CgbQM2VyD9P0rGYDAYDABWUDggFgAAADABAJ0BKgoAAwABQCYlpAADcAD0kQAA"
+                                blurDataURL="9E F7 0D 35 8A 96 88 67 5F 76 87 95 89 47 77 77 78 60 95 06 56"
                                 quality={60}
                                 loading="eager"
                             />
