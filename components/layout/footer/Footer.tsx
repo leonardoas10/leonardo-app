@@ -66,7 +66,7 @@ export const Footer: React.FC = () => {
                         },
                     }}
                 >
-                    LinkdIn
+                    LinkedIn
                 </Typography>{' '}
             </Box>
         </Box>

@@ -191,6 +191,7 @@ export const ImageSlideshow: React.FC = () => {
                                 role="button"
                                 aria-label={`Show image ${index + 1}`}
                                 tabIndex={0}
+                                aria-hidden={false}
                                 sx={{
                                     cursor: 'pointer',
                                     color:

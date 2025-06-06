@@ -86,11 +86,12 @@ export default function Home() {
                                 alt="Teide, Terife, Spain"
                                 fill
                                 priority
-                                sizes="100vw"
+                                sizes="(max-width: 600px) 95vw, 50vw"
                                 style={{ objectFit: 'cover' }}
                                 placeholder="blur"
                                 blurDataURL="data:image/webp;base64,UklGRlIAAABXRUJQVlA4WAoAAAAQAAAACQAAAgAAQUxQSBIAAAABF6CgbQM2VyD9P0rGYDAYDABWUDggFgAAADABAJ0BKgoAAwABQCYlpAADcAD0kQAA"
-                                quality={75}
+                                quality={60}
+                                loading="eager"
                             />
                         </Box>
                         <Box
