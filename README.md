@@ -1,71 +1,68 @@
 # Leonardo Aranguren Website
 
-A modern portfolio website built with Next.js 14 and AWS Amplify, featuring server-side rendering, multi-language support (English/Spanish), and serverless architecture. The application uses TypeScript for type safety, Material UI for responsive design, and AWS services (DynamoDB, CloudFront, Cognito) for a robust cloud infrastructure.
+A modern portfolio website built with Next.js 14 and AWS Amplify, featuring server-side rendering, multi-language support (English/Spanish), and serverless architecture. The application uses TypeScript for type safety, Material UI for responsive design, and AWS services (DynamoDB, CloudFront, Lambda, S3, SES) for a robust cloud infrastructure.
 
-## Diagram
+## 📊 Diagram
 
 ![Architecture Diagram](https://assets.leonardoaranguren.com/images/architecture.webp)
 
-## Repository Structure
+## 📁 Repository Structure
 
 ```
 .
+├── .amplify/                     # AWS Amplify generated files
+├── .github/                      # GitHub workflows and configurations
+├── .husky/                       # Git hooks configuration
 ├── amplify/                      # AWS Amplify backend configuration and resources
-│   ├── backend.ts                # Main backend configuration
 │   ├── auth/                     # Authentication resources (Cognito)
+│   ├── cdk/                      # AWS CDK configurations
 │   ├── data/                     # Data resources (DynamoDB, API)
-│   └── storage/                  # Storage resources (S3)
+│   ├── functions/                # Lambda functions
+│   ├── utils/                    # Utility functions for backend
+│   └── backend.ts                # Main backend configuration
 ├── app/                          # Next.js application pages and layouts
-│   ├── [locale]/                 # Locale-specific routes (en, es)
-│   │   ├── page.tsx              # Home page
-│   │   ├── about/                # About page
-│   │   ├── projects/             # Projects section
-│   │   ├── contact/              # Contact form
-│   │   └── blog/                 # Blog section
-│   ├── api/                      # API routes
-│   └── layout.tsx                # Root layout
+│   ├── architecture/             # Architecture components
+│   ├── globals.css               # Global CSS styles
+│   ├── layout.tsx                # Root layout
+│   └── page.tsx                  # Main page component
 ├── components/                   # Reusable React components organized by feature
+│   ├── auth/                     # Authentication components
 │   ├── common/                   # Shared components (Button, Card, etc.)
+│   ├── contact/                  # Contact form components
+│   ├── images/                   # Image components
 │   ├── layout/                   # Layout components (Header, Footer, etc.)
-│   ├── sections/                 # Page section components
-│   └── forms/                    # Form components
+│   ├── tabs/                     # Tab components
+│   └── toggles/                  # Toggle components
 ├── contexts/                     # React context providers
-│   ├── ThemeContext.tsx          # Theme provider
-│   └── LanguageContext.tsx       # Language provider
-├── hooks/                        # Custom React hooks
-│   ├── useAuth.ts                # Authentication hook
-│   └── useForm.ts                # Form handling hook
+│   ├── LanguageContext.tsx       # Language provider
+│   ├── Providers.tsx             # Combined providers
+│   └── ThemeContext.tsx          # Theme provider
+├── docs/                         # Documentation files
 ├── public/                       # Static assets
-│   ├── images/                   # Image assets
-│   ├── fonts/                    # Font files
-│   └── locales/                  # Translation files
-├── styles/                       # Global styles and theme configuration
-│   ├── theme.ts                  # MUI theme configuration
-│   └── globals.css               # Global CSS
-├── utils/                        # Utility functions and helpers
-│   ├── api.ts                    # API utilities
-│   ├── translations/             # Internationalization resources
-│   └── analytics.ts              # Analytics utilities
 ├── types/                        # TypeScript type definitions
-├── tests/                        # Test files
-│   ├── unit/                     # Unit tests
-│   └── integration/              # Integration tests
+│   └── global.d.ts               # Global type declarations
+├── utils/                        # Utility functions and helpers
+│   ├── analytics/                # Analytics utilities
+│   ├── hooks/                    # Custom React hooks
+│   ├── translations/             # Internationalization resources
+│   ├── types/                    # Type definitions
+│   └── constants.ts              # Application constants
 ├── .env.example                  # Example environment variables
-├── next.config.js                # Next.js configuration
+├── next.config.ts                # Next.js configuration
 ├── tsconfig.json                 # TypeScript configuration
 └── package.json                  # Project dependencies and scripts
 ```
 
-## Usage Instructions
+## 📝 Usage Instructions
 
-### Prerequisites
+### 🔍 Prerequisites
 
 - Node.js 18.x or later
 - npm 8.x or later
 - AWS Account with appropriate permissions
 - Git
 
-### Installation
+### 🚀 Installation
 
 1. Clone the repository:
 
@@ -96,35 +93,29 @@ cp .env.example .env
 
 Edit `.env` with your configuration values:
 
-```
-NEXT_PUBLIC_CLOUDFRONT_URL_IMAGES=<your-cloudfront-url>
-NEXT_PUBLIC_RECAPTCHA_SITE_KEY=<your-recaptcha-key>
-NEXT_PUBLIC_GTM_ID=<your-gtm-id>
-```
-
 5. Start the development server (in a new terminal):
 
 ```bash
 npm run dev
 ```
 
-## Development Features
+## ⚙️ Development Features
 
-### TypeScript Integration
+### 📘 TypeScript Integration
 
 - Strict type checking enabled for better code quality
 - Custom type definitions for all components and utilities
 - Automatic type inference for AWS Amplify operations
 - Improved developer experience with IDE support
 
-### Husky Git Hooks
+### 🐶 Husky Git Hooks
 
 - Pre-commit hooks for linting and type checking
 - Pre-push hooks for running tests
 - Ensures code quality before commits
 - Maintains consistent code style
 
-## Continuous Integration/Deployment
+## 🔄 Continuous Integration/Deployment
 
 AWS Amplify Gen 2 provides automated CI/CD:
 
@@ -134,7 +125,7 @@ AWS Amplify Gen 2 provides automated CI/CD:
 - Serverless infrastructure deployment
 - Zero-downtime updates
 
-## Cost of Implementation
+## 💰 Cost of Implementation
 
 This implementation leverages AWS's serverless architecture, which provides a cost-effective solution for personal portfolio websites:
 
