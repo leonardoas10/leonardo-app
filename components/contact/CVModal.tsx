@@ -171,12 +171,6 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
             return;
         }
 
-        // Track form submission event
-        trackEvent('form_submit', {
-            form_language: formData.language,
-            user_language: language,
-        });
-
         setLoading(true);
 
         try {
@@ -211,6 +205,12 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
             if (result.data!.id === '') {
                 throw new Error('Failed to create CV request');
             }
+
+            // Track form submission event
+            trackEvent('form_submit', {
+                form_language: formData.language,
+                user_language: language,
+            });
 
             // Show success snackbar
             setSnackbar({

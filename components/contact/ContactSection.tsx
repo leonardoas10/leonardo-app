@@ -24,9 +24,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
     const handleOpenModal = () => {
         // Send event to Google Tag Manager
-        trackEvent('button_click', {
-            button_name: 'Get CV',
-            button_location: buttonLocation,
+        trackEvent('click_target', {
+            click_name: 'Get CV',
+            click_location: buttonLocation,
         });
         setModalOpen(true);
     };

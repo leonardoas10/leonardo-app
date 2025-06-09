@@ -33,9 +33,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
     const toggleLanguage = (toggleLocation: string) => {
         const newLanguage = language === 'es' ? 'en' : 'es';
         setLanguageState(newLanguage);
-        trackEvent('toggle_click', {
-            toggle_name: 'Language Toggle',
-            toggle_location: toggleLocation,
+        trackEvent('click_target', {
+            click_name: 'Language Toggle',
+            click_location: toggleLocation,
         });
     };
 

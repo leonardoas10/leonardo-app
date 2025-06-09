@@ -51,9 +51,9 @@ export const ThemeRegistry: React.FC<{
     }, [mode]);
 
     const toggleColorMode = (toggleLocation: string) => {
-        trackEvent('toggle_click', {
-            toggle_name: 'Theme Toggle',
-            toggle_location: toggleLocation,
+        trackEvent('click_target', {
+            click_name: 'Theme Toggle',
+            click_location: toggleLocation,
         });
         setMode((prevMode) => {
             const newMode = prevMode === 'light' ? 'dark' : 'light';
