@@ -37,7 +37,11 @@ export const Button: React.FC<CustomButtonProps> = ({
                     opacity: 0.9,
                 },
                 height:
-                    size === 'small' ? '26px' : size === 'large' ? '38px' : '32px',
+                    size === 'small'
+                        ? '26px'
+                        : size === 'large'
+                          ? '38px'
+                          : '32px',
                 minWidth: size === 'small' ? '64px' : '80px',
                 padding: size === 'small' ? '0px 8px' : '0px 16px',
                 ...sx,
@@ -58,8 +62,11 @@ export const Button: React.FC<CustomButtonProps> = ({
         <MuiButton {...buttonProps}>
             <Typography
                 component="span"
-                color="textPrimary"
-                sx={{ transition: 'color 1s ease' }}
+                sx={{
+                    transition: 'color 1s ease',
+                    color: '#FFFFFF',
+                    fontWeight: 500,
+                }}
             >
                 {children}
             </Typography>
