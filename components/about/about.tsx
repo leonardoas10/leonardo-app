@@ -9,14 +9,12 @@ interface AboutProps {
     imageSlideshow: React.ReactNode;
     experienceTabs: React.ReactNode;
     teideImage: React.ReactNode;
-    smallTeideImage: React.ReactNode;
 }
 
 export function About({
     imageSlideshow,
     experienceTabs,
     teideImage,
-    smallTeideImage,
 }: AboutProps) {
     const theme = useTheme();
     const { t } = useTranslation('about');
@@ -46,23 +44,12 @@ export function About({
                     >
                         <Box
                             sx={{
-                                display: { xs: 'none', md: 'block' },
                                 height: '100%',
                                 width: '100%',
                                 position: 'relative',
                             }}
                         >
                             {teideImage}
-                        </Box>
-                        <Box
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                                height: '100%',
-                                width: '100%',
-                                position: 'relative',
-                            }}
-                        >
-                            {smallTeideImage}
                         </Box>
                         <Box
                             sx={{
