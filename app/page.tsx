@@ -48,8 +48,6 @@ export default function Home() {
                     style={{ objectFit: 'cover' }}
                     placeholder="blur"
                     blurDataURL="9E F7 0D 35 8A 96 88 67 5F 76 87 95 89 47 77 77 78 60 95 06 56"
-                    quality={60}
-                    loading="eager"
                 />
             }
             imageSlideshow={
