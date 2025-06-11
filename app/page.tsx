@@ -40,12 +40,15 @@ export default function Home() {
             }
             smallTeideImage={
                 <Image
-                    src={`${CloudFrontURLs.IMAGES}/small-teide.webp`}
+                    src={`${CloudFrontURLs.IMAGES}/teide.webp`}
                     alt="Teide, Terife, Spain"
-                    fill
+                    width={400}
+                    height={350}
                     priority
-                    sizes="(max-width: 600px) 95vw, 50vw"
-                    style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 600px) 100vw, 50vw"
+                    style={{
+                        objectFit: 'cover',
+                    }}
                     placeholder="blur"
                     blurDataURL="9E F7 0D 35 8A 96 88 67 5F 76 87 95 89 47 77 77 78 60 95 06 56"
                 />
