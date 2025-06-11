@@ -1,6 +1,7 @@
-import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import { Suspense } from 'react';
+
 import { About } from '@/components/about/about';
 import { CloudFrontURLs } from '@/utils/constants';
 
