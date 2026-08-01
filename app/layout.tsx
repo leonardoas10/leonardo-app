@@ -5,6 +5,7 @@ import Script from 'next/script';
 
 import outputs from '@/amplify_outputs.json';
 import { Footer } from '@/components/layout/footer/Footer';
+import { HtmlLangSync } from '@/components/layout/HtmlLangSync';
 import { NavBar } from '@/components/layout/navbar/NavBar';
 import { ThemeTransitionEnabler } from '@/components/layout/ThemeTransitionEnabler';
 import { Providers } from '@/contexts/Providers';
@@ -13,10 +14,13 @@ import {
     EnvironmentVariables,
     SITE_URL,
 } from '@/utils/constants';
+import { buildSiteStructuredData } from '@/utils/seo/structured-data';
 
 import type { Metadata } from 'next';
 
 Amplify.configure(outputs, { ssr: true });
+
+const siteStructuredData = buildSiteStructuredData();
 
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
@@ -52,7 +56,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <Script id="google-tag-manager" strategy="afterInteractive">
                 {`
                     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -63,6 +67,12 @@ export default function RootLayout({
                 `}
             </Script>
             <body>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(siteStructuredData),
+                    }}
+                />
                 <noscript>
                     <iframe
                         src={`https://www.googletagmanager.com/ns.html?id=${EnvironmentVariables.GTM_ID}`}
@@ -72,6 +82,7 @@ export default function RootLayout({
                     />
                 </noscript>
                 <Providers>
+                    <HtmlLangSync />
                     <ThemeTransitionEnabler />
                     <NavBar />
                     <main>{children}</main>

@@ -1,114 +1,43 @@
-'use client';
+import { cookies } from 'next/headers';
 
-import {
-    Container,
-    Typography,
-    Box,
-    Grid,
-    useTheme,
-    Paper,
-} from '@mui/material';
+import { ArchitecturePage } from '@/components/architecture/ArchitecturePage';
+import { SITE_URL } from '@/utils/constants';
+import { DEFAULT_LOCALE, parseSiteLocale } from '@/utils/seo/locale';
+import architectureEN from '@/utils/translations/en/architecture.json';
+import architectureES from '@/utils/translations/es/architecture.json';
 
-import { Chip } from '@/components/common/Chip';
-import { HighlightedText } from '@/components/common/HighlightedText';
-import { TransitionImage } from '@/components/common/TransitionImage';
-import { ArchitectureTabs } from '@/components/tabs/ArchitectureTabs';
-import { CloudFrontURLs } from '@/utils/constants';
-import { useTranslation } from '@/utils/hooks/useTranslation';
+import type { Metadata } from 'next';
 
-export default function ArchitecturePage() {
-    const { t } = useTranslation('architecture');
-    const theme = useTheme();
-    const isDarkMode = theme.palette.mode === 'dark';
+const ARCHITECTURE_METADATA = {
+    en: {
+        title: architectureEN.page.title,
+        description: architectureEN.page.description,
+    },
+    es: {
+        title: architectureES.page.title,
+        description: architectureES.page.description,
+    },
+} as const;
 
-    return (
-        <Container
-            maxWidth="lg"
-            sx={{ py: { xs: 4, md: 4 }, px: { xs: 2, sm: 3, md: 4 } }}
-        >
-            <Grid container spacing={4}>
-                <Grid size={{ xs: 12 }}>
-                    <Typography
-                        variant="h3"
-                        component="h1"
-                        gutterBottom
-                        sx={{
-                            fontWeight: 'bold',
-                            textAlign: { xs: 'center', md: 'left' },
-                        }}
-                    >
-                        {t('page.title')}
-                    </Typography>
+export async function generateMetadata(): Promise<Metadata> {
+    const cookieStore = await cookies();
+    const locale = parseSiteLocale(cookieStore.get('language')?.value);
+    const { title, description } =
+        ARCHITECTURE_METADATA[locale] ?? ARCHITECTURE_METADATA[DEFAULT_LOCALE];
 
-                    <HighlightedText
-                        text={t('page.description')}
-                        highlightTerms={['optimizar', 'cost-effective']}
-                        variant="body1"
-                        paragraph
-                    />
-                </Grid>
+    const pageTitle = `${title} | Leonardo Aranguren`;
 
-                <Grid size={{ xs: 12 }} sx={{ textAlign: 'center' }}>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            justifyContent: { xs: 'center', md: 'center' },
-                            mb: 2,
-                        }}
-                    >
-                        <Chip
-                            size="medium"
-                            label={t('page.githubRepository')}
-                            href="https://github.com/leonardoas10/leonardo-app"
-                        />
-                    </Box>
-                </Grid>
+    return {
+        title: pageTitle,
+        description,
+        openGraph: {
+            title: pageTitle,
+            description,
+            url: `${SITE_URL}/architecture`,
+        },
+    };
+}
 
-                <Grid size={{ xs: 12 }} sx={{ textAlign: 'center' }}>
-                    <Typography
-                        variant="h4"
-                        gutterBottom
-                        sx={{
-                            fontWeight: 'bold',
-                            textAlign: { xs: 'center' },
-                        }}
-                    >
-                        {t('page.architectureDiagram')}
-                    </Typography>
-                    <Paper
-                        elevation={2}
-                        sx={{
-                            p: 0.8,
-                            bgcolor: 'background.paper',
-                            borderRadius: 2,
-                            overflow: 'hidden',
-                            boxShadow: `0 4px 12px ${theme.palette.background.aws}`,
-                        }}
-                    >
-                        <Box
-                            sx={{
-                                position: 'relative',
-                                width: '100%',
-                                height: { xs: 230, sm: 400, md: 500 },
-                            }}
-                        >
-                            <TransitionImage
-                                darkSrc={`${CloudFrontURLs.IMAGES}/architecture.webp`}
-                                lightSrc={`${CloudFrontURLs.IMAGES}/white-architecture.webp`}
-                                isDarkMode={isDarkMode}
-                                alt="Architecture Diagram"
-                                fill
-                                style={{ objectFit: 'contain' }}
-                                priority
-                            />
-                        </Box>
-                    </Paper>
-                </Grid>
-
-                <Grid size={{ xs: 12 }}>
-                    <ArchitectureTabs />
-                </Grid>
-            </Grid>
-        </Container>
-    );
+export default function ArchitectureRoutePage() {
+    return <ArchitecturePage />;
 }
