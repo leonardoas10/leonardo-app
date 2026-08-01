@@ -43,4 +43,5 @@ next-env.d.ts
 # amplify
 .amplify
 amplify_outputs*
+!.github/fixtures/amplify_outputs.json
 amplifyconfiguration*

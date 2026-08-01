@@ -1,0 +1,128 @@
+{
+  "data": {
+    "url": "https://example.com/graphql",
+    "aws_region": "us-east-1",
+    "api_key": "ci-stub",
+    "default_authorization_type": "API_KEY",
+    "authorization_types": ["API_KEY"],
+    "model_introspection": {
+      "version": 1,
+      "models": {
+        "CVRequest": {
+          "name": "CVRequest",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true,
+              "attributes": []
+            },
+            "name": {
+              "name": "name",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "email": {
+              "name": "email",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "company": {
+              "name": "company",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "language": {
+              "name": "language",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "CVRequests",
+          "attributes": [
+            { "type": "model", "properties": {} },
+            {
+              "type": "key",
+              "properties": { "fields": ["id"] }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "allow": "public",
+                    "provider": "apiKey",
+                    "operations": ["read"]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        }
+      },
+      "enums": {},
+      "nonModels": {
+        "SendCVResult": {
+          "name": "SendCVResult",
+          "fields": {
+            "id": { "name": "id", "isArray": false, "type": "String", "isRequired": true, "attributes": [] },
+            "name": { "name": "name", "isArray": false, "type": "String", "isRequired": true, "attributes": [] },
+            "email": { "name": "email", "isArray": false, "type": "String", "isRequired": true, "attributes": [] },
+            "company": { "name": "company", "isArray": false, "type": "String", "isRequired": true, "attributes": [] },
+            "language": { "name": "language", "isArray": false, "type": "String", "isRequired": true, "attributes": [] },
+            "createdAt": { "name": "createdAt", "isArray": false, "type": "String", "isRequired": true, "attributes": [] },
+            "updatedAt": { "name": "updatedAt", "isArray": false, "type": "String", "isRequired": true, "attributes": [] },
+            "errorCode": { "name": "errorCode", "isArray": false, "type": "String", "isRequired": true, "attributes": [] }
+          }
+        }
+      },
+      "mutations": {
+        "sendCV": {
+          "name": "sendCV",
+          "isArray": false,
+          "type": { "nonModel": "SendCVResult" },
+          "isRequired": false,
+          "arguments": {
+            "name": { "name": "name", "isArray": false, "type": "String", "isRequired": true },
+            "email": { "name": "email", "isArray": false, "type": "String", "isRequired": true },
+            "company": { "name": "company", "isArray": false, "type": "String", "isRequired": false },
+            "language": { "name": "language", "isArray": false, "type": "String", "isRequired": true },
+            "recaptchaToken": { "name": "recaptchaToken", "isArray": false, "type": "String", "isRequired": true }
+          }
+        }
+      }
+    }
+  },
+  "version": "1.4"
+}
