@@ -8,14 +8,18 @@ import { Footer } from '@/components/layout/footer/Footer';
 import { NavBar } from '@/components/layout/navbar/NavBar';
 import { ThemeTransitionEnabler } from '@/components/layout/ThemeTransitionEnabler';
 import { Providers } from '@/contexts/Providers';
-import { EnvironmentVariables } from '@/utils/constants';
-import { CloudFrontURLs } from '@/utils/constants';
+import {
+    CloudFrontURLs,
+    EnvironmentVariables,
+    SITE_URL,
+} from '@/utils/constants';
 
 import type { Metadata } from 'next';
 
 Amplify.configure(outputs, { ssr: true });
 
 export const metadata: Metadata = {
+    metadataBase: new URL(SITE_URL),
     title: 'Leonardo Aranguren | AWS Cloud Engineer & Software Engineer',
     description:
         'Leonardo Aranguren is an AWS Certified Cloud Engineer and Software Engineer specializing in serverless architecture, React, TypeScript, Python, Go, NodeJS, NextJS and cloud-native solutions. Explore my portfolio, projects, and professional experience.',
@@ -27,7 +31,7 @@ export const metadata: Metadata = {
         title: 'Leonardo Aranguren | Cloud Engineer - Software Engineer - Technical Lead',
         description:
             'AWS Certified Cloud Engineer and Software Engineer specializing in serverless architecture, React, TypeScript, Python, Go, NodeJS, NextJS and cloud-native solutions.',
-        url: 'https://leonardoaranguren.com',
+        url: SITE_URL,
         siteName: 'Leonardo Aranguren',
         images: [
             {
