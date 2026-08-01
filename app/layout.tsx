@@ -7,6 +7,7 @@ import outputs from '@/amplify_outputs.json';
 import { Footer } from '@/components/layout/footer/Footer';
 import { HtmlLangSync } from '@/components/layout/HtmlLangSync';
 import { NavBar } from '@/components/layout/navbar/NavBar';
+import { ThemeColorSync } from '@/components/layout/ThemeColorSync';
 import { ThemeTransitionEnabler } from '@/components/layout/ThemeTransitionEnabler';
 import { Providers } from '@/contexts/Providers';
 import {
@@ -15,8 +16,9 @@ import {
     SITE_URL,
 } from '@/utils/constants';
 import { buildSiteStructuredData } from '@/utils/seo/structured-data';
+import { PWA_THEME_COLORS } from '@/utils/theme/pwa-colors';
 
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 Amplify.configure(outputs, { ssr: true });
 
@@ -48,6 +50,13 @@ export const metadata: Metadata = {
         type: 'website',
     },
     applicationName: 'Leonardo Aranguren',
+};
+
+export const viewport: Viewport = {
+    themeColor: [
+        { media: '(prefers-color-scheme: light)', color: PWA_THEME_COLORS.light },
+        { media: '(prefers-color-scheme: dark)', color: PWA_THEME_COLORS.dark },
+    ],
 };
 
 export default function RootLayout({
@@ -83,6 +92,7 @@ export default function RootLayout({
                 </noscript>
                 <Providers>
                     <HtmlLangSync />
+                    <ThemeColorSync />
                     <ThemeTransitionEnabler />
                     <NavBar />
                     <main>{children}</main>
