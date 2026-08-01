@@ -34,6 +34,13 @@ if (!sesIdentityArn) {
     );
 }
 
+const sesConfigurationSetArn = EnviromentVariables.SES_CONFIGURATION_SET_ARN;
+if (!sesConfigurationSetArn) {
+    throw new Error(
+        'SES_CONFIGURATION_SET_ARN is required when the SES identity uses a default configuration set'
+    );
+}
+
 const cvBucketArn = EnviromentVariables.CV_BUCKET_ARN;
 if (!cvBucketArn) {
     throw new Error('CV_BUCKET_ARN is required for S3 CV read policy');
@@ -41,7 +48,7 @@ if (!cvBucketArn) {
 
 const sesPolicy = createPolicy(
     customResourceStack,
-    [sesIdentityArn],
+    [sesIdentityArn, sesConfigurationSetArn],
     'SESPolicy',
     Effect.ALLOW,
     ['ses:SendEmail', 'ses:SendRawEmail']

@@ -1,6 +1,5 @@
 import { createHash } from 'crypto';
 
-import { EnviromentVariables } from '@/utils/constants';
 import { Logger } from '@aws-lambda-powertools/logger';
 import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3';
 import { SESClient, SendRawEmailCommand } from '@aws-sdk/client-ses';
@@ -19,8 +18,8 @@ import {
 import { env } from '$amplify/env/send-cv-mutation';
 
 const client = await getAmplifyClient(env);
-const sesClient = new SESClient({ region: EnviromentVariables.AWS_REGION });
-const s3Client = new S3Client({ region: EnviromentVariables.AWS_REGION });
+const sesClient = new SESClient({ region: env.AWS_REGION });
+const s3Client = new S3Client({ region: env.AWS_REGION });
 
 const logger = new Logger({
     serviceName: 'send-cv-mutation',
@@ -115,7 +114,7 @@ export const handler: Schema['sendCV']['functionHandler'] = async (event) => {
 
     const recaptchaResult = await verifyRecaptchaToken(
         recaptchaToken,
-        EnviromentVariables.RECAPTCHA_SECRET_KEY
+        env.RECAPTCHA_SECRET_KEY
     );
 
     if (!recaptchaResult.ok) {
@@ -129,11 +128,24 @@ export const handler: Schema['sendCV']['functionHandler'] = async (event) => {
     const windowStartIso = new Date(
         Date.now() - CV_RATE_LIMIT_WINDOW_MS
     ).toISOString();
-    const recentRequestCount = await countRecentCvRequestsByEmail(
-        client,
-        normalizedEmail,
-        windowStartIso
-    );
+
+    let recentRequestCount: number;
+    try {
+        recentRequestCount = await countRecentCvRequestsByEmail(
+            client,
+            normalizedEmail,
+            windowStartIso
+        );
+    } catch (error) {
+        logger.error('Rate limit check failed', { error });
+        return emptyResult(ERROR_CODE.SERVER);
+    }
+
+    logger.info('CV request rate limit check', {
+        email: normalizedEmail,
+        recentRequestCount,
+        windowStartIso,
+    });
 
     if (isEmailRateLimited(recentRequestCount)) {
         logger.warn('Rate limit exceeded', {
@@ -153,10 +165,7 @@ export const handler: Schema['sendCV']['functionHandler'] = async (event) => {
 
         logger.info('CV request created', JSON.stringify(data));
 
-        if (
-            !EnviromentVariables.FROM_EMAIL_ADDRESS ||
-            !EnviromentVariables.CV_BUCKET_NAME
-        ) {
+        if (!env.FROM_EMAIL_ADDRESS || !env.CV_BUCKET_NAME) {
             throw new Error(
                 'Required environment variables are not configured'
             );
@@ -166,7 +175,7 @@ export const handler: Schema['sendCV']['functionHandler'] = async (event) => {
 
         const cvFile = await s3Client.send(
             new GetObjectCommand({
-                Bucket: EnviromentVariables.CV_BUCKET_NAME,
+                Bucket: env.CV_BUCKET_NAME,
                 Key: cvKey,
             })
         );
@@ -192,7 +201,7 @@ export const handler: Schema['sendCV']['functionHandler'] = async (event) => {
                 : `<html><body><h2>Thank you for requesting my CV</h2><p>Hello ${name},</p><p>Please find attached my updated curriculum vitae.</p><p>If you have any questions, please don't hesitate to contact me.</p><p>Best regards,<br/>Leonardo</p></body></html>`;
 
         const rawEmail = [
-            `From: ${EnviromentVariables.FROM_EMAIL_ADDRESS}`,
+            `From: ${env.FROM_EMAIL_ADDRESS}`,
             `To: ${email}`,
             `Subject: ${subject}`,
             'MIME-Version: 1.0',
@@ -233,13 +242,13 @@ export const handler: Schema['sendCV']['functionHandler'] = async (event) => {
             recipient: email,
         });
 
-        if (EnviromentVariables.ADMIN_EMAIL) {
+        if (env.ADMIN_EMAIL) {
             const adminSubject = `New CV Request: ${name} (${email})`;
             const adminBody = `New CV request details:\nName: ${name}\nEmail: ${email}\nCompany: ${company || 'Not provided'}\nLanguage: ${language}\nRequest ID: ${data!.id}\nTime: ${new Date().toISOString()}`;
 
             const adminRawEmail = [
-                `From: ${EnviromentVariables.FROM_EMAIL_ADDRESS}`,
-                `To: ${EnviromentVariables.ADMIN_EMAIL}`,
+                `From: ${env.FROM_EMAIL_ADDRESS}`,
+                `To: ${env.ADMIN_EMAIL}`,
                 `Subject: ${adminSubject}`,
                 'MIME-Version: 1.0',
                 'Content-Type: text/plain; charset=utf-8',

@@ -1,14 +1,5 @@
-export const CloudFrontURLs = {
-    IMAGES: process.env.NEXT_PUBLIC_CLOUDFRONT_URL_IMAGES || '',
-} as const;
-
 export const EnviromentVariables = {
-    RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '',
-    AWS_REGION: process.env.AWS_REGION || 'us-east-1',
-    CV_BUCKET_NAME: process.env.CV_BUCKET_NAME || '',
     CV_BUCKET_ARN: process.env.CV_BUCKET_ARN || '',
-    FROM_EMAIL_ADDRESS: process.env.FROM_EMAIL_ADDRESS || '',
     SES_IDENTITY_ARN: process.env.SES_IDENTITY_ARN || '',
-    ADMIN_EMAIL: process.env.ADMIN_EMAIL || '',
-    RECAPTCHA_SECRET_KEY: process.env.RECAPTCHA_SECRET_KEY || '',
+    SES_CONFIGURATION_SET_ARN: process.env.SES_CONFIGURATION_SET_ARN || '',
 } as const;

@@ -1,6 +1,6 @@
 import type { AmplifyClient } from '@/utils/graphql';
 
-export const CV_RATE_LIMIT_MAX = 10;
+export const CV_RATE_LIMIT_MAX = 5;
 export const CV_RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 
 export const normalizeEmail = (email: string) => email.trim().toLowerCase();
@@ -15,7 +15,7 @@ export async function countRecentCvRequestsByEmail(
     let nextToken: string | undefined;
 
     do {
-        const { data, nextToken: token } =
+        const { data, errors, nextToken: token } =
             await client.models.CVRequest.listCVRequestByEmail(
                 { email: normalizedEmail },
                 {
@@ -24,6 +24,12 @@ export async function countRecentCvRequestsByEmail(
                     nextToken,
                 }
             );
+
+        if (errors?.length) {
+            throw new Error(
+                `CVRequest list failed: ${errors.map((e) => e.message).join('; ')}`
+            );
+        }
 
         count += data?.length ?? 0;
         if (count >= CV_RATE_LIMIT_MAX) {

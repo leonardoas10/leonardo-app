@@ -8,7 +8,9 @@ const schema = a
     .schema({
         ...cvRequestSchema,
     })
-    .authorization((allow) => [allow.resource(sendCVMutation).to(['mutate'])]);
+    .authorization((allow) => [
+        allow.resource(sendCVMutation).to(['query', 'mutate']),
+    ]);
 
 export type Schema = ClientSchema<typeof schema>;
 
