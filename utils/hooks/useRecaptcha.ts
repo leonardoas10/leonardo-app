@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import { EnviromentVariables } from '@/utils/constants';
+import { EnvironmentVariables } from '@/utils/constants';
 
 export const useRecaptcha = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -12,7 +12,7 @@ export const useRecaptcha = () => {
 
         return new Promise<void>((resolve) => {
             const script = document.createElement('script');
-            script.src = `https://www.google.com/recaptcha/api.js?render=${EnviromentVariables.RECAPTCHA_SITE_KEY}`;
+            script.src = `https://www.google.com/recaptcha/api.js?render=${EnvironmentVariables.RECAPTCHA_SITE_KEY}`;
             script.async = true;
             script.defer = true;
 
@@ -49,7 +49,7 @@ export const useRecaptcha = () => {
                 return await new Promise<string>((resolve) => {
                     window.grecaptcha.ready(() => {
                         window.grecaptcha
-                            .execute(EnviromentVariables.RECAPTCHA_SITE_KEY, {
+                            .execute(EnvironmentVariables.RECAPTCHA_SITE_KEY, {
                                 action,
                             })
                             .then(resolve);
