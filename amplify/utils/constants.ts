@@ -8,5 +8,6 @@ export const EnviromentVariables = {
     CV_BUCKET_NAME: process.env.CV_BUCKET_NAME || '',
     CV_BUCKET_ARN: process.env.CV_BUCKET_ARN || '',
     FROM_EMAIL_ADDRESS: process.env.FROM_EMAIL_ADDRESS || '',
-    ADMIN_EMAIL: process.env.ADMIN_EMAIL || ''
+    ADMIN_EMAIL: process.env.ADMIN_EMAIL || '',
+    RECAPTCHA_SECRET_KEY: process.env.RECAPTCHA_SECRET_KEY || '',
 } as const;

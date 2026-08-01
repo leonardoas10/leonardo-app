@@ -10,5 +10,6 @@ export const sendCVMutation = defineFunction({
         FROM_EMAIL_ADDRESS: process.env.FROM_EMAIL_ADDRESS!,
         CV_BUCKET_NAME: process.env.CV_BUCKET_NAME!,
         ADMIN_EMAIL: 'your-admin-email@example.com',
+        RECAPTCHA_SECRET_KEY: process.env.RECAPTCHA_SECRET_KEY!,
     },
 });

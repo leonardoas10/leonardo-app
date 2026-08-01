@@ -197,13 +197,15 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 email: formData.email,
                 company: formData.company || '',
                 language: formData.language || language,
+                recaptchaToken: token,
             });
 
-            console.info('CV request created:', result);
+            if (result.data?.errorCode === 'RECAPTCHA_FAILED') {
+                throw new Error('RECAPTCHA_FAILED');
+            }
 
-            // Check if the response has an empty ID (indicating failure)
-            if (result.data!.id === '') {
-                throw new Error('Failed to create CV request');
+            if (!result.data?.id || result.data.errorCode) {
+                throw new Error(result.data?.errorCode || 'REQUEST_FAILED');
             }
 
             // Track form submission event
@@ -221,14 +223,16 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 severity: 'success',
             });
         } catch (error) {
-            console.error('Error submitting CV request:', error);
+            console.error('Error submitting CV request - ', error);
             setRequestError(true);
-            // Show error snackbar
+            const isRecaptchaError =
+                error instanceof Error && error.message === 'RECAPTCHA_FAILED';
             setSnackbar({
                 open: true,
-                message:
-                    t('cvModal.errorSnackbar') ||
-                    'Failed to process your request',
+                message: isRecaptchaError
+                    ? t('cvModal.errors.captchaInvalid')
+                    : t('cvModal.errorSnackbar') ||
+                      'Failed to process your request',
                 severity: 'error',
             });
         } finally {
