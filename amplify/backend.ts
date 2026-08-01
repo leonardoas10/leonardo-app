@@ -6,11 +6,17 @@ import { Effect } from 'aws-cdk-lib/aws-iam';
 import { createPolicy, addPolicyToLambda } from './cdk/policy/';
 import { data } from './data/resource';
 import { sendCVMutation } from './functions/cv/mutations/send-cv/resource';
+import { EnviromentVariables } from './utils/constants';
 
 const backend = defineBackend({
     data,
     sendCVMutation,
 });
+
+// Force a new AppSync API key when the old one expired/was deleted (CF drift).
+backend.data.resources.cfnResources.cfnApiKey?.overrideLogicalId(
+    'GraphQLApiKeyV2'
+);
 
 // ---------- LAMBDAS ----------- //
 
@@ -21,9 +27,21 @@ const SEND_CV_MUTATION_FUNCTION = backend.sendCVMutation.resources.lambda;
 // ---------- POLICIES ----------- //
 const customResourceStack = Stack.of(backend.sendCVMutation.stack);
 
+const sesIdentityArn = EnviromentVariables.SES_IDENTITY_ARN;
+if (!sesIdentityArn) {
+    throw new Error(
+        'SES_IDENTITY_ARN is required (verified SES identity ARN, not *)'
+    );
+}
+
+const cvBucketArn = EnviromentVariables.CV_BUCKET_ARN;
+if (!cvBucketArn) {
+    throw new Error('CV_BUCKET_ARN is required for S3 CV read policy');
+}
+
 const sesPolicy = createPolicy(
     customResourceStack,
-    ['*'],
+    [sesIdentityArn],
     'SESPolicy',
     Effect.ALLOW,
     ['ses:SendEmail', 'ses:SendRawEmail']
@@ -31,7 +49,7 @@ const sesPolicy = createPolicy(
 
 const s3Policy = createPolicy(
     customResourceStack,
-    ['arn:aws:s3:::leonardo-app-content/*'],
+    [`${cvBucketArn}/*`],
     'S3CVPolicy',
     Effect.ALLOW,
     ['s3:GetObject']

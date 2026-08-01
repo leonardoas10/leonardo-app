@@ -9,6 +9,7 @@ backend:
                 - export RECAPTCHA_SECRET_KEY=$RECAPTCHA_SECRET_KEY
                 - export NEXT_PUBLIC_GTM_ID=$NEXT_PUBLIC_GTM_ID
                 - export FROM_EMAIL_ADDRESS=$FROM_EMAIL_ADDRESS
+                - export SES_IDENTITY_ARN=$SES_IDENTITY_ARN
                 - export CV_BUCKET_ARN=$CV_BUCKET_ARN
                 - export CV_BUCKET_NAME=$CV_BUCKET_NAME
         build:
