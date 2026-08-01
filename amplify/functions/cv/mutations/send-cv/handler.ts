@@ -9,6 +9,12 @@ import type { Schema } from '@/data/resource';
 import { getAmplifyClient } from '@/utils/graphql';
 
 import { verifyRecaptchaToken } from './verify-recaptcha';
+import {
+    countRecentCvRequestsByEmail,
+    CV_RATE_LIMIT_WINDOW_MS,
+    isEmailRateLimited,
+    normalizeEmail,
+} from './rate-limit';
 
 import { env } from '$amplify/env/send-cv-mutation';
 
@@ -24,6 +30,7 @@ const logger = new Logger({
 const ERROR_CODE = {
     VALIDATION: 'VALIDATION_FAILED',
     RECAPTCHA: 'RECAPTCHA_FAILED',
+    RATE_LIMIT: 'RATE_LIMIT_EXCEEDED',
     SERVER: 'SERVER_ERROR',
 } as const;
 
@@ -118,10 +125,28 @@ export const handler: Schema['sendCV']['functionHandler'] = async (event) => {
         return emptyResult(ERROR_CODE.RECAPTCHA);
     }
 
+    const normalizedEmail = normalizeEmail(email);
+    const windowStartIso = new Date(
+        Date.now() - CV_RATE_LIMIT_WINDOW_MS
+    ).toISOString();
+    const recentRequestCount = await countRecentCvRequestsByEmail(
+        client,
+        normalizedEmail,
+        windowStartIso
+    );
+
+    if (isEmailRateLimited(recentRequestCount)) {
+        logger.warn('Rate limit exceeded', {
+            email: normalizedEmail,
+            recentRequestCount,
+        });
+        return emptyResult(ERROR_CODE.RATE_LIMIT);
+    }
+
     try {
         const { data } = await client.models.CVRequest.create({
             name,
-            email,
+            email: normalizedEmail,
             company,
             language,
         });

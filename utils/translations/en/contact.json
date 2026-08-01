@@ -39,7 +39,8 @@
             "languageLength": "Language must be at least 2 characters",
             "minLength": "Must be at least 2 characters",
             "captchaRequired": "Please complete the CAPTCHA",
-            "captchaInvalid": "Incorrect answer, please try again"
+            "captchaInvalid": "Incorrect answer, please try again",
+            "rateLimit": "Too many CV requests. Please try again in an hour."
         }
     }
 }

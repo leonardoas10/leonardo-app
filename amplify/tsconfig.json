@@ -8,9 +8,12 @@
         "forceConsistentCasingInFileNames": true,
         "strict": true,
         "skipLibCheck": true,
+        "noEmit": true,
         "paths": {
             "$amplify/*": ["../.amplify/generated/*"],
             "@/*": ["./*"]
         }
-    }
+    },
+    "include": ["./**/*.ts"],
+    "exclude": ["node_modules", ".amplify"]
 }

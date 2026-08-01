@@ -8,7 +8,7 @@
         "start": "next start",
         "sandbox": "npx dotenvx run --env-file=.env -- ampx sandbox --profile leonardo --stream-function-logs true",
         "lint": "next lint",
-        "type-check": "tsc --noEmit",
+        "type-check": "tsc --noEmit && tsc -p amplify/tsconfig.json --noEmit",
         "pre-commit": "npm run lint && npm run type-check",
         "prepare": "husky install"
     },
