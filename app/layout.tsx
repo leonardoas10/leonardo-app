@@ -8,7 +8,7 @@ import { Footer } from '@/components/layout/footer/Footer';
 import { NavBar } from '@/components/layout/navbar/NavBar';
 import { ThemeTransitionEnabler } from '@/components/layout/ThemeTransitionEnabler';
 import { Providers } from '@/contexts/Providers';
-import { EnviromentVariables } from '@/utils/constants';
+import { EnvironmentVariables } from '@/utils/constants';
 import { CloudFrontURLs } from '@/utils/constants';
 
 import type { Metadata } from 'next';
@@ -16,17 +16,17 @@ import type { Metadata } from 'next';
 Amplify.configure(outputs, { ssr: true });
 
 export const metadata: Metadata = {
-    title: 'Leonardo Aranguren | AWS Cloud Engineer & Software Enginner',
+    title: 'Leonardo Aranguren | AWS Cloud Engineer & Software Engineer',
     description:
-        'Leonardo Aranguren is an AWS Certified Cloud Engineer and Software Enginner specializing in serverless architecture, React, TypeScript, Python, Go, NodeJS, NextJS and cloud-native solutions. Explore my portfolio, projects, and professional experience.',
+        'Leonardo Aranguren is an AWS Certified Cloud Engineer and Software Engineer specializing in serverless architecture, React, TypeScript, Python, Go, NodeJS, NextJS and cloud-native solutions. Explore my portfolio, projects, and professional experience.',
     keywords:
-        'AWS, Cloud Engineer, Software Enginner, React, TypeScript, Serverless, Python, Portfolio, Leonardo Aranguren',
+        'AWS, Cloud Engineer, Software Engineer, React, TypeScript, Serverless, Python, Portfolio, Leonardo Aranguren',
     authors: [{ name: 'Leonardo Aranguren' }],
     creator: 'Leonardo Aranguren',
     openGraph: {
-        title: 'Leonardo Aranguren | Cloud Engineer - Software Enginner - Technical Lead',
+        title: 'Leonardo Aranguren | Cloud Engineer - Software Engineer - Technical Lead',
         description:
-            'AWS Certified Cloud Engineer and Software Enginner specializing in serverless architecture, React, TypeScript, Python, Go, NodeJS, NextJS and cloud-native solutions.',
+            'AWS Certified Cloud Engineer and Software Engineer specializing in serverless architecture, React, TypeScript, Python, Go, NodeJS, NextJS and cloud-native solutions.',
         url: 'https://leonardoaranguren.com',
         siteName: 'Leonardo Aranguren',
         images: [
@@ -55,13 +55,13 @@ export default function RootLayout({
                     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                    })(window,document,'script','dataLayer','${EnviromentVariables.GTM_ID}');
+                    })(window,document,'script','dataLayer','${EnvironmentVariables.GTM_ID}');
                 `}
             </Script>
             <body>
                 <noscript>
                     <iframe
-                        src={`https://www.googletagmanager.com/ns.html?id=${EnviromentVariables.GTM_ID}`}
+                        src={`https://www.googletagmanager.com/ns.html?id=${EnvironmentVariables.GTM_ID}`}
                         height="0"
                         width="0"
                         style={{ display: 'none', visibility: 'hidden' }}

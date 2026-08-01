@@ -6,7 +6,7 @@ import { Effect } from 'aws-cdk-lib/aws-iam';
 import { createPolicy, addPolicyToLambda } from './cdk/policy/';
 import { data } from './data/resource';
 import { sendCVMutation } from './functions/cv/mutations/send-cv/resource';
-import { EnviromentVariables } from './utils/constants';
+import { EnvironmentVariables } from './utils/constants';
 
 const backend = defineBackend({
     data,
@@ -27,21 +27,21 @@ const SEND_CV_MUTATION_FUNCTION = backend.sendCVMutation.resources.lambda;
 // ---------- POLICIES ----------- //
 const customResourceStack = Stack.of(backend.sendCVMutation.stack);
 
-const sesIdentityArn = EnviromentVariables.SES_IDENTITY_ARN;
+const sesIdentityArn = EnvironmentVariables.SES_IDENTITY_ARN;
 if (!sesIdentityArn) {
     throw new Error(
         'SES_IDENTITY_ARN is required (verified SES identity ARN, not *)'
     );
 }
 
-const sesConfigurationSetArn = EnviromentVariables.SES_CONFIGURATION_SET_ARN;
+const sesConfigurationSetArn = EnvironmentVariables.SES_CONFIGURATION_SET_ARN;
 if (!sesConfigurationSetArn) {
     throw new Error(
         'SES_CONFIGURATION_SET_ARN is required when the SES identity uses a default configuration set'
     );
 }
 
-const cvBucketArn = EnviromentVariables.CV_BUCKET_ARN;
+const cvBucketArn = EnvironmentVariables.CV_BUCKET_ARN;
 if (!cvBucketArn) {
     throw new Error('CV_BUCKET_ARN is required for S3 CV read policy');
 }
