@@ -41,7 +41,9 @@
             "minLength": "Debe tener al menos 2 caracteres",
             "captchaRequired": "Por favor completa el CAPTCHA",
             "captchaInvalid": "Respuesta incorrecta, por favor intenta de nuevo",
-            "rateLimit": "Demasiadas solicitudes de CV. Inténtalo de nuevo en una hora."
+            "rateLimit": "Demasiadas solicitudes de CV. Inténtalo de nuevo en una hora.",
+            "validationFailed": "Revisa los campos del formulario e inténtalo de nuevo.",
+            "serverError": "Algo salió mal. Inténtalo de nuevo más tarde."
         }
     }
 }

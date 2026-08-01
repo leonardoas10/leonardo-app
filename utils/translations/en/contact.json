@@ -40,7 +40,9 @@
             "minLength": "Must be at least 2 characters",
             "captchaRequired": "Please complete the CAPTCHA",
             "captchaInvalid": "Incorrect answer, please try again",
-            "rateLimit": "Too many CV requests. Please try again in an hour."
+            "rateLimit": "Too many CV requests. Please try again in an hour.",
+            "validationFailed": "Please check the form fields and try again.",
+            "serverError": "Something went wrong. Please try again later."
         }
     }
 }

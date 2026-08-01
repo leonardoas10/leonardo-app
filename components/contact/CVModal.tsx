@@ -10,6 +10,11 @@ import { Button } from '@/components/common/Button';
 import { Modal } from '@/components/common/Modal';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { trackEvent } from '@/utils/analytics/trackEvent';
+import {
+    getSendCVUserMessage,
+    isSendCVSuccess,
+    SEND_CV_ERROR_CODES,
+} from '@/utils/errors/send-cv';
 import { useRecaptcha } from '@/utils/hooks/useRecaptcha';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 
@@ -200,16 +205,9 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 recaptchaToken: token,
             });
 
-            if (result.data?.errorCode === 'RECAPTCHA_FAILED') {
-                throw new Error('RECAPTCHA_FAILED');
-            }
-
-            if (result.data?.errorCode === 'RATE_LIMIT_EXCEEDED') {
-                throw new Error('RATE_LIMIT_EXCEEDED');
-            }
-
-            if (!result.data?.id || result.data.errorCode) {
-                throw new Error(result.data?.errorCode || 'REQUEST_FAILED');
+            if (!isSendCVSuccess(result.data)) {
+                const errorCode = result.data?.errorCode ?? 'SERVER_ERROR';
+                throw new Error(errorCode);
             }
 
             // Track form submission event
@@ -227,21 +225,14 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 severity: 'success',
             });
         } catch (error) {
-            console.error('Error submitting CV request - ', error);
             setRequestError(true);
-            const isRecaptchaError =
-                error instanceof Error && error.message === 'RECAPTCHA_FAILED';
-            const isRateLimitError =
-                error instanceof Error &&
-                error.message === 'RATE_LIMIT_EXCEEDED';
+            const errorCode =
+                error instanceof Error
+                    ? error.message
+                    : SEND_CV_ERROR_CODES.SERVER_ERROR;
             setSnackbar({
                 open: true,
-                message: isRecaptchaError
-                    ? t('cvModal.errors.captchaInvalid')
-                    : isRateLimitError
-                      ? t('cvModal.errors.rateLimit')
-                      : t('cvModal.errorSnackbar') ||
-                        'Failed to process your request',
+                message: getSendCVUserMessage(errorCode, t, { error }),
                 severity: 'error',
             });
         } finally {
