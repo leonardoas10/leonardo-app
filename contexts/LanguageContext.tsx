@@ -4,8 +4,9 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import { trackEvent } from '@/utils/analytics/trackEvent';
 import i18n from '@/utils/translations/i18n';
+import { syncLanguageCookie, type SiteLocale } from '@/utils/seo/locale';
 
-type Language = 'en' | 'es';
+type Language = SiteLocale;
 
 interface LanguageContextType {
     language: Language;
@@ -101,9 +102,11 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
 
         if (storedLanguage === 'en' || storedLanguage === 'es') {
             setLanguageState(storedLanguage as Language);
+            syncLanguageCookie(storedLanguage as Language);
         } else {
             const detected = detectUserLanguage();
             setLanguageState(detected);
+            syncLanguageCookie(detected);
         }
 
         setIsLanguageLoaded(true);
@@ -116,6 +119,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
         }
 
         localStorage.setItem('language', language);
+        syncLanguageCookie(language);
         i18n.changeLanguage(language);
     }, [language, firstRender]);
 
