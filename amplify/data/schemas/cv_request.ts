@@ -22,7 +22,8 @@ export const cvRequestSchema = {
             company: a.string(),
             language: a.string().required(),
         })
-        .authorization((allow) => [allow.publicApiKey().to(['create'])]),
+        .secondaryIndexes((index) => [index('email')])
+        .authorization((allow) => [allow.publicApiKey().to(['read'])]),
 
     sendCV: a
         .mutation()

@@ -204,6 +204,10 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 throw new Error('RECAPTCHA_FAILED');
             }
 
+            if (result.data?.errorCode === 'RATE_LIMIT_EXCEEDED') {
+                throw new Error('RATE_LIMIT_EXCEEDED');
+            }
+
             if (!result.data?.id || result.data.errorCode) {
                 throw new Error(result.data?.errorCode || 'REQUEST_FAILED');
             }
@@ -227,12 +231,17 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
             setRequestError(true);
             const isRecaptchaError =
                 error instanceof Error && error.message === 'RECAPTCHA_FAILED';
+            const isRateLimitError =
+                error instanceof Error &&
+                error.message === 'RATE_LIMIT_EXCEEDED';
             setSnackbar({
                 open: true,
                 message: isRecaptchaError
                     ? t('cvModal.errors.captchaInvalid')
-                    : t('cvModal.errorSnackbar') ||
-                      'Failed to process your request',
+                    : isRateLimitError
+                      ? t('cvModal.errors.rateLimit')
+                      : t('cvModal.errorSnackbar') ||
+                        'Failed to process your request',
                 severity: 'error',
             });
         } finally {
