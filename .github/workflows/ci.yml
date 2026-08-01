@@ -45,7 +45,10 @@ jobs:
                       next-cache-${{ runner.os }}-
 
             - name: Prepare CI build inputs
-              run: cp .github/fixtures/amplify_outputs.json amplify_outputs.json
+              run: |
+                  cp .github/fixtures/amplify_outputs.json amplify_outputs.json
+                  mkdir -p .amplify/generated/env
+                  cp .github/fixtures/amplify/env/send-cv-mutation.ts .amplify/generated/env/
 
             - name: Lint
               run: npm run lint
