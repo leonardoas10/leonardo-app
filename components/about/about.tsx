@@ -114,30 +114,15 @@ export function About({
                 </Grid>
             </Grid>
 
-            {/* Image slideshow - third on mobile */}
-            <Grid
-                container
-                sx={{
-                    mt: { xs: 8, md: 12 },
-                    display: { xs: 'flex', md: 'none' }, // Only show on mobile
-                }}
-            >
-                <Grid size={{ xs: 12 }}>{imageSlideshow}</Grid>
-            </Grid>
-
-            {/* Desktop layout for second section */}
+            {/* Discovery: slideshow + copy — one block, order via CSS */}
             <Grid
                 container
                 spacing={4}
                 alignItems="center"
-                sx={{
-                    mt: { xs: 8, md: 12 },
-                    display: { xs: 'none', md: 'flex' }, // Only show on desktop
-                }}
+                sx={{ mt: { xs: 8, md: 12 } }}
             >
-                {/* Image slideshow - desktop only */}
                 <Grid
-                    size={{ md: 5 }}
+                    size={{ xs: 12, md: 5 }}
                     sx={{
                         display: 'flex',
                         justifyContent: 'center',
@@ -146,8 +131,7 @@ export function About({
                     {imageSlideshow}
                 </Grid>
 
-                {/* Second content */}
-                <Grid size={{ md: 7 }}>
+                <Grid size={{ xs: 12, md: 7 }}>
                     <Typography
                         variant="h4"
                         component="h2"
@@ -163,42 +147,6 @@ export function About({
                     <HighlightedText
                         text={t('homePage.secondParagraphPart1')}
                         highlightTerms={['scalable', 'escalables']}
-                        variant="body1"
-                        paragraph
-                    />
-                    <HighlightedText
-                        text={t('homePage.secondParagraphPart2')}
-                        highlightTerms={[]}
-                        variant="body1"
-                        paragraph
-                    />
-                </Grid>
-            </Grid>
-
-            {/* Mobile layout for second content - fourth on mobile */}
-            <Grid
-                container
-                sx={{
-                    mt: { xs: 8 },
-                    display: { xs: 'flex', md: 'none' }, // Only show on mobile
-                }}
-            >
-                <Grid size={{ xs: 12 }}>
-                    <Typography
-                        variant="h4"
-                        component="h2"
-                        gutterBottom
-                        sx={{
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            fontSize: { xs: '1.75rem', md: '2.125rem' },
-                        }}
-                    >
-                        {t('homePage.discoveryTitle')}
-                    </Typography>
-                    <HighlightedText
-                        text={t('homePage.secondParagraphPart1')}
-                        highlightTerms={['scalable']}
                         variant="body1"
                         paragraph
                     />
