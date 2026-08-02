@@ -9,6 +9,7 @@ import {
     Box,
     CircularProgress,
 } from '@mui/material';
+import { TFunction } from 'i18next';
 import React, { useState } from 'react';
 
 import { Button } from './Button';
@@ -39,7 +40,7 @@ interface ModalProps {
         error?: string;
     }>;
     children?: React.ReactNode;
-    t?: (key: string) => string;
+    t?: TFunction<'contact'>;
     disableSubmitButton?: boolean;
     hideActions?: boolean;
 }
