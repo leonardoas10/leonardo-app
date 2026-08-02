@@ -183,5 +183,56 @@ const getExperienceData = (t: TFunction<'about'>) => {
                 },
             ],
         },
+        {
+            label: t('experienceTabs.devOps.label'),
+            sections: [
+                {
+                    title: t('experienceTabs.devOps.sections.cicd.title'),
+                    icon: t('experienceTabs.devOps.sections.cicd.icon'),
+                    items: (t('experienceTabs.devOps.sections.cicd.items', {
+                        returnObjects: true,
+                    }) as string[]).map((item: string) => ({ primary: item })),
+                },
+                {
+                    title: t(
+                        'experienceTabs.devOps.sections.observability.title'
+                    ),
+                    icon: t(
+                        'experienceTabs.devOps.sections.observability.icon'
+                    ),
+                    items: (t(
+                        'experienceTabs.devOps.sections.observability.items',
+                        { returnObjects: true }
+                    ) as string[]).map((item: string) => ({ primary: item })),
+                },
+            ],
+        },
+        {
+            label: t('experienceTabs.architecture.label'),
+            sections: [
+                {
+                    title: t(
+                        'experienceTabs.architecture.sections.cloud.title'
+                    ),
+                    icon: t('experienceTabs.architecture.sections.cloud.icon'),
+                    items: (t(
+                        'experienceTabs.architecture.sections.cloud.items',
+                        { returnObjects: true }
+                    ) as string[]).map((item: string) => ({ primary: item })),
+                },
+                {
+                    title: t(
+                        'experienceTabs.architecture.sections.platform.title'
+                    ),
+                    icon: t(
+                        'experienceTabs.architecture.sections.platform.icon'
+                    ),
+                    items: (t(
+                        'experienceTabs.architecture.sections.platform.items',
+                        { returnObjects: true }
+                    ) as string[]).map((item: string) => ({ primary: item })),
+                },
+            ],
+        },
     ];
 };

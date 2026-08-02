@@ -32,7 +32,7 @@
                     "items": [
                         "Redujo costos de infraestructura en más de $8,000 USD anuales al migrar pipelines de CircleCI a GitHub Actions y optimizar recursos en AWS ECS.",
                         "Consolidó 20+ Lambdas en un único repositorio con Amplify Gen 2, optimizando la gestión de recursos y reduciendo complejidad operativa.",
-                        "Construyó 50+ pipelines CI/CD para flujos de despliegue, testing y control de calidad usando GitHub Actions, Jenkins y CircleCI."
+                        "Automatizó más de 50 pipelines CI/CD para build, test y deploy con GitHub Actions, Jenkins y CircleCI, reduciendo esfuerzo operativo manual y costos recurrentes de ejecución."
                     ]
                 },
                 "serverless": {
@@ -54,7 +54,7 @@
                     "icon": "🔄",
                     "items": [
                         "Refactorizó 50+ APIs monolíticas a microservicios escalables siguiendo el principio de responsabilidad única, usando Go, Node.js, NestJS, Python y Laravel.",
-                        "Diseñó arquitecturas desacopladas y resilientes, alineadas con los 5 pilares del AWS Well-Architected Framework.",
+                        "Construyó plataformas React y TypeScript con TanStack Query, arquitectura de componentes reutilizables y autenticación Keycloak o Cognito para UIs enterprise.",
                         "Habilitó la interoperabilidad entre microservicios y sistemas GCP mediante integraciones seguras y eficientes."
                     ]
                 },
@@ -82,12 +82,58 @@
                     ]
                 },
                 "leadership": {
-                    "title": "Observabilidad y DevOps",
+                    "title": "Calidad y Cultura",
                     "icon": "📊",
                     "items": [
-                        "Implementó dashboards personalizados en CloudWatch, centralización de logs y métricas clave para monitoreo de salud y rendimiento.",
-                        "Logró automatización completa del ciclo DevOps: integración con Jira, testing, despliegue y rollback automático en múltiples entornos.",
-                        "Promovió cultura de calidad continua y ownership técnico en todos los niveles de desarrollo e infraestructura."
+                        "Implementó dashboards en CloudWatch y métricas clave para monitoreo de salud y rendimiento en servicios distribuidos.",
+                        "Promovió cultura de calidad continua y ownership técnico en todos los niveles de desarrollo e infraestructura.",
+                        "Validó KPIs y lideró entregas Scrum coordinando stakeholders en programas bancarios y enterprise."
+                    ]
+                }
+            }
+        },
+        "devOps": {
+            "label": "⚙️ DevOps",
+            "sections": {
+                "cicd": {
+                    "title": "CI/CD e Infraestructura",
+                    "icon": "🚀",
+                    "items": [
+                        "Reemplazó CircleCI legacy por GitHub Actions y GitLab CI/CD (Bricks), con OIDC para roles AWS temporales, workflows paralelos de lint/test/build/deploy, trazabilidad Jira y rollbacks automáticos en Amplify.",
+                        "Aprovisionó infraestructura multi-entorno con Terraform, CloudFormation, AWS CDK y Bricks en EKS, S3, RDS e IAM para entregas consistentes de dev a prod.",
+                        "Automatizó despliegues serverless para plataformas de evaluación en salud con AWS CDK y pipelines EventBridge; amplió cobertura Pytest en más de 20 repositorios."
+                    ]
+                },
+                "observability": {
+                    "title": "Observabilidad y Confiabilidad",
+                    "icon": "📈",
+                    "items": [
+                        "Implementó logging trace-based en Splunk y Datadog APM en plataformas AI enterprise, además de dashboards CloudWatch, alertas SNS y canales Slack en sistemas de retail QSR.",
+                        "Entregó despliegues por rama y entorno con rollback automático en stacks aislados dev/qa/prod bajo una sola organización AWS.",
+                        "Centralizó agregación de logs y métricas clave por servicio para monitoreo de salud, acelerando respuesta a incidentes y ownership operativo."
+                    ]
+                }
+            }
+        },
+        "architecture": {
+            "label": "🏗️ Arquitectura",
+            "sections": {
+                "cloud": {
+                    "title": "Cloud y Serverless",
+                    "icon": "☁️",
+                    "items": [
+                        "Diseñó sistemas serverless event-driven con Lambda, Step Functions, SQS, SNS, DynamoDB, AppSync y EventBridge—incluyendo flujos de migración/rollback DynamoDB y orquestación de exámenes candidatos.",
+                        "Lideró arquitectura monorepo Amplify Gen 2 con stacks independientes por dominio: gateway GraphQL AppSync, streams DynamoDB, cifrado KMS e IAM granular por entorno.",
+                        "Aplicó pilares AWS Well-Architected—excelencia operacional, seguridad, confiabilidad, rendimiento y costo—en soluciones enterprise y para clientes."
+                    ]
+                },
+                "platform": {
+                    "title": "Plataforma e Integración",
+                    "icon": "🔗",
+                    "items": [
+                        "Arquitectó un AI Gateway enterprise (LiteLLM/LangGraph) con Azure OpenAI, ingesta RAG, config dinámica en S3 y routing multi-agente en EKS.",
+                        "Lideró un ecosistema de integración bancaria cross-channel y migración de 50 APIs monolíticas a microservicios en API Gateway, EKS, Lambda, Cognito y VPC privada.",
+                        "Construyó plataformas AI internas con React en CloudFront, FastAPI en DynamoDB, API Gateway privado, RBAC Cognito y pipelines Glue ETL."
                     ]
                 }
             }
