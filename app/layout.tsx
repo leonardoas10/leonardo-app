@@ -1,17 +1,16 @@
 import './globals.css';
 // import { GoogleTagManager } from '@next/third-parties/google';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
-import { Amplify } from 'aws-amplify';
 import { cookies } from 'next/headers';
 import Script from 'next/script';
 
-import outputs from '@/amplify_outputs.json';
 import { Footer } from '@/components/layout/footer/Footer';
 import { NavBar } from '@/components/layout/navbar/NavBar';
 import { SkipLink } from '@/components/layout/SkipLink';
 import { ThemeColorSync } from '@/components/layout/ThemeColorSync';
 import { ThemeTransitionEnabler } from '@/components/layout/ThemeTransitionEnabler';
 import { Providers } from '@/contexts/Providers';
+import { configureAmplify } from '@/utils/amplify-client';
 import { CLIENT_PREFERENCES_SCRIPT } from '@/utils/bootstrap/client-preferences-script';
 import {
     LANGUAGE_STORAGE_KEY,
@@ -29,7 +28,7 @@ import { PWA_THEME_COLORS } from '@/utils/theme/pwa-colors';
 
 import type { Metadata, Viewport } from 'next';
 
-Amplify.configure(outputs, { ssr: true });
+configureAmplify();
 
 const siteStructuredData = buildSiteStructuredData();
 
