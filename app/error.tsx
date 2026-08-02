@@ -4,6 +4,7 @@ import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
+import { Button as AccentButton } from '@/components/common/Button';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 
 type ErrorPageProps = {
@@ -25,7 +26,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
                     variant="h3"
                     component="h1"
                     gutterBottom
-                    sx={{ color: 'textPrimary', fontWeight: 600 }}
+                    sx={{ color: 'textSecondary', fontWeight: 600 }}
                 >
                     {t('errors.server.title')}
                 </Typography>
@@ -41,10 +42,22 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
                     spacing={2}
                     justifyContent="center"
                 >
-                    <Button variant="contained" onClick={reset}>
+                    <AccentButton onClick={reset}>
                         {t('errors.server.tryAgain')}
-                    </Button>
-                    <Button component={Link} href="/" variant="outlined">
+                    </AccentButton>
+                    <Button
+                        component={Link}
+                        href="/"
+                        variant="outlined"
+                        sx={{
+                            borderColor: 'background.aws',
+                            color: 'textSecondary',
+                            '&:hover': {
+                                borderColor: 'background.aws',
+                                bgcolor: 'action.hover',
+                            },
+                        }}
+                    >
                         {t('errors.server.goHome')}
                     </Button>
                 </Stack>
