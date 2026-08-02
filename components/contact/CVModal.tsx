@@ -1,13 +1,10 @@
 import { TextField, Box, Typography, Snackbar, Alert } from '@mui/material';
-import { Amplify } from 'aws-amplify';
-import { generateClient } from 'aws-amplify/data';
 import Image from 'next/image';
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 
-import type { Schema } from '@/amplify/data/resource';
-import outputs from '@/amplify_outputs.json';
 import { Modal } from '@/components/common/Modal';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { amplifyDataClient } from '@/utils/amplify-client';
 import { trackEvent } from '@/utils/analytics/trackEvent';
 import {
     getSendCVUserMessage,
@@ -16,12 +13,6 @@ import {
 } from '@/utils/errors/send-cv';
 import { useRecaptcha } from '@/utils/hooks/useRecaptcha';
 import { useTranslation } from '@/utils/hooks/useTranslation';
-
-// Configure Amplify
-Amplify.configure(outputs, { ssr: true });
-
-// Generate the client
-const client = generateClient<Schema>();
 
 interface CVModalProps {
     open: boolean;
@@ -190,7 +181,7 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
             });
 
             // Create CV request using Amplify Gen 2 API
-            const result = await client.mutations.sendCV({
+            const result = await amplifyDataClient.mutations.sendCV({
                 name: formData.name,
                 email: formData.email,
                 company: formData.company || '',
