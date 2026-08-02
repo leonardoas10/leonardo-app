@@ -1,3 +1,5 @@
+declare module '*.css';
+
 interface Window {
   grecaptcha: {
     ready: (callback: () => void) => void;

@@ -84,10 +84,10 @@ export default async function RootLayout({
             data-theme={initialTheme}
             suppressHydrationWarning
         >
-            <Script id="client-preferences" strategy="beforeInteractive">
-                {CLIENT_PREFERENCES_SCRIPT}
-            </Script>
             <body>
+                <Script id="client-preferences" strategy="beforeInteractive">
+                    {CLIENT_PREFERENCES_SCRIPT}
+                </Script>
                 <AppRouterCacheProvider>
                 <script
                     type="application/ld+json"
