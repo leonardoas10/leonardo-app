@@ -13,6 +13,7 @@ import { TFunction } from 'i18next';
 import React, { useState } from 'react';
 
 import { Button } from './Button';
+import styles from './Modal.module.css';
 
 interface FormData {
     name: string;
@@ -120,11 +121,17 @@ export function Modal({
                 maxWidth="sm"
                 fullWidth
                 disableScrollLock={true}
+                slotProps={{
+                    paper: {
+                        className: styles.paper,
+                        elevation: 0,
+                    },
+                }}
             >
                 <DialogTitle sx={{ textAlign: 'center' }}>{title}</DialogTitle>
 
                 <DialogContent>
-                    <Box component="form" sx={{ mt: 2 }}>
+                    <Box component="form" className={styles.form}>
                         {children ? (
                             children
                         ) : fields ? (
