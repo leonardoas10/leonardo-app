@@ -1,7 +1,8 @@
+/* MUI Switch: custom icon/checkedIcon render inside .MuiSwitch-switchBase (not .MuiSwitch-thumb) */
+
 .switch {
-    padding: 0;
-    display: inline-flex;
     --track-color: #ff9900;
+    flex-shrink: 0;
 }
 
 html[data-theme='light'] .switch {
@@ -9,122 +10,142 @@ html[data-theme='light'] .switch {
 }
 
 .small {
-    width: 36px;
-    height: 20px;
-    --thumb-size: 16px;
-    --thumb-margin: 2px;
-    --checked-translate: 16px;
-    --track-radius: 10px;
+    --switch-width: 36px;
+    --switch-height: 22px;
+    --thumb-size: 18px;
+    --track-inset: 2px;
 }
 
 .medium {
-    width: 42px;
-    height: 26px;
+    --switch-width: 44px;
+    --switch-height: 26px;
     --thumb-size: 22px;
-    --thumb-margin: 2px;
-    --checked-translate: 16px;
-    --track-radius: 13px;
+    --track-inset: 2px;
 }
 
 .large {
-    width: 52px;
-    height: 31px;
-    --thumb-size: 24px;
-    --thumb-margin: 3.5px;
-    --checked-translate: 21px;
-    --track-radius: 15.5px;
+    --switch-width: 51px;
+    --switch-height: 31px;
+    --thumb-size: 27px;
+    --track-inset: 2px;
 }
 
-/* Double .switch beats body.theme-transition-enabled * in globals.css */
-.switch.switch :global(.MuiSwitch-switchBase) {
-    padding: 0;
-    margin: var(--thumb-margin);
-    transition: transform 300ms ease-in-out;
+.switch {
+    --thumb-travel: calc(
+        var(--switch-width) - var(--thumb-size) - (2 * var(--track-inset))
+    );
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .switch.switch :global(.MuiSwitch-switchBase) {
-        transition: none;
-    }
+/* Root: MUI defaults padding:12 + 58×38 — collapses the colored pill */
+.switch:global(.MuiSwitch-root) {
+    width: var(--switch-width) !important;
+    height: var(--switch-height) !important;
+    padding: 0 !important;
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    box-sizing: border-box;
+    vertical-align: middle;
 }
 
-.switch.switch :global(.MuiSwitch-switchBase.Mui-checked) {
-    transform: translateX(var(--checked-translate));
-    color: #fff;
+/* Colored pill fills the root */
+.switch :global(.MuiSwitch-track) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: calc(var(--switch-height) / 2);
+    background-color: var(--track-color);
+    opacity: 1 !important;
+    transition: background-color 300ms ease;
 }
 
 .switch :global(.MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track) {
     background-color: var(--track-color);
-    opacity: 1;
-    border: 0;
+    opacity: 1 !important;
+}
+
+/* Thumb carrier: inset centers the white circle vertically + horizontally */
+.switch.switch :global(.MuiSwitch-switchBase) {
+    position: absolute !important;
+    top: var(--track-inset) !important;
+    left: var(--track-inset) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: var(--thumb-size) !important;
+    height: var(--thumb-size) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    transform: translateX(0) !important;
+    transition: transform 300ms ease-in-out !important;
+    box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .switch.switch :global(.MuiSwitch-switchBase) {
+        transition: none !important;
+    }
+}
+
+/* Double .switch beats body.theme-transition-enabled * in globals.css */
+.switch.switch :global(.MuiSwitch-switchBase.Mui-checked) {
+    transform: translateX(var(--thumb-travel)) !important;
+    color: inherit;
+}
+
+.switch :global(.MuiSwitch-switchBase:hover),
+.switch :global(.MuiSwitch-switchBase.Mui-checked:hover) {
+    background-color: transparent !important;
+}
+
+.switch:hover :global(.MuiSwitch-track) {
+    filter: brightness(1.08);
 }
 
 .switch :global(.MuiSwitch-switchBase.Mui-disabled + .MuiSwitch-track) {
-    opacity: 0.3;
+    opacity: 0.3 !important;
 }
 
 html[data-theme='light']
     .switch
     :global(.MuiSwitch-switchBase.Mui-disabled + .MuiSwitch-track) {
-    opacity: 0.7;
+    opacity: 0.7 !important;
 }
 
-.switch :global(.MuiSwitch-switchBase.Mui-focusVisible .MuiSwitch-thumb) {
-    color: #33cf4d;
-    border: 6px solid #fff;
+.switch :global(.MuiSwitch-switchBase.Mui-disabled) {
+    opacity: 0.5;
 }
 
-.switch :global(.MuiSwitch-switchBase.Mui-disabled .MuiSwitch-thumb) {
-    color: #757575;
+.switch :global(.MuiSwitch-switchBase.Mui-focusVisible) .thumbContent {
+    outline: 2px solid var(--track-color);
+    outline-offset: 1px;
 }
 
-.switch:hover :global(.MuiSwitch-track) {
-    filter: brightness(1.2);
-}
-
-.switch:hover :global(.MuiSwitch-thumb) {
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-}
-
+/* Hide default MUI thumb when present */
 .switch :global(.MuiSwitch-thumb) {
-    box-sizing: border-box;
-    width: var(--thumb-size);
-    height: var(--thumb-size);
-    transition: box-shadow 200ms ease;
+    display: none;
 }
 
-.withIcons :global(.MuiSwitch-thumb) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    box-shadow: none;
-}
-
-.switch :global(.MuiSwitch-track) {
-    border-radius: var(--track-radius);
-    background-color: var(--track-color);
-    opacity: 1;
-    transition:
-        background-color 300ms ease,
-        box-shadow 300ms ease;
-}
-
-.thumb {
+/* White circle — fills switchBase */
+.thumbContent {
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     background-color: white;
     color: black;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
     font-weight: 700;
     line-height: 1;
+    pointer-events: none;
 }
 
 .thumbSmall {
-    width: 16px;
-    height: 16px;
-    font-size: 8px;
+    font-size: 9px;
 }
 
 .thumbSmall :global(.MuiSvgIcon-root) {
@@ -132,21 +153,17 @@ html[data-theme='light']
 }
 
 .thumbMedium {
-    width: 22px;
-    height: 22px;
     font-size: 10px;
 }
 
 .thumbMedium :global(.MuiSvgIcon-root) {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .thumbLarge {
-    width: 24px;
-    height: 24px;
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .thumbLarge :global(.MuiSvgIcon-root) {
-    font-size: 18px;
+    font-size: 16px;
 }

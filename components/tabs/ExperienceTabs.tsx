@@ -1,12 +1,12 @@
 'use client';
 
-import { Box, Typography, List, ListItem, ListItemText } from '@mui/material';
+import { Box, List, ListItem, ListItemText } from '@mui/material';
 import { TFunction } from 'i18next';
 import React from 'react';
 
 import { useTranslation } from '@/utils/hooks/useTranslation';
 
-import { TabsComponent, TabItem } from './TabsComponent';
+import { splitEmojiLabel, TabsComponent, TabItem } from './TabsComponent';
 
 interface ExperienceItem {
     primary: string;
@@ -32,24 +32,42 @@ export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
     
     const experienceTabs = tabs || getExperienceData(t);
 
-    const tabItems: TabItem[] = experienceTabs.map((tab) => ({
-        label: tab.label,
-        content: (
+    const tabItems: TabItem[] = experienceTabs.map((tab) => {
+        const { emoji, text } = splitEmojiLabel(tab.label);
+
+        return {
+            label: text,
+            icon: emoji ? (
+                <span aria-hidden="true">{emoji}</span>
+            ) : undefined,
+            content: (
             <Box>
                 {tab.sections.map((section, sectionIndex) => (
                     <React.Fragment key={sectionIndex}>
-                        <Typography
-                            variant="h3"
+                        <Box
+                            component="h3"
                             sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: {
+                                    xs: 'center',
+                                    md: 'flex-start',
+                                },
+                                gap: 1,
+                                flexWrap: 'wrap',
                                 color: 'textSecondary',
                                 mb: 2,
                                 mt: sectionIndex > 0 ? 2 : 0,
-                                fontSize: '1.25rem', // Maintain h6 size while using h3 semantics
+                                fontSize: '1.25rem',
                                 fontWeight: 500,
+                                m: 0,
                             }}
                         >
-                            {section.icon} {section.title}
-                        </Typography>
+                            <Box component="span" aria-hidden="true">
+                                {section.icon}
+                            </Box>
+                            <Box component="span">{section.title}</Box>
+                        </Box>
                         <List dense>
                             {section.items.map(
                                 (item: ExperienceItem, itemIndex: number) => (
@@ -66,7 +84,8 @@ export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
                 ))}
             </Box>
         ),
-    }));
+        };
+    });
 
     return (
         <TabsComponent
