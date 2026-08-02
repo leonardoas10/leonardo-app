@@ -5,7 +5,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import { Box } from '@mui/material';
 import React from 'react';
 
-import { IOSSwitch } from '@/components/common/IOSSwitch';
+import { IOSSwitch, SwitchThumbContent } from '@/components/common/IOSSwitch';
 import { useThemeContext } from '@/contexts/ThemeContext';
 
 interface ThemeToggleProps {
@@ -24,9 +24,16 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
             <IOSSwitch
                 checked={mode === 'dark'}
                 onChange={() => toggleColorMode(toggleLocation)}
-                checkedIcon={<DarkModeIcon sx={{ mt: -0.2 }} />}
-                uncheckedIcon={<LightModeIcon />}
-                switchBaseMargin="4px 0px 2px 4px"
+                checkedIcon={
+                    <SwitchThumbContent customSize={size}>
+                        <DarkModeIcon aria-hidden />
+                    </SwitchThumbContent>
+                }
+                uncheckedIcon={
+                    <SwitchThumbContent customSize={size}>
+                        <LightModeIcon aria-hidden />
+                    </SwitchThumbContent>
+                }
                 customSize={size}
                 aria-label="Theme toggle"
             />
