@@ -94,9 +94,11 @@ export default function RootLayout({
                     <HtmlLangSync />
                     <ThemeColorSync />
                     <ThemeTransitionEnabler />
-                    <NavBar />
-                    <main>{children}</main>
-                    <Footer />
+                    <div className="site-shell">
+                        <NavBar />
+                        <main className="site-main">{children}</main>
+                        <Footer />
+                    </div>
                 </Providers>
             </body>
         </html>

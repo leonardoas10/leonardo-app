@@ -60,3 +60,23 @@ a {
     color: inherit;
     text-decoration: none;
 }
+
+.site-shell {
+    display: flex;
+    min-height: 100dvh;
+    flex-direction: column;
+}
+
+.site-main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.error-page {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 16px;
+}
