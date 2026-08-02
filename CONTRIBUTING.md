@@ -1,66 +1,73 @@
 # Contributing Guidelines
 
-Thank you for your interest in contributing to the Leonardo Aranguren Website project! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to the Leonardo Aranguren Website project!
 
-## Reporting Bugs/Feature Requests
+## Reporting Bugs / Feature Requests
 
-- **Bug Reports**: If you encounter a bug, please create an issue with a descriptive title and include:
+- **Bug reports**: Open a [GitHub issue](https://github.com/leonardoas10/leonardo-app/issues/new) with steps to reproduce, expected vs actual behavior, and environment details.
+- **Feature requests**: Same — clear description, rationale, and optional implementation notes.
 
-    - Steps to reproduce the bug
-    - Expected behavior
-    - Actual behavior
-    - Screenshots (if applicable)
-    - Environment details (browser, OS, device)
+Use labels such as `front-end`, `back-end`, or `aws` when relevant.
 
-- **Feature Requests**: For new feature suggestions, create an issue with:
-    - Clear description of the feature
-    - Rationale for adding this feature
-    - Any implementation ideas you may have
+## Development Setup
 
-## Contributing via Pull Requests
+1. Fork the repository and branch from `main`.
+2. `npm install`
+3. `cp .env.example .env` and fill required values.
+4. `npm run sandbox` (backend) and `npm run dev` (frontend) in separate terminals.
 
-1. **Fork the repository** and create your branch from `main`
-2. **Install dependencies**: `npm install`
-3. **Make your changes**: Follow the coding style and practices used in the project
-4. **Test your changes**: Ensure your changes don't break existing functionality
-5. **Commit your changes**: Use clear commit messages following the format:
+See [README.md](README.md) for the full script list and repository layout.
 
-    ```
-    [type]: Short description
+## Branch Naming and Commits
 
-    Longer description if necessary
-    ```
+Branch names should reference a GitHub issue when applicable:
 
-    Where `type` is one of: feat, fix, docs, style, refactor, test, chore
+```text
+feat/42-add-feature
+fix/15-send-cv-tests
+```
 
-6. **Push to your fork** and submit a pull request to the `main` branch
-7. **Code review**: Wait for review and address any feedback
+Use [Conventional Commits](https://www.conventionalcommits.org/) with a **lowercase** subject:
 
-## Code of Conduct
+```text
+fix: verify send-cv handler without calling ses on validation failure
 
-- Be respectful and inclusive in all interactions
-- Provide constructive feedback
-- Focus on what is best for the community
-- Show empathy towards other community members
-- Harassment or offensive behavior will not be tolerated
+Mock SES, S3, and Amplify Data in handler tests. Return typed error codes for
+validation and SES failures.
 
-## Development Workflow
+Refs #15
+```
 
-1. **Set up your environment** following the instructions in the README
-2. **Create a feature branch**: `git checkout -b feature/your-feature-name`
-3. **Follow the coding standards**:
-    - Use TypeScript for type safety
-    - Follow the existing project structure
-    - Write meaningful comments
-    - Use consistent naming conventions
-4. **Run tests** before submitting your changes
+Footer reference: `Refs #<issue-number>` (GitHub) or `Refs: KEY-123` (JIRA-style keys).
 
-## Security issue notifications
+## Before Submitting a PR
 
-If you discover a security vulnerability, please do NOT open an issue. Email [me](mailto:leoaranguren10@gmail.com) instead with details about the vulnerability.
+```bash
+npm run pre-commit   # lint + type-check (same as Husky pre-commit)
+npm test             # send-cv Lambda tests (mocked AWS)
+npm run build        # optional but recommended for UI changes
+```
+
+Husky only runs **pre-commit** (`lint` + `type-check`). There is no pre-push hook; CI runs build and Lambda tests on every PR.
+
+## Pull Request Checklist
+
+1. Changes match an open issue or explain why a new issue was not needed.
+2. `npm run pre-commit` passes locally.
+3. Backend changes include or update tests in `amplify/**/*.test.ts` when behavior changes.
+4. README / CONTRIBUTING updated if scripts, structure, or workflow changed.
+
+## Code Standards
+
+- TypeScript strict mode for app and Amplify backend.
+- Follow existing folder and naming conventions.
+- Prefer minimal, focused diffs.
+- i18n copy lives in `utils/translations/en/` and `utils/translations/es/`.
+
+## Security
+
+Do **not** open a public issue for security vulnerabilities. Email [leoaranguren10@gmail.com](mailto:leoaranguren10@gmail.com) instead.
 
 ## Licensing
 
-See the [LICENSE](LICENSE) file for our project's licensing. We will ask you to confirm the licensing of your contribution.
-
-By contributing to this project, you agree that your contributions will be licensed under the project's license.
+By contributing, you agree your contributions are licensed under the project [LICENSE](LICENSE).

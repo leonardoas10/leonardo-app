@@ -1,6 +1,6 @@
 # Leonardo Aranguren Website
 
-A modern portfolio website built with Next.js 14 and AWS Amplify, featuring server-side rendering, multi-language support (English/Spanish), and serverless architecture. The application uses TypeScript for type safety, Material UI for responsive design, and AWS services (DynamoDB, CloudFront, Lambda, S3, SES) for a robust cloud infrastructure.
+A modern portfolio website built with Next.js 15 and AWS Amplify Gen 2, featuring server-side rendering, multi-language support (English/Spanish), and serverless architecture. The application uses TypeScript for type safety, Material UI for responsive design, and AWS services (DynamoDB, CloudFront, Lambda, S3, SES) for a robust cloud infrastructure.
 
 ## 📊 Diagram
 
@@ -10,56 +10,49 @@ A modern portfolio website built with Next.js 14 and AWS Amplify, featuring serv
 
 ```
 .
-├── .amplify/                     # AWS Amplify generated files
-├── .github/                      # GitHub workflows and configurations
-├── .husky/                       # Git hooks configuration
-├── amplify/                      # AWS Amplify backend configuration and resources
-│   ├── auth/                     # Authentication resources (Cognito)
-│   ├── cdk/                      # AWS CDK configurations
-│   ├── data/                     # Data resources (DynamoDB, API)
-│   ├── functions/                # Lambda functions
-│   ├── utils/                    # Utility functions for backend
-│   └── backend.ts                # Main backend configuration
-├── app/                          # Next.js application pages and layouts
-│   ├── architecture/             # Architecture components
-│   ├── globals.css               # Global CSS styles
+├── .amplify/                     # Amplify generated artifacts (env stubs in CI)
+├── .github/                      # GitHub Actions workflows and CI fixtures
+│   ├── fixtures/                 # amplify_outputs.json and Lambda env stubs for CI
+│   └── workflows/                # ci.yml, lambda-tests.yml, auto-labeler.yml
+├── .husky/                       # Git hooks (pre-commit only)
+├── amplify/                      # AWS Amplify Gen 2 backend
+│   ├── auth/                     # Cognito auth resources
+│   ├── cdk/                      # CDK policy helpers
+│   ├── data/                     # DynamoDB schema and AppSync API
+│   ├── functions/                # Lambda functions (e.g. send-cv mutation)
+│   └── utils/                    # Backend utilities (GraphQL client)
+├── app/                          # Next.js App Router pages and layouts
+│   ├── architecture/             # Architecture page
+│   ├── globals.css               # Global styles
 │   ├── layout.tsx                # Root layout
-│   └── page.tsx                  # Main page component
-├── components/                   # Reusable React components organized by feature
-│   ├── auth/                     # Authentication components
-│   ├── common/                   # Shared components (Button, Card, etc.)
-│   ├── contact/                  # Contact form components
-│   ├── images/                   # Image components
-│   ├── layout/                   # Layout components (Header, Footer, etc.)
-│   ├── tabs/                     # Tab components
-│   └── toggles/                  # Toggle components
-├── contexts/                     # React context providers
-│   ├── LanguageContext.tsx       # Language provider
-│   ├── Providers.tsx             # Combined providers
-│   └── ThemeContext.tsx          # Theme provider
-├── docs/                         # Documentation files
-├── public/                       # Static assets
-├── types/                        # TypeScript type definitions
-│   └── global.d.ts               # Global type declarations
-├── utils/                        # Utility functions and helpers
-│   ├── analytics/                # Analytics utilities
-│   ├── hooks/                    # Custom React hooks
-│   ├── translations/             # Internationalization resources
-│   ├── types/                    # Type definitions
-│   └── constants.ts              # Application constants
+│   └── page.tsx                  # Home page
+├── components/                   # React components by feature
+│   ├── about/                    # About section
+│   ├── architecture/             # Architecture diagram page
+│   ├── common/                   # Shared UI (Button, Modal, IOSSwitch, …)
+│   ├── contact/                  # CV modal and contact flow
+│   ├── images/                   # Image slideshow and ThumbHash helpers
+│   ├── layout/                   # NavBar, Footer, SkipLink, theme sync
+│   ├── tabs/                     # Experience and architecture tabs
+│   └── toggles/                  # Language and theme toggles
+├── contexts/                     # React context providers (theme, language)
+├── public/                       # Static assets and PWA icons
+├── scripts/                      # Build-time scripts (e.g. thumbhash generation)
+├── types/                        # Shared TypeScript declarations
+├── utils/                        # Frontend utilities, i18n, SEO, analytics
 ├── .env.example                  # Example environment variables
 ├── next.config.ts                # Next.js configuration
-├── tsconfig.json                 # TypeScript configuration
-└── package.json                  # Project dependencies and scripts
+├── vitest.config.ts              # Vitest config for Amplify Lambda tests
+└── package.json                  # Dependencies and npm scripts
 ```
 
 ## 📝 Usage Instructions
 
 ### 🔍 Prerequisites
 
-- Node.js 18.x or later
-- npm 8.x or later
-- AWS Account with appropriate permissions
+- Node.js 22.x (matches CI)
+- npm 10.x or later
+- AWS account with appropriate permissions (for sandbox/deploy)
 - Git
 
 ### 🚀 Installation
@@ -67,8 +60,8 @@ A modern portfolio website built with Next.js 14 and AWS Amplify, featuring serv
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
-cd <repository-name>
+git clone https://github.com/leonardoas10/leonardo-app.git
+cd leonardo-app
 ```
 
 2. Install dependencies:
@@ -77,64 +70,104 @@ cd <repository-name>
 npm install
 ```
 
-3. Set up AWS Amplify sandbox:
+3. Copy environment variables:
 
 ```bash
-npm install -g @aws-amplify/cli
-amplify configure
-amplify init
-```
-
-4. Set up environment variables:
-
-```
 cp .env.example .env
 ```
 
-Edit `.env` with your configuration values:
+Edit `.env` with your CloudFront URLs, reCAPTCHA site key, and GTM id.
 
-5. Start the development server (in a new terminal):
+4. Start the Amplify sandbox (backend) in one terminal:
+
+```bash
+npm run sandbox
+```
+
+5. Start the Next.js dev server in another terminal:
 
 ```bash
 npm run dev
 ```
 
-## ⚙️ Development Features
+Open [http://localhost:3000](http://localhost:3000).
 
-### 📘 TypeScript Integration
+## ⚙️ npm Scripts
 
-- Strict type checking enabled for better code quality
-- Custom type definitions for all components and utilities
-- Automatic type inference for AWS Amplify operations
-- Improved developer experience with IDE support
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Next.js dev server (Turbopack) |
+| `npm run build` | Production build |
+| `npm run start` | Serve production build |
+| `npm run lint` | ESLint (Next.js) |
+| `npm run type-check` | TypeScript for app + Amplify backend |
+| `npm test` | Vitest — send-cv Lambda integration tests (mocked AWS) |
+| `npm run test:watch` | Vitest watch mode |
+| `npm run pre-commit` | Lint + type-check (same as Husky hook) |
+| `npm run sandbox` | Amplify Gen 2 sandbox with function logs |
+| `npm run generate:thumbhashes` | Regenerate ThumbHash placeholders for images |
 
-### 🐶 Husky Git Hooks
+## 🐶 Git Hooks
 
-- Pre-commit hooks for linting and type checking
-- Pre-push hooks for running tests
-- Ensures code quality before commits
-- Maintains consistent code style
+Husky runs **pre-commit only**:
 
-## 🔄 Continuous Integration/Deployment
+```bash
+npm run lint && npm run type-check
+```
 
-AWS Amplify Gen 2 provides automated CI/CD:
+There is no pre-push hook. Lambda tests run in GitHub Actions (`lambda-tests.yml`).
 
-- Automatic builds on code push
-- Branch preview deployments
-- Environment variable management
-- Serverless infrastructure deployment
-- Zero-downtime updates
+## 🧪 Testing
+
+Backend tests live next to the Lambda handler:
+
+- `amplify/functions/cv/mutations/send-cv/handler.test.ts`
+
+They mock SES, S3, DynamoDB (Amplify Data client), and reCAPTCHA — no real AWS calls.
+
+```bash
+mkdir -p .amplify/generated/env
+cp .github/fixtures/amplify/env/send-cv-mutation.ts .amplify/generated/env/
+npm test
+```
+
+CI runs the same suite in [.github/workflows/lambda-tests.yml](.github/workflows/lambda-tests.yml).
+
+## 📋 Backlog and Issues
+
+Work is tracked in [GitHub Issues](https://github.com/leonardoas10/leonardo-app/issues) and the [Leonardo Apps project board](https://github.com/users/leonardoas10/projects/5).
+
+Branch naming for linked issues:
+
+```text
+feat/42-short-description    → Refs #42
+fix/15-send-cv-tests         → Refs #15
+```
+
+Create or triage issues with the GitHub CLI:
+
+```bash
+gh issue list
+gh issue create --title "[P2] My task" --label front-end
+```
+
+Import or bulk-manage issues from the project UI (**Projects → Add item → Import issues**).
+
+## 🔄 Continuous Integration
+
+| Workflow | Trigger | Purpose |
+|----------|---------|---------|
+| [ci.yml](.github/workflows/ci.yml) | PR / push to `main` | Lint, type-check, production build |
+| [lambda-tests.yml](.github/workflows/lambda-tests.yml) | PR / push to `main` | send-cv Lambda tests (mocked AWS) |
+| [auto-labeler.yml](.github/workflows/auto-labeler.yml) | PR | Auto labels from changed paths |
+
+AWS Amplify Gen 2 handles deployment on merge to `main` (hosting + backend).
 
 ## 💰 Cost of Implementation
 
-This implementation leverages AWS's serverless architecture, which provides a cost-effective solution for personal portfolio websites:
+This implementation leverages AWS serverless architecture:
 
-- **Estimated monthly cost**: $1-3 USD per month
-- **Cost breakdown**:
-    - AWS Amplify Hosting: Free tier for the first 12 months, then ~$0.01 per build minute
-    - DynamoDB: Free tier includes 25GB storage and sufficient read/write capacity for portfolio sites
-    - CloudFront: Free tier includes 1TB data transfer and 10M requests per month
-    - Lambda: Free tier includes 1M requests and 400,000 GB-seconds of compute time
-    - S3: Free tier includes 5GB storage and 20,000 GET requests
+- **Estimated monthly cost**: $1–3 USD for typical portfolio traffic
+- **Main services**: Amplify Hosting, DynamoDB, CloudFront, Lambda, S3, SES (mostly free tier)
 
-The actual cost may vary based on traffic and usage patterns, but for a typical portfolio website with moderate traffic, costs should remain within the $1-3 range after free tier benefits expire.
+Actual cost depends on traffic and usage patterns.

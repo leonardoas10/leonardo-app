@@ -1,0 +1,44 @@
+name: Lambda Tests
+
+on:
+    pull_request:
+    push:
+        branches:
+            - main
+
+concurrency:
+    group: lambda-tests-${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    send-cv:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+
+            - name: Cache node_modules
+              uses: actions/cache@v4
+              id: node-modules-cache
+              with:
+                  path: node_modules
+                  key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+                  restore-keys: |
+                      node-modules-${{ runner.os }}-
+
+            - name: Install dependencies
+              if: steps.node-modules-cache.outputs.cache-hit != 'true'
+              run: npm ci
+
+            - name: Prepare Amplify env stub
+              run: |
+                  mkdir -p .amplify/generated/env
+                  cp .github/fixtures/amplify/env/send-cv-mutation.ts .amplify/generated/env/
+
+            - name: Run send-cv Lambda tests
+              run: npm test
