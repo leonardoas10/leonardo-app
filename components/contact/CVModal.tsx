@@ -6,7 +6,6 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 
 import type { Schema } from '@/amplify/data/resource';
 import outputs from '@/amplify_outputs.json';
-import { Button } from '@/components/common/Button';
 import { Modal } from '@/components/common/Modal';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { trackEvent } from '@/utils/analytics/trackEvent';
@@ -168,9 +167,6 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
         return !nameError && !emailError && !languageError && !companyError;
     };
 
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-    const [requestError, setRequestError] = useState(false);
-
     const handleSubmit = async () => {
         if (!validateForm()) {
             return;
@@ -179,17 +175,14 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
         setLoading(true);
 
         try {
-            // Execute reCAPTCHA (this will load the script if not already loaded)
             const token = await executeRecaptcha('cv_form_submit');
 
             if (!token) {
                 throw new Error('reCAPTCHA verification failed');
             }
 
-            // Close the modal immediately
             onClose();
 
-            // Show "sending" snackbar
             setSnackbar({
                 open: true,
                 message: t('cvModal.sending') || 'Sending your request...',
@@ -225,7 +218,6 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 severity: 'success',
             });
         } catch (error) {
-            setRequestError(true);
             const errorCode =
                 error instanceof Error
                     ? error.message
@@ -276,137 +268,88 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 onSubmit={handleSubmit}
                 loading={loading}
                 t={t}
+                closeOnSubmit={false}
                 disableSubmitButton={!isFormValid() || !isLoaded}
-                hideActions={showSuccessMessage}
             >
-                {showSuccessMessage ? (
-                    <Box sx={{ textAlign: 'center', py: 3 }}>
-                        <Typography
-                            variant="h6"
-                            color="textPrimary"
-                            gutterBottom
-                        >
-                            {t('cvModal.successTitle') || 'Success!'}
-                        </Typography>
-                        <Typography sx={{ mb: 3 }} color="textPrimary">
-                            {t('cvModal.successMessage') ||
-                                `Thank you for your request. Your CV will be sent to ${formData.email} shortly.`}
-                        </Typography>
-                        <Button
-                            variant="contained"
-                            onClick={() => {
-                                setShowSuccessMessage(false);
-                                setFormData({
-                                    name: '',
-                                    email: '',
-                                    company: '',
-                                    language: language || 'en',
-                                });
-                            }}
-                            sx={{ mt: 2 }}
-                        >
-                            {t('cvModal.submitAgain') ||
-                                'Want to submit again?'}
-                        </Button>
-                    </Box>
-                ) : requestError ? (
-                    <Box sx={{ textAlign: 'center', py: 3 }}>
-                        <Typography
-                            variant="h6"
-                            color="error.main"
-                            gutterBottom
-                        >
-                            {t('cvModal.errorTitle') || 'Error'}
-                        </Typography>
-                        <Typography>
-                            {t('cvModal.errorMessage') ||
-                                'There was an error processing your request. Please try again later.'}
-                        </Typography>
-                    </Box>
-                ) : (
-                    <>
-                        <TextField
-                            fullWidth
-                            margin="dense"
-                            label={t('cvModal.name')}
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            onFocus={handleFormFocus}
-                            required
-                            error={!!errors.name}
-                            helperText={errors.name}
-                        />
-                        <TextField
-                            fullWidth
-                            margin="dense"
-                            label={t('cvModal.email')}
-                            name="email"
-                            type="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            onFocus={handleFormFocus}
-                            required
-                            error={!!errors.email}
-                            helperText={errors.email}
-                        />
-                        <TextField
-                            fullWidth
-                            margin="dense"
-                            label={t('cvModal.company')}
-                            name="company"
-                            value={formData.company}
-                            onChange={handleChange}
-                            onFocus={handleFormFocus}
-                            error={!!errors.company}
-                            helperText={errors.company}
-                        />
-                        <TextField
-                            select
-                            fullWidth
-                            margin="dense"
-                            label={t('cvModal.language')}
-                            name="language"
-                            value={formData.language}
-                            onChange={handleChange}
-                            onFocus={handleFormFocus}
-                            required
-                            error={!!errors.language}
-                            helperText={errors.language}
-                            SelectProps={{
-                                native: true,
-                            }}
-                        >
-                            <option value="en">{t('cvModal.english')}</option>
-                            <option value="es">{t('cvModal.spanish')}</option>
-                        </TextField>
+                <TextField
+                    fullWidth
+                    margin="dense"
+                    label={t('cvModal.name')}
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    onFocus={handleFormFocus}
+                    required
+                    error={!!errors.name}
+                    helperText={errors.name}
+                />
+                <TextField
+                    fullWidth
+                    margin="dense"
+                    label={t('cvModal.email')}
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    onFocus={handleFormFocus}
+                    required
+                    error={!!errors.email}
+                    helperText={errors.email}
+                />
+                <TextField
+                    fullWidth
+                    margin="dense"
+                    label={t('cvModal.company')}
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    onFocus={handleFormFocus}
+                    error={!!errors.company}
+                    helperText={errors.company}
+                />
+                <TextField
+                    select
+                    fullWidth
+                    margin="dense"
+                    label={t('cvModal.language')}
+                    name="language"
+                    value={formData.language}
+                    onChange={handleChange}
+                    onFocus={handleFormFocus}
+                    required
+                    error={!!errors.language}
+                    helperText={errors.language}
+                    SelectProps={{
+                        native: true,
+                    }}
+                >
+                    <option value="en">{t('cvModal.english')}</option>
+                    <option value="es">{t('cvModal.spanish')}</option>
+                </TextField>
 
-                        {/* reCAPTCHA notice */}
-                        <Box
-                            sx={{
-                                mt: 2,
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                gap: 1,
-                                opacity: 0.7,
-                                fontSize: '0.75rem',
-                            }}
-                        >
-                            <Typography variant="caption" color="textSecondary">
-                                {t('cvModal.protectedBy')}
-                            </Typography>
-                            <Image
-                                src="https://www.gstatic.com/recaptcha/api2/logo_48.png"
-                                alt="reCAPTCHA"
-                                width={18}
-                                height={18}
-                                loading="eager"
-                                style={{ height: '18px', width: 'auto' }}
-                            />
-                        </Box>
-                    </>
-                )}
+                <Box
+                    sx={{
+                        mt: 2,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 1,
+                        opacity: 0.7,
+                        fontSize: '0.75rem',
+                    }}
+                >
+                    <Typography variant="caption" color="textSecondary">
+                        {t('cvModal.protectedBy')}
+                    </Typography>
+                    <Image
+                        src="https://www.gstatic.com/recaptcha/api2/logo_48.png"
+                        alt="reCAPTCHA"
+                        width={18}
+                        height={18}
+                        loading="eager"
+                        style={{ height: '18px', width: 'auto' }}
+                    />
+                </Box>
             </Modal>
 
             <Snackbar

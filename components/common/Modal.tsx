@@ -43,6 +43,7 @@ interface ModalProps {
     t?: TFunction<'contact'>;
     disableSubmitButton?: boolean;
     hideActions?: boolean;
+    closeOnSubmit?: boolean;
 }
 
 export function Modal({
@@ -58,6 +59,7 @@ export function Modal({
     t,
     disableSubmitButton,
     hideActions,
+    closeOnSubmit = true,
 }: ModalProps) {
     const initialFormData = () => {
         const data: FormData = {
@@ -101,7 +103,9 @@ export function Modal({
             setInternalLoading(true);
         }
         await onSubmit();
-        onClose();
+        if (closeOnSubmit) {
+            onClose();
+        }
 
         if (externalLoading === undefined) {
             setInternalLoading(false);
