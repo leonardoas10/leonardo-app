@@ -10,10 +10,10 @@ import {
     useTheme,
     useMediaQuery,
 } from '@mui/material';
-import Image from 'next/image';
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 
 import { Chip } from '@/components/common/Chip';
+import { ThumbImage } from '@/components/common/ThumbImage';
 import { CloudFrontURLs } from '@/utils/constants';
 
 const SLIDE_INTERVAL_MS = 5000;
@@ -207,7 +207,7 @@ export const ImageSlideshow: React.FC = () => {
             {visibleIndices.map((index) => {
                 const image = images[index];
                 return (
-                    <Image
+                    <ThumbImage
                         key={index}
                         src={image.imageUrl}
                         alt={image.alt}

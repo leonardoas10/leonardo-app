@@ -1,8 +1,9 @@
 'use client';
 
-import Image from 'next/image';
-import { ImageProps } from 'next/image';
+import Image, { ImageProps } from 'next/image';
 import { useState, useEffect } from 'react';
+
+import { blurDataURLFromSrc } from '@/utils/images/blur-data-url';
 
 interface TransitionImageProps extends Omit<ImageProps, 'src'> {
     darkSrc: string;
@@ -35,6 +36,8 @@ export function TransitionImage({
         return () => clearTimeout(timer);
     }, [isDarkMode, darkSrc, lightSrc]);
 
+    const blurDataURL = blurDataURLFromSrc(currentSrc);
+
     return (
         <Image
             src={currentSrc}
@@ -44,6 +47,9 @@ export function TransitionImage({
                 opacity,
                 transition: 'opacity 2s ease',
             }}
+            {...(blurDataURL
+                ? { placeholder: 'blur' as const, blurDataURL }
+                : {})}
             {...props}
         />
     );

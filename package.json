@@ -9,6 +9,7 @@
         "sandbox": "npx dotenvx run --env-file=.env -- ampx sandbox --profile leonardo --stream-function-logs true",
         "lint": "next lint",
         "type-check": "tsc --noEmit && tsc -p amplify/tsconfig.json --noEmit",
+        "generate:thumbhashes": "tsx scripts/generate-thumbhashes.ts",
         "pre-commit": "npm run lint && npm run type-check",
         "prepare": "husky install"
     },
@@ -46,7 +47,10 @@
         "eslint-config-next": "15.3.2",
         "husky": "^8.0.0",
         "json-schema-to-ts": "3.1.1",
+        "sharp": "^0.35.3",
         "ts-algebra": "2.0.0",
+        "thumbhash": "^0.1.1",
+        "tsx": "^4.23.2",
         "typescript": "^5.8.3"
     },
     "overrides": {
