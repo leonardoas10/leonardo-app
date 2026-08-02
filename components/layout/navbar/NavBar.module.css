@@ -3,10 +3,55 @@
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+  display: inline-block;
+  max-width: 100%;
+  min-width: 0;
   text-decoration: none;
-  color: inherit;
+}
+
+.logo:focus-visible {
+  outline: 2px solid #ff9900;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+html[data-theme='light'] .logo:focus-visible {
+  outline-color: #a845e8;
+}
+
+.siteTitle {
+  display: block;
+  overflow: hidden;
+  font-size: clamp(1.35rem, 4vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-image: linear-gradient(120deg, #ff9900 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+html[data-theme='light'] .siteTitle {
+  background-image: linear-gradient(
+    120deg,
+    #a845e8 0%,
+    #1976d2 55%,
+    #9c27b0 100%
+  );
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .siteTitle {
+    transition: filter 0.2s ease;
+  }
+
+  .logo:hover .siteTitle {
+    filter: brightness(1.08);
+  }
 }
 
 .menuButton {
@@ -18,7 +63,7 @@
   .menuButton {
     display: block;
   }
-  
+
   .desktopMenu {
     display: none;
   }
@@ -28,5 +73,10 @@
 @media (min-width: 769px) {
   .mobileMenu {
     display: none;
+  }
+
+  .siteTitle {
+    font-size: 2rem;
+    letter-spacing: 0.08em;
   }
 }

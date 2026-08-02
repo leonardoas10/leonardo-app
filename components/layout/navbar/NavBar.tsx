@@ -1,7 +1,6 @@
 'use client';
 
-import { AppBar, Box, Toolbar, Typography, Container } from '@mui/material';
-import Image from 'next/image';
+import { AppBar, Box, Toolbar, Container } from '@mui/material';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
@@ -9,7 +8,6 @@ import React from 'react';
 import { ContactSection } from '@/components/contact/ContactSection';
 import { LanguageToggle } from '@/components/toggles/LanguageToggle';
 import { ThemeToggle } from '@/components/toggles/ThemeToggle';
-import { CloudFrontURLs } from '@/utils/constants';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 
 import styles from './NavBar.module.css';
@@ -44,60 +42,27 @@ export const NavBar: React.FC = () => {
                             justifyContent: 'space-between',
                         }}
                     >
-                        {/* Left side: Avatar and Name */}
+                        {/* Left side: site title */}
                         <Box
                             sx={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                gap: 2,
                                 width: { xs: '100%', md: 'auto' },
+                                minWidth: 0,
                                 justifyContent: {
                                     xs: 'center',
                                     md: 'flex-start',
                                 },
                             }}
                         >
-                            <Box
-                                sx={{
-                                    width: { md: 75 },
-                                    height: { md: 55 },
-                                    display: { xs: 'none', md: 'flex' },
-                                    borderRadius: '50%',
-                                    overflow: 'hidden',
-                                    position: 'relative',
-                                }}
-                            >
-                                <Image
-                                    alt="L"
-                                    src={`${CloudFrontURLs.IMAGES}/me.webp`}
-                                    fill
-                                    sizes="50px"
-                                    style={{ objectFit: 'cover' }}
-                                    loading="lazy"
-                                    priority={false}
-                                />
-                            </Box>
                             <Link
                                 href="/"
                                 className={styles.logo}
-                                style={{ width: '100%' }}
+                                aria-label="Leonardo Aranguren — Home"
                             >
-                                <Typography
-                                    variant="h6"
-                                    noWrap
-                                    component="div"
-                                    color="textPrimary"
-                                    sx={{
-                                        fontSize: {
-                                            xs: '1.8rem',
-                                            md: '1.25rem',
-                                        },
-                                        textAlign: { xs: 'center', md: 'left' },
-                                        width: { xs: '100%', md: 'auto' },
-                                    }}
-                                >
-                                    LEONARDO ARANGUREN
-                                </Typography>
+                                <span className={styles.siteTitle}>
+                                    Leonardo Aranguren
+                                </span>
                             </Link>
                         </Box>
 
