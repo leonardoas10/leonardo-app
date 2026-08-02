@@ -109,9 +109,11 @@ export default async function RootLayout({
                 >
                     <ThemeColorSync />
                     <ThemeTransitionEnabler />
-                    <NavBar />
-                    <main>{children}</main>
-                    <Footer />
+                    <div className="site-shell">
+                        <NavBar />
+                        <main className="site-main">{children}</main>
+                        <Footer />
+                    </div>
                 </Providers>
             </AppRouterCacheProvider>
                 <Script id="google-tag-manager" strategy="afterInteractive">

@@ -20,48 +20,50 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
     }, [error]);
 
     return (
-        <Container maxWidth="sm" sx={{ py: { xs: 6, md: 10 } }}>
-            <Box sx={{ textAlign: 'center' }} role="alert">
-                <Typography
-                    variant="h3"
-                    component="h1"
-                    gutterBottom
-                    sx={{ color: 'textSecondary', fontWeight: 600 }}
-                >
-                    {t('errors.server.title')}
-                </Typography>
-                <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    sx={{ mb: 4 }}
-                >
-                    {t('errors.server.description')}
-                </Typography>
-                <Stack
-                    direction={{ xs: 'column', sm: 'row' }}
-                    spacing={2}
-                    justifyContent="center"
-                >
-                    <AccentButton onClick={reset}>
-                        {t('errors.server.tryAgain')}
-                    </AccentButton>
-                    <Button
-                        component={Link}
-                        href="/"
-                        variant="outlined"
-                        sx={{
-                            borderColor: 'background.aws',
-                            color: 'textSecondary',
-                            '&:hover': {
-                                borderColor: 'background.aws',
-                                bgcolor: 'action.hover',
-                            },
-                        }}
+        <Box className="error-page" role="alert">
+            <Container maxWidth="sm">
+                <Box sx={{ textAlign: 'center' }}>
+                    <Typography
+                        variant="h3"
+                        component="h1"
+                        gutterBottom
+                        sx={{ color: 'textSecondary', fontWeight: 600 }}
                     >
-                        {t('errors.server.goHome')}
-                    </Button>
-                </Stack>
-            </Box>
-        </Container>
+                        {t('errors.server.title')}
+                    </Typography>
+                    <Typography
+                        variant="body1"
+                        color="text.secondary"
+                        sx={{ mb: 4 }}
+                    >
+                        {t('errors.server.description')}
+                    </Typography>
+                    <Stack
+                        direction={{ xs: 'column', sm: 'row' }}
+                        spacing={2}
+                        justifyContent="center"
+                    >
+                        <AccentButton onClick={reset}>
+                            {t('errors.server.tryAgain')}
+                        </AccentButton>
+                        <Button
+                            component={Link}
+                            href="/"
+                            variant="outlined"
+                            sx={{
+                                borderColor: 'background.aws',
+                                color: 'textSecondary',
+                                '&:hover': {
+                                    borderColor: 'background.aws',
+                                    bgcolor: 'action.hover',
+                                },
+                            }}
+                        >
+                            {t('errors.server.goHome')}
+                        </Button>
+                    </Stack>
+                </Box>
+            </Container>
+        </Box>
     );
 }
