@@ -1,4 +1,5 @@
 import { PWA_THEME_COLORS } from '@/utils/theme/pwa-colors';
+import { CLIENT_THEME_COLOR_META_ID } from '@/utils/theme/client-theme-color';
 
 import {
     DEFAULT_LANGUAGE,
@@ -20,13 +21,14 @@ export const CLIENT_PREFERENCES_SCRIPT = `
     doc.setAttribute('data-theme', theme);
     document.cookie = '${THEME_STORAGE_KEY}=' + theme + ';path=/;max-age=31536000;SameSite=Lax';
     var themeColor = theme === 'light' ? '${PWA_THEME_COLORS.light}' : '${PWA_THEME_COLORS.dark}';
-    document.querySelectorAll('meta[name="theme-color"]').forEach(function (meta) {
-      meta.remove();
-    });
-    var themeMeta = document.createElement('meta');
-    themeMeta.name = 'theme-color';
+    var themeMeta = document.getElementById('${CLIENT_THEME_COLOR_META_ID}');
+    if (!themeMeta) {
+      themeMeta = document.createElement('meta');
+      themeMeta.id = '${CLIENT_THEME_COLOR_META_ID}';
+      themeMeta.name = 'theme-color';
+      document.head.appendChild(themeMeta);
+    }
     themeMeta.content = themeColor;
-    document.head.appendChild(themeMeta);
   } catch (e) {
     doc.setAttribute('data-theme', '${DEFAULT_THEME}');
   }
