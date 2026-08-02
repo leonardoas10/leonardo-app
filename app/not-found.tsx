@@ -1,8 +1,8 @@
 'use client';
 
-import { Box, Button, Container, Typography } from '@mui/material';
-import Link from 'next/link';
+import { Box, Container, Typography } from '@mui/material';
 
+import { Button } from '@/components/common/Button';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 
 export default function NotFoundPage() {
@@ -15,7 +15,7 @@ export default function NotFoundPage() {
                     variant="h3"
                     component="h1"
                     gutterBottom
-                    sx={{ color: 'textPrimary', fontWeight: 600 }}
+                    sx={{ color: 'textSecondary', fontWeight: 600 }}
                 >
                     {t('errors.notFound.title')}
                 </Typography>
@@ -26,9 +26,7 @@ export default function NotFoundPage() {
                 >
                     {t('errors.notFound.description')}
                 </Typography>
-                <Button component={Link} href="/" variant="contained">
-                    {t('errors.notFound.goHome')}
-                </Button>
+                <Button href="/">{t('errors.notFound.goHome')}</Button>
             </Box>
         </Container>
     );
