@@ -6,7 +6,17 @@
     "errors": {
         "cannotBeEmpty": "No puede ser vacio",
         "passwordDoesntMatch": "Las contraseñas no coinciden",
-        "notFoundPage": "Hey! La direccion buscada no existe."
+        "server": {
+            "title": "Algo salió mal",
+            "description": "Ocurrió un error inesperado. Puedes intentar de nuevo o volver al inicio.",
+            "tryAgain": "Intentar de nuevo",
+            "goHome": "Ir al inicio"
+        },
+        "notFound": {
+            "title": "Página no encontrada",
+            "description": "La página que buscas no existe o pudo haber sido movida.",
+            "goHome": "Ir al inicio"
+        }
     },
     "frontEnd": "Interfaz",
     "backEnd": "Servidor",
