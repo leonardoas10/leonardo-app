@@ -413,6 +413,7 @@ const CVModal: React.FC<CVModalProps> = ({ open, onClose }) => {
                 open={snackbar.open}
                 autoHideDuration={8000}
                 onClose={handleCloseSnackbar}
+                aria-live="polite"
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 sx={{
                     top: '50% !important',

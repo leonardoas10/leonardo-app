@@ -67,6 +67,7 @@ export function ArchitecturePage() {
                 <Grid size={{ xs: 12 }} sx={{ textAlign: 'center' }}>
                     <Typography
                         variant="h4"
+                        component="h2"
                         gutterBottom
                         sx={{
                             fontWeight: 'bold',
