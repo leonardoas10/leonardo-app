@@ -14,7 +14,7 @@
             "label": "☁️ Cloud Engineer",
             "sections": {
                 "cicd": {
-                    "title": "Cost Optimization and Automation",
+                    "title": "Cost & Automation",
                     "icon": "💸",
                     "items": [
                         "Reduced infrastructure costs by over $8,000 USD annually by migrating pipelines from CircleCI to GitHub Actions and optimizing resources in AWS ECS.",
@@ -37,7 +37,7 @@
             "label": "💻 Software Development",
             "sections": {
                 "resilient": {
-                    "title": "Refactoring and Modularization",
+                    "title": "Refactor & Microservices",
                     "icon": "🔄",
                     "items": [
                         "Refactored 50+ monolithic APIs into scalable microservices following the single responsibility principle, using Go, Node.js, NestJS, Python, and Laravel.",
@@ -46,7 +46,7 @@
                     ]
                 },
                 "fullstack": {
-                    "title": "Cross-Platform Modules and Applications",
+                    "title": "Cross-Platform Apps",
                     "icon": "📱",
                     "items": [
                         "Developed ordering and loyalty modules in Next.js, React Native, and React, enhancing user experience in mobile and web apps.",
@@ -60,7 +60,7 @@
             "label": "👨‍💻 Technical Lead",
             "sections": {
                 "intelligent": {
-                    "title": "Strategic Technical Direction",
+                    "title": "Technical Direction",
                     "icon": "🚀",
                     "items": [
                         "Led the development of the first multi-authenticator system for digital banking channels, integrating security layers in Cognito, SNS, and VPC.",
@@ -69,7 +69,7 @@
                     ]
                 },
                 "leadership": {
-                    "title": "Observability and Continuous Improvement",
+                    "title": "Observability & DevOps",
                     "icon": "📊",
                     "items": [
                         "Implemented custom CloudWatch dashboards, log centralization, and key metrics for health and performance monitoring.",

@@ -178,7 +178,14 @@ export const NavBar: React.FC = () => {
                     </Box>
 
                     {/* Switches - right aligned */}
-                    <Box sx={{ display: 'flex', alignItems: 'center', mr: 1 }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            flexShrink: 0,
+                            mr: 1,
+                        }}
+                    >
                         <Box sx={{ mr: 1 }}>
                             <LanguageToggle
                                 size="large"

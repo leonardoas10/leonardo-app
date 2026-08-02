@@ -27,7 +27,7 @@
             "label": "☁️ Cloud Engineer",
             "sections": {
                 "cicd": {
-                    "title": "Optimización de Costos y Automatización",
+                    "title": "Costos y Automatización",
                     "icon": "💸",
                     "items": [
                         "Redujo costos de infraestructura en más de $8,000 USD anuales al migrar pipelines de CircleCI a GitHub Actions y optimizar recursos en AWS ECS.",
@@ -50,7 +50,7 @@
             "label": "💻 Software Development",
             "sections": {
                 "resilient": {
-                    "title": "Refactorización y Modularización",
+                    "title": "Refactor y Microservicios",
                     "icon": "🔄",
                     "items": [
                         "Refactorizó 50+ APIs monolíticas a microservicios escalables siguiendo el principio de responsabilidad única, usando Go, Node.js, NestJS, Python y Laravel.",
@@ -59,7 +59,7 @@
                     ]
                 },
                 "fullstack": {
-                    "title": "Módulos y Aplicaciones Multiplataforma",
+                    "title": "Apps Multiplataforma",
                     "icon": "📱",
                     "items": [
                         "Desarrolló módulos de pedido y fidelización en Next.js, React Native y React, mejorando la experiencia del usuario en apps móviles y web.",
@@ -73,7 +73,7 @@
             "label": "👨‍💻 Lider Técnico",
             "sections": {
                 "intelligent": {
-                    "title": "Dirección Técnica Estratégica",
+                    "title": "Dirección Técnica",
                     "icon": "🚀",
                     "items": [
                         "Lideró el desarrollo del primer sistema multi-autenticador para canales bancarios digitales, integrando capas de seguridad en Cognito, SNS y VPC.",
@@ -82,7 +82,7 @@
                     ]
                 },
                 "leadership": {
-                    "title": "Observabilidad y Mejora Continua",
+                    "title": "Observabilidad y DevOps",
                     "icon": "📊",
                     "items": [
                         "Implementó dashboards personalizados en CloudWatch, centralización de logs y métricas clave para monitoreo de salud y rendimiento.",

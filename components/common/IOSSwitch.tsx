@@ -1,3 +1,5 @@
+'use client';
+
 import { Switch, SwitchProps } from '@mui/material';
 import React, { ReactElement, ReactNode } from 'react';
 
@@ -17,7 +19,7 @@ const SIZE_CLASS: Record<SwitchSize, string> = {
     large: styles.large,
 };
 
-const THUMB_SIZE_CLASS: Record<SwitchSize, string> = {
+const THUMB_CONTENT_CLASS: Record<SwitchSize, string> = {
     small: styles.thumbSmall,
     medium: styles.thumbMedium,
     large: styles.thumbLarge,
@@ -31,7 +33,7 @@ export function SwitchThumbContent({
     children: ReactNode;
 }) {
     return (
-        <span className={`${styles.thumb} ${THUMB_SIZE_CLASS[customSize]}`}>
+        <span className={`${styles.thumbContent} ${THUMB_CONTENT_CLASS[customSize]}`}>
             {children}
         </span>
     );
@@ -50,24 +52,14 @@ export const IOSSwitch = ({
         );
     }
 
-    const switchClassName = [
-        styles.switch,
-        styles.switch,
-        SIZE_CLASS[customSize],
-        checkedIcon && uncheckedIcon ? styles.withIcons : null,
-        className,
-    ]
-        .filter(Boolean)
-        .join(' ');
-
     return (
         <Switch
-            className={switchClassName}
-            focusVisibleClassName=".Mui-focusVisible"
+            className={[styles.switch, styles.switch, SIZE_CLASS[customSize], className]
+                .filter(Boolean)
+                .join(' ')}
             disableRipple
             checkedIcon={checkedIcon}
             icon={uncheckedIcon}
-            inputProps={{ 'aria-label': props['aria-label'] || 'switch' }}
             {...props}
         />
     );
