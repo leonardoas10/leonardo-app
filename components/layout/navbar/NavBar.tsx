@@ -18,7 +18,10 @@ import styles from './NavBar.module.css';
 const pages = [
     { key: 'home', href: '/' },
     { key: 'architecture', href: '/architecture' },
-];
+] as const;
+
+type NavigationPageKey = (typeof pages)[number]['key'];
+type NavigationListKey = `navigationList.${NavigationPageKey}`;
 
 export const NavBar: React.FC = () => {
     const pathname = usePathname();
@@ -135,7 +138,7 @@ export const NavBar: React.FC = () => {
                                                 }}
                                             >
                                                 {t(
-                                                    `navigationList.${page.key}`
+                                                    `navigationList.${page.key}` as NavigationListKey
                                                 )}
                                             </Box>
                                         </Box>
@@ -191,7 +194,9 @@ export const NavBar: React.FC = () => {
                                         fontSize: '0.9rem',
                                     }}
                                 >
-                                    {t(`navigationList.${page.key}`)}
+                                    {t(
+                                        `navigationList.${page.key}` as NavigationListKey
+                                    )}
                                 </Box>
                             );
                         })}

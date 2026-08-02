@@ -1,3 +1,5 @@
+import type { TFunction } from 'i18next';
+
 import { clientLogger } from './client-logger';
 
 const sendCVLog = clientLogger.scope('sendCV');
@@ -44,8 +46,8 @@ export function isSendCVErrorCode(code: string): code is SendCVErrorCode {
 
 export function resolveSendCVErrorMessage(
     code: string,
-    translate: (key: string) => string,
-    fallbackKey = 'cvModal.errorSnackbar',
+    translate: TFunction<'contact'>,
+    fallbackKey: 'cvModal.errorSnackbar' = 'cvModal.errorSnackbar',
 ): string {
     if (isSendCVErrorCode(code)) {
         return translate(SEND_CV_ERROR_CATALOG[code].i18nKey);
@@ -57,7 +59,7 @@ export function resolveSendCVErrorMessage(
 /** Browser: logs in dev + returns translated snackbar copy. One call in catch blocks. */
 export function getSendCVUserMessage(
     code: string,
-    translate: (key: string) => string,
+    translate: TFunction<'contact'>,
     meta: Record<string, unknown> = {},
 ): string {
     sendCVLog.error({ errorCode: code, ...meta });

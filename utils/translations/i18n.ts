@@ -14,25 +14,40 @@ import commonES from './es/common.json';
 import contactES from './es/contact.json';
 import navigationES from './es/navigation.json';
 
+export const defaultNS = 'common' as const;
+
+export const resources = {
+    es: {
+        about: aboutES,
+        common: commonES,
+        navigation: navigationES,
+        architecture: architectureES,
+        contact: contactES,
+    },
+    en: {
+        about: aboutEN,
+        common: commonEN,
+        navigation: navigationEN,
+        architecture: architectureEN,
+        contact: contactEN,
+    },
+} as const;
+
+export type AppNamespace = keyof (typeof resources)['en'];
+export type AppLanguage = keyof typeof resources;
+
+declare module 'i18next' {
+    interface CustomTypeOptions {
+        defaultNS: typeof defaultNS;
+        resources: (typeof resources)['en'];
+    }
+}
+
 i18n.use(initReactI18next).init({
     fallbackLng: DEFAULT_LANGUAGE,
     lng: DEFAULT_LANGUAGE,
-    resources: {
-        es: {
-            about: aboutES,
-            common: commonES,
-            navigation: navigationES,
-            architecture: architectureES,
-            contact: contactES,
-        },
-        en: {
-            about: aboutEN,
-            common: commonEN,
-            navigation: navigationEN,
-            architecture: architectureEN,
-            contact: contactEN,
-        },
-    },
+    defaultNS,
+    resources,
     interpolation: {
         escapeValue: false,
     },

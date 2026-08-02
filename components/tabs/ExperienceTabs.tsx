@@ -77,7 +77,7 @@ export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
     );
 };
 
-const getExperienceData = (t: TFunction) => {
+const getExperienceData = (t: TFunction<'about'>) => {
     return [
         {
             label: t('experienceTabs.cloudEngineer.label'),
