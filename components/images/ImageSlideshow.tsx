@@ -16,13 +16,25 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Chip } from '@/components/common/Chip';
 import { CloudFrontURLs } from '@/utils/constants';
 
+const SLIDE_INTERVAL_MS = 5000;
+
+function getVisibleSlideIndices(current: number, total: number): number[] {
+    const prev = (current - 1 + total) % total;
+    const next = (current + 1) % total;
+    return [prev, current, next];
+}
+
 export const ImageSlideshow: React.FC = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isHovering, setIsHovering] = useState(false);
+    const [isFocused, setIsFocused] = useState(false);
     const [touchStart, setTouchStart] = useState(0);
     const [touchEnd, setTouchEnd] = useState(0);
+
+    const isPaused = isHovering || isFocused;
     
     // Memoize the images array
     const images = useMemo(() => [
@@ -80,15 +92,28 @@ export const ImageSlideshow: React.FC = () => {
         },
     ], []);
 
+    const visibleIndices = useMemo(
+        () => getVisibleSlideIndices(currentImageIndex, images.length),
+        [currentImageIndex, images.length]
+    );
+
+    const imageTransition = prefersReducedMotion
+        ? 'none'
+        : 'opacity 0.5s ease-in-out';
+
     useEffect(() => {
+        if (isPaused || prefersReducedMotion) {
+            return;
+        }
+
         const interval = setInterval(() => {
             setCurrentImageIndex((prevIndex) =>
                 prevIndex < images.length - 1 ? prevIndex + 1 : 0
             );
-        }, 5000);
+        }, SLIDE_INTERVAL_MS);
 
         return () => clearInterval(interval);
-    }, [images.length]);
+    }, [images.length, isPaused, prefersReducedMotion]);
 
     // Memoize event handlers
     const handleNext = useCallback(() => {
@@ -123,10 +148,38 @@ export const ImageSlideshow: React.FC = () => {
         }
     }, [touchStart, touchEnd, handleNext, handlePrev]);
 
+    const handleContainerBlur = useCallback((e: React.FocusEvent) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+            setIsFocused(false);
+        }
+    }, []);
+
+    const handleDotKeyDown = useCallback(
+        (index: number) => (e: React.KeyboardEvent) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setCurrentImageIndex(index);
+                return;
+            }
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                handlePrev();
+                return;
+            }
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                handleNext();
+            }
+        },
+        [handlePrev, handleNext]
+    );
+
     return (
         <Box
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={handleContainerBlur}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -151,22 +204,26 @@ export const ImageSlideshow: React.FC = () => {
                     href="https://www.credly.com/users/leonardo-aranguren-s"
                 />
             </div>
-            {images.map((image, index) => (
-                <Image
-                    key={index}
-                    src={image.imageUrl}
-                    alt={image.alt}
-                    fill
-                    sizes="(max-width: 600px) 100vw, 600px"
-                    style={{
-                        position: 'absolute',
-                        objectFit: 'contain',
-                        opacity: index === currentImageIndex ? 1 : 0,
-                        transition: 'opacity 0.5s ease-in-out',
-                    }}
-                    priority={index === 0}
-                />
-            ))}
+            {visibleIndices.map((index) => {
+                const image = images[index];
+                return (
+                    <Image
+                        key={index}
+                        src={image.imageUrl}
+                        alt={image.alt}
+                        fill
+                        sizes="(max-width: 600px) 100vw, 600px"
+                        style={{
+                            position: 'absolute',
+                            objectFit: 'contain',
+                            opacity: index === currentImageIndex ? 1 : 0,
+                            transition: imageTransition,
+                        }}
+                        priority={index === 0}
+                        aria-hidden={index !== currentImageIndex}
+                    />
+                );
+            })}
 
             <Box
                 sx={{
@@ -182,29 +239,31 @@ export const ImageSlideshow: React.FC = () => {
                     backdropFilter: 'blur(2px)',
                 }}
             >
-                {useMemo(() => (
-                    <Stack direction="row" spacing={0.5}>
-                        {images.map((_, index) => (
-                            <FiberManualRecordIcon
-                                key={index}
-                                onClick={() => setCurrentImageIndex(index)}
-                                role="button"
-                                aria-label={`Show image ${index + 1}`}
-                                tabIndex={0}
-                                aria-hidden={false}
-                                sx={{
-                                    cursor: 'pointer',
-                                    color:
-                                        index === currentImageIndex
-                                            ? theme.palette.background.aws
-                                            : 'rgba(255,255,255,0.5)',
-                                    fontSize: index === currentImageIndex ? 12 : 8,
-                                    lineHeight: 1,
-                                }}
-                            />
-                        ))}
-                    </Stack>
-                ), [currentImageIndex, theme.palette.background.aws, images])}
+                <Stack direction="row" spacing={0.5}>
+                    {images.map((_, index) => (
+                        <FiberManualRecordIcon
+                            key={index}
+                            onClick={() => setCurrentImageIndex(index)}
+                            onKeyDown={handleDotKeyDown(index)}
+                            role="button"
+                            aria-label={`Show image ${index + 1}`}
+                            aria-current={
+                                index === currentImageIndex ? 'true' : undefined
+                            }
+                            tabIndex={0}
+                            sx={{
+                                cursor: 'pointer',
+                                color:
+                                    index === currentImageIndex
+                                        ? theme.palette.background.aws
+                                        : 'rgba(255,255,255,0.5)',
+                                fontSize:
+                                    index === currentImageIndex ? 12 : 8,
+                                lineHeight: 1,
+                            }}
+                        />
+                    ))}
+                </Stack>
             </Box>
 
             {!isMobile && (
@@ -230,7 +289,9 @@ export const ImageSlideshow: React.FC = () => {
                             },
                             zIndex: 2,
                             opacity: isHovering ? 1 : 0,
-                            transition: 'opacity 0.3s ease',
+                            transition: prefersReducedMotion
+                                ? 'none'
+                                : 'opacity 0.3s ease',
                         }}
                         size="small"
                     >
@@ -258,7 +319,9 @@ export const ImageSlideshow: React.FC = () => {
                             },
                             zIndex: 2,
                             opacity: isHovering ? 1 : 0,
-                            transition: 'opacity 0.3s ease',
+                            transition: prefersReducedMotion
+                                ? 'none'
+                                : 'opacity 0.3s ease',
                         }}
                         size="small"
                     >
