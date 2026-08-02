@@ -74,6 +74,8 @@ export const TabsComponent: React.FC<TabsComponentProps> = ({
         setValue(newValue);
     };
 
+    const isCompactTabs = tabs.length > 4;
+
     return (
         <Paper
             elevation={3}
@@ -96,8 +98,10 @@ export const TabsComponent: React.FC<TabsComponentProps> = ({
                     value={value}
                     onChange={handleChange}
                     aria-label={tabsAriaLabel}
-                    variant={isMobile ? 'scrollable' : 'standard'}
-                    centered={!isMobile}
+                    variant={
+                        isMobile || isCompactTabs ? 'scrollable' : 'standard'
+                    }
+                    centered={!isMobile && !isCompactTabs}
                     scrollButtons="auto"
                     allowScrollButtonsMobile
                     sx={{
@@ -112,7 +116,7 @@ export const TabsComponent: React.FC<TabsComponentProps> = ({
                                 theme.palette.mode === 'dark'
                                     ? 'white !important'
                                     : 'black !important',
-                            minWidth: { xs: 96, md: 120 },
+                            minWidth: { xs: 88, md: isCompactTabs ? 100 : 120 },
                             maxWidth: 'none',
                             flexShrink: 0,
                             px: { xs: 1.5, md: 2 },
