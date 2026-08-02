@@ -1,20 +1,28 @@
 import './globals.css';
 // import { GoogleTagManager } from '@next/third-parties/google';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { Amplify } from 'aws-amplify';
+import { cookies } from 'next/headers';
 import Script from 'next/script';
 
 import outputs from '@/amplify_outputs.json';
 import { Footer } from '@/components/layout/footer/Footer';
-import { HtmlLangSync } from '@/components/layout/HtmlLangSync';
 import { NavBar } from '@/components/layout/navbar/NavBar';
 import { ThemeColorSync } from '@/components/layout/ThemeColorSync';
 import { ThemeTransitionEnabler } from '@/components/layout/ThemeTransitionEnabler';
 import { Providers } from '@/contexts/Providers';
+import { CLIENT_PREFERENCES_SCRIPT } from '@/utils/bootstrap/client-preferences-script';
+import {
+    LANGUAGE_STORAGE_KEY,
+    THEME_STORAGE_KEY,
+} from '@/utils/bootstrap/constants';
+import { parseTheme } from '@/utils/bootstrap/theme';
 import {
     CloudFrontURLs,
     EnvironmentVariables,
     SITE_URL,
 } from '@/utils/constants';
+import { parseSiteLocale } from '@/utils/seo/locale';
 import { buildSiteStructuredData } from '@/utils/seo/structured-data';
 import { PWA_THEME_COLORS } from '@/utils/theme/pwa-colors';
 
@@ -59,23 +67,28 @@ export const viewport: Viewport = {
     ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const cookieStore = await cookies();
+    const initialTheme = parseTheme(cookieStore.get(THEME_STORAGE_KEY)?.value);
+    const initialLanguage = parseSiteLocale(
+        cookieStore.get(LANGUAGE_STORAGE_KEY)?.value
+    );
+
     return (
-        <html lang="en" suppressHydrationWarning>
-            <Script id="google-tag-manager" strategy="afterInteractive">
-                {`
-                    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                    })(window,document,'script','dataLayer','${EnvironmentVariables.GTM_ID}');
-                `}
+        <html
+            lang={initialLanguage}
+            data-theme={initialTheme}
+            suppressHydrationWarning
+        >
+            <Script id="client-preferences" strategy="beforeInteractive">
+                {CLIENT_PREFERENCES_SCRIPT}
             </Script>
             <body>
+                <AppRouterCacheProvider>
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
@@ -90,14 +103,26 @@ export default function RootLayout({
                         style={{ display: 'none', visibility: 'hidden' }}
                     />
                 </noscript>
-                <Providers>
-                    <HtmlLangSync />
+                <Providers
+                    initialTheme={initialTheme}
+                    initialLanguage={initialLanguage}
+                >
                     <ThemeColorSync />
                     <ThemeTransitionEnabler />
                     <NavBar />
                     <main>{children}</main>
                     <Footer />
                 </Providers>
+            </AppRouterCacheProvider>
+                <Script id="google-tag-manager" strategy="afterInteractive">
+                    {`
+                        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                        })(window,document,'script','dataLayer','${EnvironmentVariables.GTM_ID}');
+                    `}
+                </Script>
             </body>
         </html>
     );

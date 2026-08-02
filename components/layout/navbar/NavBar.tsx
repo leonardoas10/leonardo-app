@@ -32,7 +32,6 @@ export const NavBar: React.FC = () => {
                 sx={{
                     py: { xs: 2, md: 0 },
                     backgroundColor: 'background.paper',
-                    transition: 'background-color 2s ease, color 2s ease',
                 }}
             >
                 <Container maxWidth="xl">

@@ -12,42 +12,49 @@ import React, {
 } from 'react';
 
 import { trackEvent } from '@/utils/analytics/trackEvent';
+import { THEME_STORAGE_KEY } from '@/utils/bootstrap/constants';
+import { readInitialTheme } from '@/utils/bootstrap/read-client-preferences';
+import { syncThemeCookie } from '@/utils/bootstrap/theme';
 import { themeColors } from '@/utils/themeColors';
 
 const inter = Inter({ subsets: ['latin'] });
 
-// Theme context type
 type ThemeContextType = {
     mode: PaletteMode;
     toggleColorMode: (toggleLocation: string) => void;
 };
 
-// Create the context
 const ThemeContext = createContext<ThemeContextType>({
     mode: 'light',
     toggleColorMode: (toggleLocation: string) => {},
 });
 
-// Custom hook to use the theme context
 export const useThemeContext = () => useContext(ThemeContext);
 
-export const ThemeRegistry: React.FC<{
+type ThemeRegistryProps = {
     children: React.ReactNode;
-}> = ({ children }) => {
-    // Theme state management with localStorage persistence
-    const [mode, setMode] = useState<PaletteMode>('dark');
+    initialTheme: PaletteMode;
+};
 
-    // Effect to handle client-side initialization
+export const ThemeRegistry: React.FC<ThemeRegistryProps> = ({
+    children,
+    initialTheme,
+}) => {
+    const [mode, setMode] = useState<PaletteMode>(initialTheme);
+
     useEffect(() => {
-        const savedMode = localStorage.getItem('themeMode') as PaletteMode;
-        if (savedMode === 'light' || savedMode === 'dark') {
-            setMode(savedMode);
+        const bootstrapTheme = readInitialTheme();
+        if (bootstrapTheme !== mode) {
+            setMode(bootstrapTheme);
         }
+        // ponytail: one-shot reconcile when localStorage differs from SSR cookie
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // Effect to update data-theme attribute on HTML element
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', mode);
+        localStorage.setItem(THEME_STORAGE_KEY, mode);
+        syncThemeCookie(mode);
     }, [mode]);
 
     const toggleColorMode = (toggleLocation: string) => {
@@ -55,14 +62,9 @@ export const ThemeRegistry: React.FC<{
             click_name: 'Theme Toggle',
             click_location: toggleLocation,
         });
-        setMode((prevMode) => {
-            const newMode = prevMode === 'light' ? 'dark' : 'light';
-            localStorage.setItem('themeMode', newMode);
-            return newMode;
-        });
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
     };
 
-    // Context value
     const contextValue = useMemo(
         () => ({
             mode,
@@ -71,7 +73,6 @@ export const ThemeRegistry: React.FC<{
         [mode]
     );
 
-    // Create theme with current mode and Inter font
     const theme = useMemo(
         () =>
             createTheme({
