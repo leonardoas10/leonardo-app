@@ -8,6 +8,7 @@ import Script from 'next/script';
 import outputs from '@/amplify_outputs.json';
 import { Footer } from '@/components/layout/footer/Footer';
 import { NavBar } from '@/components/layout/navbar/NavBar';
+import { SkipLink } from '@/components/layout/SkipLink';
 import { ThemeColorSync } from '@/components/layout/ThemeColorSync';
 import { ThemeTransitionEnabler } from '@/components/layout/ThemeTransitionEnabler';
 import { Providers } from '@/contexts/Providers';
@@ -110,8 +111,11 @@ export default async function RootLayout({
                     <ThemeColorSync />
                     <ThemeTransitionEnabler />
                     <div className="site-shell">
+                        <SkipLink />
                         <NavBar />
-                        <main className="site-main">{children}</main>
+                        <main id="main-content" className="site-main" tabIndex={-1}>
+                            {children}
+                        </main>
                         <Footer />
                     </div>
                 </Providers>

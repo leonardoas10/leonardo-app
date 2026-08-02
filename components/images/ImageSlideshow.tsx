@@ -155,12 +155,7 @@ export const ImageSlideshow: React.FC = () => {
     }, []);
 
     const handleDotKeyDown = useCallback(
-        (index: number) => (e: React.KeyboardEvent) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                setCurrentImageIndex(index);
-                return;
-            }
+        (e: React.KeyboardEvent) => {
             if (e.key === 'ArrowLeft') {
                 e.preventDefault();
                 handlePrev();
@@ -239,29 +234,39 @@ export const ImageSlideshow: React.FC = () => {
                     backdropFilter: 'blur(2px)',
                 }}
             >
-                <Stack direction="row" spacing={0.5}>
+                <Stack
+                    direction="row"
+                    spacing={0.5}
+                    role="group"
+                    aria-label="Slideshow pagination"
+                >
                     {images.map((_, index) => (
-                        <FiberManualRecordIcon
+                        <IconButton
                             key={index}
                             onClick={() => setCurrentImageIndex(index)}
-                            onKeyDown={handleDotKeyDown(index)}
-                            role="button"
+                            onKeyDown={handleDotKeyDown}
                             aria-label={`Show image ${index + 1}`}
                             aria-current={
                                 index === currentImageIndex ? 'true' : undefined
                             }
-                            tabIndex={0}
+                            size="small"
                             sx={{
-                                cursor: 'pointer',
+                                p: 0.25,
                                 color:
                                     index === currentImageIndex
                                         ? theme.palette.background.aws
                                         : 'rgba(255,255,255,0.5)',
-                                fontSize:
-                                    index === currentImageIndex ? 12 : 8,
-                                lineHeight: 1,
                             }}
-                        />
+                        >
+                            <FiberManualRecordIcon
+                                aria-hidden
+                                sx={{
+                                    fontSize:
+                                        index === currentImageIndex ? 12 : 8,
+                                    lineHeight: 1,
+                                }}
+                            />
+                        </IconButton>
                     ))}
                 </Stack>
             </Box>

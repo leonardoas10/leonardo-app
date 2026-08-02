@@ -55,6 +55,7 @@ export function Modal({
     fields,
     onFieldChange,
     children,
+    t,
     disableSubmitButton,
     hideActions,
 }: ModalProps) {
@@ -207,7 +208,7 @@ export function Modal({
                             color="primary"
                             sx={{ bgcolor: 'gray', boxShadow: '0' }}
                         >
-                            Cancel
+                            {t?.('cvModal.cancel') ?? 'Cancel'}
                         </Button>
                         <Button
                             onClick={handleSubmit}

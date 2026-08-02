@@ -85,6 +85,7 @@ export function About({
                 >
                     <Typography
                         variant="h4"
+                        component="h1"
                         gutterBottom
                         sx={{
                             fontWeight: 'bold',
@@ -149,6 +150,7 @@ export function About({
                 <Grid size={{ md: 7 }}>
                     <Typography
                         variant="h4"
+                        component="h2"
                         gutterBottom
                         sx={{
                             fontWeight: 'bold',
@@ -184,6 +186,7 @@ export function About({
                 <Grid size={{ xs: 12 }}>
                     <Typography
                         variant="h4"
+                        component="h2"
                         gutterBottom
                         sx={{
                             fontWeight: 'bold',
@@ -217,6 +220,7 @@ export function About({
                 <Grid size={{ xs: 12, md: 12 }}>
                     <Typography
                         variant="h4"
+                        component="h2"
                         gutterBottom
                         sx={{
                             fontWeight: 'bold',
