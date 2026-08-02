@@ -6,7 +6,17 @@
     "errors": {
         "cannotBeEmpty": "Cannot Be Empty",
         "passwordDoesntMatch": "Passwords doens't match",
-        "notFoundPage": "Hey! thats look the path that you're looking for doens't exist."
+        "server": {
+            "title": "Something went wrong",
+            "description": "An unexpected error occurred. You can try again or return home.",
+            "tryAgain": "Try again",
+            "goHome": "Go to home"
+        },
+        "notFound": {
+            "title": "Page not found",
+            "description": "The page you're looking for doesn't exist or may have been moved.",
+            "goHome": "Go to home"
+        }
     },
     "frontEnd": "Front End",
     "backEnd": "Back End",
