@@ -104,9 +104,9 @@ export function About({
                     <HighlightedText
                         text={t('homePage.firstParagraphPart2')}
                         highlightTerms={[
-                            'certifications',
-                            'certificaciones',
-                            'AWS',
+                            'AWS Certified',
+                            'certificado en AWS',
+                            'GenAI',
                         ]}
                         variant="body1"
                         paragraph
@@ -146,7 +146,7 @@ export function About({
                     </Typography>
                     <HighlightedText
                         text={t('homePage.secondParagraphPart1')}
-                        highlightTerms={['scalable', 'escalables']}
+                        highlightTerms={['AI-powered', 'scalable', 'IA', 'escalables']}
                         variant="body1"
                         paragraph
                     />

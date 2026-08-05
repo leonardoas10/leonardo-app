@@ -14,17 +14,17 @@
     },
     "homePage": {
         "aboutTitle": "¡Hey! Conóceme…",
-        "firstParagraphPart1": "Leonardo Aranguren, Desarrollador de Software, Ingeniero Cloud y Líder Técnico con una sólida base en tecnologías de nube, especialmente en AWS.",
-        "firstParagraphPart2": "Cuenta con múltiples certificaciones de AWS —Developer Associate, Solutions Architect, Serverless, Cloud Quests, EKS y Networking Core.",
+        "firstParagraphPart1": "Leonardo Aranguren, Desarrollador de Software, Ingeniero Cloud y Líder Técnico especializado en AWS y plataformas de IA generativa enterprise — desde orquestación LLM hasta assistants listos para producción.",
+        "firstParagraphPart2": "Profesional certificado en AWS con múltiples certificaciones, incluyendo Developer Associate y Solutions Architect Associate, complementado con formación práctica en GenAI en LangChain, LangGraph, Amazon Bedrock y AWS Cloud Quest Generative AI.",
         "discoveryTitle": "Impulsado por la innovación...",
-        "secondParagraphPart1": "Diseña, desarrolla y optimiza soluciones cloud robustas y escalables.",
-        "secondParagraphPart2": "Lidera con un enfoque técnico, afinando arquitecturas y aplicando buenas prácticas para llevar cada proyecto a su máximo potencial. En cada línea de código busca innovación, eficiencia y un impacto real.",
+        "secondParagraphPart1": "Diseña, desarrolla y optimiza soluciones cloud robustas, escalables y potenciadas con IA.",
+        "secondParagraphPart2": "Lidera con un enfoque técnico, afinando arquitecturas y aplicando buenas prácticas — incluyendo pipelines RAG, workflows multi-agente y gateways LLM — para llevar cada proyecto a su máximo potencial. En cada línea de código busca innovación, eficiencia y un impacto real.",
         "experienceTitle": "Destacados de Experiencia",
         "teideCaption": "Teide, Tenerife - España"
     },
     "experienceTabs": {
         "cloudEngineer": {
-            "label": "☁️ Cloud Engineer",
+            "label": "☁️ Ingeniero Cloud",
             "sections": {
                 "cicd": {
                     "title": "Costos y Automatización",
@@ -47,14 +47,14 @@
             }
         },
         "softwareDeveloper": {
-            "label": "💻 Software Development",
+            "label": "💻 Desarrollo de Software",
             "sections": {
                 "resilient": {
                     "title": "Refactor y Microservicios",
                     "icon": "🔄",
                     "items": [
                         "Refactorizó 50+ APIs monolíticas a microservicios escalables siguiendo el principio de responsabilidad única, usando Go, Node.js, NestJS, Python y Laravel.",
-                        "Construyó plataformas React y TypeScript con TanStack Query, arquitectura de componentes reutilizables y autenticación Keycloak o Cognito para UIs enterprise.",
+                        "Construyó aplicaciones full-stack con React, Redux Toolkit y TanStack Query para experiencias web y móviles enterprise escalables.",
                         "Habilitó la interoperabilidad entre microservicios y sistemas GCP mediante integraciones seguras y eficientes."
                     ]
                 },
@@ -93,7 +93,7 @@
             }
         },
         "devOps": {
-            "label": "⚙️ DevOps",
+            "label": "⚙️ Ingeniería DevOps",
             "sections": {
                 "cicd": {
                     "title": "CI/CD e Infraestructura",
@@ -131,9 +131,32 @@
                     "title": "Plataforma e Integración",
                     "icon": "🔗",
                     "items": [
-                        "Arquitectó un AI Gateway enterprise (LiteLLM/LangGraph) con Azure OpenAI, ingesta RAG, config dinámica en S3 y routing multi-agente en EKS.",
                         "Lideró un ecosistema de integración bancaria cross-channel y migración de 50 APIs monolíticas a microservicios en API Gateway, EKS, Lambda, Cognito y VPC privada.",
-                        "Construyó plataformas AI internas con React en CloudFront, FastAPI en DynamoDB, API Gateway privado, RBAC Cognito y pipelines Glue ETL."
+                        "Diseñó arquitecturas enterprise híbridas conectando sistemas on-premise a AWS mediante Direct Connect, segmentación VPC y API Gateway seguro.",
+                        "Construyó plataformas de consumo interno con React en CloudFront, API Gateway privado, RBAC Cognito y pipelines Glue ETL para flujos de datos enterprise."
+                    ]
+                }
+            }
+        },
+        "aiDevelopment": {
+            "label": "🤖 Desarrollo IA",
+            "sections": {
+                "llm": {
+                    "title": "LLM e Ingeniería de Agentes",
+                    "icon": "🧠",
+                    "items": [
+                        "Construyó AI Gateways enterprise con LiteLLM y LangGraph, integrando Azure OpenAI y AI Foundry para vector stores, routing multi-agente, tool calling y observabilidad LangSmith.",
+                        "Implementó pipelines RAG con ingesta documental, retrieval vectorial, config dinámica de assistants en S3 y streaming WebSocket para chat en tiempo real.",
+                        "Orquestó workflows LLM con despliegues de agents especializados, sync de config a S3 y patrones multi-tenant seguros para plataformas de assistants IA internos."
+                    ]
+                },
+                "platform": {
+                    "title": "Entrega de Plataformas IA",
+                    "icon": "⚡",
+                    "items": [
+                        "Entregó UIs admin y chat en React y TypeScript con TanStack Query, componentes reutilizables y autenticación Keycloak o Cognito para gestión del ciclo de vida de assistants.",
+                        "Desarrolló APIs Node.js/Fastify y Python/FastAPI con Prisma o DynamoDB, soportando organizaciones multi-tenant, flujos conversacionales y control de acceso por roles.",
+                        "Desplegó stacks IA en AWS EKS con GitLab CI/CD y Bricks o GitHub Actions, habilitando releases multi-entorno consistentes de desarrollo a producción."
                     ]
                 }
             }
