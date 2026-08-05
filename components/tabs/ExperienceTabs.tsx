@@ -99,6 +99,33 @@ export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
 const getExperienceData = (t: TFunction<'about'>) => {
     return [
         {
+            label: t('experienceTabs.aiDevelopment.label'),
+            sections: [
+                {
+                    title: t(
+                        'experienceTabs.aiDevelopment.sections.llm.title'
+                    ),
+                    icon: t('experienceTabs.aiDevelopment.sections.llm.icon'),
+                    items: (t(
+                        'experienceTabs.aiDevelopment.sections.llm.items',
+                        { returnObjects: true }
+                    ) as string[]).map((item: string) => ({ primary: item })),
+                },
+                {
+                    title: t(
+                        'experienceTabs.aiDevelopment.sections.platform.title'
+                    ),
+                    icon: t(
+                        'experienceTabs.aiDevelopment.sections.platform.icon'
+                    ),
+                    items: (t(
+                        'experienceTabs.aiDevelopment.sections.platform.items',
+                        { returnObjects: true }
+                    ) as string[]).map((item: string) => ({ primary: item })),
+                },
+            ],
+        },
+        {
             label: t('experienceTabs.cloudEngineer.label'),
             sections: [
                 {
@@ -155,35 +182,6 @@ const getExperienceData = (t: TFunction<'about'>) => {
             ],
         },
         {
-            label: t('experienceTabs.technicalLead.label'),
-            sections: [
-                {
-                    title: t(
-                        'experienceTabs.technicalLead.sections.intelligent.title'
-                    ),
-                    icon: t(
-                        'experienceTabs.technicalLead.sections.intelligent.icon'
-                    ),
-                    items: (t(
-                        'experienceTabs.technicalLead.sections.intelligent.items',
-                        { returnObjects: true }
-                    ) as string[]).map((item: string) => ({ primary: item })),
-                },
-                {
-                    title: t(
-                        'experienceTabs.technicalLead.sections.leadership.title'
-                    ),
-                    icon: t(
-                        'experienceTabs.technicalLead.sections.leadership.icon'
-                    ),
-                    items: (t(
-                        'experienceTabs.technicalLead.sections.leadership.items',
-                        { returnObjects: true }
-                    ) as string[]).map((item: string) => ({ primary: item })),
-                },
-            ],
-        },
-        {
             label: t('experienceTabs.devOps.label'),
             sections: [
                 {
@@ -229,6 +227,35 @@ const getExperienceData = (t: TFunction<'about'>) => {
                     ),
                     items: (t(
                         'experienceTabs.architecture.sections.platform.items',
+                        { returnObjects: true }
+                    ) as string[]).map((item: string) => ({ primary: item })),
+                },
+            ],
+        },
+        {
+            label: t('experienceTabs.technicalLead.label'),
+            sections: [
+                {
+                    title: t(
+                        'experienceTabs.technicalLead.sections.intelligent.title'
+                    ),
+                    icon: t(
+                        'experienceTabs.technicalLead.sections.intelligent.icon'
+                    ),
+                    items: (t(
+                        'experienceTabs.technicalLead.sections.intelligent.items',
+                        { returnObjects: true }
+                    ) as string[]).map((item: string) => ({ primary: item })),
+                },
+                {
+                    title: t(
+                        'experienceTabs.technicalLead.sections.leadership.title'
+                    ),
+                    icon: t(
+                        'experienceTabs.technicalLead.sections.leadership.icon'
+                    ),
+                    items: (t(
+                        'experienceTabs.technicalLead.sections.leadership.items',
                         { returnObjects: true }
                     ) as string[]).map((item: string) => ({ primary: item })),
                 },

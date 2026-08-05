@@ -1,11 +1,11 @@
 {
     "homePage": {
         "aboutTitle": "Hey! Meet me...",
-        "firstParagraphPart1": "Leonardo Aranguren, a Software Developer, Cloud Engineer, and Technical Lead with a solid foundation in cloud technologies, especially AWS.",
-        "firstParagraphPart2": "Hold multiple AWS certifications —Developer Associate, Solutions Architect, Serverless, EKS, Networking Core, and Cloud Quest challenges.",
+        "firstParagraphPart1": "Leonardo Aranguren, Software Developer, Cloud Engineer, and Technical Lead specializing in AWS and enterprise generative AI platforms — from LLM orchestration to production-ready assistant delivery.",
+        "firstParagraphPart2": "AWS Certified professional with multiple certifications, including Developer Associate and Solutions Architect Associate, complemented by hands-on GenAI training in LangChain, LangGraph, Amazon Bedrock, and AWS Cloud Quest Generative AI.",
         "discoveryTitle": "Driven by innovation...",
-        "secondParagraphPart1": "He designs, develops, and optimizes robust, scalable cloud solutions.",
-        "secondParagraphPart2": "With a strong technical focus, he leads by refining architectures and applying best practices to bring every project to its fullest potential. In every line of code, he seeks innovation, efficiency, and real impact.",
+        "secondParagraphPart1": "He designs, develops, and optimizes robust, scalable cloud and AI-powered solutions.",
+        "secondParagraphPart2": "With a strong technical focus, he leads by refining architectures and applying best practices — including RAG pipelines, multi-agent workflows, and LLM gateways — to bring every project to its fullest potential. In every line of code, he seeks innovation, efficiency, and real impact.",
         "experienceTitle": "Experience Highlights",
         "teideCaption": "Teide, Tenerife - Spain"
     },
@@ -41,7 +41,7 @@
                     "icon": "🔄",
                     "items": [
                         "Refactored 50+ monolithic APIs into scalable microservices following the single responsibility principle, using Go, Node.js, NestJS, Python, and Laravel.",
-                        "Built React and TypeScript platforms with TanStack Query, reusable component architecture, and Keycloak or Cognito authentication for enterprise UIs.",
+                        "Built full-stack applications with React, Redux Toolkit, and TanStack Query for scalable enterprise web and mobile experiences.",
                         "Enabled interoperability between microservices and GCP systems through secure and efficient integrations."
                     ]
                 },
@@ -118,9 +118,32 @@
                     "title": "Platform & Integration",
                     "icon": "🔗",
                     "items": [
-                        "Architected an enterprise AI Gateway (LiteLLM/LangGraph) with Azure OpenAI, RAG ingestion, S3-driven assistant config, and multi-agent routing on EKS.",
                         "Led a cross-channel banking integration ecosystem and migration of 50 monolithic APIs to microservices on API Gateway, EKS, Lambda, Cognito, and private VPC networking.",
-                        "Built internal AI platforms with React on CloudFront, FastAPI on DynamoDB, private API Gateway, Cognito RBAC, and Glue ETL data pipelines."
+                        "Designed hybrid enterprise architectures connecting on-premise systems to AWS through Direct Connect, VPC segmentation, and secure API Gateway endpoints.",
+                        "Built internal consumption platforms with React on CloudFront, private API Gateway, Cognito RBAC, and Glue ETL pipelines for enterprise data workflows."
+                    ]
+                }
+            }
+        },
+        "aiDevelopment": {
+            "label": "🤖 AI Development",
+            "sections": {
+                "llm": {
+                    "title": "LLM & Agent Engineering",
+                    "icon": "🧠",
+                    "items": [
+                        "Built enterprise AI Gateways with LiteLLM and LangGraph, integrating Azure OpenAI and AI Foundry for vector stores, multi-agent routing, tool calling, and LangSmith observability.",
+                        "Implemented RAG pipelines with document ingestion, vector retrieval, S3-driven dynamic assistant configuration, and WebSocket-based streaming for real-time chat.",
+                        "Orchestrated LLM workflows with specialized agent deployments, config sync to S3, and secure multi-tenant access patterns for internal AI assistant platforms."
+                    ]
+                },
+                "platform": {
+                    "title": "AI Platform Delivery",
+                    "icon": "⚡",
+                    "items": [
+                        "Delivered React and TypeScript admin and chat UIs with TanStack Query, reusable components, and Keycloak or Cognito authentication for assistant lifecycle management.",
+                        "Developed Node.js/Fastify and Python/FastAPI APIs with Prisma or DynamoDB, supporting multi-tenant organizations, conversation flows, and role-based access control.",
+                        "Deployed AI stacks to AWS EKS with GitLab CI/CD and Bricks or GitHub Actions, enabling consistent multi-environment releases from development to production."
                     ]
                 }
             }
