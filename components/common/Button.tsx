@@ -63,7 +63,6 @@ export const Button: React.FC<CustomButtonProps> = ({
             <Typography
                 component="span"
                 sx={{
-                    transition: 'color 1s ease',
                     color: '#FFFFFF',
                     fontWeight: 500,
                 }}

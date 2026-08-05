@@ -40,7 +40,7 @@ export const HighlightedText: React.FC<HighlightedTextProps> = ({
                     component="span"
                     key={i}
                     sx={{
-                        color: 'background.aws',
+                        color: 'var(--theme-accent)',
                         fontWeight: 'medium',
                     }}
                 >

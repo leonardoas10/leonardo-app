@@ -55,7 +55,7 @@ export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
                                 },
                                 gap: 1,
                                 flexWrap: 'wrap',
-                                color: 'textSecondary',
+                                color: 'var(--theme-accent)',
                                 mb: 2,
                                 mt: sectionIndex > 0 ? 2 : 0,
                                 fontSize: '1.25rem',
