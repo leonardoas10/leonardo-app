@@ -54,9 +54,7 @@ function TabPanel(props: TabPanelProps) {
             aria-labelledby={`tab-${index}`}
             {...other}
         >
-            {value === index && (
-                <Box sx={{ p: { xs: 2, md: 3 } }}>{children}</Box>
-            )}
+            <Box sx={{ p: { xs: 2, md: 3 } }}>{children}</Box>
         </div>
     );
 }
@@ -81,7 +79,7 @@ export const TabsComponent: React.FC<TabsComponentProps> = ({
             elevation={3}
             sx={{
                 width: '100%',
-                boxShadow: `0 4px 12px ${theme.palette.background.aws}`,
+                boxShadow: '0 4px 12px var(--theme-accent)',
                 borderRadius: 2,
                 overflow: 'hidden',
             }}
@@ -133,10 +131,10 @@ export const TabsComponent: React.FC<TabsComponentProps> = ({
                             mr: { xs: 0, md: 1 },
                         },
                         '& .MuiButtonBase-root.Mui-selected': {
-                            color: `${theme.palette.textSecondary} !important`,
+                            color: 'var(--theme-accent) !important',
                         },
                         '& .MuiTabs-indicator': {
-                            backgroundColor: theme.palette.textSecondary,
+                            backgroundColor: 'var(--theme-accent)',
                             height: 3,
                         },
                     }}

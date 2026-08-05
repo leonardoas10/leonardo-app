@@ -1,12 +1,8 @@
 /* MUI Switch: custom icon/checkedIcon render inside .MuiSwitch-switchBase (not .MuiSwitch-thumb) */
 
 .switch {
-    --track-color: #ff9900;
+    --track-color: var(--theme-accent);
     flex-shrink: 0;
-}
-
-html[data-theme='light'] .switch {
-    --track-color: #a845e8;
 }
 
 .small {
@@ -57,7 +53,7 @@ html[data-theme='light'] .switch {
     border-radius: calc(var(--switch-height) / 2);
     background-color: var(--track-color);
     opacity: 1 !important;
-    transition: background-color 300ms ease;
+    transition: background-color var(--theme-transition-duration, 2s) ease;
 }
 
 .switch :global(.MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track) {

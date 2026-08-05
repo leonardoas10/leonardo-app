@@ -1,12 +1,8 @@
 .paper:global(.MuiDialog-paper) {
-    --modal-accent: #ff9900;
+    --modal-accent: var(--theme-accent);
     border-radius: 8px;
     /* MUI Dialog defaults to elevation 24 (gray shadow) — replace with accent glow */
     box-shadow: 0 4px 12px var(--modal-accent) !important;
-}
-
-html[data-theme='light'] .paper:global(.MuiDialog-paper) {
-    --modal-accent: #a845e8;
 }
 
 .form {
