@@ -254,6 +254,7 @@ export function About({ experienceTabs, teideImage }: AboutProps) {
                                     <Box
                                         component="li"
                                         key={index}
+                                        tabIndex={0}
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
@@ -267,6 +268,33 @@ export function About({ experienceTabs, teideImage }: AboutProps) {
                                             bgcolor: 'background.default',
                                             boxShadow:
                                                 '0 6px 12px -4px var(--theme-accent)',
+                                            outline: 'none',
+                                            transition: 'none !important',
+                                            '@media (hover: hover)': {
+                                                '&:hover': {
+                                                    transform: 'scale(1.03)',
+                                                    boxShadow:
+                                                        '0 0 14px var(--theme-accent), 0 0 28px -4px var(--theme-accent)',
+                                                },
+                                            },
+                                            '&:focus-visible': {
+                                                transform: 'scale(1.03)',
+                                                boxShadow:
+                                                    '0 0 14px var(--theme-accent), 0 0 28px -4px var(--theme-accent)',
+                                                outline:
+                                                    '2px solid var(--theme-accent)',
+                                                outlineOffset: 2,
+                                            },
+                                            '@media (prefers-reduced-motion: reduce)': {
+                                                '@media (hover: hover)': {
+                                                    '&:hover': {
+                                                        transform: 'none',
+                                                    },
+                                                },
+                                                '&:focus-visible': {
+                                                    transform: 'none',
+                                                },
+                                            },
                                         }}
                                     >
                                         {emoji ? (
@@ -283,14 +311,15 @@ export function About({ experienceTabs, teideImage }: AboutProps) {
                                         ) : null}
                                         <Typography
                                             component="span"
-                                            variant="body2"
+                                            variant="body1"
                                             sx={{
                                                 color: 'var(--theme-accent)',
                                                 fontWeight: 500,
                                                 lineHeight: 1.3,
                                                 whiteSpace: 'nowrap',
-                                                fontSize:
-                                                    'clamp(0.65rem, 1.6vw, 0.8125rem)',
+                                                fontSize: {
+                                                    sm: 'clamp(0.75rem, 1.6vw, 0.8125rem)',
+                                                },
                                             }}
                                         >
                                             {text}
