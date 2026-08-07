@@ -16,7 +16,7 @@
         "aboutTitlePrimary": "Senior Software Engineer",
         "aboutTitleSecondary": "Cloud & AI Platform Engineer",
         "firstParagraphPart1": "Desarrollo software cloud-native y plataformas de IA enterprise, transformando requisitos de negocio complejos en soluciones escalables, seguras y listas para producción.",
-        "firstParagraphPart2": "Certificado en AWS con múltiples certificaciones, incluyendo Developer Associate y Solutions Architect Associate. Especializado en Amazon Bedrock, LangGraph, LangChain, LiteLLM, Kubernetes, Terraform y arquitecturas cloud-native modernas.",
+        "firstParagraphPart2": "Certificado en AWS con múltiples certificaciones, incluyendo Developer Associate y Solutions Architect Associate. Especializado en Amazon Bedrock, LangGraph, Kubernetes, Terraform y arquitecturas cloud-native modernas.",
         "coreExpertiseTitle": "Competencias Clave",
         "coreExpertiseIntro": "Diseño y desarrollo software cloud-native y plataformas de IA empresariales listas para producción.",
         "coreExpertiseItems": [
@@ -28,7 +28,7 @@
             "🧠 Sistemas Multi-Agente",
             "📚 Pipelines RAG y Búsqueda Vectorial",
             "☸️ AWS EKS y Kubernetes",
-            "🔄 CI/CD: GitHub Actions, GitLab, Bitbucket",
+            "🔄 CI/CD · GitHub Actions · GitLab CI",
             "🛠️ Terraform • AWS CDK • CloudFormation"
         ],
         "experienceTitle": "Destacados de Experiencia",

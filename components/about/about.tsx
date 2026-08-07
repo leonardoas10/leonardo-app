@@ -165,7 +165,6 @@ export function About({ experienceTabs, teideImage }: AboutProps) {
                         highlightTerms={[
                             'AWS Certified',
                             'certificado en AWS',
-                            'GenAI',
                         ]}
                         variant="body1"
                         paragraph
