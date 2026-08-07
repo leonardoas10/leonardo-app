@@ -5,15 +5,6 @@ import { About } from '@/components/about/about';
 import { ThumbImage } from '@/components/common/ThumbImage';
 import { CloudFrontURLs } from '@/utils/constants';
 
-// Dynamically import components that aren't needed immediately
-const ImageSlideshow = dynamic(
-    () =>
-        import('@/components/images/ImageSlideshow').then(
-            (mod) => mod.ImageSlideshow
-        ),
-    { ssr: true }
-);
-
 const ExperienceTabs = dynamic(
     () =>
         import('@/components/tabs/ExperienceTabs').then(
@@ -34,15 +25,6 @@ export default function Home() {
                     sizes="(max-width: 600px) 100vw, 50vw"
                     style={{ objectFit: 'cover' }}
                 />
-            }
-            imageSlideshow={
-                <Suspense
-                    fallback={
-                        <div style={{ height: 300, width: '100%' }}></div>
-                    }
-                >
-                    <ImageSlideshow />
-                </Suspense>
             }
             experienceTabs={
                 <Suspense

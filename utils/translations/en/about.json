@@ -1,11 +1,23 @@
 {
     "homePage": {
-        "aboutTitle": "Hey! Meet me...",
-        "firstParagraphPart1": "Leonardo Aranguren, Software Developer, Cloud Engineer, and Technical Lead specializing in AWS and enterprise generative AI platforms — from LLM orchestration to production-ready assistant delivery.",
-        "firstParagraphPart2": "AWS Certified professional with multiple certifications, including Developer Associate and Solutions Architect Associate, complemented by hands-on GenAI training in LangChain, LangGraph, Amazon Bedrock, and AWS Cloud Quest Generative AI.",
-        "discoveryTitle": "Driven by innovation...",
-        "secondParagraphPart1": "He designs, develops, and optimizes robust, scalable cloud and AI-powered solutions.",
-        "secondParagraphPart2": "With a strong technical focus, he leads by refining architectures and applying best practices — including RAG pipelines, multi-agent workflows, and LLM gateways — to bring every project to its fullest potential. In every line of code, he seeks innovation, efficiency, and real impact.",
+        "aboutTitlePrimary": "Senior Software Engineer",
+        "aboutTitleSecondary": "Cloud & AI Platform Engineer",
+        "firstParagraphPart1": "I build cloud-native software and enterprise AI platforms, transforming complex business requirements into scalable, secure, and production-ready solutions.",
+        "firstParagraphPart2": "AWS Certified with multiple certifications, including Developer Associate and Solutions Architect Associate. Specialized in Amazon Bedrock, LangGraph, LangChain, LiteLLM, Kubernetes, Terraform, and modern cloud-native architectures.",
+        "coreExpertiseTitle": "Core Expertise",
+        "coreExpertiseIntro": "Designing and building scalable cloud-native software and enterprise AI platforms.",
+        "coreExpertiseItems": [
+            "☁️ 15+ AWS Certifications",
+            "🚀 8+ Years Building Software",
+            "🏗️ Cloud Architecture",
+            "⚡ Platform Engineering",
+            "🤖 Enterprise AI Platforms",
+            "🧠 Multi-Agent Systems",
+            "📚 RAG Pipelines & Vector Search",
+            "☸️ AWS EKS & Kubernetes",
+            "🔄 CI/CD: GitHub Actions, GitLab, Bitbucket",
+            "🛠️ Terraform • AWS CDK • CloudFormation"
+        ],
         "experienceTitle": "Experience Highlights",
         "teideCaption": "Teide, Tenerife - Spain"
     },
