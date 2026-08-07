@@ -1,23 +1,61 @@
 'use client';
-import { Container, Grid, Typography, Box, useTheme } from '@mui/material';
+import {
+    Container,
+    Grid,
+    Typography,
+    Box,
+    useTheme,
+    useMediaQuery,
+} from '@mui/material';
+import dynamic from 'next/dynamic';
+import { Suspense, useEffect, useRef, useState } from 'react';
 
 import { HighlightedText } from '@/components/common/HighlightedText';
 import { ContactSection } from '@/components/contact/ContactSection';
+import { splitEmojiLabel } from '@/components/tabs/TabsComponent';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 
+const ImageSlideshow = dynamic(
+    () =>
+        import('@/components/images/ImageSlideshow').then(
+            (mod) => mod.ImageSlideshow
+        ),
+    { ssr: true }
+);
+
 interface AboutProps {
-    imageSlideshow: React.ReactNode;
     experienceTabs: React.ReactNode;
     teideImage: React.ReactNode;
 }
 
-export function About({
-    imageSlideshow,
-    experienceTabs,
-    teideImage,
-}: AboutProps) {
+export function About({ experienceTabs, teideImage }: AboutProps) {
     const theme = useTheme();
+    const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
+    const expertiseContentRef = useRef<HTMLDivElement>(null);
+    const [slideshowHeight, setSlideshowHeight] = useState<number>();
     const { t } = useTranslation('about');
+    const coreExpertiseItems = t('homePage.coreExpertiseItems', {
+        returnObjects: true,
+    }) as string[];
+
+    useEffect(() => {
+        const node = expertiseContentRef.current;
+        if (!node || !isMdUp) {
+            setSlideshowHeight(undefined);
+            return;
+        }
+
+        const syncHeight = () => {
+            setSlideshowHeight(node.getBoundingClientRect().height);
+        };
+
+        syncHeight();
+
+        const observer = new ResizeObserver(syncHeight);
+        observer.observe(node);
+
+        return () => observer.disconnect();
+    }, [isMdUp]);
 
     return (
         <Container maxWidth="lg" sx={{ py: 4 }}>
@@ -83,18 +121,39 @@ export function About({
                     size={{ xs: 12, md: 5.5 }}
                     sx={{ order: { xs: 2, md: 1 } }}
                 >
-                    <Typography
-                        variant="h4"
+                    <Box
                         component="h1"
-                        gutterBottom
                         sx={{
-                            fontWeight: 'bold',
+                            mb: 2,
                             textAlign: { xs: 'center', md: 'left' },
-                            fontSize: { xs: '1.75rem', md: '2.125rem' },
                         }}
                     >
-                        {t('homePage.aboutTitle')}
-                    </Typography>
+                        <Typography
+                            component="span"
+                            display="block"
+                            sx={{
+                                fontWeight: 'bold',
+                                fontSize: { xs: '1.5rem', md: '1.75rem' },
+                                lineHeight: 1.2,
+                                textWrap: 'balance',
+                            }}
+                        >
+                            {t('homePage.aboutTitlePrimary')}
+                        </Typography>
+                        <Typography
+                            component="span"
+                            display="block"
+                            sx={{
+                                fontWeight: 'bold',
+                                fontSize: { xs: '1.125rem', md: '1.375rem' },
+                                lineHeight: 1.3,
+                                mt: 0.5,
+                                textWrap: 'balance',
+                            }}
+                        >
+                            {t('homePage.aboutTitleSecondary')}
+                        </Typography>
+                    </Box>
                     <HighlightedText
                         text={t('homePage.firstParagraphPart1')}
                         highlightTerms={[]}
@@ -114,50 +173,135 @@ export function About({
                 </Grid>
             </Grid>
 
-            {/* Discovery: slideshow + copy — one block, order via CSS */}
-            <Grid
-                container
-                spacing={4}
-                alignItems="center"
-                sx={{ mt: { xs: 8, md: 12 } }}
+            {/* Core expertise: slideshow + copy in one horizontal block */}
+            <Box
+                sx={{
+                    mt: { xs: 8, md: 12 },
+                    display: 'flex',
+                    flexDirection: { xs: 'column', md: 'row' },
+                    alignItems: { xs: 'stretch', md: 'flex-start' },
+                    gap: { xs: 7, md: 4 },
+                }}
             >
-                <Grid
-                    size={{ xs: 12, md: 5 }}
+                <Box
                     sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
+                        flex: { md: '0 0 38%' },
+                        width: '100%',
+                        minWidth: 0,
+                        minHeight: { xs: 280 },
+                        mb: { xs: 2, md: 0 },
+                        height: {
+                            xs: 'auto',
+                            md: slideshowHeight ? `${slideshowHeight}px` : 'auto',
+                        },
                     }}
                 >
-                    {imageSlideshow}
-                </Grid>
-
-                <Grid size={{ xs: 12, md: 7 }}>
-                    <Typography
-                        variant="h4"
-                        component="h2"
-                        gutterBottom
-                        sx={{
-                            fontWeight: 'bold',
-                            textAlign: { xs: 'center', md: 'left' },
-                            fontSize: { xs: '1.75rem', md: '2.125rem' },
-                        }}
+                    <Suspense
+                        fallback={
+                            <Box sx={{ width: '100%', minHeight: 280 }} />
+                        }
                     >
-                        {t('homePage.discoveryTitle')}
-                    </Typography>
-                    <HighlightedText
-                        text={t('homePage.secondParagraphPart1')}
-                        highlightTerms={['AI-powered', 'scalable', 'IA', 'escalables']}
-                        variant="body1"
-                        paragraph
-                    />
-                    <HighlightedText
-                        text={t('homePage.secondParagraphPart2')}
-                        highlightTerms={[]}
-                        variant="body1"
-                        paragraph
-                    />
-                </Grid>
-            </Grid>
+                        <ImageSlideshow
+                            fillHeight
+                            height={isMdUp ? slideshowHeight : undefined}
+                        />
+                    </Suspense>
+                </Box>
+
+                <Box ref={expertiseContentRef} sx={{ flex: 1, minWidth: 0 }}>
+                        <Typography
+                            variant="h4"
+                            component="h2"
+                            sx={{
+                                fontWeight: 'bold',
+                                textAlign: { xs: 'center', md: 'left' },
+                                fontSize: { xs: '1.5rem', md: '1.75rem' },
+                                lineHeight: 1.2,
+                                textWrap: 'balance',
+                                mb: 1.5,
+                            }}
+                        >
+                            {t('homePage.coreExpertiseTitle')}
+                        </Typography>
+                        <HighlightedText
+                            text={t('homePage.coreExpertiseIntro')}
+                            highlightTerms={[
+                                'cloud-native',
+                                'enterprise AI platforms',
+                                'plataformas de IA empresariales',
+                            ]}
+                            variant="body1"
+                            paragraph
+                        />
+                        <Box
+                            component="ul"
+                            sx={{
+                                listStyle: 'none',
+                                p: 0,
+                                m: 0,
+                                mt: 2,
+                                display: 'grid',
+                                gridTemplateColumns: {
+                                    xs: '1fr',
+                                    sm: 'repeat(2, 1fr)',
+                                },
+                                gap: 1.5,
+                            }}
+                        >
+                            {coreExpertiseItems.map((item, index) => {
+                                const { emoji, text } = splitEmojiLabel(item);
+
+                                return (
+                                    <Box
+                                        component="li"
+                                        key={index}
+                                        sx={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: 1,
+                                            minWidth: 0,
+                                            px: 1.5,
+                                            py: 1,
+                                            borderRadius: 1,
+                                            border: 1,
+                                            borderColor: 'divider',
+                                            bgcolor: 'background.default',
+                                            boxShadow:
+                                                '0 6px 12px -4px var(--theme-accent)',
+                                        }}
+                                    >
+                                        {emoji ? (
+                                            <Box
+                                                component="span"
+                                                aria-hidden="true"
+                                                sx={{
+                                                    lineHeight: 1.4,
+                                                    flexShrink: 0,
+                                                }}
+                                            >
+                                                {emoji}
+                                            </Box>
+                                        ) : null}
+                                        <Typography
+                                            component="span"
+                                            variant="body2"
+                                            sx={{
+                                                color: 'var(--theme-accent)',
+                                                fontWeight: 500,
+                                                lineHeight: 1.3,
+                                                whiteSpace: 'nowrap',
+                                                fontSize:
+                                                    'clamp(0.65rem, 1.6vw, 0.8125rem)',
+                                            }}
+                                        >
+                                            {text}
+                                        </Typography>
+                                    </Box>
+                                );
+                            })}
+                        </Box>
+                    </Box>
+            </Box>
 
             <Grid
                 container

@@ -24,7 +24,10 @@ function getVisibleSlideIndices(current: number, total: number): number[] {
     return [prev, current, next];
 }
 
-export const ImageSlideshow: React.FC = () => {
+export const ImageSlideshow: React.FC<{
+    fillHeight?: boolean;
+    height?: number;
+}> = ({ fillHeight = false, height: matchedHeight }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
@@ -181,7 +184,8 @@ export const ImageSlideshow: React.FC = () => {
             sx={{
                 position: 'relative',
                 width: '100%',
-                height: 300,
+                height: matchedHeight ?? (fillHeight ? '100%' : 300),
+                minHeight: matchedHeight ?? (fillHeight ? 280 : 300),
                 overflow: 'hidden',
                 borderRadius: 2,
                 boxShadow: `0 4px 8px ${theme.palette.background.aws}`,
