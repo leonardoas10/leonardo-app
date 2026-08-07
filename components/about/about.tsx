@@ -180,7 +180,7 @@ export function About({ experienceTabs, teideImage }: AboutProps) {
                     display: 'flex',
                     flexDirection: { xs: 'column', md: 'row' },
                     alignItems: { xs: 'stretch', md: 'flex-start' },
-                    gap: { xs: 3, md: 4 },
+                    gap: { xs: 7, md: 4 },
                 }}
             >
                 <Box
@@ -189,6 +189,7 @@ export function About({ experienceTabs, teideImage }: AboutProps) {
                         width: '100%',
                         minWidth: 0,
                         minHeight: { xs: 280 },
+                        mb: { xs: 2, md: 0 },
                         height: {
                             xs: 'auto',
                             md: slideshowHeight ? `${slideshowHeight}px` : 'auto',
