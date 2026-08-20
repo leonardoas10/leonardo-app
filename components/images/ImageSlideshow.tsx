@@ -50,6 +50,10 @@ export const ImageSlideshow: React.FC<{
             imageUrl: `${CloudFrontURLs.IMAGES}/solutions-architect-badge.webp`,
         },
         {
+            alt: 'AWS Certified AI Practitioner Badge',
+            imageUrl: `${CloudFrontURLs.IMAGES}/ai_practitioner.webp`,
+        },
+        {
             alt: 'AWS Cloud Quest: Generative AI Badge',
             imageUrl: `${CloudFrontURLs.IMAGES}/cq-generative-ai.webp`,
         },
