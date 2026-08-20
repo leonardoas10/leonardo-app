@@ -38,9 +38,9 @@
                     "title": "Serverless Architecture",
                     "icon": "🔐",
                     "items": [
-                        "Designed and implemented event-driven serverless solutions with Lambda, Step Functions, SQS, SNS, DynamoDB, EventBridge, S3, and AppSync.",
-                        "Implemented infrastructure automation using Terraform, AWS CDK, and Amplify Gen 2 for multi-environment deployments and centralized control.",
-                        "Developed secure architecture with VPC, subnets, security groups, and identity management with Cognito to ensure isolation and access control."
+                        "Designed and implemented 20+ event-driven serverless solutions with Lambda, Step Functions, SQS, SNS, DynamoDB, EventBridge, S3, and AppSync.",
+                        "Implemented infrastructure automation across 3+ environments using Terraform, AWS CDK, and Amplify Gen 2 for multi-environment deployments and centralized control.",
+                        "Developed 20+ secure architectures with VPC, subnets, security groups, and identity management with Cognito to ensure isolation and access control."
                     ]
                 }
             }
@@ -53,17 +53,17 @@
                     "icon": "🔄",
                     "items": [
                         "Refactored 50+ monolithic APIs into scalable microservices following the single responsibility principle, using Go, Node.js, NestJS, Python, and Laravel.",
-                        "Built full-stack applications with React, Redux Toolkit, and TanStack Query for scalable enterprise web and mobile experiences.",
-                        "Enabled interoperability between microservices and GCP systems through secure and efficient integrations."
+                        "Built 20+ full-stack applications with React, Redux Toolkit, and TanStack Query for scalable enterprise web and mobile experiences.",
+                        "Enabled interoperability across 20+ microservices and GCP systems through secure and efficient integrations."
                     ]
                 },
                 "fullstack": {
                     "title": "Cross-Platform Apps",
                     "icon": "📱",
                     "items": [
-                        "Developed ordering and loyalty modules in Next.js, React Native, and React, enhancing user experience in mobile and web apps.",
-                        "Designed scalable APIs using GraphQL (AppSync) and REST (API Gateway) for critical customer-facing services.",
-                        "Implemented multi-channel authentication with Cognito, event orchestration with SNS, and access control in distributed environments."
+                        "Developed 20+ ordering and loyalty modules in Next.js, React Native, and React, enhancing user experience in mobile and web apps.",
+                        "Designed 20+ scalable APIs using GraphQL (AppSync) and REST (API Gateway) for critical customer-facing services.",
+                        "Implemented 20+ multi-channel authentication flows with Cognito, event orchestration with SNS, and access control in distributed environments."
                     ]
                 }
             }
@@ -75,18 +75,18 @@
                     "title": "Technical Direction",
                     "icon": "🚀",
                     "items": [
-                        "Led the development of the first multi-authenticator system for digital banking channels, integrating security layers in Cognito, SNS, and VPC.",
-                        "Designed and coordinated an integration ecosystem between legacy and modern services, enabling a smooth transition to a cloud-native architecture.",
-                        "Guided technical teams in designing, planning, and deploying scalable, robust solutions aligned with business objectives."
+                        "Led the development of the first multi-authenticator system across 15+ digital banking channels, integrating security layers in Cognito, SNS, and VPC.",
+                        "Designed and coordinated 20+ integrations between legacy and modern services, enabling a smooth transition to a cloud-native architecture.",
+                        "Guided 18+ technical teams in designing, planning, and deploying scalable, robust solutions aligned with business objectives."
                     ]
                 },
                 "leadership": {
                     "title": "Quality & Culture",
                     "icon": "📊",
                     "items": [
-                        "Implemented CloudWatch dashboards and key metrics for health and performance monitoring across distributed services.",
-                        "Promoted continuous quality culture and technical ownership at all levels of development and infrastructure.",
-                        "Validated KPIs and led Scrum delivery while coordinating stakeholders across banking and enterprise programs."
+                        "Implemented CloudWatch dashboards and key metrics for health and performance monitoring across 20+ distributed services.",
+                        "Promoted continuous quality culture and technical ownership across 15+ development and infrastructure teams.",
+                        "Validated KPIs and led Scrum delivery while coordinating stakeholders across 17+ banking and enterprise programs."
                     ]
                 }
             }
@@ -98,8 +98,8 @@
                     "title": "CI/CD & Infrastructure",
                     "icon": "🚀",
                     "items": [
-                        "Replaced legacy CircleCI with GitHub Actions and GitLab CI/CD (Bricks), using OIDC for temporary AWS roles, parallel lint/test/build/deploy workflows, Jira traceability, and automated Amplify rollbacks.",
-                        "Provisioned multi-environment infrastructure with Terraform, CloudFormation, AWS CDK, and Bricks across EKS, S3, RDS, and IAM for consistent dev-to-prod delivery.",
+                        "Replaced 18+ legacy CircleCI pipelines with GitHub Actions and GitLab CI/CD (Bricks), using OIDC for temporary AWS roles, parallel lint/test/build/deploy workflows, Jira traceability, and automated Amplify rollbacks.",
+                        "Provisioned 15+ multi-environment infrastructure stacks with Terraform, CloudFormation, AWS CDK, and Bricks across EKS, S3, RDS, and IAM for consistent dev-to-prod delivery.",
                         "Automated serverless deployments for healthcare assessment platforms with AWS CDK and EventBridge-driven pipelines; expanded Pytest coverage across 20+ repositories."
                     ]
                 },
@@ -107,9 +107,9 @@
                     "title": "Observability & Reliability",
                     "icon": "📈",
                     "items": [
-                        "Implemented Splunk trace-based logging and Datadog APM on enterprise AI platforms, plus CloudWatch dashboards, SNS alerts, and Slack incident channels for quick-service retail systems.",
-                        "Delivered branch and environment-based deployments with automated rollback across isolated dev/qa/prod stacks under a single AWS organization.",
-                        "Centralized log aggregation and key service metrics for health monitoring, enabling faster incident response and operational ownership."
+                        "Implemented Splunk trace-based logging and Datadog APM across 17+ enterprise AI and retail platforms, plus CloudWatch dashboards, SNS alerts, and Slack incident channels.",
+                        "Delivered branch and environment-based deployments with automated rollback across 15+ isolated dev/qa/prod stacks under a single AWS organization.",
+                        "Centralized log aggregation and key service metrics for 18+ distributed services, enabling faster incident response and operational ownership."
                     ]
                 }
             }
@@ -121,9 +121,9 @@
                     "title": "Cloud & Serverless",
                     "icon": "☁️",
                     "items": [
-                        "Designed event-driven serverless systems with Lambda, Step Functions, SQS, SNS, DynamoDB, AppSync, and EventBridge—including DynamoDB migration/rollback flows and candidate exam orchestration.",
-                        "Led Amplify Gen 2 monorepo architecture with independent stacks per domain: AppSync GraphQL gateway, DynamoDB streams, KMS encryption, and granular IAM per environment.",
-                        "Applied AWS Well-Architected pillars—operational excellence, security, reliability, performance, and cost—across client and enterprise solutions."
+                        "Designed 20+ event-driven serverless systems with Lambda, Step Functions, SQS, SNS, DynamoDB, AppSync, and EventBridge—including DynamoDB migration/rollback flows and candidate exam orchestration.",
+                        "Led Amplify Gen 2 monorepo architecture with 15+ independent domain stacks: AppSync GraphQL gateway, DynamoDB streams, KMS encryption, and granular IAM per environment.",
+                        "Applied AWS Well-Architected pillars—operational excellence, security, reliability, performance, and cost—across 18+ client and enterprise solutions."
                     ]
                 },
                 "platform": {
@@ -131,8 +131,8 @@
                     "icon": "🔗",
                     "items": [
                         "Led a cross-channel banking integration ecosystem and migration of 50 monolithic APIs to microservices on API Gateway, EKS, Lambda, Cognito, and private VPC networking.",
-                        "Designed hybrid enterprise architectures connecting on-premise systems to AWS through Direct Connect, VPC segmentation, and secure API Gateway endpoints.",
-                        "Built internal consumption platforms with React on CloudFront, private API Gateway, Cognito RBAC, and Glue ETL pipelines for enterprise data workflows."
+                        "Designed 15+ hybrid enterprise architectures connecting on-premise systems to AWS through Direct Connect, VPC segmentation, and secure API Gateway endpoints.",
+                        "Built 17+ internal consumption platforms with React on CloudFront, private API Gateway, Cognito RBAC, and Glue ETL pipelines for enterprise data workflows."
                     ]
                 }
             }
@@ -144,18 +144,18 @@
                     "title": "LLM & Agent Engineering",
                     "icon": "🧠",
                     "items": [
-                        "Built enterprise AI Gateways with LiteLLM and LangGraph, integrating Azure OpenAI and AI Foundry for vector stores, multi-agent routing, tool calling, and LangSmith observability.",
-                        "Implemented RAG pipelines with document ingestion, vector retrieval, S3-driven dynamic assistant configuration, and WebSocket-based streaming for real-time chat.",
-                        "Orchestrated LLM workflows with specialized agent deployments, config sync to S3, and secure multi-tenant access patterns for internal AI assistant platforms."
+                        "Built 3 enterprise AI Gateways with LiteLLM and LangGraph—Azure OpenAI, AI Foundry vector stores, multi-agent routing, tool calling, and LangSmith observability.",
+                        "Implemented 10+ RAG pipelines with document ingestion, vector retrieval, S3-driven assistant config, and WebSocket streaming for real-time chat.",
+                        "Orchestrated 10+ LLM workflows across specialized agent deployments, S3 config sync, and secure multi-tenant access for 5+ internal teams."
                     ]
                 },
                 "platform": {
                     "title": "AI Platform Delivery",
                     "icon": "⚡",
                     "items": [
-                        "Delivered React and TypeScript admin and chat UIs with TanStack Query, reusable components, and Keycloak or Cognito authentication for assistant lifecycle management.",
-                        "Developed Node.js/Fastify and Python/FastAPI APIs with Prisma or DynamoDB, supporting multi-tenant organizations, conversation flows, and role-based access control.",
-                        "Deployed AI stacks to AWS EKS with GitLab CI/CD and Bricks or GitHub Actions, enabling consistent multi-environment releases from development to production."
+                        "Delivered React/TypeScript admin and chat UIs with TanStack Query, reusable components, and Keycloak or Cognito auth for 5+ tenant organizations.",
+                        "Developed Node.js/Fastify and Python/FastAPI APIs with Prisma or DynamoDB—5+ multi-tenant orgs, conversation flows, and role-based access control.",
+                        "Deployed 10+ AI stacks to AWS EKS with GitLab CI/CD (Bricks) and GitHub Actions across dev, qa, and prod environments."
                     ]
                 }
             }
