@@ -27,6 +27,35 @@ interface ExperienceTabsProps {
     tabs?: ExperienceTab[];
 }
 
+const METRIC_SPLIT_PATTERN =
+    /(\$[\d,]+(?:\.\d+)?(?:\sUSD)?|~?(?<![A-Za-z])(?<!Gen )\d[\d,]*\+?(?:\sUSD|%)?)/g;
+const METRIC_MATCH_PATTERN =
+    /^(\$[\d,]+(?:\.\d+)?(?:\sUSD)?|~?(?<![A-Za-z])(?<!Gen )\d[\d,]*\+?(?:\sUSD|%)?)$/;
+
+function highlightMetrics(text: string): React.ReactNode {
+    const parts = text.split(METRIC_SPLIT_PATTERN);
+
+    return parts.map((part, index) => {
+        if (METRIC_MATCH_PATTERN.test(part)) {
+            return (
+                <Box
+                    component="span"
+                    key={index}
+                    sx={{
+                        fontWeight: 700,
+                        color: 'var(--theme-accent)',
+                        fontVariantNumeric: 'tabular-nums',
+                    }}
+                >
+                    {part}
+                </Box>
+            );
+        }
+
+        return part;
+    });
+}
+
 export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
     const { t } = useTranslation('about');
     
@@ -72,8 +101,8 @@ export const ExperienceTabs: React.FC<ExperienceTabsProps> = ({ tabs }) => {
                             {section.items.map(
                                 (item: ExperienceItem, itemIndex: number) => (
                                     <ListItem key={itemIndex}>
-                                        <ListItemText 
-                                            primary={item.primary}
+                                        <ListItemText
+                                            primary={highlightMetrics(item.primary)}
                                             primaryTypographyProps={{ align: 'justify' }}
                                         />
                                     </ListItem>
